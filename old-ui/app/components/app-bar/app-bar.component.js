@@ -94,12 +94,12 @@ module.exports = class AppBar extends Component {
           }}
         >
           <div className="app-bar-left-menu-section">
-            <img
+            {/* <img
               height={24}
               width={24}
               src={'./images/icon-128.png'}
-            />
-            <NetworkIndicator
+            /> */}
+            {/* <NetworkIndicator
               network={network}
               provider={provider}
               isUnlocked={isUnlocked}
@@ -108,17 +108,17 @@ module.exports = class AppBar extends Component {
                 event.stopPropagation()
                 this.setState({ isNetworkMenuOpen: !isNetworkMenuOpen })
               }}
-            />
+            /> */}
           </div>
           {isUnlocked && (
             <div className="app-bar-right-menus-section">
-              <AccountDropdowns
+              {/* <AccountDropdowns
                 enableAccountsSelector={true}
                 identities={identities}
                 selected={selectedAddress}
                 network={network}
                 keyrings={keyrings}
-              />
+              /> */}
               <div
                 className={classnames('app-bar-burger', state.sandwichClass || 'sandwich-expando')}
                 onClick={() => this.changeState(!state.isMainMenuOpen)}

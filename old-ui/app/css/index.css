@@ -100,20 +100,18 @@ input:focus, textarea:focus {
 }
 
 button, input[type="submit"] {
-  font-family: 'Nunito Bold';
+  /* font-family: 'Inter'; */
+  font: normal normal medium 14px/17px Inter;
   outline: none;
   cursor: pointer;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 32px;
   border: none;
   color: white;
   transform-origin: center center;
   transition: transform 50ms ease-in;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 14px;
   /* default green */
-  background: #60db97;
+  background: #03BE46;
   /*box-shadow: 0px 5px 10px 0px rgba(92, 52, 162, 0.3);*/
 }
 
@@ -437,17 +435,19 @@ p.buy-option {
          (min-device-pixel-ratio: 1.3),
          (min-resolution: 1.3dppx) {
   .logo {
-    background-image: url(../images/logo-1@2x.png);
-    background-size: 125px 125px;
+    background-image: url(../images/Assets/XDCPay.svg);
+    background-size: 78px 92px;
   }
 }
 
 .logo {
-  background-image: url(../images/logo-1.png);
+  background-image: url(../images/Assets/XDCPay.svg);
   background-repeat: no-repeat;
-  width: 125px;
-  height: 125px;
-  margin-top: 30px;
+  width: 78px;
+  height: 92px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .selected-network {
@@ -1203,4 +1203,8 @@ div.message-container > div:first-child {
 
 input[disabled],textarea[disabled] {
   background: #FFFADE
+}
+
+.xdc-logo {
+  margin-top: 20px;
 }
