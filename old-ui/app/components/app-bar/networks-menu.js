@@ -56,7 +56,7 @@ class NetworksMenu extends Component {
           position: 'absolute',
           left: '2px',
           top: '38px',
-          width: '270px',
+          width: '310px',
           maxHeight: isOpen ? '524px' : '0px',
         }}
         innerStyle={{
@@ -76,7 +76,7 @@ class NetworksMenu extends Component {
           style={{
             paddingLeft: '20px',
             fontSize: '16px',
-            color: providerType === LOCALHOST ? 'white' : '',
+            color: providerType === LOCALHOST ? '#2A2A2A' : '',
           }}
         >
           {providerType === LOCALHOST ? <div className="selected-network" /> : null}

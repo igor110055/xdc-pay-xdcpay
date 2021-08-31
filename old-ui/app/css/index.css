@@ -214,15 +214,16 @@ h2.page-subtitle {
 }
 
 textarea {
-  border: 1px solid #e2e2e2;
-  border-radius: 3px;
+  border: 2px solid #C7CDD8;
+  border-radius: 4px;
 }
 
 textarea.twelve-word-phrase {
   font-family: 'Nunito Regular';
   padding: 12px;
-  width: 300px;
-  height: 140px;
+  margin-top: 17px;
+  width: 265px;
+  height: 128px;
   font-size: 14px;
   background: white;
   resize: none;
@@ -231,16 +232,16 @@ textarea.twelve-word-phrase {
 .network-indicator {
   display: flex;
   align-items: center;
-  font-size: 0.6em;
+  font-size: 9px;
 
 }
 
 .network-name {
-  width: 5.2em;
+  width: 68px;
   line-height: 9px;
   text-rendering: geometricPrecision;
   padding-left: 9px;
-  color: #6729a8;
+  color: #2A2A2A;
 }
 
 .check {
@@ -318,13 +319,13 @@ app sections
 
 .error {
   margin-bottom: 9px;
-  border: 1px solid #ff1345 !important;
-  color: #ff1345 !important;
+  /* border: 1px solid #ff1345 !important; */
+  color: #FF0035 !important;
   font-size: 12px;
-  background: rgba(255,19,69, 0.1);
-  border-radius: 3px;
+  background: #FFF2F5;
+  border-radius: 4px;
   text-align: left;
-  padding: 10px 10px 10px 34px;
+  padding: 8px 9px 9px 42px;
   background-image: url('../images/warning.svg');
   background-position: 10px 10px;
   background-repeat: no-repeat;
@@ -459,8 +460,7 @@ p.buy-option {
 }
 
 .section-title {
-  border-top: 1px solid #e2e2e2;
-  height: 80px;
+  margin-top: 40px;
   font-family: 'Nunito Semibold';
 }
 
@@ -1207,4 +1207,8 @@ input[disabled],textarea[disabled] {
 
 .xdc-logo {
   margin-top: 20px;
+}
+
+.success-logo {
+  margin-right: 5px;
 }

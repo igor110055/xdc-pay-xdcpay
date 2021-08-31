@@ -94,12 +94,12 @@ module.exports = class AppBar extends Component {
           }}
         >
           <div className="app-bar-left-menu-section">
-            {/* <img
+            <img
               height={24}
               width={24}
-              src={'./images/icon-128.png'}
-            /> */}
-            {/* <NetworkIndicator
+              src={'./images/Assets/XDC-Icon.svg'}
+            />
+            <NetworkIndicator
               network={network}
               provider={provider}
               isUnlocked={isUnlocked}
@@ -108,7 +108,7 @@ module.exports = class AppBar extends Component {
                 event.stopPropagation()
                 this.setState({ isNetworkMenuOpen: !isNetworkMenuOpen })
               }}
-            /> */}
+            />
           </div>
           {isUnlocked && (
             <div className="app-bar-right-menus-section">
@@ -161,7 +161,7 @@ module.exports = class AppBar extends Component {
             <img
               height={24}
               width={24}
-              src={'./images/icon-128.png'}
+              src={'./images/Assets/XDC-Icon.svg'}
             />
             <NetworkIndicator
               network={network}
@@ -175,13 +175,13 @@ module.exports = class AppBar extends Component {
           </div>
           {isUnlocked && (
             <div className="app-bar-right-menus-section">
-              <AccountDropdowns
+              {/* <AccountDropdowns
                 enableAccountsSelector={true}
                 identities={identities}
                 selected={selectedAddress}
                 network={network}
                 keyrings={keyrings}
-              />
+              /> */}
             </div>
           )}
           <SandwichExpando
