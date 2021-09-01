@@ -111,7 +111,7 @@ class NetworksMenu extends Component {
           onClick={() => props.setProviderType(networkObj.providerName)}
           style={{
             paddingLeft: '20px',
-            color: providerType === networkObj.providerName ? 'white' : '',
+            color: providerType === networkObj.providerName ? '#2149B9' : '',
           }}
         >
           {providerType === networkObj.providerName ? <div className="selected-network" /> : null}
@@ -211,7 +211,7 @@ class NetworksMenu extends Component {
             closeMenu={() => this.props.updateNetworksMenuOpenState(false)}
             style={{
               paddingLeft: '20px',
-              color: 'white',
+              color: '#2149B9',
             }}
           >
             <div className="selected-network" />

@@ -33,7 +33,7 @@ Network.prototype.render = function () {
         },
         src: 'images/loading.svg',
       }),
-      h('i.fa.fa-caret-down'),
+      h('img',{className: '', src: "/images/Assets/DownArrow.svg"}),
     ])
   } else {
     if (networkNumber && networks[networkNumber]) {
@@ -57,7 +57,7 @@ Network.prototype.render = function () {
         return h(props.isUnlocked ? '.network-indicator' : '.network-indicator.hidden', [
           h('.network-name',
           displayName),
-          props.onClick && h('i.fa.fa-caret-down.fa-lg'),
+          props.onClick && h('img',{className: '', src: "/images/Assets/DownArrow.svg"}),
         ])
       })(),
     ])
