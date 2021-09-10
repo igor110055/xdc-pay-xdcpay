@@ -54,15 +54,19 @@ class NetworksMenu extends Component {
         zIndex={11}
         style={{
           position: 'absolute',
-          left: '2px',
-          top: '38px',
-          width: '310px',
+          bottom: '18px',
+          width: '317px',
           maxHeight: isOpen ? '524px' : '0px',
         }}
         innerStyle={{
-          padding: '2px 16px 2px 0px',
+          // padding: '2px 16px 2px 0px',
+          padding: 0
         }}
       >
+        <div className='select-network-list'>
+          Select Network
+          <img className='select-network-close-icon' src='/images/Assets/Close.svg'></img>
+        </div>
 
         {networksView}
 
@@ -75,7 +79,7 @@ class NetworksMenu extends Component {
           }}
           style={{
             paddingLeft: '20px',
-            fontSize: '16px',
+            fontSize: '14px',
             color: providerType === LOCALHOST ? '#2A2A2A' : '',
           }}
         >

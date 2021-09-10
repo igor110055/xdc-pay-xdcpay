@@ -11,12 +11,12 @@
 }
 
 .app-bar-networks-dropdown-custom-rpc {
-	padding-left: 20px !important;
-    color: #60db97 !important;
+	padding-left: 16px !important;
+    color: #2A2A2A !important;
 }
 
 .app-bar-networks-dropdown-common-rpc {
-	padding-left: 20px !important;
+	padding-left: 16px !important;
 }
 
 .app-bar-burger {

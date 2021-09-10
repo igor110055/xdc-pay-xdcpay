@@ -87,11 +87,13 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
     Dropdown,
     {
       style: {
-        position: 'relative',
-        marginLeft: menuToTop ? '-273px' : '-263px',
+        position: 'absolute',
+        // marginLeft: menuToTop ? '-273px' : '-263px',
         minWidth: '180px',
-        marginTop: menuToTop ? '-214px' : '30px',
-        width: '280px',
+        // marginTop: menuToTop ? '-214px' : '30px',
+        width: '317px',
+        bottom: '18px',
+        left: '0'
       },
       isOpen: optionsMenuActive,
       onClickOutside: (event) => {
@@ -104,6 +106,14 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
       },
     },
     [
+      h('div',
+        {className: 'token-options-list'},
+        [`Token Options`,
+        h('img',
+          {className: 'token-options-close-icon', src: "/images/Assets/Close.svg"}
+        ),]
+      ),
+    
       h(
         DropdownMenuItem,
         {
@@ -112,7 +122,11 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
             showSendTokenPage(address)
           },
         },
-        `Send`,
+        [
+          h('img',
+            {className: 'token-options-icon', src: "/images/Assets/Send.svg"},
+          ),
+        `Send`,]
       ),
       h(
         DropdownMenuItem,
@@ -123,8 +137,11 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
             const url = ethNetProps.explorerLinks.getExplorerTokenLinkFor(address, userAddress, network)
             global.platform.openWindow({ url })
           },
-        },
-        `View token on block explorer`,
+        },[
+          h('img',
+          {className: 'token-options-icon', src: "/images/Assets/ViewOnExplorer.svg"},
+          ),
+        `View token on block explorer`,]
       ),
       h(
         DropdownMenuItem,
@@ -134,8 +151,11 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
             const checkSumAddress = address && toChecksumAddress(network, address)
             copyToClipboard(checkSumAddress)
           },
-        },
-        'Copy address to clipboard',
+        },[
+          h('img',
+            {className: 'token-options-icon', src: "/images/Assets/CopyClipboard.svg"},
+          ),
+        'Copy address to clipboard',]
       ),
       h(
         DropdownMenuItem,
@@ -144,8 +164,11 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
           onClick: () => {
             this.props.removeToken({ address, symbol, string, network, userAddress })
           },
-        },
-        'Remove',
+        },[
+          h('img',
+            {className: 'token-options-icon', src: "/images/Assets/Remove.svg"},
+          ),
+        'Remove',]
       ),
     ]
   )

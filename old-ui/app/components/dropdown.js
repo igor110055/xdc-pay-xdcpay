@@ -36,23 +36,23 @@ class Dropdown extends Component {
     } = this.props
 
     const innerStyleDefaults = extend({
-      padding: '15px 30px',
+      padding: '0',
       background: 'transparent',
       boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 2px 2px',
-      color: '#2A2A2A'
+      color: '#2A2A2A',
     }, innerStyle)
 
     const styleDefaults = extend({
       borderRadius: '8px',
-      background: '#E3E7EB',
-      boxShadow: '0px 3px 6px #00000029',
+      background: '#ffffff',
+      boxShadow: 'rgb(0 0 0 / 50%) 0px 0px 60px',
       overflowY: 'auto',
       transition: 'max-height 300ms ease-in-out',
-      marginTop: '326px',
-      marginLeft: '20px',
+      marginLeft: '19px',
     }, style)
 
     return (
+      <div className="container">
       <MenuDroppo
         useCssTransition={useCssTransition}
         isOpen={isOpen}
@@ -64,12 +64,13 @@ class Dropdown extends Component {
       >
         <style>
         {`
-          li.dropdown-menu-item:hover { color:#2149B9; }
+          li.dropdown-menu-item:hover { color:#2A2A2A; }
           li.dropdown-menu-item { color: #2A2A2A; position: relative }
         `}
         </style>
         {children}
       </MenuDroppo>
+      </div>
     )
   }
 }
@@ -87,14 +88,15 @@ class DropdownMenuItem extends Component {
     const { onClick, closeMenu, children } = this.props
     const style = Object.assign({
       listStyle: 'none',
-      padding: (this.props.style && this.props.style.padding) ? this.props.style.padding : '15px 0px',
-      fontSize: '16px',
+      padding: (this.props.style && this.props.style.padding) ? this.props.style.padding : '9px 0px',
+      fontSize: '14px',
       fontStyle: 'normal',
       fontFamily: 'Nunito Regular',
       cursor: 'pointer',
       display: 'flex',
       justifyContent: 'flex-start',
       alignItems: 'center',
+      borderTop: '1px solid #E3E7EB'
     }, this.props.style)
 
     return (

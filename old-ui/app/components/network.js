@@ -42,7 +42,7 @@ Network.prototype.render = function () {
     } else {
       // networkName = provider.rpcName,
       // networkName = networkName.replace(https.'')
-      displayName = `XinFIn Private Network`
+      displayName = `XDC Private Network`
       hoverText = `Private Network (${provider.rpcTarget})`
     }
   }

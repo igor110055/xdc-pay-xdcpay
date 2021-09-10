@@ -325,11 +325,41 @@ app sections
   background: #FFF2F5;
   border-radius: 4px;
   text-align: left;
-  padding: 8px 9px 9px 42px;
+  padding: 8px 9px 9px 39px;
   background-image: url('../images/warning.svg');
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
+  line-height: 14px;
+}
+
+.error1 {
+  margin-bottom: 9px;
+  /* border: 1px solid #ff1345 !important; */
+  color: #FF0035 !important;
+  font-size: 12px;
+  background: #FFF2F5;
+  border-radius: 4px;
+  text-align: left;
+  padding: 8px 9px 9px 42px;
+  background-image: url('../images/warning.svg');
+  background-position: 15px 22px;
+  background-repeat: no-repeat;
+  width: 100%;
+  line-height: 14px;
+}
+
+.error-login {
+  color: #FF0035 !important;
+  font-size: 12px;
+  background: #FFF2F5;
+  border-radius: 4px;
+  text-align: left;
+  padding: 8px 9px 9px 39px;
+  background-image: url(../images/warning.svg);
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 265px;
   line-height: 14px;
 }
 
@@ -405,14 +435,14 @@ p.buy-option {
 }
 
 .sandwich-expando {
-  background-image: url('../images/menu.svg');
+  background-image: url('../images/Assets/BlueMenu.svg');
   background-size: 14px 12px;
   background-repeat: no-repeat;
   background-position: right;
 }
 
 .sandwich-expando.expanded {
-  background-image: url('../images/close.svg');
+  background-image: url('../images/Assets/BlueClose.png');
   background-size: 12px 12px;
   background-repeat: no-repeat;
   background-position: right;
@@ -451,13 +481,83 @@ p.buy-option {
   align-items: center;
 }
 
+.select-network-list {
+    font-size: 12px;
+    font-weight: 600;
+    padding-bottom: 12px;
+    padding-top: 15px;
+    padding-left: 114px;
+}
+.select-network-close-icon {
+  margin-left: 86px;
+}
+
+.my-accounts-list {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-left: 120px;
+}
+.my-accounts-close-icon {
+  margin-left: 95px;
+}
+.my-accounts-icon {
+  margin-right: 10px;
+}
+
+.wallet-options-list {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-left: 115px;
+}
+.wallet-options-close-icon {
+  margin-left: 90px;
+}
+.wallet-options-icon {
+  margin-left: 13px;
+  margin-right: 8px;
+}
+
+.account-options-list {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 17px;
+  padding-top: 20px;
+  padding-left: 109px;
+}
+.account-options-close-icon {
+  margin-left: 86px;
+}
+.account-options-icon {
+  margin-left: 13px;
+  margin-right: 8px;
+}
+
+.token-options-list {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-left: 116px;
+}
+.token-options-close-icon {
+  margin-left: 92px;
+}
+.token-options-icon {
+  margin-left: 13px;
+  margin-right: 13px;
+}
+
 .selected-network {
   width: 17px;
-  height: 17px;
+  height: 16.8px;
   background-Image: url(../images/Assets/Check-Blue.svg);
   position: absolute;
   object-fit: cover;
-  right: 7px;
+  right: 21px;
 }
 
 .section-title {
@@ -481,7 +581,7 @@ p.buy-option {
 
 .unlock-screen h1 {
   margin-top: -28px;
-  margin-bottom: 42px;
+  margin-bottom: 15px;
 }
 
 .unlock-screen input[type=password] {

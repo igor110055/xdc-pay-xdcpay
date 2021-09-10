@@ -125,13 +125,13 @@ module.exports = class AppBar extends Component {
           </div>
           {isUnlocked && (
             <div className="app-bar-right-menus-section">
-              {/* <AccountDropdowns
+              <AccountDropdowns
                 enableAccountsSelector={true}
                 identities={identities}
                 selected={selectedAddress}
                 network={network}
                 keyrings={keyrings}
-              /> */}
+              />
               <div
                 className={classnames('app-bar-burger', state.sandwichClass || 'sandwich-expando')}
                 onClick={() => this.changeState(!state.isMainMenuOpen)}
@@ -197,16 +197,16 @@ module.exports = class AppBar extends Component {
           </div>
           {isUnlocked && (
             <div className="app-bar-right-menus-section">
-              {/* <AccountDropdowns
+              <AccountDropdowns
                 enableAccountsSelector={true}
                 identities={identities}
                 selected={selectedAddress}
                 network={network}
                 keyrings={keyrings}
-              /> */}
+              />
             </div>
           )}
-          {/* <SandwichExpando
+          <SandwichExpando
             className={'sandwich-expando'}
             width={16}
             barHeight={2}
@@ -218,7 +218,7 @@ module.exports = class AppBar extends Component {
                 isMainMenuOpen: !isMainMenuOpen,
               })
             }}
-          /> */}
+          />
         </div>
       </div>
     )

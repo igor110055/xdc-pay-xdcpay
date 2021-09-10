@@ -51,7 +51,7 @@ CreateVaultCompleteScreen.prototype.render = function () {
           marginTop: '25px',
         },
       }, [
-        h('div.error', 'These 12 words are the only way to restore your XDCPay accounts.\nSave them somewhere safe and secret.'),
+        h('div.error1', 'These 12 words are the only way to restore your XDCPay accounts.\nSave them somewhere safe and secret.'),
       ]),
 
       h('textarea.twelve-word-phrase', {
