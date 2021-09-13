@@ -37,7 +37,7 @@ html {
 }
 
 .address-dropdown {
-  background-image: url(../images/more.svg);
+  background-image: url(/images/Assets/options.svg);
   width: 30px;
   height: 24px;
   background-repeat: no-repeat;
@@ -50,6 +50,7 @@ html {
  
 .account-detail-section::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: none;
 }
  
 .account-detail-section::-webkit-scrollbar-thumb {
@@ -373,6 +374,14 @@ p.buy-option {
   color: #6729a8;
 }
 
+.buy-arrow{
+  background-image: url('/images/Assets/downarrow-2.svg');
+}
+
+.send-arrow{
+  background-image: url('/images/Assets.downarrow-2-1.svg');
+
+}
 .new-tx {
   background-image: url('../images/new-tx.svg');
   width: 21px;
@@ -425,13 +434,13 @@ p.buy-option {
 }
 
 .clipboard::before {
-  content: url('../images/copy.svg');
+  content: url('/images/Assets/copy.svg');
   width: 14px;
   height: 14px;
 }
 
 .clipboard.white::before {
-  content: url('../images/copy-white.svg');
+  content: url('/images/Assets/copy.svg');
 }
 
 .sandwich-expando {
@@ -571,9 +580,9 @@ p.buy-option {
   height: 12px;
 }
 
-.section-title .fa-arrow-left {
+/* .section-title .fa-arrow-left { */
   /*margin: -2px 8px 0px -8px;*/
-}
+/* } */
 
 .unlock-screen #metamask-mascot-container {
   margin-top: 80px;
@@ -726,13 +735,13 @@ input.large-input {
 
 /* accounts screen */
 
-.identity-section {
+/* .identity-section {
 
-}
+} */
 
 .identity-section .identity-panel {
   background: #E9E9E9;
-  border-bottom: 1px solid #B1B1B1;
+  border-bottom: 1px solid #E3E7EB;
   cursor: pointer;
 }
 
@@ -767,6 +776,7 @@ input.large-input {
 }
 
 .name-label{
+  margin-left: 18px;
 
 }
 
@@ -831,9 +841,9 @@ input.large-input {
 
 /* Send Screen */
 
-.send-screen {
+/* .send-screen {
 
-}
+} */
 
 .send-screen section {
   margin: 10px 30px;
@@ -925,9 +935,9 @@ input.large-input {
   font-family: Nunito Semibold;
 }
 
-.buy-radio {
+/* .buy-radio {
 
-}
+} */
 
 .eth-warning{
   transition: opacity 400ms ease-in, transform 400ms ease-in;
@@ -970,11 +980,13 @@ input.large-input {
 
 .activeForm {
   background: #ffffff;
-  color: #333333;
-  border: none;
-  border-radius: 8px 8px 0px 0px;
+  color: #2149B9;
+  border-bottom: 3px solid #2149B9;
   width: 50%;
+  font-family: Inter;
   text-align: center;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .activeForm.left {
@@ -986,12 +998,15 @@ input.large-input {
 }
 
 .inactiveForm {
-  background: #4188fe;
-  color: #ffffff;
+  background: #ffffff;
+  color: #848484;
   border: none;
   border-radius: 8px 8px 0px 0px;
   width: 50%;
+  font-family: Inter;
   text-align: center;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .ex-coins {

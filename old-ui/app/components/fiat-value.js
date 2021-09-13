@@ -25,17 +25,21 @@ class FiatValue extends Component {
     const fiatTooltipNumber = Number(splitBalance[0]) * conversionRate
     const fiatDisplayNumber = fiatTooltipNumber.toFixed(countSignificantDecimals(fiatTooltipNumber, 2))
 
-    const valueStyle = props.valueStyle ? props.valueStyle : {
+    const valueStyle =  {
       width: '100%',
       textAlign: 'right',
+      fontFamily: 'sans-serif',
       fontSize: '14px',
-      color: '#ffffff',
+      color: '#8D8D8D',
+      // marginLeft: '16px',
     }
 
-    const dimStyle = props.dimStyle ? props.dimStyle : {
-      color: '#60db97',
+    const dimStyle =  {
+      color: '#8D8D8D',
+      fontFamily: 'sans-serif',
       marginLeft: '5px',
       fontSize: '14px',
+      marginRight: '28px',
     }
 
     return this.fiatDisplay(fiatDisplayNumber, valueStyle, dimStyle, renderedCurrency.toUpperCase())
@@ -51,9 +55,10 @@ class FiatValue extends Component {
             alignItems: 'flex-end',
             lineHeight: '14px',
             textRendering: 'geometricPrecision',
+            marginTop: '4px',
           }}
         >
-          <div className="fiat-val" style={valueStyle}>{fiatDisplayNumber}</div>
+          <div className="fiat-val" style={valueStyle}>${fiatDisplayNumber}</div>
           <div className="fiat-dim" style={dimStyle}>{fiatSuffix}</div>
         </div>
       )

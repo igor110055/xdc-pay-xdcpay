@@ -103,8 +103,8 @@ Notice.prototype.render = function () {
           style: {
             background: '#F8F8F8',
             color: '#2A2A2A',
-            height: '270px',
-            width: '312',
+            // height: '270px',
+            width: '312px',
             // overflowY: 'scroll',
             // scroll: 'auto',
             borderRadius: '4px',

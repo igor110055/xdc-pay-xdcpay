@@ -44,7 +44,7 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
   var balance
   var splitBalance = value.split(' ')
   var ethNumber = splitBalance[0]
-  var ethSuffix = splitBalance[1]
+  var ethSuffix = splitBalance[2]
   const showFiat = 'showFiat' in props ? props.showFiat : true
 
   if (shorten) {
@@ -55,15 +55,19 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
 
   var label = balanceObj.label
   const valueStyle = props.valueStyle ? props.valueStyle : {
-    color: '#ffffff',
+    color: '#1F1F1F',
     width: '100%',
-    fontSize: props.fontSize || '14px',
+    fontSize: '30px',
     textAlign: 'right',
+    fontFamily: 'Inter',
+    fontWeight: '600',
   }
   const dimStyle = props.dimStyle ? props.dimStyle : {
-    color: ' #60db97',
-    fontSize: props.fontSize || '14px',
+    color: ' #1F1F1F',
+    fontSize: '30px',
     marginLeft: '5px',
+    fontFamily: 'Inter',
+    fontWeight: '600',
   }
 
   return (
@@ -76,6 +80,7 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
           alignItems: 'flex-end',
           lineHeight: '20px',
           textRendering: 'geometricPrecision',
+          
         },
       }, [
         h('div', {
