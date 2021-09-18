@@ -370,18 +370,18 @@ app sections
 
 p.buy-option {
   margin-bottom: 10px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   color: #6729a8;
 }
 
-.buy-arrow{
+/* .buy-arrow{
   background-image: url('/images/Assets/downarrow-2.svg');
 }
 
 .send-arrow{
   background-image: url('/images/Assets.downarrow-2-1.svg');
 
-}
+} */
 .new-tx {
   background-image: url('../images/new-tx.svg');
   width: 21px;
@@ -570,8 +570,8 @@ p.buy-option {
 }
 
 .section-title {
-  margin-top: 40px;
-  font-family: 'Nunito Semibold';
+  margin-top: 20px;
+  font-family: 'Inter';
 }
 
 .trash:after {
@@ -822,7 +822,7 @@ input.large-input {
   margin-left: 50px;
   font-size: 11px;
   text-rendering: geometricPrecision;
-  color: #60db97;
+  color: #2149B9;
 }
 .name-label:hover .edit-text {
   visibility: visible;
@@ -930,9 +930,9 @@ input.large-input {
 
 .select-service {
   color: #333333;
-  padding: 0px 0px 20px 30px;
+  padding: 29px 0px 0px 21px;
   justify-content: left;
-  font-family: Nunito Semibold;
+  font-family: Inter;
 }
 
 /* .buy-radio {

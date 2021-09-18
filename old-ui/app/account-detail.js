@@ -92,16 +92,16 @@ AccountDetailScreen.prototype.render = function () {
         }, [
 
           // large identicon and addresses
-          h('.identicon-wrapper.select-none', [
-            // h(Identicon, {
-            //   diameter: 60,
-            //   address: selected,
-            // }),
-          ]),
+          // h('.identicon-wrapper.select-none', [
+          //   // h(Identicon, {
+          //   //   diameter: 60,
+          //   //   address: selected,
+          //   // }),
+          // ]),
           h('flex-column', {
             style: {
               lineHeight: '10px',
-              marginLeft: '119px',
+              marginLeft: '107px',
               width: '100%',
             },
           }, [

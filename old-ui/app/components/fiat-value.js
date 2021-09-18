@@ -52,10 +52,13 @@ class FiatValue extends Component {
         <div
           className="flex-row"
           style={{
-            alignItems: 'flex-end',
-            lineHeight: '14px',
+            // alignItems: 'flex-end',
+            lineHeight: '2',
             textRendering: 'geometricPrecision',
-            marginTop: '4px',
+            // marginTop: '4px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            paddingLeft: '44px',
           }}
         >
           <div className="fiat-val" style={valueStyle}>${fiatDisplayNumber}</div>

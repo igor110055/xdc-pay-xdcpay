@@ -188,7 +188,7 @@ TransactionListItem.prototype.render = function () {
           showFiat: false,
           network,
           style: {
-            margin: '0px auto 0px 98px',
+            margin: '0px auto 0px 65px',
             fontFamily: 'Inter',
           },
         }) : h('.flex-column'),
