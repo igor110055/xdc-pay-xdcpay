@@ -100,20 +100,18 @@ input:focus, textarea:focus {
 }
 
 button, input[type="submit"] {
-  font-family: 'Nunito Bold';
+  /* font-family: 'Inter'; */
+  font: normal normal medium 14px/17px Inter;
   outline: none;
   cursor: pointer;
-  padding-left: 15px;
-  padding-right: 15px;
-  height: 32px;
   border: none;
   color: white;
   transform-origin: center center;
   transition: transform 50ms ease-in;
-  border-radius: 3px;
+  border-radius: 4px;
   font-size: 14px;
   /* default green */
-  background: #60db97;
+  background: #03BE46;
   /*box-shadow: 0px 5px 10px 0px rgba(92, 52, 162, 0.3);*/
 }
 
@@ -181,7 +179,7 @@ button.btn-thin {
 }
 
 .app-header {
-  padding: 6px 8px;
+  padding: 4px 5px;
 }
 
 .app-header h1 {
@@ -192,14 +190,13 @@ button.btn-thin {
 }
 
 .notice-box {
-  margin: 20px;
+  margin: 16px 17px 6px 17px;
 }
 
 h2.page-subtitle {
-  font-family: 'Nunito Regular';
+  font-family: 'Nunito Bold';
   color: #333333;
   font-size: 1em;
-  margin: 12px;
 }
 
 .app-footer {
@@ -216,15 +213,16 @@ h2.page-subtitle {
 }
 
 textarea {
-  border: 1px solid #e2e2e2;
-  border-radius: 3px;
+  border: 2px solid #C7CDD8;
+  border-radius: 4px;
 }
 
 textarea.twelve-word-phrase {
   font-family: 'Nunito Regular';
   padding: 12px;
-  width: 300px;
-  height: 140px;
+  margin-top: 17px;
+  width: 265px;
+  height: 128px;
   font-size: 14px;
   background: white;
   resize: none;
@@ -233,16 +231,16 @@ textarea.twelve-word-phrase {
 .network-indicator {
   display: flex;
   align-items: center;
-  font-size: 0.6em;
+  font-size: 9px;
 
 }
 
 .network-name {
-  width: 5.2em;
+  width: 68px;
   line-height: 9px;
   text-rendering: geometricPrecision;
-  padding-left: 9px;
-  color: #6729a8;
+  padding-left: 5px;
+  color: #2A2A2A;
 }
 
 .check {
@@ -320,17 +318,47 @@ app sections
 
 .error {
   margin-bottom: 9px;
-  border: 1px solid #ff1345 !important;
-  color: #ff1345 !important;
+  /* border: 1px solid #ff1345 !important; */
+  color: #FF0035 !important;
   font-size: 12px;
-  background: rgba(255,19,69, 0.1);
-  border-radius: 3px;
+  background: #FFF2F5;
+  border-radius: 4px;
   text-align: left;
-  padding: 10px 10px 10px 34px;
+  padding: 8px 9px 9px 39px;
   background-image: url('../images/warning.svg');
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
+  line-height: 14px;
+}
+
+.error1 {
+  margin-bottom: 9px;
+  /* border: 1px solid #ff1345 !important; */
+  color: #FF0035 !important;
+  font-size: 12px;
+  background: #FFF2F5;
+  border-radius: 4px;
+  text-align: left;
+  padding: 8px 9px 9px 42px;
+  background-image: url('../images/warning.svg');
+  background-position: 15px 22px;
+  background-repeat: no-repeat;
+  width: 100%;
+  line-height: 14px;
+}
+
+.error-login {
+  color: #FF0035 !important;
+  font-size: 12px;
+  background: #FFF2F5;
+  border-radius: 4px;
+  text-align: left;
+  padding: 8px 9px 9px 39px;
+  background-image: url(../images/warning.svg);
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 265px;
   line-height: 14px;
 }
 
@@ -396,7 +424,7 @@ p.buy-option {
 }
 
 .clipboard::before {
-  content: url('../images/copy.svg');
+  content: url('../images/Assets/Copy.svg');
   width: 14px;
   height: 14px;
 }
@@ -406,15 +434,15 @@ p.buy-option {
 }
 
 .sandwich-expando {
-  background-image: url('../images/menu.svg');
-  background-size: 14px 12px;
+  background-image: url('../images/Assets/BlueMenu.svg');
+  background-size: 20px 21px;
   background-repeat: no-repeat;
   background-position: right;
 }
 
 .sandwich-expando.expanded {
-  background-image: url('../images/close.svg');
-  background-size: 12px 12px;
+  background-image: url('../images/Assets/BlueClose.png');
+  background-size: 20px 21px;
   background-repeat: no-repeat;
   background-position: right;
 }
@@ -437,30 +465,107 @@ p.buy-option {
          (min-device-pixel-ratio: 1.3),
          (min-resolution: 1.3dppx) {
   .logo {
-    background-image: url(../images/logo-1@2x.png);
-    background-size: 125px 125px;
+    background-image: url(../images/Assets/XDCPay.svg);
+    background-size: 78px 92px;
   }
 }
 
 .logo {
-  background-image: url(../images/logo-1.png);
+  background-image: url(../images/Assets/XDCPay.svg);
   background-repeat: no-repeat;
-  width: 125px;
-  height: 125px;
-  margin-top: 30px;
+  width: 78px;
+  height: 92px;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.select-network-list {
+    font-size: 12px;
+    font-weight: 600;
+    padding-bottom: 12px;
+    padding-top: 15px;
+    padding-left: 114px;
+}
+.select-network-close-icon {
+  margin-left: 86px;
+  cursor: pointer;
+}
+
+.my-accounts-list {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-left: 120px;
+}
+.my-accounts-close-icon {
+  margin-left: 95px;
+  cursor: pointer;
+}
+.my-accounts-icon {
+  margin-right: 10px;
+}
+
+.wallet-options-list {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-left: 115px;
+}
+.wallet-options-close-icon {
+  margin-left: 90px;
+  cursor: pointer;
+}
+.wallet-options-icon {
+  margin-left: 13px;
+  margin-right: 8px;
+}
+
+.account-options-list {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 17px;
+  padding-top: 20px;
+  padding-left: 109px;
+}
+.account-options-close-icon {
+  margin-left: 86px;
+  cursor: pointer;
+}
+.account-options-icon {
+  margin-left: 13px;
+  margin-right: 8px;
+}
+
+.token-options-list {
+  font-size: 12px;
+  font-weight: 600;
+  padding-bottom: 12px;
+  padding-top: 15px;
+  padding-left: 116px;
+}
+.token-options-close-icon {
+  margin-left: 92px;
+  cursor: pointer;
+}
+.token-options-icon {
+  margin-left: 13px;
+  margin-right: 13px;
 }
 
 .selected-network {
-  width: 4px;
-  height: 26px;
-  background: #60db97;
+  width: 17px;
+  height: 16.8px;
+  background-Image: url(../images/Assets/Check-Blue.svg);
   position: absolute;
-  left: 0;
+  object-fit: cover;
+  right: 21px;
 }
 
 .section-title {
-  border-top: 1px solid #e2e2e2;
-  height: 80px;
+  margin-top: 40px;
   font-family: 'Nunito Semibold';
 }
 
@@ -480,7 +585,7 @@ p.buy-option {
 
 .unlock-screen h1 {
   margin-top: -28px;
-  margin-bottom: 42px;
+  margin-bottom: 15px;
 }
 
 .unlock-screen input[type=password] {
@@ -692,7 +797,9 @@ input.large-input {
 
 .cell.label {
   font-family: 'Nunito Regular';
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
   white-space: nowrap;
 }
 
@@ -741,8 +848,13 @@ input.large-input {
 .send-screen input {
   width: 100%;
   font-size: 14px;
-  border: 1px solid #e2e2e2;
-  border-radius: 3px;
+  border: 2px solid #C7CDD8;
+  border-radius: 4px;
+}
+
+.send-eth-container {
+  display: flex;
+  justify-content: right;
 }
 
 /* Ether Balance Widget */
@@ -937,7 +1049,7 @@ input.large-input {
 
 .inactive button{
     background: #AEAEAE;
-    color: white;
+    color: 'blue';
 }
 
 .ellip-address {
@@ -953,7 +1065,7 @@ input.large-input {
 .qr-header {
   font-family: "Nunito SemiBold";
   font-size: 16px;
-  margin-bottom: 30px;
+  margin-top: 25px;
 }
 
 .qr-message {
@@ -1203,4 +1315,12 @@ div.message-container > div:first-child {
 
 input[disabled],textarea[disabled] {
   background: #FFFADE
+}
+
+.xdc-logo {
+  margin-top: 20px;
+}
+
+.success-logo {
+  margin-right: 5px;
 }

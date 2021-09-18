@@ -11,17 +11,19 @@ import { getFullABI } from '../../accounts/import/helpers'
 import log from 'loglevel'
 import Web3 from 'web3'
 import { AccountsDropdownItemView } from './accounts-dropdown-item-view'
+import Identicon from '../identicon'
 
 class AccountsDropdownItemWrapper extends DropdownMenuItem {
   render () {
     return (
       <DropdownMenuItem
         style={{
-          padding: '8px 0px',
+          padding: '6px 16px',
         }}
         closeMenu={() => {}}
         onClick={() => this.props.onClick()}
       >
+        <img className="my-accounts-icon" src={this.props.path}></img>
         <span className="acc-dd-menu-item-text">{this.props.label}</span>
       </DropdownMenuItem>
     )
@@ -105,20 +107,25 @@ class AccountDropdowns extends Component {
     let menuItems = []
     menuItems = Object.assign(menuItems, this.renderAccounts())
     const bottomMenuItems = [
+
       <AccountsDropdownItemWrapper
         key="AccountsDropdownItemAdd"
         onClick={() => actions.addNewAccount()}
         label="Create Account"
-      />,
+        path="/images/Assets/CreateAccount.svg"
+      >
+        </AccountsDropdownItemWrapper>,
       <AccountsDropdownItemWrapper
         key="AccountsDropdownItemImport"
         onClick={() => actions.showImportPage()}
         label="Import Account"
+        path="/images/Assets/ImportAccount.svg"
       />,
       <AccountsDropdownItemWrapper
         key="AccountsDropdownItemConnectHD"
         onClick={() => actions.showConnectHWWalletPage()}
         label="Connect hardware wallet"
+        path="/images/Assets/ConnectHardware.svg"
       />,
     ]
     menuItems = menuItems.concat(bottomMenuItems)
@@ -128,14 +135,14 @@ class AccountDropdowns extends Component {
         useCssTransition={true} // Hardcoded because account selector is temporarily in app-header
         style={{
           position: 'absolute',
-          marginLeft: '-213px',
-          top: '38px',
+          left: '0',
+          bottom: '-543px',
           minWidth: '180px',
-          maxHeight: accountSelectorActive ? '300px' : '0px',
-          width: '265px',
+          maxHeight: accountSelectorActive ? '380px' : '0px',
+          width: '317px',
         }}
         innerStyle={{
-          padding: '8px 25px',
+          // padding: '8px 25px',
         }}
         isOpen={accountSelectorActive}
         onClickOutside={(event) => {
@@ -146,6 +153,10 @@ class AccountDropdowns extends Component {
           }
         }}
       >
+        <div className='my-accounts-list'>
+          My Accounts
+          <img className='my-accounts-close-icon' src='/images/Assets/Close.svg'></img>
+        </div>
         {menuItems}
       </Dropdown>
     )
@@ -160,11 +171,11 @@ class AccountDropdowns extends Component {
     return (
       <Dropdown
         style={{
-          position: 'relative',
-          marginLeft: '-234px',
+          position: 'absolute',
           minWidth: '180px',
-          top: '30px',
-          width: '280px',
+          left: '0',
+          bottom: '18px',
+          width: '317px',
         }}
         isOpen={optionsMenuActive}
         onClickOutside={(event) => {
@@ -175,22 +186,34 @@ class AccountDropdowns extends Component {
           }
         }}
       >
+        <div className='account-options-list'>
+          Account Options
+          <img className='account-options-close-icon' src='/images/Assets/Close.svg'></img>
+        </div>
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.viewOnBlockExplorer()}
-        >View on block explorer</DropdownMenuItem>
+        >
+          <img className='account-options-icon' src='/images/Assets/ViewOnExplorer.svg'></img>
+          View on block explorer</DropdownMenuItem>
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.showQRCode()}
-        >Show QR Code</DropdownMenuItem>
+        >
+          <img className='account-options-icon' src='/images/Assets/QRCode.svg'></img>
+          Show QR Code</DropdownMenuItem>
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.copyAddress()}
-        >Copy address to clipboard</DropdownMenuItem>
+        >
+          <img className='account-options-icon' src='/images/Assets/CopyClipboard.svg'></img>
+          Copy address to clipboard</DropdownMenuItem>
         {ifContractAcc(keyring) ? <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.copyABI()}
-          >Copy ABI to clipboard</DropdownMenuItem> : null}
+          >
+            
+            Copy ABI to clipboard</DropdownMenuItem> : null}
         {isProxy ? <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.updateABI()}
@@ -198,7 +221,9 @@ class AccountDropdowns extends Component {
         {(!ifHardwareAcc(keyring) && !(ifContractAcc(keyring))) ? <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => actions.requestAccountExport()}
-          >Export Private Key</DropdownMenuItem> : null}
+          >
+            <img className='account-options-icon' src='/images/Assets/ExportPvtKey.svg'></img>
+            Export Private Key</DropdownMenuItem> : null}
       </Dropdown>
     )
   }
@@ -294,7 +319,7 @@ class AccountDropdowns extends Component {
     const { optionsMenuActive, accountSelectorActive } = this.state
 
     const accountSelector = enableAccountsSelector && (
-      <div
+        <div
         className="accounts-selector accounts-selector-additional-style"
         onClick={(event) => {
           event.stopPropagation()

@@ -35,36 +35,41 @@ UnlockScreen.prototype.render = function () {
 
         h('h1', {
           style: {
-            paddingTop: '50px',
-            fontSize: '30px',
-            color: '#ffffff',
+            paddingTop: '80px',
+            fontSize: '15px',
+            color: '#2A2A2A',
+            fontWeight: '600',
           },
-        }, 'XDCPay'),
+        }, 'Welcome Back!'),
 
         h('div', [
           h('input.large-input', {
             type: 'password',
             id: 'password-box',
-            placeholder: 'Enter password',
+            placeholder: 'Enter Password',
             style: {
-
+              width: '265px',
+              height: '40px',
+              border: '2px solid #C7CDD8',
             },
             onKeyPress: this.onKeyPress.bind(this),
-          }),
-
-          h('button.cursor-pointer', {
-            onClick: this.onSubmit.bind(this),
-            style: {
-              margin: '10px 0 10px 10px',
-            },
-          }, 'Log In'),
-
-          h('.error', {
-            style: {
-              display: warning ? 'block' : 'none',
-            },
-          }, warning),
+          }),  
         ]),
+
+        h('.error-login', {
+          style: {
+            display: warning ? 'block' : 'none',
+          },
+        }, warning),
+
+        h('button.cursor-pointer', {
+          onClick: this.onSubmit.bind(this),
+          style: {
+            width: '265px',
+            height: '40px',
+            marginTop: '24px',
+          },
+        }, 'Log In'),
 
       ]),
 
@@ -73,7 +78,8 @@ UnlockScreen.prototype.render = function () {
           onClick: () => this.props.dispatch(actions.forgotPassword()),
           style: {
             fontSize: '14px',
-            color: '#60db97',
+            color: '#2149B9',
+            marginTop: '134px',
           },
         }, 'Restore from seed phrase'),
       ]),

@@ -49,35 +49,35 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
 
       h('.logo'),
 
-      h('h1', {
-        style: {
-          paddingTop: '50px',
-          fontSize: '1.3em',
-          color: '#ffffff',
-          marginBottom: 10,
-        },
-      }, 'XDCPay'),
+      // h('h1', {
+      //   style: {
+      //     paddingTop: '50px',
+      //     fontSize: '1.3em',
+      //     color: '#ffffff',
+      //     marginBottom: 10,
+      //   },
+      // }, 'XDCPay'),
 
 
       h('div', [
         h('h3', {
           style: {
-            fontSize: '0.8em',
-            color: '#ffffff',
+            fontSize: '15px',
+            color: '#2a2a2a',
             display: 'inline',
+            fontWeight: 'bold',
           },
         }, 'Encrypt your new DEN'),
 
         h(Tooltip, {
           title: 'Your DEN is your password-encrypted storage within XDCPay.',
         }, [
-          h('i.fa.fa-question-circle.pointer', {
+          h('img', { src: "/images/Assets/QuestionMark.svg",
             style: {
-              fontSize: '18px',
               position: 'relative',
-              color: '#60db97',
-              top: '2px',
-              marginLeft: '4px',
+              top: '3px',
+              marginLeft: '6px',
+              marginTop: '48px',
             },
           }),
         ]),
@@ -98,9 +98,11 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
         id: 'password-box',
         placeholder: 'New Password (min 8 chars)',
         style: {
-          width: 260,
-          marginTop: 12,
-          border: 'none',
+          width: 265,
+          height: 40,
+          marginTop: 15,
+          border: '2px solid #C7CDD8',
+          borderRadius: 4,
         },
       }),
 
@@ -110,11 +112,12 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
         id: 'password-box-confirm',
         placeholder: 'Confirm Password',
         onKeyPress: this.createVaultOnEnter.bind(this),
-        
         style: {
-          width: 260,
-          marginTop: 16,
-          border: 'none',
+          width: 265,
+          height: 40,
+          marginTop: 15,
+          border: '2px solid #C7CDD8',
+          borderRadius: 4,
         },
       }),
 
@@ -122,7 +125,9 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
       h('button', {
         onClick: this.createNewVaultAndKeychain.bind(this),
         style: {
-          margin: 12,
+          marginTop: 29,
+          width: 265,
+          height: 40,
         },
       }, 'Create'),
 
@@ -130,10 +135,11 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
         h('p.pointer', {
           onClick: this.showRestoreVault.bind(this),
           style: {
-            fontSize: '0.8em',
-            color: '#60db97',
+            fontSize: '14px',
+            color: '#2149B9',
+            marginTop: '74px',
           },
-        }, 'Import Existing DEN'),
+        }, 'Import Existing Den'),
       ]),
 
     ])
@@ -156,7 +162,7 @@ InitializeMenuScreen.prototype.componentWillUnmount = function () {
 }
 
 InitializeMenuScreen.prototype.showRestoreVault = function () {
-  this.props.dispatch(actions.showRestoreVault(password))
+  this.props.dispatch(actions.showRestoreVault())
 }
 
 InitializeMenuScreen.prototype.createNewVaultAndKeychain = function () {
