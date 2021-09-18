@@ -11,6 +11,7 @@ import { getFullABI } from '../../accounts/import/helpers'
 import log from 'loglevel'
 import Web3 from 'web3'
 import { AccountsDropdownItemView } from './accounts-dropdown-item-view'
+import Identicon from '../identicon'
 
 class AccountsDropdownItemWrapper extends DropdownMenuItem {
   render () {
@@ -134,7 +135,7 @@ class AccountDropdowns extends Component {
         useCssTransition={true} // Hardcoded because account selector is temporarily in app-header
         style={{
           position: 'absolute',
-          marginLeft: '-288px',
+          left: '0',
           bottom: '-543px',
           minWidth: '180px',
           maxHeight: accountSelectorActive ? '380px' : '0px',
@@ -318,7 +319,7 @@ class AccountDropdowns extends Component {
     const { optionsMenuActive, accountSelectorActive } = this.state
 
     const accountSelector = enableAccountsSelector && (
-      <div
+        <div
         className="accounts-selector accounts-selector-additional-style"
         onClick={(event) => {
           event.stopPropagation()

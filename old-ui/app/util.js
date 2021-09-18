@@ -61,7 +61,7 @@ function valuesFor (obj) {
     .map(function (key) { return obj[key] })
 }
 
-function addressSummary (network, address, firstSegLength = 10, lastSegLength = 4, includeHex = true) {
+function addressSummary (network, address, firstSegLength = 7, lastSegLength = 4, includeHex = true) {
   if (!address) return ''
   let checked = toChecksumAddress(network, address)
   if (!includeHex) {

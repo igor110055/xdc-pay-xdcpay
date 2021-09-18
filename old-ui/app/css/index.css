@@ -190,14 +190,13 @@ button.btn-thin {
 }
 
 .notice-box {
-  margin: 20px;
+  margin: 16px 17px 6px 17px;
 }
 
 h2.page-subtitle {
-  font-family: 'Nunito Regular';
+  font-family: 'Nunito Bold';
   color: #333333;
   font-size: 1em;
-  margin: 12px;
 }
 
 .app-footer {
@@ -425,7 +424,7 @@ p.buy-option {
 }
 
 .clipboard::before {
-  content: url('../images/copy.svg');
+  content: url('../images/Assets/Copy.svg');
   width: 14px;
   height: 14px;
 }
@@ -436,14 +435,14 @@ p.buy-option {
 
 .sandwich-expando {
   background-image: url('../images/Assets/BlueMenu.svg');
-  background-size: 14px 12px;
+  background-size: 20px 21px;
   background-repeat: no-repeat;
   background-position: right;
 }
 
 .sandwich-expando.expanded {
   background-image: url('../images/Assets/BlueClose.png');
-  background-size: 12px 12px;
+  background-size: 20px 21px;
   background-repeat: no-repeat;
   background-position: right;
 }
@@ -490,6 +489,7 @@ p.buy-option {
 }
 .select-network-close-icon {
   margin-left: 86px;
+  cursor: pointer;
 }
 
 .my-accounts-list {
@@ -501,6 +501,7 @@ p.buy-option {
 }
 .my-accounts-close-icon {
   margin-left: 95px;
+  cursor: pointer;
 }
 .my-accounts-icon {
   margin-right: 10px;
@@ -515,6 +516,7 @@ p.buy-option {
 }
 .wallet-options-close-icon {
   margin-left: 90px;
+  cursor: pointer;
 }
 .wallet-options-icon {
   margin-left: 13px;
@@ -530,6 +532,7 @@ p.buy-option {
 }
 .account-options-close-icon {
   margin-left: 86px;
+  cursor: pointer;
 }
 .account-options-icon {
   margin-left: 13px;
@@ -545,6 +548,7 @@ p.buy-option {
 }
 .token-options-close-icon {
   margin-left: 92px;
+  cursor: pointer;
 }
 .token-options-icon {
   margin-left: 13px;
@@ -793,7 +797,9 @@ input.large-input {
 
 .cell.label {
   font-family: 'Nunito Regular';
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
   white-space: nowrap;
 }
 
@@ -842,8 +848,13 @@ input.large-input {
 .send-screen input {
   width: 100%;
   font-size: 14px;
-  border: 1px solid #e2e2e2;
-  border-radius: 3px;
+  border: 2px solid #C7CDD8;
+  border-radius: 4px;
+}
+
+.send-eth-container {
+  display: flex;
+  justify-content: right;
 }
 
 /* Ether Balance Widget */
@@ -1054,7 +1065,7 @@ input.large-input {
 .qr-header {
   font-family: "Nunito SemiBold";
   font-size: 16px;
-  margin-bottom: 30px;
+  margin-top: 25px;
 }
 
 .qr-message {

@@ -44,9 +44,17 @@ EnsInput.prototype.render = function () {
 
   return (
     h('div', {
-      style: { width: '100%' },
-    }, [
-      h('input.large-input', {
+      style: { 
+        width: '265px',
+        fontSize: '12px',
+        fontWeight: 'bold',
+        lineHeight: 1,
+        marginTop: '31px',
+    },
+    }, [ 'Recipient Address',
+      h('input.large-input', { style: {
+          height: '51px',
+      },
         name: props.name,
         placeholder: props.placeholder,
         list: 'addresses',
