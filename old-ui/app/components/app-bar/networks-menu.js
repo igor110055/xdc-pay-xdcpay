@@ -65,7 +65,7 @@ class NetworksMenu extends Component {
       >
         <div className='select-network-list'>
           Select Network
-          <img className='select-network-close-icon' src='/images/Assets/Close.svg'></img>
+          <img className='select-network-close-icon' onClick={() => this.props.updateNetworksMenuOpenState(!isOpen)} src='/images/Assets/Close.svg'></img>
         </div>
 
         {networksView}

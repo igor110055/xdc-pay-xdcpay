@@ -52,13 +52,14 @@ BnAsDecimalInput.prototype.render = function () {
           max: newMax,
           style: extend({
             display: 'block',
-            textAlign: 'right',
+            textAlign: 'left',
             backgroundColor: 'transparent',
             height: '32px',
-            borderRadius: '3px',
-            border: '1px solid #e2e2e2',
+            borderRadius: '4px',
+            border: '2px solid #C7CDD8',
             fontFamily: 'Nunito Regular',
             fontSize: '14px',
+            paddingLeft: '10px',
           }, style),
           value: newValue,
           onBlur: (event) => {
@@ -83,16 +84,16 @@ BnAsDecimalInput.prototype.render = function () {
             return false
           },
         }),
-        h('div', {
-          style: {
-            color: ' #333333',
-            fontFamily: 'Nunito Regular',
-            fontSize: '14px',
-            marginLeft: '5px',
-            width: '29px',
-            lineHeight: '32px',
-          },
-        }, suffix),
+        // h('div', {
+        //   style: {
+        //     color: ' #333333',
+        //     fontFamily: 'Nunito Regular',
+        //     fontSize: '14px',
+        //     marginLeft: '5px',
+        //     width: '29px',
+        //     lineHeight: '32px',
+        //   },
+        // }, suffix),
       ]),
 
       state.invalid ? h('div', {

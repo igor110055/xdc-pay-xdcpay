@@ -320,21 +320,23 @@ App.prototype.renderPrimary = function () {
         },
       }, [
         h('.section-title.flex-row.flex-center', [
-          h('i.fa.fa-arrow-left.fa-lg.cursor-pointer', {
+          h('img', { src: "/images/Assets/BackArrow.svg",
             onClick: () => props.dispatch(actions.backToAccountDetail(props.selectedAddress)),
             style: {
-              marginLeft: '30px',
-              marginTop: '5px',
+              marginLeft: '15px',
+              marginTop: '-16px',
               position: 'absolute',
               left: '0',
+              cursor: 'pointer',
             },
           }),
           h('h2.page-subtitle', {
             style: {
-              fontFamily: 'Nunito SemiBold',
-              marginTop: '10px',
+              // fontFamily: 'Nunito SemiBold',
+              marginTop: '-14px',
               marginBottom: '0px',
               textAlign: 'center',
+              fontWeight: 'bold',
             },
           }, 'QR Code'),
         ]),

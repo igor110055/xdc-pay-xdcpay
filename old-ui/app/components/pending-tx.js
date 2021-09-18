@@ -11,7 +11,7 @@ const hexToBn = require('../../../app/scripts/lib/hex-to-bn')
 const util = require('../util')
 const MiniAccountPanel = require('./mini-account-panel')
 const Copyable = require('./copy/copyable')
-const EthBalance = require('./eth-balance')
+const EthBalance = require('./eth-balance-cnf-tx')
 const TokenBalance = require('./token-balance')
 const { addressSummary, accountSummary, toChecksumAddress } = util
 const nameForAddress = require('../../lib/contract-namer')
@@ -148,17 +148,18 @@ PendingTx.prototype.render = function () {
   this.inputs = []
 
   const valueStyle = {
-    fontFamily: 'Nunito Bold',
-    width: '100%',
-    textAlign: 'right',
-    fontSize: '14px',
-    color: '#333333',
+    // fontFamily: 'Nunito SemiBold',
+    // width: '100%',
+    // textAlign: 'right',
+    // fontSize: '12px',
+    // color: '#848484',
   }
 
   const dimStyle = {
-    color: '#333333',
-    marginLeft: '5px',
-    fontSize: '14px',
+    // fontFamily: 'Nunito SemiBold',
+    // color: '#848484',
+    marginLeft: '2px',
+    // fontSize: '12px',
   }
 
   const isError = txMeta.simulationFails || !isValidAddress || insufficientBalance || (dangerousGasLimit && !gasLimitSpecified)
@@ -179,104 +180,108 @@ PendingTx.prototype.render = function () {
 
         // tx info
         h('div', [
+          h('.flex-row.flex-center', {
+            style: {
+              marginTop: '26px',
+              marginBottom: '24px',
+              fontWeight: 'bold',
+            },
+          }, [
+            !isNotification ? h('img.cursor-pointer', { src: '/images/Assets/Close.svg',
+              onClick: this.goHome.bind(this),
+              style: {
+                position: 'absolute',
+                left: '18px',
+                width: '14px',
+              },
+            }) : null,
+            'Confirm Transaction',
+            isNotification ? h(NetworkIndicator, {
+              network: network,
+              provider: provider,
+              isUnlocked: isUnlocked,
+            }) : null,
+            h('button.btn-violet', {
+              onClick: (event) => {
+                this.resetGasFields()
+                event.preventDefault()
+              },
+              style: {
+                position: 'absolute',
+                right: '11px',
+                color: '#2149B9',
+                background: '#ffffff',
+                fontWeight: 'bold',
+              },
+            }, 'Reset'),
+          ]),
 
           h('.flex-row.flex-center', {
             style: {
               maxWidth: '100%',
-              padding: showRejectAll ? '20px 20px 50px 20px' : '20px 20px 20px 20px',
-              background: '#2050fd',
+              padding: showRejectAll ? '0 0 30px 0' : '0 0 30px 0',
+              background: '#FFFFFF',
               position: 'relative',
             },
           }, [
 
-            h('div', {
-              style: {
-                position: 'absolute',
-                bottom: '20px',
-                width: '100%',
-                textAlign: 'center',
-                color: '#ffffff',
-              },
-            }, [
-              h('h3', {
-                style: {
-                  alignSelf: 'center',
-                  display: props.unconfTxListLength > 1 ? 'block' : 'none',
-                  fontSize: '14px',
-                },
-              }, [
-                h('i.fa.white-arrow-left.fa-lg.cursor-pointer', {
-                  style: {
-                    display: props.index === 0 ? 'none' : 'inline-block',
-                  },
-                  onClick: () => props.dispatch(actions.previousTx()),
-                }),
-                ` ${props.index + 1} of ${props.unconfTxListLength} `,
-                h('i.fa.white-arrow-right.fa-lg.cursor-pointer', {
-                  style: {
-                    display: props.index + 1 === props.unconfTxListLength ? 'none' : 'inline-block',
-                  },
-                  onClick: () => props.dispatch(actions.nextTx()),
-                }),
-              ])]
-            ),
+            
 
-            h(MiniAccountPanel, {
-              imageSeed: address,
-              picOrder: 'left',
-            }, [
-              h('div', {
-                style: {
-                  marginLeft: '10px',
-                },
-              }, [
-                h('div.font-pre-medium', {
-                  style: {
-                    fontFamily: 'Nunito SemiBold',
-                    color: '#ffffff',
-                    whiteSpace: 'nowrap',
-                  },
-                }, accountSummary(identity.name, 6, 4)),
+            // h(MiniAccountPanel, {
+            //   imageSeed: address,
+            //   picOrder: 'left',
+            // }, [
+            //   h('div', {
+            //     style: {
+            //       marginLeft: '10px',
+            //     },
+            //   }, [
+            //     h('div.font-pre-medium', {
+            //       style: {
+            //         fontFamily: 'Nunito SemiBold',
+            //         color: '#ffffff',
+            //         whiteSpace: 'nowrap',
+            //       },
+            //     }, accountSummary(identity.name, 6, 4)),
 
-                h(Copyable, {
-                  value: toChecksumAddress(network, address),
-                }, [
-                  h('span.font-small', {
-                    style: {
-                      fontFamily: 'Nunito Regular',
-                      color: 'rgba(255, 255, 255, 0.7)',
-                    },
-                  }, addressSummary(network, address, 6, 4, false)),
-                ]),
+            //     h(Copyable, {
+            //       value: toChecksumAddress(network, address),
+            //     }, [
+            //       h('span.font-small', {
+            //         style: {
+            //           fontFamily: 'Nunito Regular',
+            //           color: 'rgba(255, 255, 255, 0.7)',
+            //         },
+            //       }, addressSummary(network, address, 6, 4, false)),
+            //     ]),
 
-                h('span.font-small', {
-                  style: {
-                    fontFamily: 'Nunito Regular',
-                  },
-                }, [
-                  isToken ? h(TokenBalance, {
-                    token,
-                    fontSize: '12px',
-                  }) : h(EthBalance, {
-                    fontSize: '12px',
-                    value: balance,
-                    conversionRate,
-                    currentCurrency,
-                    network,
-                    inline: true,
-                  }),
-                ]),
-              ]),
-            ]),
+            //     h('span.font-small', {
+            //       style: {
+            //         fontFamily: 'Nunito Regular',
+            //       },
+            //     }, [
+            //       isToken ? h(TokenBalance, {
+            //         token,
+            //         fontSize: '12px',
+            //       }) : h(EthBalance, {
+            //         fontSize: '12px',
+            //         value: balance,
+            //         conversionRate,
+            //         currentCurrency,
+            //         network,
+            //         inline: true,
+            //       }),
+            //     ]),
+            //   ]),
+            // ]),
 
-            forwardCarrat(),
+            // forwardCarrat(),
 
             this.miniAccountPanelForRecipient(isToken, tokensTransferTo),
           ]),
 
           h('style', `
             .table-box {
-              margin: 7px 0px 0px 0px;
               width: 100%;
               position: relative;
             }
@@ -284,38 +289,22 @@ PendingTx.prototype.render = function () {
               margin: 0px;
               background: #ffffff;
               display: flex;
-              justify-content: space-between;
+              flex-direction: column;
               font-family: Nunito Regular;
               font-size: 14px;
-              padding: 5px 30px;
+              padding: 0px 46px;
             }
             .table-box .row .value {
               font-family: Nunito Regular;
             }
           `),
 
-          h('.table-box', [
+          h('.table-box',{  style:{
+            overflowY: 'scroll',
+            height: '270px',
+            width: 'fit-content',
+          },}, [
 
-            h('.flex-row.flex-center', {
-              style: {
-                marginTop: '20px',
-                marginBottom: '30px',
-              },
-            }, [
-              !isNotification ? h('i.fa.fa-arrow-left.fa-lg.cursor-pointer', {
-                onClick: this.goHome.bind(this),
-                style: {
-                  position: 'absolute',
-                  left: '30px',
-                },
-              }) : null,
-              'Confirm Transaction',
-              isNotification ? h(NetworkIndicator, {
-                network: network,
-                provider: provider,
-                isUnlocked: isUnlocked,
-              }) : null,
-            ]),
 
             isError ? h('div', {
               style: {
@@ -364,6 +353,7 @@ PendingTx.prototype.render = function () {
             // Ether Value
             // Currently not customizable, but easily modified
             // in the way that gas and gasLimit currently are.
+
             h('.row', [
               h('.cell.label', 'Amount'),
               h(EthBalance, {
@@ -381,7 +371,7 @@ PendingTx.prototype.render = function () {
 
             // Gas Limit (customizable)
             h('.cell.row', [
-              h('.cell.label', 'Gas Limit'),
+              h('.cell.label', {style: {marginTop:'30px'},}, 'Gas Limit (Units)'),
               h('.cell.value', {
               }, [
                 h(BNInput, {
@@ -393,10 +383,10 @@ PendingTx.prototype.render = function () {
                   // The hard lower limit for gas.
                   min: MIN_GAS_LIMIT_BN,
                   max: safeGasLimit,
-                  suffix: 'UNITS',
+                  // suffix: 'UNITS',
                   style: {
                     position: 'relative',
-                    width: '91px',
+                    width: '265px',
                   },
                   onChange: this.gasLimitChanged.bind(this),
 
@@ -407,7 +397,7 @@ PendingTx.prototype.render = function () {
 
             // Gas Price (customizable)
             h('.cell.row', [
-              h('.cell.label', 'Gas Price'),
+              h('.cell.label', {style: {marginTop:'30px'},}, 'Gas Price (GWEI)'),
               h('.cell.value', {
               }, [
                 h(BNInput, {
@@ -416,11 +406,11 @@ PendingTx.prototype.render = function () {
                   value: gasPriceBn,
                   precision: 9,
                   scale: 9,
-                  suffix: 'GWEI',
+                  // suffix: 'GWEI',
                   min: forceGasMin || MIN_GAS_PRICE_BN,
                   style: {
                     position: 'relative',
-                    width: '91px',
+                    width: '265px',
                   },
                   onChange: this.gasPriceChanged.bind(this),
                   ref: (hexInput) => { this.inputs.push(hexInput) },
@@ -430,7 +420,7 @@ PendingTx.prototype.render = function () {
 
             // Max Transaction Fee (calculated)
             h('.cell.row', [
-              h('.cell.label', 'Max Transaction Fee'),
+              h('.cell.label', {style: {marginTop:'30px'},}, 'Max Transaction Fee'),
               h(EthBalance, {
                 valueStyle,
                 dimStyle,
@@ -446,7 +436,7 @@ PendingTx.prototype.render = function () {
                 fontFamily: 'Nunito Regular',
               },
             }, [
-              h('.cell.label', 'Max Total'),
+              h('.cell.label', {style: {marginTop:'30px'},}, 'Max Total'),
               h('.cell.value', {
                 style: {
                   display: 'flex',
@@ -468,20 +458,22 @@ PendingTx.prototype.render = function () {
             ]),
 
             // Data size row:
-            h('.cell.row', {
-              style: {
-                background: '#ffffff',
-                paddingBottom: '0px',
-              },
-            }, [
-              h('.cell.label'),
-              h('.cell.value', {
-                style: {
-                  fontFamily: 'Nunito Regular',
-                  fontSize: '14px',
-                },
-              }, `Data included: ${dataLength} bytes`),
-            ]),
+
+            // h('.cell.row', {
+            //   style: {
+            //     background: '#ffffff',
+            //     paddingBottom: '0px',
+            //   },
+            // }, [
+            //   h('.cell.label'),
+            //   h('.cell.value', {
+            //     style: {
+            //       fontFamily: 'Nunito Regular',
+            //       fontSize: '14px',
+            //     },
+            //   }, `Data included: ${dataLength} bytes`),
+            // ]),
+
           ]), // End of Table
 
         ]),
@@ -493,47 +485,92 @@ PendingTx.prototype.render = function () {
         `),
 
         // send + cancel
-        h('.flex-row.flex-space-around.conf-buttons', {
+        h('.flex-row.flex-space-around', {
           style: {
             display: 'flex',
             justifyContent: 'flex-end',
-            margin: '14px 30px',
+            marginTop: '22px',
           },
         }, [
-          h('button.btn-violet', {
-            onClick: (event) => {
-              this.resetGasFields()
-              event.preventDefault()
-            },
-            style: {
-              marginRight: 0,
-            },
-          }, 'Reset'),
-
-          // Accept Button or Buy Button
-          insufficientBalance ? h('button.btn-green', { onClick: props.buyEth }, `Buy ${this.state.coinName}`) :
-            h('input.confirm', {
-              type: 'submit',
-              value: 'Submit',
-              style: { marginLeft: '10px' },
-              disabled: buyDisabled,
-            }),
-
-          h('button.cancel.btn-red', {
+          h('button.cancel.btn-red', { style:{
+            display: 'flex',
+            position: 'absolute',
+            left: '46px',
+            height: '40px',
+            width: '119px',
+            paddingLeft: '37px',
+            paddingTop: '12px',
+            background: '#FF0035',
+          },
             onClick: props.cancelTransaction,
           }, 'Reject'),
+          
+          // Accept Button or Buy Button
+          insufficientBalance ? h('button.btn-green', { onClick: props.buyEth }, `Buy ${this.state.coinName}`) :
+            h('input.confirm', { style:{
+              display: 'flex',
+              position: 'absolute',
+              right: '46px',
+              height: '40px',
+              width: '119px',
+              paddingLeft: '36px',
+              paddingTop: '2px',
+            },
+              type: 'submit',
+              value: 'Submit',
+              // style: { marginLeft: '10px' },
+              disabled: buyDisabled,
+            }),
         ]),
-        showRejectAll ? h('.flex-row.flex-space-around.conf-buttons', {
+        // showRejectAll ? h('.flex-row.flex-space-around.conf-buttons', {
+        //   style: {
+        //     display: 'flex',
+        //     justifyContent: 'flex-end',
+        //     margin: '14px 30px',
+        //   },
+        // }, [
+        //   h('button.cancel.btn-red', {
+        //     onClick: props.cancelAllTransactions,
+        //   }, 'Reject All'),
+        // ]) : null,
+        h('div', {
           style: {
-            display: 'flex',
-            justifyContent: 'flex-end',
-            margin: '14px 30px',
+            position: 'absolute',
+            bottom: '12px',
+            width: '100%',
+            textAlign: 'center',
+            color: '#2A2A2A',
+            borderTop: '2px solid #E3E7EB',
+            paddingTop: '11px',
+            display: props.unconfTxListLength > 1 ? 'block' : 'none',
           },
         }, [
-          h('button.cancel.btn-red', {
-            onClick: props.cancelAllTransactions,
-          }, 'Reject All'),
-        ]) : null,
+          h('h3', {
+            style: {
+              alignSelf: 'center',
+              display: props.unconfTxListLength > 1 ? 'block' : 'none',
+              fontSize: '14px',
+            },
+          }, [
+            h('img.cursor-pointer', { src: '/images/Assets/Back.svg',
+              style: {
+                display: props.index === 0 ? 'none' : 'inline-block',
+                position: 'absolute',
+                left: '15px',
+              },
+              onClick: () => props.dispatch(actions.previousTx()),
+            }),
+            ` ${props.index + 1} of ${props.unconfTxListLength} `,
+            h('img.cursor-pointer', { src: '/images/Assets/Forward.svg',
+              style: {
+                display: props.index + 1 === props.unconfTxListLength ? 'none' : 'inline-block',
+                position: 'absolute',
+                right: '15px',
+              },
+              onClick: () => props.dispatch(actions.nextTx()),
+            }),
+          ])]
+        ),
       ]),
     ])
   )
@@ -554,27 +591,35 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
       }, [
         h('div', {
           style: {
-            marginRight: '10px',
+            // marginRight: '10px',
           },
-        }, [
-          h('span.font-pre-medium', {
+        }, 
+        [
+          h('.cell.row', {
             style: {
-              fontFamily: 'Nunito SemiBold',
-              color: '#ffffff',
-              display: 'inline-block',
+              fontFamily: 'Nunito Bold',
+              color: '#2A2A2A',
+              display: 'flex',
               whiteSpace: 'nowrap',
+              fontSize: '12px',
             },
-          }, accountSummary(nameForAddress(to, props.identities, props.network)), 6, 4),
+          },'Recipient Address' /*accountSummary(nameForAddress(to, props.identities, props.network)), 6, 4*/),
 
           h(Copyable, {
             value: toChecksumAddress(props.network, to),
           }, [
-            h('span.font-small', {
+            h('.cell.row', {
               style: {
                 fontFamily: 'Nunito Regular',
-                color: 'rgba(255, 255, 255, 0.7)',
+                color: '#848484',
+                width: '265px',
+                height: '32px',
+                background: '#F8F8F8',
+                border: '2px solid #C7CDD8',
+                borderRadius: '4px',
+                padding: '7px 10px',
               },
-            }, addressSummary(props.network, to, 6, 4, false)),
+            }, addressSummary(props.network, to, 10, 4, false)),
           ]),
         ]),
       ])
