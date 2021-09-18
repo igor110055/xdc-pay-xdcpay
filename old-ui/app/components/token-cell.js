@@ -34,9 +34,9 @@ TokenCell.prototype.render = function () {
     h(`li#token-cell_${ind}.token-cell`, {
       style: {
         cursor: Number(network) === MAINNET_CODE ? 'pointer' : 'default',
-        borderBottom: isLastTokenCell ? 'none' : '1px solid #e2e2e2',
-        padding: '20px 0',
-        margin: '0 30px',
+        borderBottom: isLastTokenCell ? 'none' : '1px solid #E3E7EB',
+        padding: '10px 0',
+        margin: '0 8px 0 18px',
       },
       onClick: this.view.bind(this, address, userAddress, network),
     }, [
@@ -49,8 +49,11 @@ TokenCell.prototype.render = function () {
 
       h('h3', {
         style: {
-          fontFamily: 'Nunito Bold',
+          fontFamily: 'Inter',
           fontSize: '14px',
+          fontWeight: '700',
+          height: '17px',
+          width: '67px',
         },
       }, `${tokenBalance || 0} ${symbol}`),
 

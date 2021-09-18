@@ -27,6 +27,9 @@ EditableLabel.prototype.render = function () {
         },
       }),
       h('button.editable-button', {
+        style: {
+          background: '#2149B9',
+        },
         onClick: () => this.saveText(),
       }, 'Save'),
     ])

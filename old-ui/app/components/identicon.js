@@ -28,6 +28,7 @@ IdenticonComponent.prototype.render = function () {
         justifyContent: 'center',
         height: diameter,
         width: diameter,
+        marginRight: '20px',
         borderRadius: diameter / 2,
         overflow: (props.overflow || 'hidden'),
       },

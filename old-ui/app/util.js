@@ -67,7 +67,7 @@ function addressSummary (network, address, firstSegLength = 7, lastSegLength = 4
   if (!includeHex) {
     checked = ethUtil.stripHexPrefix(checked)
   }
-  return checked ? checked.slice(0, firstSegLength) + '...' + checked.slice(checked.length - lastSegLength) : '...'
+  return checked ? checked.slice(0, firstSegLength) + '...' + checked.slice(checked.length - lastSegLength) : ' '
 }
 
 function accountSummary (acc, firstSegLength = 6, lastSegLength = 4) {
