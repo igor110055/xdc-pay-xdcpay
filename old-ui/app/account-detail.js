@@ -93,10 +93,10 @@ AccountDetailScreen.prototype.render = function () {
 
           // large identicon and addresses
           // h('.identicon-wrapper.select-none', [
-          //   // h(Identicon, {
-          //   //   diameter: 60,
-          //   //   address: selected,
-          //   // }),
+          //   h(Identicon, {
+          //     diameter: 60,
+          //     address: selected,
+          //   }),
           // ]),
           h('flex-column', {
             style: {

@@ -59,7 +59,15 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
       // }, 'XDCPay'),
 
 
-      h('div', [
+      h('div',{
+        style:{
+          marginTop: '40px',
+          display: 'flex',
+          flexDirection: 'row-reverse',
+          marginLeft: '-22px',
+        },
+      }, 
+        [
         h('h3', {
           style: {
             fontSize: '15px',
@@ -69,18 +77,32 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
           },
         }, 'Encrypt your new DEN'),
 
-        h(Tooltip, {
-          title: 'Your DEN is your password-encrypted storage within XDCPay.',
-        }, [
-          h('img', { src: "/images/Assets/QuestionMark.svg",
+      //   h(Tooltip, {
+      //     title: 'Your DEN is your password-encrypted storage within XDCPay.',
+      //   }, [
+      //     h('img', { src: "/images/Assets/QuestionMark.svg",
+      //       style: {
+      //         position: 'relative',
+      //         top: '3px',
+      //         marginLeft: '6px',
+      //         marginTop: '48px',
+      //       },
+      //     }),
+      //   ]),
+      h('div',{className:'tooltip'},
+      [
+        h('img', { src: "/images/Assets/QuestionMark.svg",
             style: {
-              position: 'relative',
-              top: '3px',
-              marginLeft: '6px',
-              marginTop: '48px',
-            },
-          }),
-        ]),
+              marginRight: '-22px',
+              paddingTop: '3px',
+              paddingLeft: '5px'
+              },
+            }),
+        h('span',{className: 'tooltiptext'},
+          'Your DEN is your password-encrypted Storage within XDC Pay'
+        ),
+      ]
+      )
       ]),
 
       state.warning ? h('div', {
