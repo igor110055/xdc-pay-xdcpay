@@ -329,6 +329,7 @@ class AccountDropdowns extends Component {
           })
         }}
       >
+        {/* <Identicon diameter = {24} address = 'selected'/> */}
       {this.renderAccountSelector()}
       </div>
     )

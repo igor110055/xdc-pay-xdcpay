@@ -75,15 +75,21 @@ CreateVaultCompleteScreen.prototype.render = function () {
           width: '265px',
           height: '40px',
           border: '1px solid #0CBE46',
-          display: 'Inline'
+          display: 'flex',
+          paddingLeft: '58px',
+          paddingTop: '7px',
         },
       },
-      [h('img', {
+      [
+        h('img', {
         style:{
           marginRight: '12px',
         },
          src: "/images/Assets/Download.svg"}),
-      'Save as CSV File']),
+         h('div',{style: {
+            marginTop: '3px',
+         },},
+      'Save as CSV File'),]),
       
       h('button', {
         onClick: () => this.confirmSeedWords()
