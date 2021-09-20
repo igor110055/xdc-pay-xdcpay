@@ -2,6 +2,7 @@ const inherits = require('util').inherits
 const Component = require('react').Component
 const h = require('react-hyperscript')
 const Identicon = require('./identicon')
+const EthBalance = require('../components/eth-balance')
 const formatBalance = require('../util').formatBalance
 const addressSummary = require('../util').addressSummary
 
@@ -16,6 +17,8 @@ function AccountPanel () {
 AccountPanel.prototype.render = function () {
   var state = this.props
   var identity = state.identity || {}
+  const { network, conversionRate, currentCurrency } = state
+  
   var account = state.account || {}
   var isFauceting = state.isFauceting
 
@@ -36,8 +39,9 @@ AccountPanel.prototype.render = function () {
 
     h('.identity-panel.flex-row.flex-space-between', {
       style: {
-        background: ((state.style && state.style.background) || '#2050fd'),
+        background: ((state.style && state.style.background) || '#ffffff'),
         padding: '30px',
+        borderBottom: '1px solid #E3E7EB',
         flex: '1 0 auto',
         cursor: panelState.onClick ? 'pointer' : undefined,
       },
@@ -46,41 +50,62 @@ AccountPanel.prototype.render = function () {
 
       // account identicon
       h('.identicon-wrapper.flex-column.select-none', [
-        h(Identicon, {
-          address: panelState.identiconKey,
-          imageify: state.imageifyIdenticons,
-          diameter: 60,
-        }),
+        // h(Identicon, {
+        //   address: panelState.identiconKey,
+        //   imageify: state.imageifyIdenticons,
+        //   diameter: 60,
+        // }),
       ]),
 
       // account address, balance
       h('.identity-data.flex-column.flex-justify-center.flex-grow.select-none', [
         h('h2.font-medium', {
           style: {
-            color: '#ffffff',
-            marginBottom: '20px',
+            color: '#2a2a2a',
+            // marginBottom: '20px',
+            margin: '0 auto 0 auto',
+            fontFamily: 'Inter',
+            fontSize: '14px',
             lineHeight: '16px',
           },
         }, panelState.identiconLabel),
-        panelState.attributes.map((attr, i) => {
-          return h('.flex-row.flex-space-between', {
-            key: '' + Math.round(Math.random() * 1000000),
-          }, [
-            h('label.font-pre-medium.no-select', {
-              style: {
-                color: '#ffffff',
-                marginBottom: i === 0 ? '10px' : '0px',
-                lineHeight: '14px',
-              },
-            }, attr.key),
-            h('span.font-pre-medium', {
-              style: {
-                color: '#ffffff',
-                lineHeight: '14px',
-              },
-            }, attr.value),
-          ])
+        // panelState.attributes.map((attr) => {
+        //   return h('.flex-row.flex-space-between', {
+        //     key: '',
+        //   },
+        //     [
+        //     // h('label.font-pre-medium.no-select', {
+        //     //   style: {
+        //     //     color: '#ffffff',
+        //     //     marginBottom: i === 0 ? '10px' : '0px',
+        //     //     lineHeight: '14px',
+        //     //   },
+        //     // }, attr.key),
+        //     // h('span.font-pre-medium', {
+        //     //   style: {
+        //     //     color: '#ffffff',
+        //     //     lineHeight: '14px',
+        //     //   },
+        //     // }, attr.value),
+            
+            
+        //   ])
+        // }),
+        
+        h(EthBalance, {
+            
+          value: account && account.balance,
+          conversionRate,
+          currentCurrency,
+          network,
+
+          style: {
+            lineHeight: '7px',
+            margin:'25px 0 0 23px',
+            // marginBottom: '42px',
+          },
         }),
+
       ]),
 
     ])
