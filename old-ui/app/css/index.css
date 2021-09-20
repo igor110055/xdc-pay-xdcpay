@@ -717,7 +717,7 @@ input.large-input {
 }
 
 .identity-panel .identity-data {
-  margin: 8px 8px 8px 18px;
+  /* margin: 8px 8px 8px 18px; */
 }
 
 .identity-panel i {

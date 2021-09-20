@@ -80,6 +80,7 @@ TransactionList.prototype.render = function () {
               margin: '95px 0',
               color: '#9FA9BA',
               fontFamily: 'Inter',
+              fontSize: '14px',
             },
           }, 'No transaction history'),
         ]),

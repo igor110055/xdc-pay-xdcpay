@@ -69,7 +69,9 @@ ConfigScreen.prototype.render = function () {
             cursor: "pointer",
           },
         }),
-        h("h2", { style: { marginTop: "-16px" } }, "Settings"),
+        h("h2", { style: {
+          fontFamily: 'Inter',
+          fontWeight: '600', } }, "Settings"),
       ]),
 
       h(

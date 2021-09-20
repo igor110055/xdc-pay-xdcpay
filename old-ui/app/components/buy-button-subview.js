@@ -26,7 +26,8 @@ class BuyButtonSubview extends Component {
 
   headerSubview() {
     const props = this.props;
-    const { network } = props;
+    const { network,conversionRate,currentCurrency } = props;
+    
     const isLoading = props.isSubLoading;
     const coinName = ethNetProps.props.getNetworkCoinName(network);
     return (
@@ -75,8 +76,9 @@ class BuyButtonSubview extends Component {
               account: props.account,
               network: props.network,
               // value: account && account.balance,
-              // conversionRate,
-              // currentCurrency,
+              conversionRate,
+              currentCurrency,
+              
               // network,
             }}
           />
@@ -283,7 +285,10 @@ function mapStateToProps(state) {
     network: state.metamask.network,
     provider: state.metamask.provider,
     context: state.appState.currentView.context,
+    conversionRate: state.metamask.conversionRate,
+    currentCurrency: state.metamask.currentCurrency,
     isSubLoading: state.appState.isSubLoading,
+
     isContractExecutionByUser: state.appState.buyView.isContractExecutionByUser,
   };
 }
