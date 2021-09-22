@@ -148,7 +148,7 @@ PendingTx.prototype.render = function () {
   this.inputs = []
 
   const valueStyle = {
-    // fontFamily: 'Nunito SemiBold',
+    // fontFamily: 'Inter SemiBold',
     // width: '100%',
     // textAlign: 'right',
     // fontSize: '12px',
@@ -156,7 +156,7 @@ PendingTx.prototype.render = function () {
   }
 
   const dimStyle = {
-    // fontFamily: 'Nunito SemiBold',
+    // fontFamily: 'Inter SemiBold',
     // color: '#848484',
     marginLeft: '2px',
     // fontSize: '12px',
@@ -238,7 +238,7 @@ PendingTx.prototype.render = function () {
             //   }, [
             //     h('div.font-pre-medium', {
             //       style: {
-            //         fontFamily: 'Nunito SemiBold',
+            //         fontFamily: 'Inter SemiBold',
             //         color: '#ffffff',
             //         whiteSpace: 'nowrap',
             //       },
@@ -249,7 +249,7 @@ PendingTx.prototype.render = function () {
             //     }, [
             //       h('span.font-small', {
             //         style: {
-            //           fontFamily: 'Nunito Regular',
+            //           fontFamily: 'Inter Regular',
             //           color: 'rgba(255, 255, 255, 0.7)',
             //         },
             //       }, addressSummary(network, address, 6, 4, false)),
@@ -257,7 +257,7 @@ PendingTx.prototype.render = function () {
 
             //     h('span.font-small', {
             //       style: {
-            //         fontFamily: 'Nunito Regular',
+            //         fontFamily: 'Inter Regular',
             //       },
             //     }, [
             //       isToken ? h(TokenBalance, {
@@ -290,12 +290,12 @@ PendingTx.prototype.render = function () {
               background: #ffffff;
               display: flex;
               flex-direction: column;
-              font-family: Nunito Regular;
+              font-family: Inter Regular;
               font-size: 14px;
               padding: 0px 46px;
             }
             .table-box .row .value {
-              font-family: Nunito Regular;
+              font-family: Inter Regular;
             }
           `),
 
@@ -433,7 +433,7 @@ PendingTx.prototype.render = function () {
 
             h('.cell.row', {
               style: {
-                fontFamily: 'Nunito Regular',
+                fontFamily: 'Inter Regular',
               },
             }, [
               h('.cell.label', {style: {marginTop:'30px'},}, 'Max Total'),
@@ -468,7 +468,7 @@ PendingTx.prototype.render = function () {
             //   h('.cell.label'),
             //   h('.cell.value', {
             //     style: {
-            //       fontFamily: 'Nunito Regular',
+            //       fontFamily: 'Inter Regular',
             //       fontSize: '14px',
             //     },
             //   }, `Data included: ${dataLength} bytes`),
@@ -597,7 +597,7 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
         [
           h('.cell.row', {
             style: {
-              fontFamily: 'Nunito Bold',
+              fontFamily: 'Inter Bold',
               color: '#2A2A2A',
               display: 'flex',
               whiteSpace: 'nowrap',
@@ -610,7 +610,7 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
           }, [
             h('.cell.row', {
               style: {
-                fontFamily: 'Nunito Regular',
+                fontFamily: 'Inter Regular',
                 color: '#848484',
                 width: '265px',
                 height: '32px',
@@ -630,7 +630,7 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
 
       h('span.font-small', {
         style: {
-          fontFamily: 'Nunito Bold',
+          fontFamily: 'Inter Bold',
           color: '#ffffff',
         },
       }, 'New Contract'),

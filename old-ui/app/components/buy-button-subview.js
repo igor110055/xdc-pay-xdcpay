@@ -62,7 +62,7 @@ class BuyButtonSubview extends Component {
             className="flex-center buy-title"
             style={{
               fontWeight: "700",
-              fontFamily: "Inter",
+              // fontFamily: "Inter",
               fontSize: "15px",
             }}
           >{`Buy `}</h2>
@@ -139,7 +139,7 @@ class BuyButtonSubview extends Component {
             height: "57px",
             borderRadius: "9px",
             padding: "11px",
-            fontFamily: "Inter",
+            // fontFamily: "Inter",
             fontSize: "14px",
             color: "black",
             textAlign: "left",
@@ -179,7 +179,7 @@ class BuyButtonSubview extends Component {
             height: "57px",
             borderRadius: "9px",
             padding: "11px",
-            fontFamily: "Inter",
+            // fontFamily: "Inter",
             color: "black",
             fontSize: "14px",
             textAlign: "left",

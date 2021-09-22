@@ -33,8 +33,9 @@ EthBalanceComponent.prototype.render = function () {
         "div",
         {
           style: {
-            display: "inline",
-            width,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
           },
         },
         this.renderBalance(value)
@@ -68,7 +69,7 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
         width: "100%",
         fontSize: "30px",
         textAlign: "right",
-        // fontFamily: "Inter",
+        fontFamily: "Inter",
         fontWeight: "600",
       };
   const dimStyle = props.dimStyle
@@ -77,7 +78,7 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
         color: " #1F1F1F",
         fontSize: "30px",
         marginLeft: "5px",
-        // fontFamily: "Inter",
+        fontFamily: "Inter",
         fontWeight: "600",
       };
 
@@ -87,7 +88,12 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
       position: "bottom",
       title: `${ethNumber} ${ethSuffix}`,
     },
-    h("div.flex-column", [
+    h("div.flex-column", {
+     style:{
+       
+        alignItems: 'center',
+      width: '100%'},
+    }, [
       h(
         ".flex-row",
         {
@@ -95,9 +101,9 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
             alignItems: "flex-end",
             lineHeight: "20px",
             textRendering: "geometricPrecision",
-            marginRight: "auto",
-            marginLeft: "auto",
-            paddingLeft: "12px",
+            // marginRight: "auto",
+            // marginLeft: "auto",
+            // paddingLeft: "12px",
           },
         },
         [
@@ -106,15 +112,15 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
             {
               style: valueStyle,
             },
-            incoming ? `+${balance} ${label}` :  `${balance} ${label}` 
+            incoming ? `+${balance}` : balance
           ),
-          // h(
-          //   "div",
-          //   {
-          //     style: dimStyle,
-          //   },
-          //   label
-          // ),
+          h(
+            "div",
+            {
+              style: dimStyle,
+            },
+            label
+          ),
         ]
       ),
 

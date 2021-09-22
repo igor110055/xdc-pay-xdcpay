@@ -103,7 +103,7 @@ TransactionListItem.prototype.render = function () {
 
   const isClickable = ('hash' in transaction && isLinkable) || isPending
   const valueStyle = {
-    fontFamily: 'Inter',
+    // fontFamily: 'Inter',
     width: '100%',
     textAlign: 'right',
     fontSize: '14px',
@@ -112,7 +112,7 @@ TransactionListItem.prototype.render = function () {
   }
 
   const dimStyle = {
-    fontFamily: 'Inter',
+    // fontFamily: 'Inter',
     color: '#333333',
     // marginLeft: '5px',
     fontSize: '14px',
@@ -172,7 +172,7 @@ TransactionListItem.prototype.render = function () {
             style: {
               fontSize: '12px',
               color: '#777777',
-              fontFamily: 'Inter',
+              // fontFamily: 'Inter',
             },
           }, date),
         ]),
@@ -188,8 +188,8 @@ TransactionListItem.prototype.render = function () {
           showFiat: false,
           network,
           style: {
-            margin: '0px auto 0px 65px',
-            fontFamily: 'Inter',
+            // margin: '0px auto 0px 65px',
+            // fontFamily: 'Inter',
           },
         }) : h('.flex-column'),
       ]),
@@ -212,7 +212,7 @@ TransactionListItem.prototype.render = function () {
         h('div', {
           style: {
             paddingRight: '2px',
-            fontFamily: 'Inter',
+            // fontFamily: 'Inter',
           },
         }, 'Taking too long?'),
         h('div', {
@@ -269,7 +269,7 @@ function recipientField (txParams, transaction, isTx, isMsg, network) {
 }
 
 function formatDate (date) {
-  return vreme.format(new Date(date), '12:30 AM, 11 Sep 2021')
+  return vreme.format(new Date(date), 'March 16 2014 14:30')
 }
 
 function renderErrorOrWarning (transaction, network) {

@@ -22,7 +22,7 @@ TabBar.prototype.render = function () {
         paddingTop: (style && style.paddingTop) || '10px',
         minHeight: '45px',
         lineHeight: '45px',
-        borderBottom: '1px solid #E3E7EB',
+        // borderBottom: '1px solid #E3E7EB',
       },
     }, tabs.map((tab, ind) => {
       const { key, content, id } = tab

@@ -83,7 +83,7 @@ AccountDetailScreen.prototype.render = function () {
         // header - identicon + nav
         h('div', {
           style: {
-            marginTop: '-33px',
+            marginTop: '-29px',
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
@@ -100,7 +100,7 @@ AccountDetailScreen.prototype.render = function () {
           // ]),
           h('flex-column', {
             style: {
-              lineHeight: '10px',
+              lineHeight: '7px',
               marginLeft: '107px',
               width: '100%',
             },
@@ -140,11 +140,11 @@ AccountDetailScreen.prototype.render = function () {
                           maxWidth: '180px',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
-                          padding: '0px 23px',
-                          fontWeight: '500',
+                          padding: '8px 23px 6px',
+                          fontWeight: '600',
                           // lineHeight: '25px',
                           fontSize: '14px',
-                          fontFamily: 'Inter',
+                          // fontFamily: 'Inter',
                           color: '#1F1F1F',
                         },
                       }, [
@@ -152,30 +152,17 @@ AccountDetailScreen.prototype.render = function () {
                       ]),
                     ]
                   ),
-                  h(
-                    AccountDropdowns,
-                    {
-                      style: {
-                        // marginRight: '10px',
-                        // margintop: '10px',
-                        marginLeft: '73px',
-                        cursor: 'pointer',
-                      },
-                      selected,
-                      network,
-                      identities: props.identities,
-                      keyrings: props.keyrings,
-                      enableAccountOptions: true,
-                    },
-                  ),
-                ]
+                  
+                ],
+                
               ),
             
               h('.flex-row', {
                 style: {
-                  width: '15em',
+                  width: '100%',
                   justifyContent: 'space-between',
-                  alignItems: 'baseline',
+                  // alignItems: 'baseline',
+                  marginTop: '8px',
                 },
               }, [
 
@@ -196,7 +183,7 @@ AccountDetailScreen.prototype.render = function () {
                       width: '8em',
                       height: '15px',
                       fontSize: '12px',
-                      fontFamily: 'Inter',
+                      // fontFamily: 'Inter',
                       textRendering: 'geometricPrecision',
                       color: '#848484',
                     }
@@ -206,6 +193,25 @@ AccountDetailScreen.prototype.render = function () {
                     isWhite: true,
                   }),
                 ]),
+                [
+                  h(
+                    AccountDropdowns,
+                    {
+                      style: {
+                        // marginRight: '10px',
+                        // margintop: '10px',
+                        // marginLeft: '73px',
+
+                        cursor: 'pointer',
+                      },
+                      selected,
+                      network,
+                      identities: props.identities,
+                      keyrings: props.keyrings,
+                      enableAccountOptions: true,
+                    },
+                  ),
+                ]
               ]),
 
               // account ballance
@@ -220,7 +226,7 @@ AccountDetailScreen.prototype.render = function () {
             justifyContent: 'space-between',
             alignItems: 'center',
             flexFlow: 'column',
-            margin: '45px',
+            margin: '45px 0 45px 0',
           },
         }, [
         
@@ -236,16 +242,23 @@ AccountDetailScreen.prototype.render = function () {
           }),
         ]),
         
-        h('.flex-grow'),
+        h('.flex-grow'), {
+          style: {
+            display:'flex',
+            justifyContent: 'center',
 
-        !ifContractAcc(currentKeyring) ? h('button',
-              
-         
+          },
+        },
           
+          
+          !ifContractAcc(currentKeyring) ? h('button',
+        
+          
+        
           {
             onClick: () => props.dispatch(actions.buyEthView(selected)),
           
-          style: {
+            style: {
             margin: '0 10px 20px 100px',
             width: '74px',
             height: '29px',
@@ -255,56 +268,57 @@ AccountDetailScreen.prototype.render = function () {
             // image: 'url(/images/Assets/downarrow-2.svg)',
             // img:'/images/Assets/downarrow-2.svg',
           },
-            }, [ h('img',
+        }, [ h('img',
               {
                 style: {
                   marginRight: '8px',
               
-            }, src: "/images/Assets/downarrow-2.svg" },
-          ),'Buy']) : null,
-        
-          
-          
+                }, src: "/images/Assets/downarrow-2.svg" },
+                ),'Buy']) : null,
+                
+                
+                
             // h('img',
             //   {src: "/images/Assets/downarrow-2.svg" },
             // ),
             
-          
-
-          h('button', {
-            onClick: () => {
-              if (ifContractAcc(currentKeyring)) {
-                return props.dispatch(actions.showSendContractPage({}))
-              } else {
-                return props.dispatch(actions.showSendPage())
-              }
-            },
-            style: {
-             
-              width: '74px',
-              height: '29px',
-              background: '#2149B9', 
-              borderRadius: '4px',
-              opacity: '1',
-             
-
+            
+            
+            h('button', {
+              onClick: () => {
+                if (ifContractAcc(currentKeyring)) {
+                  return props.dispatch(actions.showSendContractPage({}))
+                } else {
+                  return props.dispatch(actions.showSendPage())
+                }
+              },
+              style: {
+                
+                width: '74px',
+                height: '29px',
+                background: '#2149B9', 
+                borderRadius: '4px',
+                opacity: '1',
+                
+                
             },
           },[ h('img',
           {
             style: {
               marginRight: '8px',
+              
+            }, src: "/images/Assets/downarrow-2-1.svg" },
+            ), ifContractAcc(currentKeyring) ? 'Execute methods' : 'Send']),
+            
+            // ]),
+          ]),
           
-        }, src: "/images/Assets/downarrow-2-1.svg" },
-      ), ifContractAcc(currentKeyring) ? 'Execute methods' : 'Send']),
-
-        // ]),
-      ]),
-
-      // subview (tx history, pk export confirm, buy eth warning)
-      this.subview(),
-
-    ])
-  )
+          // subview (tx history, pk export confirm, buy eth warning)
+          this.subview(),
+          
+        ])
+        )
+      
 }
 
 AccountDetailScreen.prototype.subview = function () {
