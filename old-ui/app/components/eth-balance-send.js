@@ -4,7 +4,7 @@ const inherits = require('util').inherits
 const formatBalance = require('../util').formatBalance
 const generateBalanceObject = require('../util').generateBalanceObject
 const Tooltip = require('./tooltip.js')
-const FiatValue = require('./fiat-value.js')
+const FiatValue = require('./fiat-value2.js')
 
 module.exports = EthBalanceComponent
 

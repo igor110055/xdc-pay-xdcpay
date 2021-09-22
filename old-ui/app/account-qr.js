@@ -42,17 +42,17 @@ class AccountQrScreen extends PureComponent {
 
       h('#qr-container.flex-column', {
         style: {
-          marginTop: '15px',
+          marginTop: '33px',
         },
         dangerouslySetInnerHTML: {
           __html: qrImage.createTableTag(4),
         },
       }),
-      h('.qr-header', Qr.message),
+      h('.qr-header1', Qr.message),
       h('.flex-row', [
         h('h3.ellip-address', {
           style: {
-            width: '247px',
+            width: '92px',
           },
         }, addressChecksum),
         h(CopyButton, {

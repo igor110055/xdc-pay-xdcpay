@@ -56,20 +56,29 @@ ConfigScreen.prototype.render = function () {
       h(Modal, {}, []),
 
       // subtitle and nav
-      h(".section-title.flex-row.flex-center", [
+      h(".section-title.flex-row", [
         h("img", {
           onClick: () => {
             state.dispatch(actions.goHome());
           },
           src: "/images/Assets/BackArrow.svg",
           style: {
-            position: "absolute",
-            left: "14px",
-            top: "62px",
+            position: "static",
+            marginLeft: "15px",
             cursor: "pointer",
           },
         }),
-        h("h2", { style: { marginTop: "-16px" } }, "Settings"),
+        h(
+          "h2",
+          {
+            style: {
+              marginLeft: "114px",
+              fontWeight: "600",
+              // fontFamily: "Nunito Regular",
+            },
+          },
+          "Settings"
+        ),
       ]),
 
       h(
@@ -85,8 +94,8 @@ ConfigScreen.prototype.render = function () {
             {
               style: {
                 display: warning ? "block" : "none",
-                width: '324px',
-                marginBottom: '-20px',
+                width: "324px",
+                marginBottom: "-20px",
               },
             },
             warning
@@ -148,6 +157,7 @@ ConfigScreen.prototype.render = function () {
                       color: "#0CBE46",
                       border: "2px solid #0CBE46",
                       fontWeight: "600",
+                      transform: "scale(1)",
                     },
                     onClick: (event) => {
                       event.preventDefault();
@@ -206,6 +216,7 @@ ConfigScreen.prototype.render = function () {
                       background: "#FFFFFF",
                       border: "2px solid #03BE46",
                       fontWeight: "600",
+                      transform: "scale(1)",
                     },
                     onClick(event) {
                       window.logStateString((err, result) => {
@@ -251,7 +262,8 @@ ConfigScreen.prototype.render = function () {
                       background: "#FFFFFF",
                       border: "2px solid #03BE46",
                       fontWeight: "600",
-                      marginBottom: '6px',
+                      marginBottom: "6px",
+                      transform: "scale(1)",
                     },
                     onClick(event) {
                       event.preventDefault();
@@ -284,7 +296,7 @@ ConfigScreen.prototype.render = function () {
                       fontFamily: "Nunito Regular",
                       fontSize: "14px",
                       lineHeight: "18px",
-                      marginLeft: '14px',
+                      marginLeft: "14px",
                     },
                   },
                   ["Resetting is for developer use only. "]
@@ -302,7 +314,8 @@ ConfigScreen.prototype.render = function () {
                       background: "#FFFFFF",
                       border: "2px solid #03BE46",
                       fontWeight: "600",
-                      marginLeft: '14px',
+                      marginLeft: "14px",
+                      transform: "scale(1)",
                     },
                     onClick(event) {
                       event.preventDefault();
@@ -329,8 +342,9 @@ ConfigScreen.prototype.render = function () {
                       background: "#FFFFFF",
                       border: "2px solid #03BE46",
                       fontWeight: "600",
-                      marginLeft: '14px',
-                      marginBottom: '50px',
+                      marginLeft: "14px",
+                      marginBottom: "50px",
+                      transform: "scale(1)",
                     },
                     onClick(event) {
                       event.preventDefault();

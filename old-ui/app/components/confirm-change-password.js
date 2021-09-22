@@ -56,21 +56,21 @@ ConfirmChangePassword.prototype.render = function () {
           display: state.warning ? 'block' : 'none',
         },
       }, state.warning),
-      h('span', 'Old password'),
+      h('span', {style:{fontSize: '12px', fontWeight: 'bold'}}, 'Old password'),
       h('input.large-input', {
         type: 'password',
         id: 'old-password-box',
         ref: 'OldPasswordBox',
         style: passwordInputAdditionalStyle,
       }),
-      h('span', 'New password'),
+      h('span', {style:{fontSize: '12px', fontWeight: 'bold'}}, 'New password'),
       h('input.large-input', {
         type: 'password',
         id: 'new-password-box',
         ref: 'NewPasswordBox',
         style: passwordInputAdditionalStyle,
       }),
-      h('span', 'Confirm new password'),
+      h('span', {style:{fontSize: '12px', fontWeight: 'bold'}}, 'Confirm new password'),
       h('input.large-input', {
         type: 'password',
         id: 'password-box-confirm',
@@ -87,6 +87,8 @@ ConfirmChangePassword.prototype.render = function () {
           color: '#FF0035',
           border: '1px solid',
           padding: '20px 20px',
+          fontSize: '12px',
+          fontFamily: 'Inter-Regular'
         },
       },
       `Are you sure you want to change the password for unlocking of your wallet?`),
