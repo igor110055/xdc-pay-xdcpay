@@ -44,7 +44,7 @@ class BuyButtonSubview extends Component {
           }}
         >
           <img
-            src="C:\Xinorg\xinfin-xinpay-xdcpay\app\images\Assets\Close.svg"
+            src="/images/Assets/Close.svg"
             onClick={() => this.backButtonContext()}
             style={{
               position: "absolute",
@@ -155,7 +155,7 @@ class BuyButtonSubview extends Component {
           {exchange.name}
           <img
             style={{width: "7px" }}
-            src="C:\Xinorg\xinfin-xinpay-xdcpay\app\images\Assets\RightArrow.svg"
+            src="/images/Assets/RightArrow.svg"
           />
         </p>
       );
