@@ -44,6 +44,7 @@
 .hw-connect__connect-btn.disabled {
   cursor: not-allowed;
   opacity: .5;
+  align-items: center ;
 }
 .hw-connect__btn {
   background: #fbfbfb;

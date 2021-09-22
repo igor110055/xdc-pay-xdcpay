@@ -91,7 +91,7 @@ class DropdownMenuItem extends Component {
       padding: (this.props.style && this.props.style.padding) ? this.props.style.padding : '9px 0px',
       fontSize: '14px',
       fontStyle: 'normal',
-      fontFamily: 'Nunito Regular',
+      fontFamily: 'Inter-Regular',
       cursor: 'pointer',
       display: 'flex',
       justifyContent: 'flex-start',

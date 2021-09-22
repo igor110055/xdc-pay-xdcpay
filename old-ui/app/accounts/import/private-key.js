@@ -25,11 +25,18 @@ PrivateKeyImportView.prototype.render = function () {
       style: {
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        padding: '5px 0px 0px 0px',
+        padding: '0 20px',
+
+        // alignItems: 'center',
+        
       },
     }, [
-      h('span', 'Paste your private key string here'),
+      h('span', {
+        style: {
+          fontSize: "12px",
+          fontWeight: "bold"
+        },
+      },'Paste your private key string here'),
 
       h('input.large-input', {
         type: 'password',
@@ -37,7 +44,7 @@ PrivateKeyImportView.prototype.render = function () {
         onKeyPress: this.createKeyringOnEnter.bind(this),
         style: {
           width: '100%',
-          marginTop: 12,
+          // marginTop: 12,
           border: '1px solid #e2e2e2',
         },
       }),
@@ -45,7 +52,9 @@ PrivateKeyImportView.prototype.render = function () {
       h('button', {
         onClick: this.createNewKeychain.bind(this),
         style: {
-          margin: 20,
+          marginTop: 20,
+          width: '260px',
+          height: '40px',
         },
       }, 'Import'),
 

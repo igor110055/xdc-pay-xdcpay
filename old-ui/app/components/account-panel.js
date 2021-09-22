@@ -64,9 +64,10 @@ AccountPanel.prototype.render = function () {
             color: '#2a2a2a',
             // marginBottom: '20px',
             margin: '0 auto 0 auto',
-            fontFamily: 'Inter',
+            // fontFamily: 'Inter',
             fontSize: '14px',
             lineHeight: '16px',
+            fontWeight: '600',
           },
         }, panelState.identiconLabel),
         // panelState.attributes.map((attr) => {
@@ -91,7 +92,7 @@ AccountPanel.prototype.render = function () {
             
         //   ])
         // }),
-        
+
         h(EthBalance, {
             
           value: account && account.balance,
@@ -101,8 +102,9 @@ AccountPanel.prototype.render = function () {
 
           style: {
             lineHeight: '7px',
-            margin:'25px 0 0 23px',
-            // marginBottom: '42px',
+            // margin:'25px 0 0 23px',
+            marginTop: '10px',
+            justifyContent: 'center',
           },
         }),
 

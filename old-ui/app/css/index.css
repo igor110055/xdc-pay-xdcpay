@@ -14,7 +14,7 @@ application specific styles
 }
 
 html, body {
-  font-family: 'Nunito Regular';
+  font-family: 'Inter-Regular';
   color: #333333;
   font-weight: 300;
   line-height: 1.4em;
@@ -38,8 +38,9 @@ html {
 
 .address-dropdown {
   background-image: url(/images/Assets/options.svg);
-  width: 30px;
+  width: 45px;
   height: 24px;
+  margin-top: -15px;
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -101,8 +102,8 @@ input:focus, textarea:focus {
 }
 
 button, input[type="submit"] {
-  /* font-family: 'Inter'; */
-  font: normal normal medium 14px/17px Inter;
+  /* font-family: 'Inter-'; */
+  font: normal normal medium 14px/17px Inter-;
   outline: none;
   cursor: pointer;
   border: none;
@@ -184,7 +185,7 @@ button.btn-thin {
 }
 
 .app-header h1 {
-  font-family: 'Nunito Regular';
+  font-family: 'Inter-Regular';
   text-transform: uppercase;
   color: #AEAEAE;
   background: #ffffff;
@@ -195,7 +196,7 @@ button.btn-thin {
 }
 
 h2.page-subtitle {
-  font-family: 'Nunito Bold';
+  font-family: 'Inter-Bold';
   color: #333333;
   font-size: 1em;
 }
@@ -219,7 +220,7 @@ textarea {
 }
 
 textarea.twelve-word-phrase {
-  font-family: 'Nunito Regular';
+  font-family: 'Inter-Regular';
   padding: 12px;
   margin-top: 17px;
   width: 265px;
@@ -296,7 +297,7 @@ app sections
   right: 0px;
   z-index: 100;
   animation: 500ms ease-out 0s move;
-  cursor: pointer;
+  cursor: poInter-;
 }
 
 .toast.green {
@@ -575,7 +576,7 @@ p.buy-option {
 
 .section-title {
   margin-top: 20px;
-  font-family: 'Inter';
+  /* font-family: 'Inter'; */
 }
 
 .trash:after {
@@ -628,7 +629,7 @@ p.buy-option {
 /* Firefox 18- */
 .unlock-screen input:-moz-placeholder {
   text-align: left;
-  font-size: 14pxm;
+  font-size: 14px;
 }
 /* Firefox 19+ */
 .unlock-screen input::-moz-placeholder {
@@ -646,7 +647,7 @@ input.large-input, textarea.large-input {
   padding: 0px 10px;
   border-radius: 3px;
   border: 1px solid #e2e2e2;
-  font-family: 'Nunito Regular';
+  font-family: 'Inter-Regular';
   font-size: 14px;
 }
 
@@ -806,7 +807,7 @@ input.large-input {
 }
 
 .cell.label {
-  font-family: 'Nunito Regular';
+  font-family: 'Inter-Regular';
   font-size: 12px;
   font-weight: bold;
   line-height: 1;
@@ -814,7 +815,7 @@ input.large-input {
 }
 
 .cell.value {
-  font-family: 'Nunito Bold';
+  font-family: 'Inter-Bold';
   font-size: 14px;
 }
 
@@ -878,7 +879,7 @@ input.large-input {
 }
 
 .info{
-  font-family: 'Nunito Regular';
+  font-family: 'Inter-Regular';
   padding-bottom: 10px;
   display: inline-block;
 }
@@ -922,7 +923,7 @@ input.large-input {
 
 .radio-titles-subtext {
   color: #777777;
-  font-family: 'Nunito SemiBold';
+  font-family: 'Inter-SemiBold';
 }
 
 .selected-exchange {
@@ -943,7 +944,7 @@ input.large-input {
   color: #333333;
   padding: 29px 0px 0px 21px;
   justify-content: left;
-  font-family: Inter;
+  /* font-family: 'Inter'; */
 }
 
 /* .buy-radio {
@@ -963,7 +964,7 @@ input.large-input {
 }
 
 .buy-inputs{
-  font-family: 'Nunito Light';
+  font-family: 'Inter-Light';
   font-size: 13px;
   height: 20px;
   background: transparent;
@@ -994,10 +995,10 @@ input.large-input {
   color: #2149B9;
   border-bottom: 3px solid #2149B9;
   width: 50%;
-  font-family: Inter;
+  /* font-family: Inter; */
   text-align: center;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .activeForm.left {
@@ -1011,17 +1012,18 @@ input.large-input {
 .inactiveForm {
   background: #ffffff;
   color: #848484;
-  border: none;
-  border-radius: 8px 8px 0px 0px;
+  /* border: none;
+  border-radius: 8px 8px 0px 0px; */
+  border-bottom: 1px solid #E3E7EB;
   width: 50%;
-  font-family: Inter;
+  /* font-family: 'Inter'; */
   text-align: center;
   font-size: 14px;
   font-weight: 500;
 }
 
 .ex-coins {
-  font-family: 'Nunito SemiBold';
+  font-family: 'Inter-SemiBold';
   text-align: center;
   font-size: 16px;
   width: 70px;
@@ -1030,7 +1032,7 @@ input.large-input {
 }
 
 .marketinfo{
-  font-family: 'Nunito SemiBold';
+  font-family: 'Inter-SemiBold';
   color: #777777;
   font-size: 14px;
   line-height: 17px;
@@ -1072,13 +1074,13 @@ input.large-input {
   text-overflow: ellipsis;
   width: 5em;
   font-size: 14px;
-  font-family: "Nunito Regular";
+  font-family: "Inter-Regular";
   margin-left: 5px;
   color: #777777;
 }
 
 .qr-header {
-  font-family: "Nunito SemiBold";
+  font-family: "Inter-SemiBold";
   font-size: 16px;
   margin-top: 25px;
 }
@@ -1255,7 +1257,7 @@ div.message-container > div:first-child {
   position: relative;
   border: 1px solid #dedede;
   box-shadow: 0 0 2px 2px #dedede;
-  font-family: Roboto;
+  font-family: 'Inter';
 }
 
 .notification-modal__header {

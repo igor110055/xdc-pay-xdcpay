@@ -30,7 +30,7 @@ TransactionIcon.prototype.render = function () {
         h('i.new-tx', {
           style: {
             marginLeft: '10px',
-            marginRight: '29px',
+            // marginRight: '29px',
           },
         }),
       ])

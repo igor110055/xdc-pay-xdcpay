@@ -34,7 +34,7 @@ TokenCell.prototype.render = function () {
     h(`li#token-cell_${ind}.token-cell`, {
       style: {
         cursor: Number(network) === MAINNET_CODE ? 'pointer' : 'default',
-        borderBottom: isLastTokenCell ? 'none' : '1px solid #E3E7EB',
+        borderBottom: isLastTokenCell ? '1px solid #E3E7EB' : '1px solid #E3E7EB',
         padding: '10px 0',
         margin: '0 8px 0 18px',
       },
@@ -49,11 +49,12 @@ TokenCell.prototype.render = function () {
 
       h('h3', {
         style: {
-          fontFamily: 'Inter',
+          // fontFamily: 'Inter',
           fontSize: '14px',
           fontWeight: '700',
           height: '17px',
-          width: '67px',
+          width: '50%',
+
         },
       }, `${tokenBalance || 0} ${symbol}`),
 
@@ -61,7 +62,7 @@ TokenCell.prototype.render = function () {
 
       h(`div#${tokenCellDropDownPrefix}${ind}.address-dropdown.token-dropdown`,
         {
-          style: { cursor: 'pointer' },
+          style: { cursor: 'pointer', marginTop: '1px', },
           onClick: (event) => {
             event.stopPropagation()
             this.setState({

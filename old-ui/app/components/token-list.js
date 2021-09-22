@@ -162,7 +162,7 @@ TokenList.prototype.renderTokenStatusBar = function () {
           style: {
             fontSize: '14px',
             margin: '65px 0 10px 0',
-            fontFamily: 'Inter',
+            // fontFamily: 'Inter',
             color: '#9FA9BA',
           },
         },
@@ -178,7 +178,7 @@ TokenList.prototype.renderTokenStatusBar = function () {
             justifyContent: 'center',
             alignItems: 'center',
             height: '34px',
-            fontFamily: 'Inter',
+            // fontFamily: 'Inter',
             width: '148px',
           },
         }, [
@@ -209,7 +209,7 @@ TokenList.prototype.renderTokenStatusBar = function () {
         h('span', {
           style: {
             fontSize: '14px',
-            fontFamily: 'Inter',
+            // fontFamily: 'Inter',
             color: '#9FA9BA',
           },
         },
@@ -224,7 +224,7 @@ TokenList.prototype.renderTokenStatusBar = function () {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            fontFamily: 'Inter',
+            // fontFamily: 'Inter',
             height: '34px',
             width: '108px',
           },

@@ -53,7 +53,7 @@ class FiatValue extends Component {
           className="flex-row"
           style={{
             // alignItems: 'flex-end',
-            lineHeight: '2',
+            lineHeight: '3',
             textRendering: 'geometricPrecision',
             // marginTop: '4px',
             marginLeft: 'auto',
