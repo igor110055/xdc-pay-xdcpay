@@ -230,6 +230,17 @@ textarea.twelve-word-phrase {
   resize: none;
 }
 
+textarea.recipient-address {
+  font-family: 'Nunito Regular';
+  width: 265px;
+  padding-top: 4px;
+  padding-left: 8px;
+  padding-right: 32px;
+  font-size: 14px;
+  background: white;
+  resize: none;
+}
+
 .network-indicator {
   display: flex;
   align-items: center;
@@ -1083,6 +1094,11 @@ input.large-input {
   font-family: "Inter-SemiBold";
   font-size: 16px;
   margin-top: 25px;
+}
+.qr-header1 {
+  font-family: "Nunito SemiBold";
+  font-size: 16px;
+  margin-top: 17px;
 }
 
 .qr-message {

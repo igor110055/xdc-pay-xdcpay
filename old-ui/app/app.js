@@ -319,12 +319,12 @@ App.prototype.renderPrimary = function () {
           width: '100%',
         },
       }, [
-        h('.section-title.flex-row.flex-center', [
+        h('.section-title.flex-row.flex-center', {style:{marginTop: '38px',},},[
           h('img', { src: "/images/Assets/BackArrow.svg",
             onClick: () => props.dispatch(actions.backToAccountDetail(props.selectedAddress)),
             style: {
               marginLeft: '15px',
-              marginTop: '-16px',
+              marginTop: '-17px',
               position: 'absolute',
               left: '0',
               cursor: 'pointer',
