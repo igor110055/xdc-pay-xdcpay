@@ -98,15 +98,16 @@ BnAsDecimalInput.prototype.render = function () {
 
       state.invalid ? h('div', {
         style: {
-          paddingLeft: '30px',
-          paddingRight: '30px',
-          background: 'rgba(255, 255, 255, 0.85)',
-          position: 'absolute',
-          top: props.id === 'gas_limit' ? '180px' : '250px',
-          left: '0px',
+          // paddingLeft: '30px',
+          // paddingRight: '30px',
+          // background: 'rgba(255, 255, 255, 0.85)',
+          // position: 'absolute',
+          // top: props.id === 'gas_limit' ? '180px' : '250px',
+          // left: '0px',
+          marginTop: '10px',
         },
       }, [
-        h('div.error', {
+        h('div.error1', {
           style: {
             zIndex: props.id === 'gas_limit' ? '1' : '2',
           },

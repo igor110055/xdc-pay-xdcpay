@@ -102,8 +102,7 @@ input:focus, textarea:focus {
 }
 
 button, input[type="submit"] {
-  /* font-family: 'Inter-'; */
-  font: normal normal medium 14px/17px Inter-;
+  font: normal normal medium 14px/17px Inter-Regular;
   outline: none;
   cursor: pointer;
   border: none;
@@ -140,9 +139,9 @@ button.spaced {
   margin: 2px;
 }
 
-button:not([disabled]):hover, input[type="submit"]:not([disabled]):hover {
+/* button:not([disabled]):hover, input[type="submit"]:not([disabled]):hover {
   transform: scale(1.1);
-}
+} */
 button:not([disabled]):active, input[type="submit"]:not([disabled]):active {
   transform: scale(0.95);
 }
@@ -308,7 +307,7 @@ app sections
   right: 0px;
   z-index: 100;
   animation: 500ms ease-out 0s move;
-  cursor: poInter-;
+  cursor: pointer;
 }
 
 .toast.green {
@@ -821,7 +820,7 @@ input.large-input {
   font-family: 'Inter-Regular';
   font-size: 12px;
   font-weight: bold;
-  line-height: 1;
+  line-height: 16px;
   white-space: nowrap;
 }
 

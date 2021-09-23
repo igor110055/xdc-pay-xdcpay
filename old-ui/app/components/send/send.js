@@ -97,7 +97,8 @@ SendTransactionScreen.prototype.render = function () {
       // 'amount'
       h('div',{style:{
         fontSize: '12px',
-        fontWeight: 'bold',
+        fontFamily: 'Inter-Semibold',
+        lineHeight: '25px',
         marginLeft: '46px',
         marginTop: '15px',
       }},'Amount'),
@@ -124,7 +125,8 @@ SendTransactionScreen.prototype.render = function () {
       h('div', {
         style: {
           fontSize: '12px',
-          fontWeight: 'bold',
+          fontFamily: 'Inter-Semibold',
+          lineHeight: '25px',
           marginLeft: '46px',
           marginTop: '30px',
         },

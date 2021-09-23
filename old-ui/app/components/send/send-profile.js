@@ -43,8 +43,8 @@ class SendProfile extends Component {
 				<div style={{
 					textAlign: 'left',
 					fontSize:'12px', 
-					fontWeight:"bold",
-					lineHeight: 1
+					fontFamily: 'Inter-Semibold',
+					lineHeight: '15px',
 					}}>
 						Send From
 				</div>

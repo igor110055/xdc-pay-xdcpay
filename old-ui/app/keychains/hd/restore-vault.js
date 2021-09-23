@@ -105,8 +105,9 @@ RestoreVaultScreen.prototype.render = function () {
         (state.warning) && (
           h('div', {
             style: {
-              padding: '20px 0 0',
-              width: '100%',
+              // marginLeft: '46px',
+              marginTop: '20px',
+              width: '265px',
             },
           }, [
             h('div.error.in-progress-notification', state.warning),
@@ -172,7 +173,7 @@ RestoreVaultScreen.prototype.createNewVaultAndRestore = function () {
   var passwordConfirmBox = document.getElementById('password-box-confirm')
   var passwordConfirm = passwordConfirmBox.value
   if (password.length < 8) {
-    this.warning = 'Password not long enough'
+    this.warning = 'Password is not long enough'
     this.props.dispatch(actions.displayWarning(this.warning))
     return
   }

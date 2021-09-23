@@ -157,7 +157,6 @@ ConfigScreen.prototype.render = function () {
                       color: "#0CBE46",
                       border: "2px solid #0CBE46",
                       fontWeight: "600",
-                      transform: "scale(1)",
                     },
                     onClick: (event) => {
                       event.preventDefault();
@@ -216,7 +215,6 @@ ConfigScreen.prototype.render = function () {
                       background: "#FFFFFF",
                       border: "2px solid #03BE46",
                       fontWeight: "600",
-                      transform: "scale(1)",
                     },
                     onClick(event) {
                       window.logStateString((err, result) => {
@@ -263,7 +261,6 @@ ConfigScreen.prototype.render = function () {
                       border: "2px solid #03BE46",
                       fontWeight: "600",
                       marginBottom: "6px",
-                      transform: "scale(1)",
                     },
                     onClick(event) {
                       event.preventDefault();
@@ -315,7 +312,6 @@ ConfigScreen.prototype.render = function () {
                       border: "2px solid #03BE46",
                       fontWeight: "600",
                       marginLeft: "14px",
-                      transform: "scale(1)",
                     },
                     onClick(event) {
                       event.preventDefault();
@@ -344,7 +340,6 @@ ConfigScreen.prototype.render = function () {
                       fontWeight: "600",
                       marginLeft: "14px",
                       marginBottom: "50px",
-                      transform: "scale(1)",
                     },
                     onClick(event) {
                       event.preventDefault();

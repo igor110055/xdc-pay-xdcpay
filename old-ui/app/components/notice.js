@@ -87,7 +87,8 @@ Notice.prototype.render = function () {
             width: '100%',
             fontSize: '16px',
             textAlign: 'center',
-            margin: '20px 0px',
+            marginTop: '27px',
+            marginBottom: '5px',
           },
         }, [
           title,
@@ -127,7 +128,7 @@ Notice.prototype.render = function () {
             onConfirm()
           },
           style: {
-            marginTop: '18px',
+            marginTop: '28px',
             width: '312px',
             height: '40px',
             background: '#03BE46'

@@ -194,12 +194,12 @@ InitializeMenuScreen.prototype.createNewVaultAndKeychain = function () {
   var passwordConfirm = passwordConfirmBox.value
 
   if (password.length < 8) {
-    this.warning = 'password not long enough'
+    this.warning = 'Password is not long enough'
     this.props.dispatch(actions.displayWarning(this.warning))
     return
   }
   if (password !== passwordConfirm) {
-    this.warning = 'passwords don\'t match'
+    this.warning = 'Passwords don\'t match'
     this.props.dispatch(actions.displayWarning(this.warning))
     return
   }

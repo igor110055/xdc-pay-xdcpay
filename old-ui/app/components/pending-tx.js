@@ -148,7 +148,7 @@ PendingTx.prototype.render = function () {
   this.inputs = []
 
   const valueStyle = {
-    // fontFamily: 'Inter SemiBold',
+    // fontFamily: 'Inter-SemiBold',
     // width: '100%',
     // textAlign: 'right',
     // fontSize: '12px',
@@ -156,7 +156,7 @@ PendingTx.prototype.render = function () {
   }
 
   const dimStyle = {
-    // fontFamily: 'Inter SemiBold',
+    // fontFamily: 'Inter-SemiBold',
     // color: '#848484',
     marginLeft: '2px',
     // fontSize: '12px',
@@ -238,7 +238,7 @@ PendingTx.prototype.render = function () {
             //   }, [
             //     h('div.font-pre-medium', {
             //       style: {
-            //         fontFamily: 'Inter SemiBold',
+            //         fontFamily: 'Inter-SemiBold',
             //         color: '#ffffff',
             //         whiteSpace: 'nowrap',
             //       },
@@ -249,7 +249,7 @@ PendingTx.prototype.render = function () {
             //     }, [
             //       h('span.font-small', {
             //         style: {
-            //           fontFamily: 'Inter Regular',
+            //           fontFamily: 'Inter-Regular',
             //           color: 'rgba(255, 255, 255, 0.7)',
             //         },
             //       }, addressSummary(network, address, 6, 4, false)),
@@ -257,7 +257,7 @@ PendingTx.prototype.render = function () {
 
             //     h('span.font-small', {
             //       style: {
-            //         fontFamily: 'Inter Regular',
+            //         fontFamily: 'Inter-Regular',
             //       },
             //     }, [
             //       isToken ? h(TokenBalance, {
@@ -290,45 +290,49 @@ PendingTx.prototype.render = function () {
               background: #ffffff;
               display: flex;
               flex-direction: column;
-              font-family: Inter Regular;
+              font-family: Inter-Regular;
               font-size: 14px;
               padding: 0px 46px;
             }
             .table-box .row .value {
-              font-family: Inter Regular;
+              font-family: Inter-Regular;
             }
           `),
 
           h('.table-box',{  style:{
             overflowY: 'scroll',
-            height: '270px',
+            height: '284px',
             width: 'fit-content',
           },}, [
 
 
             isError ? h('div', {
               style: {
-                textAlign: 'center',
-                position: 'absolute',
-                top: '25px',
-                background: 'rgba(255, 255, 255, 0.85)',
-                width: '100%',
-                paddingLeft: '30px',
-                paddingRight: '30px',
+                // textAlign: 'center',
+                // position: 'absolute',
+                // top: '25px',
+                // background: 'rgba(255, 255, 255, 0.85)',
+                // width: '100%',
+                // paddingLeft: '30px',
+                // paddingRight: '30px',
               },
             }, [
               txMeta.simulationFails ?
                 h('.error', {
                   style: {
                     fontSize: '12px',
+                    width: '265px',
+                    marginLeft: '46px',
                   },
                 }, 'Transaction Error. Exception thrown in contract code.')
               : null,
 
               !isValidAddress ?
-                h('.error', {
+                h('.error1', {
                   style: {
                     fontSize: '12px',
+                    width: '265px',
+                    marginLeft: '46px',
                   },
                 }, 'Recipient address is invalid. Sending this transaction will result in a loss of ETH. ')
               : null,
@@ -337,14 +341,18 @@ PendingTx.prototype.render = function () {
                 h('.error', {
                   style: {
                     fontSize: '12px',
+                    width: '265px',
+                    marginLeft: '46px',
                   },
                 }, 'Insufficient balance for transaction. ')
               : null,
 
               (dangerousGasLimit && !gasLimitSpecified) ?
-                h('.error', {
+                h('.error1', {
                   style: {
                     fontSize: '12px',
+                    width: '265px',
+                    marginLeft: '46px',
                   },
                 }, 'Gas limit set dangerously high. Approving this transaction is liable to fail. ')
               : null,
@@ -433,7 +441,7 @@ PendingTx.prototype.render = function () {
 
             h('.cell.row', {
               style: {
-                fontFamily: 'Inter Regular',
+                fontFamily: 'Inter-Regular',
               },
             }, [
               h('.cell.label', {style: {marginTop:'30px'},}, 'Max Total'),
@@ -468,7 +476,7 @@ PendingTx.prototype.render = function () {
             //   h('.cell.label'),
             //   h('.cell.value', {
             //     style: {
-            //       fontFamily: 'Inter Regular',
+            //       fontFamily: 'Inter-Regular',
             //       fontSize: '14px',
             //     },
             //   }, `Data included: ${dataLength} bytes`),
@@ -597,7 +605,7 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
         [
           h('.cell.row', {
             style: {
-              fontFamily: 'Inter Bold',
+              fontFamily: 'Inter-SemiBold',
               color: '#2A2A2A',
               display: 'flex',
               whiteSpace: 'nowrap',
@@ -610,7 +618,7 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
           }, [
             h('.cell.row', {
               style: {
-                fontFamily: 'Inter Regular',
+                fontFamily: 'Inter-Regular',
                 color: '#848484',
                 width: '265px',
                 height: '32px',
@@ -630,7 +638,7 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
 
       h('span.font-small', {
         style: {
-          fontFamily: 'Inter Bold',
+          fontFamily: 'Inter-SemiBold',
           color: '#ffffff',
         },
       }, 'New Contract'),
