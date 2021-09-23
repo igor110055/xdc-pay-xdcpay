@@ -76,7 +76,7 @@ AccountDetailScreen.prototype.render = function () {
       // identicon, label, balance, etc
       h('.account-data-subsection', {
         style: {
-          padding: '32px 0 0',
+          padding: '8px 0 0',
           flex: '1 0 auto',
           background: '#ffffff',
           width: '100%',
@@ -86,7 +86,7 @@ AccountDetailScreen.prototype.render = function () {
         // header - identicon + nav
         h('div', {
           style: {
-            marginTop: '-29px',
+           
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
@@ -165,7 +165,7 @@ AccountDetailScreen.prototype.render = function () {
                   width: '100%',
                   justifyContent: 'space-between',
                   // alignItems: 'baseline',
-                  marginTop: '8px',
+                  marginTop: '3px',
                 },
               }, [
 

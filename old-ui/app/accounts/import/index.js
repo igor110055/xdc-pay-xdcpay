@@ -54,16 +54,19 @@ class AccountImportSubview extends Component {
           }}
         >
           <div className="flex-row flex-center">
-            <div
-              className="i fa fa-arrow-left fa-lg cursor-pointer"
+            <img
+             src={ "/images/Assets/BackArrow.svg"} 
+             style={{
+               position: "absolute",
+               left: "30px",
+               cursor: "pointer",
+              }}
+              
               onClick={(event) => {
                 props.goHome();
               }}
-              style={{
-                position: "absolute",
-                left: "30px",
-              }}
             />
+            
             <h2
               className="page-subtitle"
               style={{

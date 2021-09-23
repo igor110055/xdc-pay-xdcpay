@@ -153,7 +153,7 @@ TokenList.prototype.renderTokenStatusBar = function () {
           alignItems: 'center',
           minHeight: '70px',
           flexFlow: 'column',
-          padding: '30px 30px 10px',
+          padding: '0px 30px 10px',
           // borderBottom: '1px solid #E3E7EB',
           margin: '0 6px',
         },
