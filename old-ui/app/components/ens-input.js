@@ -47,8 +47,8 @@ EnsInput.prototype.render = function () {
       style: { 
         width: '265px',
         fontSize: '12px',
-        fontWeight: 'bold',
-        lineHeight: 1,
+        fontFamily: 'Inter-Semibold',
+        lineHeight: '15px',
         marginTop: '31px',
     },
     }, [ 'Recipient Address',

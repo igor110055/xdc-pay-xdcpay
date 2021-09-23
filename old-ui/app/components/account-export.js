@@ -111,7 +111,7 @@ ExportAccountView.prototype.render = function () {
               margin: '0 30px',
             }},
             [
-              h('div.error', this.props.warning.split('-')),
+              h('div.error',{style: {marginTop: '92px', marginLeft: '16px', width: '265px'},}, this.props.warning.split('-')),
             ]
           )
         ),
@@ -182,11 +182,11 @@ ExportAccountView.prototype.render = function () {
         [
           h('img', {
           style:{
-            marginRight: '5px',
+            marginRight: '6px',
           },
            src: "/images/Assets/Download.svg"}),
            h('div',{style: {
-              marginTop: '3px',
+              marginTop: '4px',
            },},
         'Save as File'),]),
         // }, 'Save as File'),

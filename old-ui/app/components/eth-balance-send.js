@@ -24,7 +24,7 @@ EthBalanceComponent.prototype.render = function () {
 
     h('.ether-balance.ether-balance-amount', {
       style: {
-        marginTop: '133px',
+        marginTop: '137px',
       }
 
     }, [

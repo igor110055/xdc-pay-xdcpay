@@ -194,7 +194,7 @@ class BuyButtonSubview extends Component {
           {faucetLabel}
           <img
             style={{width: "7px" }}
-            src="C:\Xinorg\xinfin-xinpay-xdcpay\app\images\Assets\RightArrow.svg"
+            src="/images/Assets/RightArrow.svg"
           />
         </p>
       );
