@@ -242,13 +242,14 @@ AccountDetailScreen.prototype.render = function () {
           }),
         ]),
         
-        h('.flex-grow'), {
-          style: {
-            display:'flex',
-            justifyContent: 'center',
+        h('.flex-grow'),
+        // {
+        //   style: {
+        //     display:'flex',
+        //     justifyContent: 'center',
 
-          },
-        },
+        //   },
+        // },
           
           
           !ifContractAcc(currentKeyring) ? h('button',
