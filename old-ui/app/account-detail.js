@@ -17,6 +17,8 @@ const CopyButton = require('./components/copy/copy-button')
 const ToastComponent = require('./components/toast')
 import { url } from 'inspector'
 import { getMetaMaskAccounts } from '../../ui/app/selectors'
+// import {useEffect,useState} from 'react'
+
 
 module.exports = connect(mapStateToProps)(AccountDetailScreen)
 
@@ -46,7 +48,51 @@ function mapStateToProps (state) {
 inherits(AccountDetailScreen, Component)
 function AccountDetailScreen () {
   Component.call(this)
+  
 }
+
+// var a = []
+// function conversionRate() {
+  
+//     axios
+//      .get("https://9bzlasmblf.execute-api.us-east-2.amazonaws.com/prod/getCoinMarketCap/USD"
+    
+//      )
+//       .then((res) => {
+//         console.log(res,"-----=====------")
+//      a.push(res.data.responseData)
+//       //  console.log("===========", res.data.responseData)
+             
+//      })
+      
+//      .catch((err) => {
+//     console.log(err);
+//      });
+// };
+// console.log(a, "-------------")
+
+
+     
+
+// const [conversion,setConversion] = useState([])
+// useEffect(() => {
+//   conversionRate();
+// })
+// function conversionRate() {
+  
+//     axios
+//      .get("https://9bzlasmblf.execute-api.us-east-2.amazonaws.com/prod/getCoinMarketCap/USD"
+    
+//      )
+//      .then((res) => {
+//      setConversion(res.data.responseData)
+//      console.log("===========",res.data.responseData)
+//      })
+      
+//      .catch((err) => {
+//     console.log(err);
+//      });
+//      };
 
 AccountDetailScreen.prototype.render = function () {
   var props = this.props

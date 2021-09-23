@@ -1,10 +1,12 @@
 const Component = require("react").Component;
 const h = require("react-hyperscript");
+
 const inherits = require("util").inherits;
 const formatBalance = require("../util").formatBalance;
 const generateBalanceObject = require("../util").generateBalanceObject;
 const Tooltip = require("./tooltip.js");
 const FiatValue = require("./fiat-value.js");
+// import {useEffect,useState} from 'react'
 
 module.exports = EthBalanceComponent;
 
@@ -12,6 +14,8 @@ inherits(EthBalanceComponent, Component);
 function EthBalanceComponent() {
   Component.call(this);
 }
+
+
 
 EthBalanceComponent.prototype.render = function () {
   var props = this.props;
@@ -81,13 +85,13 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
         fontWeight: "600",
       };
 
-  return h(
-    Tooltip,
-    {
-      position: "bottom",
-      title: `${ethNumber} ${ethSuffix}`,
-    },
-    h("div.flex-column", [
+  // return h(
+  //   Tooltip,
+  //   {
+  //     position: "bottom",
+  //     title: `${ethNumber} ${ethSuffix}`,
+  //   },
+    return h("div.flex-column", [
       h(
         ".flex-row",
         {
@@ -97,7 +101,7 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
             textRendering: "geometricPrecision",
             marginRight: "auto",
             marginLeft: "auto",
-            paddingLeft: "12px",
+            // paddingLeft: "12px",
           },
         },
         [
@@ -129,5 +133,5 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
           })
         : null,
     ])
-  );
+  // );
 };
