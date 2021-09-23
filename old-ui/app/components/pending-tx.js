@@ -31,7 +31,28 @@ const MIN_GAS_PRICE_BN = new BN('0')
 const MIN_GAS_LIMIT_BN = new BN('21000')
 
 module.exports = connect(mapStateToProps)(PendingTx)
-inherits(PendingTx, Component)
+inherits(PendingTx, Component,getconversionRate)
+
+async function getconversionRate() {
+  return new Promise(async (resolve, reject) => {
+   
+    try {
+        
+      const response = await fetch("https://9bzlasmblf.execute-api.us-east-2.amazonaws.com/prod/getCoinMarketCap/USD",{method:"get"})
+      const parsedResponse = await response.json()
+      console.log(parsedResponse,"parsedResponse")
+      if (parsedResponse && parsedResponse.responseData && parsedResponse.responseData.length) {
+          this.setState({conversionRate:parsedResponse.responseData[0].price})
+          resolve(parsedResponse.responseData[0].price)
+        } else {
+          reject()
+        }
+      
+    } catch (error) {
+      reject(error)
+    }
+  })
+ }
 function PendingTx (props) {
   Component.call(this)
   this.state = {
@@ -68,6 +89,7 @@ function mapStateToProps (state) {
   }
 }
 
+
 PendingTx.prototype.render = function () {
   const state = this.state
   if (this.props.isToken) {
@@ -76,7 +98,7 @@ PendingTx.prototype.render = function () {
   const props = this.props
   const { currentCurrency, blockGasLimit, network, provider, isUnlocked } = props
 
-  const conversionRate = props.conversionRate
+  const conversionRate = this.state.conversionRate
   const txMeta = this.gatherTxMeta()
   const txParams = txMeta.txParams || {}
   let { isToken, tokensToSend, tokensTransferTo } = props

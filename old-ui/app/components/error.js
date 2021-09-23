@@ -15,12 +15,12 @@ class ErrorComponent extends Component {
 				textAlign: 'center',
 				position: 'absolute',
 				top: '0',
-				background: 'rgba(255, 255, 255, 0.85)',
+				// background: 'rgba(255, 255, 255, 0.85)',
 				width: '100%',
 				paddingLeft: '30px',
 				paddingRight: '30px',
 				paddingTop: '70%',
-				zIndex: '100',
+				// zIndex: '100',
 				height: '100%',
 			}}>
 				<div

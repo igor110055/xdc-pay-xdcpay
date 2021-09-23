@@ -4,14 +4,46 @@ import PropTypes from 'prop-types'
 import { DAI_CODE, POA_SOKOL_CODE, XDC_TESTNET_CODE, GOERLI_TESTNET_CODE } from '../../../app/scripts/controllers/network/enums'
 
 class FiatValue extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      conversionRate:0
+    }
+  }
+  
+  componentDidMount() {
+   this.getconversionRate()
+  }
+  async getconversionRate () {
+    return new Promise(async (resolve, reject) => {
+     
+      try {
+          
+        const response = await fetch("https://9bzlasmblf.execute-api.us-east-2.amazonaws.com/prod/getCoinMarketCap/USD",{method:"get"})
+        const parsedResponse = await response.json()
+        console.log(parsedResponse,"parsedResponse")
+        if (parsedResponse && parsedResponse.responseData && parsedResponse.responseData.length) {
+            this.setState({conversionRate:parsedResponse.responseData[0].price})
+            resolve(parsedResponse.responseData[0].price)
+          } else {
+            reject()
+          }
+        
+      } catch (error) {
+        reject(error)
+      }
+    })
+  }
+  
   render = () => {
     const props = this.props
     let { conversionRate } = props
     const { currentCurrency, network } = props
-    const isTestnet = parseInt(network) === POA_SOKOL_CODE || parseInt(network) === XDC_TESTNET_CODE || parseInt(network) === GOERLI_TESTNET_CODE
+    const isTestnet = parseInt(network) === POA_SOKOL_CODE || parseInt(network) === XDC_TESTNET_CODE || parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
     const isDai = parseInt(network) === DAI_CODE
     if (isTestnet) {
-      conversionRate = 0
+      conversionRate = this.state.conversionRate
     } else if (isDai) {
       conversionRate = 1
     }
