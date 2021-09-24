@@ -28,7 +28,8 @@ InfoScreen.prototype.render = function () {
 
       // subtitle and nav
       h('.section-title.flex-row.flex-center', [
-        h('i.fa.fa-arrow-left.fa-lg.cursor-pointer', {
+        h('img.cursor-pointer', {
+          src:"/images/Assets/BackArrow.svg",
           onClick: (event) => {
             state.dispatch(actions.goHome())
           },
@@ -37,7 +38,10 @@ InfoScreen.prototype.render = function () {
             left: '30px',
           },
         }),
-        h('h2', 'Info'),
+        h('h2', {
+          style: {
+            fontFamily: 'Inter-Bold',
+        }}, 'Info'),
       ]),
 
       // main view

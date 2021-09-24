@@ -77,11 +77,7 @@ SendTransactionScreen.prototype.render = function () {
       h(SendProfile),
 
 
-      // error message
-      h(ErrorComponent, {
-        error,
-      }),
-
+      
       // 'to' field
       h('section.flex-row.flex-center', [
         h(EnsInput, {
@@ -149,6 +145,12 @@ SendTransactionScreen.prototype.render = function () {
           },
         }),
       ]),
+      
+      // error message
+      h(ErrorComponent, {
+        error,
+      }),
+
 
       // Send button
       h('button', { style: {

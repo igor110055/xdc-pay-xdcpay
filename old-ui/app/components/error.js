@@ -12,20 +12,21 @@ class ErrorComponent extends Component {
 	render () {
 		return this.props.error ? (
 			<div style={{
-				textAlign: 'center',
-				position: 'absolute',
-				top: '0',
-				// background: 'rgba(255, 255, 255, 0.85)',
-				width: '100%',
-				paddingLeft: '30px',
-				paddingRight: '30px',
-				paddingTop: '70%',
-				// zIndex: '100',
-				height: '100%',
+				margin: '-9px 0',
+				// textAlign: 'center',
+				// position: 'absolute',
+				// top: '0',
+				// // background: 'rgba(255, 255, 255, 0.85)',
+				// width: '100%',
+				// paddingLeft: '30px',
+				// paddingRight: '30px',
+				// paddingTop: '70%',
+				// // zIndex: '100',
+				// height: '100%',
 			}}>
 				<div
 					style={{
-						backgroundImage: `url('../images/close.svg')`,
+						// backgroundImage: `url('../images/close.svg')`,
 						backgroundRepeat: 'no-repeat',
 						width: '16px',
 						height: '16px',
@@ -34,8 +35,8 @@ class ErrorComponent extends Component {
 					onClick={(e) => this.props.hideWarning()}
 				/>
 				<div style={{
-					marginLeft: '30px',
-					marginRight: '30px',
+					marginLeft: '46px',
+					marginRight: '46px',
 				}} >
 					<div
 						className="error"

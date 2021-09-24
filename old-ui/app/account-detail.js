@@ -51,49 +51,6 @@ function AccountDetailScreen () {
   
 }
 
-// var a = []
-// function conversionRate() {
-  
-//     axios
-//      .get("https://9bzlasmblf.execute-api.us-east-2.amazonaws.com/prod/getCoinMarketCap/USD"
-    
-//      )
-//       .then((res) => {
-//         console.log(res,"-----=====------")
-//      a.push(res.data.responseData)
-//       //  console.log("===========", res.data.responseData)
-             
-//      })
-      
-//      .catch((err) => {
-//     console.log(err);
-//      });
-// };
-// console.log(a, "-------------")
-
-
-     
-
-// const [conversion,setConversion] = useState([])
-// useEffect(() => {
-//   conversionRate();
-// })
-// function conversionRate() {
-  
-//     axios
-//      .get("https://9bzlasmblf.execute-api.us-east-2.amazonaws.com/prod/getCoinMarketCap/USD"
-    
-//      )
-//      .then((res) => {
-//      setConversion(res.data.responseData)
-//      console.log("===========",res.data.responseData)
-//      })
-      
-//      .catch((err) => {
-//     console.log(err);
-//      });
-//      };
-
 AccountDetailScreen.prototype.render = function () {
   var props = this.props
   const { network, conversionRate, currentCurrency } = props
@@ -119,7 +76,7 @@ AccountDetailScreen.prototype.render = function () {
       // identicon, label, balance, etc
       h('.account-data-subsection', {
         style: {
-          padding: '32px 0 0',
+          padding: '8px 0 0',
           flex: '1 0 auto',
           background: '#ffffff',
           width: '100%',
@@ -129,7 +86,7 @@ AccountDetailScreen.prototype.render = function () {
         // header - identicon + nav
         h('div', {
           style: {
-            marginTop: '-29px',
+           
             display: 'flex',
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
@@ -208,7 +165,7 @@ AccountDetailScreen.prototype.render = function () {
                   width: '100%',
                   justifyContent: 'space-between',
                   // alignItems: 'baseline',
-                  marginTop: '8px',
+                  marginTop: '3px',
                 },
               }, [
 
@@ -289,14 +246,7 @@ AccountDetailScreen.prototype.render = function () {
         ]),
         
         h('.flex-grow'),
-        // {
-        //   style: {
-        //     display:'flex',
-        //     justifyContent: 'center',
-
-        //   },
-        // },
-          
+                
           
           !ifContractAcc(currentKeyring) ? h('button',
         
@@ -319,6 +269,7 @@ AccountDetailScreen.prototype.render = function () {
               {
                 style: {
                   marginRight: '8px',
+                  marginTop: '0.5px',
               
                 }, src: "/images/Assets/downarrow-2.svg" },
                 ),'Buy']) : null,
