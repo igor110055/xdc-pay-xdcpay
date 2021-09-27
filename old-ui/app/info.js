@@ -35,7 +35,7 @@ InfoScreen.prototype.render = function () {
           },
           style: {
             position: 'absolute',
-            left: '30px',
+            left: '15px',
           },
         }),
         h('h2', {

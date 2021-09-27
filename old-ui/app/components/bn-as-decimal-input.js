@@ -107,9 +107,11 @@ BnAsDecimalInput.prototype.render = function () {
           marginTop: '10px',
         },
       }, [
-        h('div.error1', {
+        h('div.error', {
           style: {
             zIndex: props.id === 'gas_limit' ? '1' : '2',
+            backgroundPosition: 'left',
+            backgroundPositionX: '15px'
           },
         }, state.invalid),
       ]) : null,

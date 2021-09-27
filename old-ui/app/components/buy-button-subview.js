@@ -48,7 +48,7 @@ class BuyButtonSubview extends Component {
             onClick={() => this.backButtonContext()}
             style={{
               position: "absolute",
-              left: "30px",
+              left: "15px",
               cursor: "pointer",
               transformOrigin: "center center",
               transition: "transform 50ms ease-in-out",
