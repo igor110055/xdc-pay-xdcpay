@@ -124,7 +124,7 @@ module.exports = class AppBar extends Component {
             />
           </div>
           {isUnlocked && (
-            <div className="app-bar-right-menus-section">
+            <div style={{visibility: isOnboarding ? 'hidden' : 'visible'}} className="app-bar-right-menus-section">
               <AccountDropdowns
                 enableAccountsSelector={true}
                 identities={identities}

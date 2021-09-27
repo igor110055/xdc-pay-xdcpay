@@ -58,7 +58,7 @@ class AccountImportSubview extends Component {
              src={ "/images/Assets/BackArrow.svg"} 
              style={{
                position: "absolute",
-               left: "30px",
+               left: "15px",
                cursor: "pointer",
               }}
               
@@ -83,19 +83,20 @@ class AccountImportSubview extends Component {
               display: "inline-block",
               alignItems: "center",
               marginTop: '13px',
-              border: "1px solid red",
+              // border: "1px solid red",
               alignItems: "center",
               width: "257px",
               marginLeft: "20px",
+              backgroundPosition: '15px 30px'
             }}
           >
             <span>
               Imported accounts will not be associated with your originally
-              created XDCPay account seedphrase.
+              created XDCPay account seed phrase.
             </span>
           </div>
           <div style={{ padding: "10px 20px" }}>
-            <h3 style={{ fontSize: "12px", fontWeight: "bold" }}>
+            <h3 style={{ fontSize: "12px", fontFamily: "Inter-SemiBold" }}>
               Select Type
             </h3>
             <Select
@@ -113,8 +114,10 @@ class AccountImportSubview extends Component {
                   this.onChange(opt);
                 },
               }}
+              style={{cursor: 'pointer'}}
             />
             <p
+              style={{fontFamily: 'Inter-Regular', fontSize: '14px', lineHeight: '16px',}}
               className="hw-connect__header__msg"
               dangerouslySetInnerHTML={{ __html: this.state.description }}
             />
@@ -122,7 +125,7 @@ class AccountImportSubview extends Component {
           {this.renderImportView()}
         </div>
       </div>
-    );
+    );                                                                                                                                                                                                                                                                                           
   }
 
   onChange(opt) {

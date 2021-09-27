@@ -66,7 +66,7 @@ EnsInput.prototype.render = function () {
           // Corresponds to the addresses owned.
           Object.keys(props.identities).map((key) => {
             const identity = props.identities[key]
-            return h('option', {
+            return h(/*'option'*/'div', {
               value: identity.address.replace('0x', 'xdc').toLowerCase(),
               label: identity.name,
               key: identity.address,

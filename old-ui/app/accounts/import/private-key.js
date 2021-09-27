@@ -45,7 +45,7 @@ PrivateKeyImportView.prototype.render = function () {
         style: {
           width: '100%',
           // marginTop: 12,
-          border: '1px solid #e2e2e2',
+          border: '2px solid #C7CDD8',
         },
       }),
 
@@ -53,12 +53,12 @@ PrivateKeyImportView.prototype.render = function () {
         onClick: this.createNewKeychain.bind(this),
         style: {
           marginTop: 20,
-          width: '260px',
+          width: '257px',
           height: '40px',
         },
       }, 'Import'),
 
-      error ? h('span.error', error) : null,
+      error ? h('span.error',{style:{marginTop: '20px',}}, error) : null,
     ])
   )
 }

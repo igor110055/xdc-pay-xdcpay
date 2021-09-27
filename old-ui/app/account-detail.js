@@ -65,6 +65,17 @@ AccountDetailScreen.prototype.render = function () {
 
   const currentKeyring = getCurrentKeyring(props.address, network, props.keyrings, props.identities)
 
+  function shorten(b, amountL = 7, /*amountR = 4,*/ stars = 3) {
+
+    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+  
+        b.length - 4,
+  
+        b.length
+  
+    )}`;
+  }
+
   return (
 
     h('.account-detail-section.full-flex-height', [
@@ -182,15 +193,16 @@ AccountDetailScreen.prototype.render = function () {
                     style: {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
-                      paddingTop: '3px',
-                      width: '8em',
+                      paddingTop: '5px',
+                      width: '88px',
                       height: '15px',
                       fontSize: '12px',
-                      // fontFamily: 'Inter',
+                      fontFamily: 'Inter-Regular',
                       textRendering: 'geometricPrecision',
                       color: '#848484',
+                      marginLeft: '7px',
                     }
-                  }, checksumAddress),
+                  }, shorten(checksumAddress)),
                   h(CopyButton, {
                     value: checksumAddress,
                     isWhite: true,
