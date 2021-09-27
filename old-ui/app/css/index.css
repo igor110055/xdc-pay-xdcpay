@@ -229,7 +229,7 @@ textarea.twelve-word-phrase {
   resize: none;
 }
 
-textarea.recipient-address {
+input.textarea.recipient-address {
   font-family: 'Nunito Regular';
   width: 265px;
   padding-top: 4px;
@@ -338,10 +338,11 @@ app sections
   text-align: left;
   padding: 8px 9px 9px 39px;
   background-image: url('../images/warning.svg');
-  background-position: 10px 10px;
+  background-position: 15px;
   background-repeat: no-repeat;
   width: 100%;
   line-height: 14px;
+  font-family: Inter-Regular;
 }
 
 .error1 {
@@ -354,10 +355,11 @@ app sections
   text-align: left;
   padding: 8px 9px 9px 42px;
   background-image: url('../images/warning.svg');
-  background-position: 15px 22px;
+  background-position: 15px;
   background-repeat: no-repeat;
   width: 100%;
   line-height: 14px;
+  font-family: Inter-Regular;
 }
 
 .error-login {
@@ -368,10 +370,11 @@ app sections
   text-align: left;
   padding: 8px 9px 9px 39px;
   background-image: url(../images/warning.svg);
-  background-position: 10px 10px;
+  background-position: 15px;
   background-repeat: no-repeat;
   width: 265px;
   line-height: 14px;
+  font-family: Inter-Regular;
 }
 
 .warning {
@@ -461,7 +464,7 @@ p.buy-option {
 }
 
 .sandwich-expando.expanded {
-  background-image: url('../images/Assets/BlueClose.png');
+  /* background-image: url('../images/Assets/BlueClose.png'); */
   background-size: 20px 21px;
   background-repeat: no-repeat;
   background-position: right;
@@ -1365,7 +1368,7 @@ input[disabled],textarea[disabled] {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 215px;
+  width: 217px;
   background-color: #ffffff;
   color: #2A2A2A;
   text-align: center;
@@ -1378,6 +1381,7 @@ input[disabled],textarea[disabled] {
   margin-left: -173px;
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #E3E7EB;
+  font-family: Inter-Regular;
 }
 
 .tooltip .tooltiptext::after {

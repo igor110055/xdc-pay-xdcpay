@@ -35,8 +35,8 @@ class ErrorComponent extends Component {
 					onClick={(e) => this.props.hideWarning()}
 				/>
 				<div style={{
-					marginLeft: '46px',
-					marginRight: '46px',
+					// marginLeft: '46px',
+					// marginRight: '46px',
 				}} >
 					<div
 						className="error"

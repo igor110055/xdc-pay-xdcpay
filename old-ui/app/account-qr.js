@@ -7,6 +7,18 @@ const {isHexPrefixed} = require('ethereumjs-util')
 const CopyButton = require('./components/copy/copy-button')
 const { toChecksumAddress, ifXDC } = require('./util')
 
+
+function shorten(b, amountL = 7, /*amountR = 4,*/ stars = 3) {
+
+  return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
+
+      b.length - 4,
+
+      b.length
+
+  )}`;
+}
+
 class AccountQrScreen extends PureComponent {
   static defaultProps = {
     warning: null,
@@ -52,9 +64,9 @@ class AccountQrScreen extends PureComponent {
       h('.flex-row', [
         h('h3.ellip-address', {
           style: {
-            width: '92px',
+            width: '98px',
           },
-        }, addressChecksum),
+        }, shorten(addressChecksum)),
         h(CopyButton, {
           value: addressChecksum,
         }),
