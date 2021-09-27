@@ -15,7 +15,8 @@ EditableLabel.prototype.render = function () {
   const state = this.state
 
   if (state && state.isEditingLabel) {
-    return h('div.editable-label', [
+    return h('div.editable-label',{style:{margin:'9px 0 20px 0'},
+  }, [
       h('input.sizing-input', {
         defaultValue: props.textValue,
         maxLength: '20',

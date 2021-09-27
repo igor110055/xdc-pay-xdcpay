@@ -377,7 +377,7 @@ class AddTokenScreen extends Component {
 
     const validAddress = isValidAddress(address.replace('xdc', '0x'), network)
     if (!validAddress) {
-      msg += 'Address is invalid.'
+      msg += 'Address is invalid. '
     }
     const customAdd = address.replace('xdc', '0x').toLowerCase();
     const check = checkExistingAddresses(customAdd, tokens)

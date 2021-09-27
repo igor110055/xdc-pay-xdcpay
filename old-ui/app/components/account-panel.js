@@ -17,7 +17,7 @@ function AccountPanel () {
 AccountPanel.prototype.render = function () {
   var state = this.props
   var identity = state.identity || {}
-  const { network, conversionRate, currentCurrency } = state
+  const { network, conversionRate, currentCurrency ,checksumAddress} = state
   
   var account = state.account || {}
   var isFauceting = state.isFauceting
@@ -49,13 +49,13 @@ AccountPanel.prototype.render = function () {
     }, [
 
       // account identicon
-      h('.identicon-wrapper.flex-column.select-none', [
+      // h('.identicon-wrapper.flex-column.select-none', [
         // h(Identicon, {
         //   address: panelState.identiconKey,
         //   imageify: state.imageifyIdenticons,
         //   diameter: 60,
         // }),
-      ]),
+      // ]),
 
       // account address, balance
       h('.identity-data.flex-column.flex-justify-center.flex-grow.select-none', [
@@ -70,6 +70,21 @@ AccountPanel.prototype.render = function () {
             fontWeight: '600',
           },
         }, panelState.identiconLabel),
+        h('span', {
+          style: {
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            paddingTop: '3px',
+            width: '8em',
+            height: '19px',
+            margin: '0 auto 0 auto',
+            fontSize: '12px',
+            // fontFamily: 'Inter',
+            textRendering: 'geometricPrecision',
+            color: '#848484',
+          }
+        }, checksumAddress),
+      
         // panelState.attributes.map((attr) => {
         //   return h('.flex-row.flex-space-between', {
         //     key: '',
@@ -103,7 +118,7 @@ AccountPanel.prototype.render = function () {
           style: {
             lineHeight: '7px',
             // margin:'25px 0 0 23px',
-            marginTop: '10px',
+            marginTop: '22px',
             justifyContent: 'center',
           },
         }),

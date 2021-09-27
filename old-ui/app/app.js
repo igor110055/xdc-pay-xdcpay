@@ -115,7 +115,7 @@ App.prototype.render = function () {
   const isLoadingNetwork = network === 'loading' && currentView.name !== 'config' && currentView.name !== 'delete-rpc'
   const networkName = provider.type === 'rpc' ? `${this.getNetworkName()} (${provider.rpcTarget})` : this.getNetworkName()
   const loadMessage = loadingMessage || isLoadingNetwork ?
-    `Connecting to ${networkName}` : null
+    `Connecting to selected network` : null
   log.debug('Main ui render function')
 
   const confirmMsgTx = (props.currentView.name === 'confTx' && Object.keys(props.unapprovedTxs).length === 0)
