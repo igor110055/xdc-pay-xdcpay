@@ -492,8 +492,18 @@ function currentProviderDisplay(metamaskState, state) {
       h("span", { style: { fontSize: "14px", color: "#2A2A2A" } }, value),
       provider.type === "rpc" &&
         h(
-          "button",
-          {
+          "button",{
+            style: {
+              // alignSelf: 'center',
+              margin: "15px 2px 0 11px",
+              width: "74px",
+              height: "40px",
+              background: "#FFFFFF",
+              color: "#0CBE46",
+              border: "2px solid #0CBE46",
+              fontWeight: "600",
+            },
+          
             onClick(event) {
               event.preventDefault();
               state.dispatch(actions.showDeleteRPC());

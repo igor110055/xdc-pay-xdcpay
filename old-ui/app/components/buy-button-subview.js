@@ -13,6 +13,9 @@ import ethNetProps from "xdc-net-props";
 import PropTypes from "prop-types";
 import { getMetaMaskAccounts } from "../../../ui/app/selectors";
 import { transform } from "lodash";
+// import { toChecksumAddress } from "ethereumjs-util";
+const { toChecksumAddress } = require('../util')
+
 
 class BuyButtonSubview extends Component {
   render() {
@@ -26,8 +29,9 @@ class BuyButtonSubview extends Component {
 
   headerSubview() {
     const props = this.props;
-    const { network,conversionRate,currentCurrency } = props;
-    
+    const { network, conversionRate, currentCurrency } = props;
+    var selected = props.address || Object.keys(props.accounts)[0]
+    var checksumAddress = selected && toChecksumAddress(network, selected)
     const isLoading = props.isSubLoading;
     const coinName = ethNetProps.props.getNetworkCoinName(network);
     return (
@@ -78,6 +82,7 @@ class BuyButtonSubview extends Component {
               // value: account && account.balance,
               conversionRate,
               currentCurrency,
+              checksumAddress,
               
               // network,
             }}
@@ -143,7 +148,7 @@ class BuyButtonSubview extends Component {
             fontSize: "14px",
             color: "black",
             textAlign: "left",
-            fontWeight: "500",
+            fontFamily: "Inter-Semibold",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -284,6 +289,7 @@ function mapStateToProps(state) {
     buyView: state.appState.buyView,
     network: state.metamask.network,
     provider: state.metamask.provider,
+    address: state.metamask.selectedAddress,
     context: state.appState.currentView.context,
     conversionRate: state.metamask.conversionRate,
     currentCurrency: state.metamask.currentCurrency,

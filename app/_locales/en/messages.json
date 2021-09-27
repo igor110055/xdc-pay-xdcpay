@@ -1109,7 +1109,7 @@
     "message": "Visit our Support Center"
   },
   "symbolBetweenZeroTen": {
-    "message": "Symbol must be between 0 and 10 characters."
+    "message": " Symbol must be between 0 and 10 characters."
   },
   "takesTooLong": {
     "message": "Taking too long?"

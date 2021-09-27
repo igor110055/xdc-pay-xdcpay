@@ -61,7 +61,8 @@ class AccountDropdowns extends Component {
   }
 
   renderAccounts () {
-      const { identities, selected, keyrings, network } = this.props
+    const { identities, selected, keyrings, network } = this.props
+    console.log(identities,'=====')
       const accountOrder = getAllKeyRingsAccounts(keyrings, network)
 
       const accountsViews = accountOrder.map((address, index) => {
@@ -113,6 +114,7 @@ class AccountDropdowns extends Component {
         onClick={() => actions.addNewAccount()}
         label="Create Account"
         path="/images/Assets/CreateAccount.svg"
+        
       >
         </AccountsDropdownItemWrapper>,
       <AccountsDropdownItemWrapper
@@ -315,22 +317,31 @@ class AccountDropdowns extends Component {
   }
 
   render () {
-    const { style, enableAccountsSelector, enableAccountOptions } = this.props
+    const { style, enableAccountsSelector, enableAccountOptions, address, selected} = this.props
     const { optionsMenuActive, accountSelectorActive } = this.state
-
+    
+    
+    // const identity = identities[address]
+    
+    // const isSelected = identity.address === selected
     const accountSelector = enableAccountsSelector && (
+      
         <div
         className="accounts-selector accounts-selector-additional-style"
+        
         onClick={(event) => {
           event.stopPropagation()
+          
           this.setState({
             accountSelectorActive: !accountSelectorActive,
             optionsMenuActive: false,
           })
+          
         }}
-      >
-        {/* <Identicon diameter = {24} address = {selected}/> */}
-      {this.renderAccountSelector()}
+        >
+        
+        {this.renderAccountSelector()}
+        <Identicon diameter={24} address={selected} />
       </div>
     )
     const accountOptions = enableAccountOptions && (

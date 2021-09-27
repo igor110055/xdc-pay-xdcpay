@@ -176,14 +176,19 @@ function generateBalanceObject (formattedBalance, decimalsToKeep = 1) {
 
 function shortenBalance (balance, decimalsToKeep = 1) {
   var truncatedValue
+  
   var convertedBalance = parseFloat(balance)
-  if (convertedBalance > 1000000) {
+  if (convertedBalance >= 1000000 && convertedBalance < 1000000000 ) {
     truncatedValue = (balance / 1000000).toFixed(decimalsToKeep)
-    return `${truncatedValue}m`
-  } else if (convertedBalance > 1000) {
+    return `${truncatedValue}M`
+  } else if (convertedBalance >= 100000 && convertedBalance < 1000000 ) {
     truncatedValue = (balance / 1000).toFixed(decimalsToKeep)
-    return `${truncatedValue}k`
-  } else if (convertedBalance === 0) {
+    return `${truncatedValue}K`
+  } else if (convertedBalance >= 1000000000) {
+    truncatedValue = (balance / 1000000000).toFixed(decimalsToKeep)
+    return `${truncatedValue}B`
+  }
+  else if (convertedBalance === 0) {
     return '0'
   } else if (convertedBalance < 0.001) {
     return '<0.001'

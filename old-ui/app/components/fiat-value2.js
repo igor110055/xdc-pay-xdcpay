@@ -8,7 +8,7 @@ class FiatValue extends Component {
     const props = this.props
     let { conversionRate } = props
     const { currentCurrency, network } = props
-    const isTestnet = parseInt(network) === POA_SOKOL_CODE || parseInt(network) === XDC_TESTNET_CODE || parseInt(network) === GOERLI_TESTNET_CODE
+    const isTestnet = parseInt(network) === POA_SOKOL_CODE || parseInt(network) === XDC_TESTNET_CODE || parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
     const isDai = parseInt(network) === DAI_CODE
     if (isTestnet) {
       conversionRate = 0
