@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { formatBalance, countSignificantDecimals } from '../util'
 import PropTypes from 'prop-types'
-import { DAI_CODE, POA_SOKOL_CODE, XDC_TESTNET_CODE, GOERLI_TESTNET_CODE } from '../../../app/scripts/controllers/network/enums'
+import { DAI_CODE, POA_SOKOL_CODE, XDC_TESTNET_CODE, GOERLI_TESTNET_CODE, XDC_CODE } from '../../../app/scripts/controllers/network/enums'
 
 class FiatValue extends Component {
   render = () => {
