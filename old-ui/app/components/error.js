@@ -42,6 +42,8 @@ class ErrorComponent extends Component {
 						className="error"
 						style={{
 							wordBreak: 'break-word',
+							margin: '0 45px',
+							border: '1px solid #ff1345',
 						}}
 					>{this.props.error}</div>
 				</div>

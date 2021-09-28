@@ -35,9 +35,10 @@ CreateVaultCompleteScreen.prototype.render = function () {
       h('h3.flex-center.section-title', {
         style: {
           color: '#333333',
+          fontWeight:'600'
         },
       }, [
-        h('img', {style:{marginRight: '3px'}, src: "/images/Assets/Check-Green.svg"}),
+        h('img', {style:{marginRight: '3px', }, src: "/images/Assets/Check-Green.svg"}),
 
         'Vault Created',
       ]),

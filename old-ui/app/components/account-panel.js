@@ -18,7 +18,16 @@ AccountPanel.prototype.render = function () {
   var state = this.props
   var identity = state.identity || {}
   const { network, conversionRate, currentCurrency ,checksumAddress} = state
+  function shorten(b, amountL = 7, /*amountR = 4,*/ stars = 3) {
+
+    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
   
+        b.length - 4,
+  
+        b.length
+  
+    )}`;
+  }
   var account = state.account || {}
   var isFauceting = state.isFauceting
 
@@ -83,7 +92,7 @@ AccountPanel.prototype.render = function () {
             textRendering: 'geometricPrecision',
             color: '#848484',
           }
-        }, checksumAddress),
+        }, shorten(checksumAddress)),
       
         // panelState.attributes.map((attr) => {
         //   return h('.flex-row.flex-space-between', {

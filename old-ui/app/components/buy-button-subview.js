@@ -34,6 +34,7 @@ class BuyButtonSubview extends Component {
     var checksumAddress = selected && toChecksumAddress(network, selected)
     const isLoading = props.isSubLoading;
     const coinName = ethNetProps.props.getNetworkCoinName(network);
+    
     return (
       <div className="flex-column">
         {/* loading indication*/}

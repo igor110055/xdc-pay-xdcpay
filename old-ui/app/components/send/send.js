@@ -201,7 +201,7 @@ SendTransactionScreen.prototype.onSubmit = function () {
   let message
 
   if (isNaN(input) || input === '') {
-    message = 'Invalid ether value.'
+    message = 'Invalid XDC value.'
     return this.props.dispatch(actions.displayWarning(message))
   }
 
