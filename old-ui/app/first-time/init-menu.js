@@ -98,7 +98,11 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
               paddingLeft: '5px'
               },
             }),
-        h('span',{className: 'tooltiptext'},
+        h('span', {
+          className: 'tooltiptext',
+          style: {
+            fontWeight: 'bold',
+        },},
           'Your DEN is your password-encrypted Storage within XDC Pay'
         ),
       ]
