@@ -1247,6 +1247,7 @@ function sendTx(txData) {
   log.info(`actions - sendTx: ${JSON.stringify(txData.txParams)}`);
   return (dispatch, getState) => {
     log.debug(`actions calling background.approveTransaction`);
+    dispatch(actions.clearSend());
     background.approveTransaction(txData.id, (err) => {
       if (err) {
         err = err.message || err.error || err;

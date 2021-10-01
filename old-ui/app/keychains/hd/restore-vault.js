@@ -188,18 +188,18 @@ RestoreVaultScreen.prototype.createNewVaultAndRestore = function () {
 
   // true if the string has more than a space between words.
   if (seed.split('  ').length > 1) {
-    this.warning = 'there can only be a space between words'
+    this.warning = 'There can only be a space between words'
     this.props.dispatch(actions.displayWarning(this.warning))
     return
   }
   // true if seed contains a character that is not between a-z or a space
   if (!seed.match(/^[a-z ]+$/)) {
-    this.warning = 'seed words only have lowercase characters'
+    this.warning = 'Seed words only have lowercase characters'
     this.props.dispatch(actions.displayWarning(this.warning))
     return
   }
   if (seed.split(' ').length !== 12) {
-    this.warning = 'seed phrases are 12 words long'
+    this.warning = 'Seed phrases are 12 words long'
     this.props.dispatch(actions.displayWarning(this.warning))
     return
   }

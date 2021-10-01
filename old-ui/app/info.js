@@ -4,6 +4,7 @@ const h = require('react-hyperscript')
 const connect = require('react-redux').connect
 const actions = require('../../ui/app/actions')
 
+
 module.exports = connect(mapStateToProps)(InfoScreen)
 
 function mapStateToProps (state) {
@@ -18,14 +19,17 @@ function InfoScreen () {
 InfoScreen.prototype.render = function () {
   const state = this.props
   const version = global.platform.getVersion()
-
+  const openInNewTab = (url) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+  }
   return (
     h('.flex-column.flex-grow', {
       style: {
         maxWidth: '400px',
       },
     }, [
-
+      
       // subtitle and nav
       h('.section-title.flex-row.flex-center', [
         h('img.cursor-pointer', {
@@ -41,27 +45,41 @@ InfoScreen.prototype.render = function () {
         h('h2', {
           style: {
             fontFamily: 'Inter-Bold',
-        }}, 'Info'),
-      ]),
-
-      // main view
-      h('.flex-column.flex-justify-center.flex-grow.select-none', [
-        h('.flex-space-around', {
-          style: {
-            padding: '25px 58px',
-          },
-        }, [
-          // current version number
-
-          h('.info', [
-            h('div', 'XDCPay'),
-            h('div', {
-              style: {
-                marginBottom: '10px',
-              },
-            }, `Version: ${version}`),
-          ]),
+          }}, 'Info'),
         ]),
+        
+        // main view
+        h('.flex-column.flex-justify-center.flex-grow.select-none', [
+          h('.flex-space-around', {
+            style: {
+              padding: '25px 58px',
+            },
+          }, [
+            // current version number
+            
+            h('.info', [
+              h('div', 'XDCPay'),
+              h('div', `Version: ${version}`),
+              h('div', {
+                onClick: () => { openInNewTab('https://github.com/XinFinOrg/XDCPay')
+                  
+                },
+                style: {
+                  marginBottom: '10px',
+                  cursor: 'pointer',
+                },
+              }, `Go to Github `),
+              
+            ]),
+
+          
+
+
+            
+            
+            
+        ]),
+        
       ]),
     ])
   )

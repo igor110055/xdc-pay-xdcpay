@@ -3,7 +3,7 @@ const h = require('react-hyperscript')
 const inherits = require('util').inherits
 const connect = require('react-redux').connect
 
-const EthBalance = require('./eth-balance')
+const EthBalance = require('./eth-balance-txn-list')
 const addressSummary = require('../util').addressSummary
 const CopyButton = require('./copy/copy-button')
 const vreme = new (require('vreme'))()
@@ -108,12 +108,12 @@ TransactionListItem.prototype.render = function () {
     textAlign: 'right',
     fontSize: '14px',
     fontWeight: '700',    
-    color: '#333333',
+    color: '#2A2A2A',
   }
 
   const dimStyle = {
     // fontFamily: 'Inter',
-    color: '#333333',
+    color: '#848484',
     // marginLeft: '5px',
     fontSize: '14px',
   }
@@ -162,6 +162,7 @@ TransactionListItem.prototype.render = function () {
         h('.flex-column', {
           style: {
             textAlign: 'left',
+            marginRight: '84px',
           },
         }, [
           domainField(txParams),
@@ -269,7 +270,7 @@ function recipientField (txParams, transaction, isTx, isMsg, network) {
 }
 
 function formatDate (date) {
-  return vreme.format(new Date(date), 'March 16 2014 14:30')
+  return vreme.format(new Date(date), 'Mar 16 2014 14:30')
 }
 
 function renderErrorOrWarning (transaction, network) {

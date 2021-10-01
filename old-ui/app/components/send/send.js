@@ -147,9 +147,13 @@ SendTransactionScreen.prototype.render = function () {
       ]),
       
       // error message
-      h(ErrorComponent, {
-        error,
-      }),
+      h('div', { style: { margin: "0 45px" },}, [
+                       
+        h(ErrorComponent, {
+          error,
+        }),
+      ]),
+      
 
 
       // Send button
