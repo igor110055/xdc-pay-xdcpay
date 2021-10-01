@@ -389,7 +389,7 @@ class AddTokenScreen extends Component {
 
     const validDecimals = decimals >= 0 && decimals < 36
     if (!validDecimals) {
-      msg += 'Decimals must be at least 0, and not over 36. '
+      msg += 'Decimals must be at least 0 and not over 36. '
     }
 
     const symbolLen = symbol.trim().length
@@ -568,7 +568,7 @@ class AddTokenScreen extends Component {
     let customDecimalsError = null
 
     if (!validDecimals) {
-      customDecimalsError = 'Decimals must be at least 0, and not over 36.' /* this.context.t('decimalsMustZerotoTen')*/
+      customDecimalsError = 'Decimals must be at least 0 and not over 36.' /* this.context.t('decimalsMustZerotoTen')*/
     }
 
     this.setState({ customDecimals, customDecimalsError })
@@ -585,7 +585,7 @@ class AddTokenScreen extends Component {
     const validDecimals = customDecimals !== null &&
       customDecimals !== '' &&
       customDecimals >= 0 &&
-      customDecimals < 36
+      customDecimals <= 36
     return validDecimals
   }
 }

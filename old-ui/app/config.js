@@ -85,7 +85,7 @@ ConfigScreen.prototype.render = function () {
         "div",
         {
           style: {
-            marginLeft: "14px",
+            marginLeft: "9px",
           },
         },
         [
@@ -132,7 +132,7 @@ ConfigScreen.prototype.render = function () {
                     flex: "1 0 auto",
                     width: "238px",
                     height: "40px",
-                    margin: "15px 0 0 14px",
+                    margin: "15px 0 0 9px",
                     borderRadius: "4px",
                     border: "2px solid #C7CDD8",
                     padding: "10px",
@@ -150,7 +150,7 @@ ConfigScreen.prototype.render = function () {
                   {
                     style: {
                       // alignSelf: 'center',
-                      margin: "15px 2px 0 11px",
+                      margin: "15px 7px 0 9px",
                       width: "74px",
                       height: "40px",
                       background: "#FFFFFF",
@@ -188,7 +188,7 @@ ConfigScreen.prototype.render = function () {
               "div",
               {
                 style: {
-                  margin: "26px 0 0 14px",
+                  margin: "26px 0 0 9px",
                 },
               },
               [
@@ -245,7 +245,7 @@ ConfigScreen.prototype.render = function () {
               "div",
               {
                 style: {
-                  margin: "17px 0 0 14px",
+                  margin: "17px 0 0 9px",
                 },
               },
               [
@@ -293,7 +293,7 @@ ConfigScreen.prototype.render = function () {
                       fontFamily: "Nunito Regular",
                       fontSize: "14px",
                       lineHeight: "18px",
-                      marginLeft: "14px",
+                      marginLeft: "9px",
                     },
                   },
                   ["Resetting is for developer use only. "]
@@ -311,7 +311,7 @@ ConfigScreen.prototype.render = function () {
                       background: "#FFFFFF",
                       border: "2px solid #03BE46",
                       fontWeight: "600",
-                      marginLeft: "14px",
+                      marginLeft: "9px",
                     },
                     onClick(event) {
                       event.preventDefault();
@@ -338,7 +338,7 @@ ConfigScreen.prototype.render = function () {
                       background: "#FFFFFF",
                       border: "2px solid #03BE46",
                       fontWeight: "600",
-                      marginLeft: "14px",
+                      marginLeft: "9px",
                       marginBottom: "50px",
                     },
                     onClick(event) {
@@ -376,7 +376,7 @@ ConfigScreen.prototype.rpcValidation = function (newRpc, state) {
     this.setState({
       loading: true,
     });
-    const web3 = new Web3(new Web3.providers.HttpProvider(newRpc));
+    const web3 = new Web3(new Web3.providers.httpsProvider(newRpc));
     web3.eth.getBlockNumber((err, res) => {
       if (err) {
         state.dispatch(actions.displayWarning("Invalid RPC endpoint"));
@@ -388,10 +388,10 @@ ConfigScreen.prototype.rpcValidation = function (newRpc, state) {
       });
     });
   } else {
-    if (!newRpc.startsWith("http")) {
+    if (!newRpc.startsWith("https")) {
       state.dispatch(
         actions.displayWarning(
-          "URIs require the appropriate HTTP/HTTPS prefix."
+          "URIs require the appropriate https/https prefix."
         )
       );
     } else {
@@ -413,7 +413,7 @@ function currentConversionInformation(metamaskState, state) {
     {
       style: {
         marginTop: "15px",
-        marginLeft: "14px",
+        marginLeft: "9px",
       },
     },
     [
@@ -479,7 +479,7 @@ function currentProviderDisplay(metamaskState, state) {
     {
       style: {
         marginTop: "20px",
-        marginLeft: "14px",
+        marginLeft: "9px",
       },
     },
     [
@@ -495,7 +495,7 @@ function currentProviderDisplay(metamaskState, state) {
           "button",{
             style: {
               // alignSelf: 'center',
-              margin: "15px 2px 0 11px",
+              margin: "15px 2px 0 9px",
               width: "74px",
               height: "40px",
               background: "#FFFFFF",

@@ -146,9 +146,9 @@ BnAsDecimalInput.prototype.constructWarning = function () {
   let message = name ? name + ' ' : ''
 
   if (min && max) {
-    message += `must be greater than or equal to  ${newMin} ${suffix} and less than or equal to ${newMax} ${suffix}.`
+    message += `must be greater  ${newMin} ${suffix} and less ${newMax} ${suffix}.`
   } else if (min) {
-    message += `must be greater than or equal to ${newMin} ${suffix}.`
+    message += `must be greater ${newMin} ${suffix}.`
   } else if (max) {
     message += `must be less than or equal to ${newMax} ${suffix}.`
   } else {

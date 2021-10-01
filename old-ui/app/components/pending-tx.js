@@ -209,7 +209,8 @@ PendingTx.prototype.render = function () {
               fontWeight: 'bold',
             },
           }, [
-            !isNotification ? h('img.cursor-pointer', { src: '/images/Assets/Close.svg',
+            !isNotification ? h('img.cursor-pointer', {
+              src: '/images/Assets/Close.svg',
               onClick: this.goHome.bind(this),
               style: {
                 position: 'absolute',
@@ -237,6 +238,59 @@ PendingTx.prototype.render = function () {
               },
             }, 'Reset'),
           ]),
+
+          isError ? h('div', {
+            style: {
+              // textAlign: 'center',
+              // position: 'absolute',
+              // top: '25px',
+              // background: 'rgba(255, 255, 255, 0.85)',
+              // width: '100%',
+              // paddingLeft: '30px',
+              // paddingRight: '30px',
+            },
+          }, [
+            txMeta.simulationFails ?
+              h('.error', {
+                style: {
+                  fontSize: '12px',
+                  width: '265px',
+                  marginLeft: '46px',
+                
+                },
+              }, 'Transaction Error. Exception thrown in contract code.')
+              : null,
+
+            !isValidAddress ?
+              h('.error1', {
+                style: {
+                  fontSize: '12px',
+                  width: '265px',
+                  marginLeft: '46px',
+                },
+              }, 'Recipient address is invalid. Sending this transaction will result in a loss of ETH. ')
+              : null,
+
+            insufficientBalance ?
+              h('.error', {
+                style: {
+                  fontSize: '12px',
+                  width: '265px',
+                  marginLeft: '46px',
+                },
+              }, 'Insufficient balance for transaction. ')
+              : null,
+
+            (dangerousGasLimit && !gasLimitSpecified) ?
+              h('.error1', {
+                style: {
+                  fontSize: '12px',
+                  width: '265px',
+                  marginLeft: '46px',
+                },
+              }, 'Gas limit set dangerously high. Approving this transaction is liable to fail. ')
+              : null,
+          ]) : null,
 
           h('.flex-row.flex-center', {
             style: {
@@ -321,64 +375,16 @@ PendingTx.prototype.render = function () {
             }
           `),
 
-          h('.table-box',{  style:{
-            overflowY: 'scroll',
-            height: '284px',
-            width: 'fit-content',
-          },}, [
+          h('.table-box', {
+            style: {
+              overflowY: 'scroll',
+              height: '284px',
+              width: 'fit-content',
+            },
+          }, [
 
 
-            isError ? h('div', {
-              style: {
-                // textAlign: 'center',
-                // position: 'absolute',
-                // top: '25px',
-                // background: 'rgba(255, 255, 255, 0.85)',
-                // width: '100%',
-                // paddingLeft: '30px',
-                // paddingRight: '30px',
-              },
-            }, [
-              txMeta.simulationFails ?
-                h('.error', {
-                  style: {
-                    fontSize: '12px',
-                    width: '265px',
-                    marginLeft: '46px',
-                  },
-                }, 'Transaction Error. Exception thrown in contract code.')
-              : null,
-
-              !isValidAddress ?
-                h('.error1', {
-                  style: {
-                    fontSize: '12px',
-                    width: '265px',
-                    marginLeft: '46px',
-                  },
-                }, 'Recipient address is invalid. Sending this transaction will result in a loss of ETH. ')
-              : null,
-
-              insufficientBalance ?
-                h('.error', {
-                  style: {
-                    fontSize: '12px',
-                    width: '265px',
-                    marginLeft: '46px',
-                  },
-                }, 'Insufficient balance for transaction. ')
-              : null,
-
-              (dangerousGasLimit && !gasLimitSpecified) ?
-                h('.error1', {
-                  style: {
-                    fontSize: '12px',
-                    width: '265px',
-                    marginLeft: '46px',
-                  },
-                }, 'Gas limit set dangerously high. Approving this transaction is liable to fail. ')
-              : null,
-            ]) : null,
+            
 
             // Ether Value
             // Currently not customizable, but easily modified
@@ -401,7 +407,7 @@ PendingTx.prototype.render = function () {
 
             // Gas Limit (customizable)
             h('.cell.row', [
-              h('.cell.label', {style: {marginTop:'30px'},}, 'Gas Limit (Units)'),
+              h('.cell.label', { style: { marginTop: '30px' }, }, 'Gas Limit (Units)'),
               h('.cell.value', {
               }, [
                 h(BNInput, {
@@ -427,7 +433,7 @@ PendingTx.prototype.render = function () {
 
             // Gas Price (customizable)
             h('.cell.row', [
-              h('.cell.label', {style: {marginTop:'30px'},}, 'Gas Price (GWEI)'),
+              h('.cell.label', { style: { marginTop: '30px' }, }, 'Gas Price (GWEI)'),
               h('.cell.value', {
               }, [
                 h(BNInput, {
@@ -450,7 +456,7 @@ PendingTx.prototype.render = function () {
 
             // Max Transaction Fee (calculated)
             h('.cell.row', [
-              h('.cell.label', {style: {marginTop:'30px'},}, 'Max Transaction Fee'),
+              h('.cell.label', { style: { marginTop: '30px' }, }, 'Max Transaction Fee'),
               h(EthBalance, {
                 valueStyle,
                 dimStyle,
@@ -466,7 +472,7 @@ PendingTx.prototype.render = function () {
                 fontFamily: 'Inter-Regular',
               },
             }, [
-              h('.cell.label', {style: {marginTop:'30px'},}, 'Max Total'),
+              h('.cell.label', { style: { marginTop: '30px' }, }, 'Max Total'),
               h('.cell.value', {
                 style: {
                   display: 'flex',
@@ -522,21 +528,33 @@ PendingTx.prototype.render = function () {
             marginTop: '22px',
           },
         }, [
-          h('button.cancel.btn-red', { style:{
-            display: 'flex',
-            position: 'absolute',
-            left: '46px',
-            height: '40px',
-            width: '119px',
-            paddingLeft: '37px',
-            paddingTop: '12px',
-            background: '#FF0035',
-          },
+          h('button.cancel.btn-red', {
+            style: {
+              display: 'flex',
+              position: 'absolute',
+              left: '46px',
+              height: '40px',
+              width: '119px',
+              paddingLeft: '37px',
+              paddingTop: '12px',
+              background: '#FF0035',
+            },
             onClick: props.cancelTransaction,
           }, 'Reject'),
           
           // Accept Button or Buy Button
-          insufficientBalance ? h('button.btn-green', { onClick: props.buyEth }, `Buy ${this.state.coinName}`) :
+          insufficientBalance ? h('button.btn-green', {
+            style: {
+              display: 'flex',
+              position: 'absolute',
+              right: '46px',
+              height: '40px',
+              width: '119px',
+              paddingLeft: '37px',
+              paddingTop: '12px',
+              background: '#03BE46',
+            }, onClick: props.buyEth,
+          }, `Buy ${this.state.coinName}`) :
             h('input.confirm', { style:{
               display: 'flex',
               position: 'absolute',
@@ -635,9 +653,9 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
             },
           },'Recipient Address' /*accountSummary(nameForAddress(to, props.identities, props.network)), 6, 4*/),
 
-          h(Copyable, {
-            value: toChecksumAddress(props.network, to),
-          }, [
+          // h(Copyable, {
+          //   value: toChecksumAddress(props.network, to),
+          // },[
             h('.cell.row', {
               style: {
                 fontFamily: 'Inter-Regular',
@@ -650,7 +668,7 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
                 padding: '7px 10px',
               },
             }, addressSummary(props.network, to, 10, 4, false)),
-          ]),
+          // ]),
         ]),
       ])
   } else {

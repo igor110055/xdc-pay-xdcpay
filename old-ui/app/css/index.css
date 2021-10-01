@@ -1386,6 +1386,7 @@ input[disabled],textarea[disabled] {
 
 .tooltip .tooltiptext::after {
   content: "";
+  background-image: "/images/Assets/QuestionMarkActive.svg";
   position: absolute;
   bottom: 102%;
   left: 87%;
@@ -1397,4 +1398,5 @@ input[disabled],textarea[disabled] {
 
 .tooltip:hover .tooltiptext {
   visibility: visible;
+  
 }

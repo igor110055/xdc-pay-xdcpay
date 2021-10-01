@@ -178,10 +178,10 @@ function shortenBalance (balance, decimalsToKeep = 1) {
   var truncatedValue
   
   var convertedBalance = parseFloat(balance)
-  if (convertedBalance >= 1000000 && convertedBalance < 1000000000 ) {
+  if (convertedBalance >= 999999 && convertedBalance < 999999999 ) {
     truncatedValue = (balance / 1000000).toFixed(decimalsToKeep)
     return `${truncatedValue}M`
-  } else if (convertedBalance >= 100000 && convertedBalance < 1000000 ) {
+  } else if (convertedBalance >= 99999 && convertedBalance < 999999 ) {
     truncatedValue = (balance / 1000).toFixed(decimalsToKeep)
     return `${truncatedValue}K`
   } else if (convertedBalance >= 1000000000) {
@@ -251,7 +251,7 @@ function readableDate (ms) {
   var minutes = '0' + date.getMinutes()
   var seconds = '0' + date.getSeconds()
 
-  var dateStr = `${month}/${day}/${year}`
+  var dateStr = `${day}/${month}/${year}`
   var time = `${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`
   return `${dateStr} ${time}`
 }

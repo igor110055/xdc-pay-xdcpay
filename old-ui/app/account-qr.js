@@ -64,7 +64,7 @@ class AccountQrScreen extends PureComponent {
       h('.flex-row', [
         h('h3.ellip-address', {
           style: {
-            width: '98px',
+            width: '8em',
           },
         }, shorten(addressChecksum)),
         h(CopyButton, {

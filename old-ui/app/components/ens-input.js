@@ -188,19 +188,19 @@ EnsInput.prototype.ensIconContents = function (recipient) {
     })
   }
 
-  if (ensResolution && (ensResolution !== ZERO_ADDRESS)) {
-    return h('i.fa.fa-check-circle.fa-lg.cursor-pointer', {
-      style: {
-        color: '#60db97',
-        background: 'white',
-      },
-      onClick: (event) => {
-        event.preventDefault()
-        event.stopPropagation()
-        copyToClipboard(ensResolution)
-      },
-    })
-  }
+  // if (ensResolution && (ensResolution !== ZERO_ADDRESS)) {
+  //   return h('i.fa.fa-check-circle.fa-lg.cursor-pointer', {
+  //     style: {
+  //       color: '#60db97',
+  //       background: 'white',
+  //     },
+  //     onClick: (event) => {
+  //       event.preventDefault()
+  //       event.stopPropagation()
+  //       copyToClipboard(ensResolution)
+  //     },
+  //   })
+  // }
 }
 
 function getNetworkEnsSupport (network) {
