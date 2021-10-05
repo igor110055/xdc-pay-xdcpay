@@ -129,7 +129,7 @@ BnAsDecimalInput.prototype.updateValidity = function (event) {
   const newValue = target.value
 
   if (value === newValue) {
-    return
+    return 
   }
 
   const valid = target.checkValidity()
@@ -146,11 +146,11 @@ BnAsDecimalInput.prototype.constructWarning = function () {
   let message = name ? name + ' ' : ''
 
   if (min && max) {
-    message += `must be greater  ${newMin} ${suffix} and less ${newMax} ${suffix}.`
+    message += `must be greater than ${newMin} and less than ${newMax} .`
   } else if (min) {
-    message += `must be greater ${newMin} ${suffix}.`
+    message += `must be greater than ${newMin}   .`
   } else if (max) {
-    message += `must be less than or equal to ${newMax} ${suffix}.`
+    message += `must be less than or equal to ${newMax} .`
   } else {
     message += 'Invalid input.'
   }

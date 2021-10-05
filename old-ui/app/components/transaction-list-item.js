@@ -107,7 +107,8 @@ TransactionListItem.prototype.render = function () {
     width: '100%',
     textAlign: 'right',
     fontSize: '14px',
-    fontWeight: '700',    
+    fontWeight: '700',
+    marginRight: '3px',
     color: '#2A2A2A',
   }
 
@@ -162,7 +163,7 @@ TransactionListItem.prototype.render = function () {
         h('.flex-column', {
           style: {
             textAlign: 'left',
-            marginRight: '84px',
+            marginRight: '74px',
           },
         }, [
           domainField(txParams),
@@ -270,7 +271,7 @@ function recipientField (txParams, transaction, isTx, isMsg, network) {
 }
 
 function formatDate (date) {
-  return vreme.format(new Date(date), 'Mar 16 2014 14:30')
+  return vreme.format(new Date(date), 'Mar 16 2014, 14:30')
 }
 
 function renderErrorOrWarning (transaction, network) {

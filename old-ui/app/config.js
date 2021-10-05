@@ -376,7 +376,7 @@ ConfigScreen.prototype.rpcValidation = function (newRpc, state) {
     this.setState({
       loading: true,
     });
-    const web3 = new Web3(new Web3.providers.httpsProvider(newRpc));
+    const web3 = new Web3(new Web3.providers.httpProvider(newRpc));
     web3.eth.getBlockNumber((err, res) => {
       if (err) {
         state.dispatch(actions.displayWarning("Invalid RPC endpoint"));
@@ -388,10 +388,10 @@ ConfigScreen.prototype.rpcValidation = function (newRpc, state) {
       });
     });
   } else {
-    if (!newRpc.startsWith("https")) {
+    if (!newRpc.startsWith("http")) {
       state.dispatch(
         actions.displayWarning(
-          "URIs require the appropriate https/https prefix."
+          "URIs require the appropriate HTTP/HTTPS prefix."
         )
       );
     } else {

@@ -145,7 +145,7 @@ class AccountDropdowns extends Component {
           left: "0",
           bottom: "-543px",
           minWidth: "180px",
-          maxHeight: accountSelectorActive ? "380px" : "0px",
+          maxHeight: accountSelectorActive ? "392px" : "0px",
           width: "317px",
         }}
         innerStyle={

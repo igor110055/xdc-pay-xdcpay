@@ -433,7 +433,7 @@ window.LiveReloadOptions = { host: 'localhost' };
           liveImg: (_ref1 = message.liveImg) != null ? _ref1 : true,
           originalPath: message.originalPath || '',
           overrideURL: message.overrideURL || '',
-          serverURL: 'https://' + this.options.host + ':' + this.options.port,
+          serverURL: 'http://' + this.options.host + ':' + this.options.port,
         })
       }
 
@@ -569,9 +569,9 @@ window.LiveReloadOptions = { host: 'localhost' };
     var PROTOCOL_6, PROTOCOL_7, Parser, ProtocolError,
       __indexOf = [].indexOf || function (item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i } return -1 }
 
-    exports.PROTOCOL_6 = PROTOCOL_6 = 'https://livereload.com/protocols/official-6'
+    exports.PROTOCOL_6 = PROTOCOL_6 = 'http://livereload.com/protocols/official-6'
 
-    exports.PROTOCOL_7 = PROTOCOL_7 = 'https://livereload.com/protocols/official-7'
+    exports.PROTOCOL_7 = PROTOCOL_7 = 'http://livereload.com/protocols/official-7'
 
     exports.ProtocolError = ProtocolError = (function () {
       function ProtocolError (reason, data) {

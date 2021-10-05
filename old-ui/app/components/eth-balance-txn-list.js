@@ -73,7 +73,8 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
         fontSize: "30px",
         textAlign: "right",
         // fontFamily: "Inter",
-        fontWeight: "600",
+      fontWeight: "600",
+        
       };
   const dimStyle = props.dimStyle
     ? props.dimStyle
@@ -109,6 +110,7 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
             "div",
             {
               style: valueStyle,
+              
             },
             incoming ? `+${balance}` :  `${balance}` 
           ),

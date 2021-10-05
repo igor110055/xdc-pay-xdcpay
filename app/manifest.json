@@ -68,6 +68,7 @@
     "clipboardWrite",
     "http://localhost:8545/",
     "https://*.infura.io/",
+    
      "webRequest",
     "*://*.eth/",
     "notifications"
