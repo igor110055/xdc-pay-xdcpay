@@ -11,7 +11,7 @@
    * @author Robert Eisele <robert@xarg.org>
    * @copyright Copyright (c) 2010, Robert Eisele
    * @link https://www.xarg.org/2010/03/generate-client-side-png-files-using-javascript/
-   * @license http://www.opensource.org/licenses/bsd-license.php BSD License
+   * @license https://www.opensource.org/licenses/bsd-license.php BSD License
    *
    */
 

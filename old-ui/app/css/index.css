@@ -838,7 +838,7 @@ input.large-input {
 }
 .editing-label {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   margin-left: 50px;
   font-size: 11px;
   text-rendering: geometricPrecision;

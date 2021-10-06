@@ -99,7 +99,7 @@ AccountDetailScreen.prototype.render = function () {
           style: {
            
             display: 'flex',
-            justifyContent: 'flex-start',
+            justifyContent: 'center',
             alignItems: 'flex-start',
             borderBottom: '1px solid #E3E7EB',
           },
@@ -115,7 +115,7 @@ AccountDetailScreen.prototype.render = function () {
           h('flex-column', {
             style: {
               lineHeight: '7px',
-              marginLeft: '107px',
+              // marginLeft: '107px',x
               width: '100%',
             },
           }, [
@@ -136,7 +136,7 @@ AccountDetailScreen.prototype.render = function () {
                 {
                   style: {
                     display: 'flex',
-                    justifyContent: 'flex-start',
+                    justifyContent: 'center',
                     alignItems: 'center',
                   },
                 },
@@ -151,11 +151,13 @@ AccountDetailScreen.prototype.render = function () {
                     [
                       h('h2', {
                         style: {
-                          maxWidth: '180px',
+                          // maxWidth: '180px',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
-                          padding: '8px 23px 6px',
+                          padding: '8px 0 6px 17px',
                           fontWeight: '600',
+                          textAlign: 'left',
+                          
                           // lineHeight: '25px',
                           fontSize: '14px',
                           // fontFamily: 'Inter',
@@ -186,7 +188,7 @@ AccountDetailScreen.prototype.render = function () {
                   style: {
                     width: '8em',
                     display: 'inline-flex',
-                    marginBottom: '15px',
+                    margin: ' 0 0 15px 112px',
                   },
                 }, [
                   h('span', {

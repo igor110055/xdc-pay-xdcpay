@@ -58,7 +58,7 @@ EthBalanceComponent.prototype.renderBalance = function (value) {
   var ethSuffix = splitBalance[2];
   const showFiat = "showFiat" in props ? props.showFiat : true;
 
-  if (true) {
+  if (true && shorten) {
     balance = balanceObj.shortBalance;
   } else {
     balance = balanceObj.balance;

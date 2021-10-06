@@ -31,7 +31,7 @@ Input.prototype.propTypes = {
 class ImportAccountScreen extends Component {
   static OPTIONS = {
     PRIVATE_KEY: 'private_key',
-    // JSON_FILE: 'json_file',
+    JSON_FILE: 'json_file',
   };
 
   static propTypes = {

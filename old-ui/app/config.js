@@ -376,7 +376,7 @@ ConfigScreen.prototype.rpcValidation = function (newRpc, state) {
     this.setState({
       loading: true,
     });
-    const web3 = new Web3(new Web3.providers.httpProvider(newRpc));
+    const web3 = new Web3(new Web3.providers.HttpProvider(newRpc));
     web3.eth.getBlockNumber((err, res) => {
       if (err) {
         state.dispatch(actions.displayWarning("Invalid RPC endpoint"));
