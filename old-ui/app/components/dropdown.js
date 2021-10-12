@@ -38,6 +38,7 @@ class Dropdown extends Component {
     const innerStyleDefaults = extend({
       padding: '0',
       background: 'transparent',
+      // filter: 'contrast(0.6)',
       boxShadow: 'rgba(0, 0, 0, 0.15) 0px 2px 2px 2px',
       color: '#2A2A2A',
     }, innerStyle)
@@ -45,7 +46,8 @@ class Dropdown extends Component {
     const styleDefaults = extend({
       borderRadius: '8px',
       background: '#ffffff',
-      boxShadow: 'rgb(0 0 0 / 50%) 0px 0px 60px',
+      
+      boxShadow: 'rgb(0 0 0 / 50%) 0px 0px 1px',
       overflowY: 'auto',
       transition: 'max-height 300ms ease-in-out',
       marginLeft: '19px',
@@ -53,6 +55,8 @@ class Dropdown extends Component {
 
     return (
       <div className="container">
+        
+
       <MenuDroppo
         useCssTransition={useCssTransition}
         isOpen={isOpen}
@@ -61,7 +65,7 @@ class Dropdown extends Component {
         onClickOutside={onClickOutside}
         style={styleDefaults}
         innerStyle={innerStyleDefaults}
-      >
+        >
         <style>
         {`
           li.dropdown-menu-item:hover { color:#2A2A2A; }
@@ -70,6 +74,7 @@ class Dropdown extends Component {
         </style>
         {children}
       </MenuDroppo>
+        
       </div>
     )
   }

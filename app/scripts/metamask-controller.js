@@ -62,7 +62,8 @@ const {
   CLASSIC_CODE,
   MAINNET_CODE,
   XDC_CODE,
-  XDC_TESTNET_CODE } = require('./controllers/network/enums')
+  XDC_TESTNET_CODE,
+  XDC_DEVNET_CODE} = require('./controllers/network/enums')
 const accountsPerPage = 5
 
 module.exports = class MetamaskController extends EventEmitter {
@@ -1577,7 +1578,7 @@ module.exports = class MetamaskController extends EventEmitter {
     })
     .map(number => number && number.div(GWEI_BN).toNumber()).filter(number => typeof number !== 'undefined' && number !== 0)
 
-    if (networkId === XDC_CODE || networkId === XDC_TESTNET_CODE) {
+    if (networkId === XDC_CODE || networkId === XDC_TESTNET_CODE || networkId === XDC_DEVNET_CODE)  {
       if (lowestPrices.length === 0) {
         lowestPrices.push(1)
       }

@@ -69,9 +69,9 @@ AccountDetailScreen.prototype.render = function () {
 
     return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
   
-        b.length - 4,
+      b.length - 4,
   
-        b.length
+      b.length
   
     )}`;
   }
@@ -130,7 +130,11 @@ AccountDetailScreen.prototype.render = function () {
             }, [
 
               // What is shown when not editing + edit text:
-              h('label.editing-label', [h('.edit-text', 'edit')]),
+              h('label.editing-label', [h('.edit-text', {
+                style: {
+                  cursor: 'pointer',
+                },
+              }, 'edit')]),
               h(
                 'div',
                 {
@@ -144,9 +148,8 @@ AccountDetailScreen.prototype.render = function () {
                   h(
                     'div.font-medium.color-forest',
                     {
+                      
                       name: 'edit',
-                      style: {
-                      },
                     },
                     [
                       h('h2', {
