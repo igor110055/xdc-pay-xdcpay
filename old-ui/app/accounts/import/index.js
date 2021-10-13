@@ -18,7 +18,7 @@ class AccountImportSubview extends Component {
     super(props);
     this.state = {
       description: "",
-      type: importTypes.PRIVATE_KEY,
+      type: importTypes.PRIVATE_KEY.DEFAULT,
     };
   }
   static propTypes = {
@@ -134,16 +134,18 @@ class AccountImportSubview extends Component {
     const type = opt.value;
     let description;
     switch (type) {
-      case importTypes.PRIVATE_KEY:
-      case importTypes.JSON_FILE:
+      case importTypes.PRIVATE_KEY.DEFAULT:
         description = "";
         break;
-      case importTypes.CONTRACT.DEFAULT:
-        description = `Contract type will automatically retrieve its ABI, if it was verified in <a href='https://blockscout.com' target='_blank'>Blockscout</a>`;
-        break;
-      case importTypes.CONTRACT.PROXY:
-        description = `Proxy contract type will automatically contain ABI of implementation, if proxy and implementation were both verified in <a href='https://blockscout.com' target='_blank'>Blockscout</a>`;
-        break;
+      // case importTypes.JSON_FILE:
+      //   description = "";
+      //   break;
+      // case importTypes.PRIVATE_KEY.DEFAULT:
+      //   description = `Contract type will automatically retrieve its ABI, if it was verified in <a href='https://blockscout.com' target='_blank'>Blockscout</a>`;
+      //   break;
+      // case importTypes.PRIVATE_KEY.PROXY:
+      //   description = `Proxy contract type will automatically contain ABI of implementation, if proxy and implementation were both verified in <a href='https://blockscout.com' target='_blank'>Blockscout</a>`;
+      //   break;
       default:
         description = "";
         break;
@@ -161,16 +163,16 @@ class AccountImportSubview extends Component {
     const current = type || menuItems[0];
 
     switch (current) {
-      case importTypes.PRIVATE_KEY:
-        return <PrivateKeyImportView />;
-      case importTypes.JSON_FILE:
-        return <JsonImportView />;
-      case importTypes.CONTRACT.DEFAULT:
-        return <ContractImportView type={importTypes.CONTRACT.DEFAULT} />;
-      case importTypes.CONTRACT.PROXY:
-        return <ContractImportView type={importTypes.CONTRACT.PROXY} />;
+      case importTypes.PRIVATE_KEY.DEFAULT:
+        return <PrivateKeyImportView type={importTypes.PRIVATE_KEY.DEFAULT}/>;
+      // case importTypes.JSON_FILE:
+      //   return <JsonImportView />;
+      // case importTypes.CONTRACT.DEFAULT:
+      //   return <ContractImportView type={importTypes.CONTRACT.DEFAULT} />;
+      // case importTypes.CONTRACT.PROXY:
+      //   return <ContractImportView type={importTypes.CONTRACT.PROXY} />;
       default:
-        return <JsonImportView />;
+        return <PrivateKeyImportView />;
     }
   }
 }

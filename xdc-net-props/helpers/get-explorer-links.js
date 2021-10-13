@@ -33,6 +33,23 @@ const getExplorerTokenLinkFor = (tokenAddress, account, network) => {
   return `${xdcLink(prefix)}/token/${tokenAddress}`;
 };
 
+const getDevnetAccountLinkFor = (account, network) => {
+  const prefix = getExplorerPrefix(network);
+  return `https://devnet.apothem.network/`;
+};
+
+const getDevnetTxLinkFor = (hash, network) => {
+  const prefix = getExplorerPrefix(network);
+  // const chain = getExplorerChain(network)
+  return `https://devnet.apothem.network/tx/${hash}`;
+};
+
+const getDevnetTokenLinkFor = (tokenAddress, account, network) => {
+  const prefix = getExplorerPrefix(network);
+  // const chain = getExplorerChain(network)
+  return `https://devnet.apothem.network/token/${tokenAddress}`;
+};
+
 function getExplorerChain(network) {
   const net = parseInt(network);
   let chain;
@@ -110,4 +127,7 @@ module.exports = {
   getExplorerAccountLinkFor,
   getExplorerTxLinkFor,
   getExplorerTokenLinkFor,
+  getDevnetAccountLinkFor,
+  getDevnetTxLinkFor,
+  getDevnetTokenLinkFor,
 };

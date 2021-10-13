@@ -38,7 +38,7 @@ function getRPCEndpoints(network) {
     case XDC_TESTNET_CODE:
       return ["https://explorer.apothem.network"];
     case XDC_DEVNET_CODE:
-      return ["https://explorer.apothem.network"];
+      return [" https://devnetrpc.apothem.network"];
     case CLASSIC_CODE:
       return ["https://classic.blockscout.com/"];
     default:

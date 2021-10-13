@@ -23,7 +23,7 @@ const GOERLI_TESTNET_CODE = 5
 const CLASSIC_CODE = 61
 const XDC_CODE = 50
 const XDC_TESTNET_CODE = 51
-const XDC_DEVNET_CODE =  61
+const XDC_DEVNET_CODE =  551
 
 const POA_DISPLAY_NAME = 'POA Core'
 const DAI_DISPLAY_NAME = 'xDai Chain'
