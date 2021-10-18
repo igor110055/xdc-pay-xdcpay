@@ -18,7 +18,7 @@ class AccountImportSubview extends Component {
     super(props);
     this.state = {
       description: "",
-      type: importTypes.PRIVATE_KEY.DEFAULT,
+      type: importTypes.PRIVATE_KEY,
     };
   }
   static propTypes = {
@@ -134,7 +134,7 @@ class AccountImportSubview extends Component {
     const type = opt.value;
     let description;
     switch (type) {
-      case importTypes.PRIVATE_KEY.DEFAULT:
+      case importTypes.PRIVATE_KEY:
         description = "";
         break;
       // case importTypes.JSON_FILE:
@@ -163,8 +163,8 @@ class AccountImportSubview extends Component {
     const current = type || menuItems[0];
 
     switch (current) {
-      case importTypes.PRIVATE_KEY.DEFAULT:
-        return <PrivateKeyImportView type={importTypes.PRIVATE_KEY.DEFAULT}/>;
+      case importTypes.PRIVATE_KEY:
+        return <PrivateKeyImportView type={importTypes.PRIVATE_KEY}/>;
       // case importTypes.JSON_FILE:
       //   return <JsonImportView />;
       // case importTypes.CONTRACT.DEFAULT:

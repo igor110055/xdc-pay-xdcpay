@@ -5,8 +5,8 @@ const {
   GOERLI_CODE,
   KOVAN_CODE,
   SOKOL_CODE,
-  XDC_DEVNET_CODE,
   XDC_TESTNET_CODE,
+  XDC_DEVNET_CODE,
 } = networkIDs;
 
 function getFaucetLinks(network) {

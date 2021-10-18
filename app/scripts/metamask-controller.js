@@ -983,12 +983,12 @@ module.exports = class MetamaskController extends EventEmitter {
    */
   async importAccountWithStrategy (strategy, args) {
     let keyring
-    if (strategy === importTypes.CONTRACT.DEFAULT || strategy === importTypes.CONTRACT.PROXY) {
+    if (strategy === importTypes.PRIVATE_KEY || strategy === importTypes.PRIVATE_KEY) {
+      const privateKey = await accountImporter.importAccount(strategy, args)
+      keyring = await this.keyringController.addNewKeyring('Simple Key Pair', [privateKey])
+    } else {
       args.contractType = strategy
       keyring = await this.keyringController.addNewKeyring('Simple Address', args)
-    } else {
-      const privateKey = await accountImporter.importAccount(strategy, args)
-      keyring = await this.keyringController.addNewKeyring('Simple Key Pair', [ privateKey ])
     }
     const accounts = await keyring.getAccounts()
     // update accounts in preferences controller

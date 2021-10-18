@@ -1,10 +1,10 @@
 const importTypes = {
 	// JSON_FILE: 'JSON File',
-	PRIVATE_KEY: {
-		DEFAULT: 'Private Key',
-		PRIVATE_KEY: 'Private Key',
+	PRIVATE_KEY: 'Private Key',
+	// PRIVATE_KEY: {
+	// 	DEFAULT: 'Private Key',
 		// PROXY: 'Proxy',
-	},
+	// },
 }
 
 const labels = {

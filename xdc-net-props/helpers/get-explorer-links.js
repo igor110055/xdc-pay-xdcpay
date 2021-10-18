@@ -15,38 +15,51 @@ const {
 } = networkIDs
 
 const xdcLink = (prefix) => `https://explorer.${prefix}.network`
-
 const devLink = (prefix) =>  `https://${prefix}.apothem.network`
+
 
 const getExplorerAccountLinkFor = (account, network) => {
 	const prefix = getExplorerPrefix(network)
+	if (prefix === 'devnetscan') {
+		return `${devLink(prefix)}/address/${account}`
+	}
+	else if (prefix === 'xinfin') {
+		return `${xdcLink(prefix)}/addr/${account}`
+	}
+	else
 	return `${xdcLink(prefix)}/address/${account}`
 }
 
-const getDevenetAccountLinkFor = (account, network) => {
-	return `${devLink}/address/${account}`
-}
+
 const getExplorerTxLinkFor = (hash, network) => {
 	const prefix = getExplorerPrefix(network)
 	// const chain = getExplorerChain(network)
+	if (prefix === 'devnetscan') {
+		return `${devLink(prefix)}/tx/${account}`
+	}
+	else if (prefix === 'xinfin') {
+		return `${xdcLink(prefix)}/tx/${account}`
+	}
+	else
 	return `${xdcLink(prefix)}/tx/${hash}`
 }
 
 
-const getDevnetTxLinkFor = (hash, network) => {
-	return `${devLink}/tx/${hash}`
-}
 
 const getExplorerTokenLinkFor = (tokenAddress, account, network) => {
 	const prefix = getExplorerPrefix(network)
 	// const chain = getExplorerChain(network)
+	if (prefix === 'devnetscan') {
+		return `${devLink(prefix)}/tokens/${account}`
+	}
+	else if (prefix === 'xinfin') {
+		return `${xdcLink(prefix)}/token/${account}`
+	}
+	else
 	return `${xdcLink(prefix)}/tokens/${account}`
 }
 
-const getDevnetTokenLinkFor = (tokenAddress, account, network) => {
-	
-	return `${devLink}/tokens/${account}`
-}
+
 function getExplorerChain (network) {
 	const net = parseInt(network)
 	let chain
@@ -109,7 +122,7 @@ function getExplorerPrefix (network) {
 		prefix = 'apothem'
 		break
 	case XDC_DEVNET_CODE:
-		prefix = 'devnet'
+		prefix = 'devnetscan'
 		break	
 	default:
 		prefix = ''
@@ -121,7 +134,5 @@ module.exports = {
 	getExplorerAccountLinkFor,
 	getExplorerTxLinkFor,
 	getExplorerTokenLinkFor,
-	getDevenetAccountLinkFor,
-	getDevnetTxLinkFor,
-	getDevnetTokenLinkFor,
+	
 }
