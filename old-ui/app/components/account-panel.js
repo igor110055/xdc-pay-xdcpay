@@ -84,7 +84,7 @@ AccountPanel.prototype.render = function () {
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             paddingTop: '3px',
-            width: '8em',
+            // width: '8em',
             height: '19px',
             margin: '0 auto 0 auto',
             fontSize: '12px',

@@ -794,7 +794,7 @@ input.large-input {
 }
 
 .name-label{
-  margin-left: 18px;
+  /* margin-left: 18px; */
 
 }
 
@@ -839,7 +839,7 @@ input.large-input {
 .editing-label {
   display: flex;
   justify-content: center;
-  margin-left: 50px;
+  /* margin-left: 50px; */
   font-size: 11px;
   text-rendering: geometricPrecision;
   color: #2149B9;
