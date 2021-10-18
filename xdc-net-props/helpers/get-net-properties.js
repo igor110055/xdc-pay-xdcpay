@@ -37,8 +37,8 @@ function getNetworkDisplayName(network) {
       return "XDC Mainnet";
     case XDC_TESTNET_CODE:
       return "XDC Apothem Testnet";
-    case XDC_DEVNET_CODE:
-      return "XDC Devnet";
+    // case XDC_DEVNET_CODE:
+    //   return "XDC Devnet";
     case CLASSIC_CODE:
       return "Ethereum Classic";
     default:

@@ -28,7 +28,7 @@ function getFaucetLinks(network) {
     case XDC_TESTNET_CODE:
       return ["http://faucet.apothem.network/"];
     case XDC_DEVNET_CODE:
-      return ["http://faucet.apothem.network/"];
+      return ["http://devnet.apothem.network/#getTestXDC"];
     default:
       return [];
   }

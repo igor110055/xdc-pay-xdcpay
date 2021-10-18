@@ -229,6 +229,16 @@ class AccountDropdowns extends Component {
           ></img>
           Show QR Code
         </DropdownMenuItem>
+        {/* <DropdownMenuItem
+          closeMenu={() => {}}
+          onClick={() => this.connectedSites()}
+        >
+          <img
+            className="account-options-icon"
+            src="/images/Assets/QRCode.svg"
+          ></img>
+          Connected Sites
+        </DropdownMenuItem> */}
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.copyAddress()}
@@ -278,6 +288,12 @@ class AccountDropdowns extends Component {
   };
 
   showQRCode = () => {
+    const { selected, identities, actions } = this.props;
+    const identity = identities[selected];
+    actions.showQrView(selected, identity ? identity.name : "");
+  };
+  
+  connectedSites = () => {
     const { selected, identities, actions } = this.props;
     const identity = identities[selected];
     actions.showQrView(selected, identity ? identity.name : "");
