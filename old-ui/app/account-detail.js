@@ -115,7 +115,7 @@ AccountDetailScreen.prototype.render = function () {
           h('flex-column', {
             style: {
               lineHeight: '7px',
-              // marginLeft: '107px',x
+              // marginLeft: '107px',
               width: '100%',
             },
           }, [
@@ -157,7 +157,7 @@ AccountDetailScreen.prototype.render = function () {
                           // maxWidth: '180px',
                           overflow: 'hidden',
                           textOverflow: 'ellipsis',
-                          padding: '8px 0 6px 17px',
+                          padding: '8px 0 6px 0',
                           fontWeight: '600',
                           textAlign: 'left',
                           
@@ -205,10 +205,12 @@ AccountDetailScreen.prototype.render = function () {
                       fontFamily: 'Inter-Regular',
                       textRendering: 'geometricPrecision',
                       color: '#848484',
-                      marginLeft: '7px',
+                      marginLeft: '18px',
                     }
                   }, shorten(checksumAddress)),
-                  h(CopyButton, {
+                  h(CopyButton, { style: {
+                    marginLeft: "-11px",
+                  },
                     value: checksumAddress,
                     isWhite: true,
                   }),
