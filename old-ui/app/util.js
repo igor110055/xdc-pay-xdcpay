@@ -3,6 +3,7 @@ const ethNetProps = require('xdc-net-props')
 const {
   XDC_CODE,
   XDC_TESTNET_CODE,
+  XDC_DEVNET_CODE
 } = require('../../app/scripts/controllers/network/enums')
 
 var valueTable = {
@@ -389,7 +390,7 @@ function getAllKeyRingsAccounts (keyrings, network) {
 function ifXDC (network) {
   if (!network) return false
   const numericNet = isNaN(network) ? network : parseInt(network)
-  return numericNet === XDC_CODE || numericNet === XDC_TESTNET_CODE
+  return numericNet === XDC_CODE || numericNet === XDC_TESTNET_CODE || numericNet === XDC_DEVNET_CODE 
 }
 
 function toChecksumAddressXDC (address, chainId = null) {

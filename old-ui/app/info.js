@@ -67,6 +67,7 @@ InfoScreen.prototype.render = function () {
                 style: {
                   marginBottom: '10px',
                   cursor: 'pointer',
+                  color: 'rgb(33, 73, 185)',
                 },
               }, `Go to Github `),
               

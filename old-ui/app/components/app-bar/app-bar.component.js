@@ -107,7 +107,7 @@ module.exports = class AppBar extends Component {
             <img
               height={24}
               width={24}
-              src={'./images/Assets/XDC-Icon.svg'}
+              src={'./images/Assets/XDC-Icon@2x.png'}
               style={{
                 marginLeft: '3px',
               }}
@@ -183,7 +183,7 @@ module.exports = class AppBar extends Component {
             <img
               height={24}
               width={24}
-              src={'./images/Assets/XDC-Icon.svg'}
+              src={'./images/Assets/XDC-Icon-16X16.png'}
             />
             <NetworkIndicator
               network={network}

@@ -488,13 +488,13 @@ p.buy-option {
          (min-device-pixel-ratio: 1.3),
          (min-resolution: 1.3dppx) {
   .logo {
-    background-image: url(../images/Assets/XDCPay.svg);
+    background-image: url(../images/Assets/XDCPay.png);
     background-size: 78px 92px;
   }
 }
 
 .logo {
-  background-image: url(../images/Assets/XDCPay.svg);
+  background-image: url(../images/Assets/XDCPay.png);
   background-repeat: no-repeat;
   width: 78px;
   height: 92px;
@@ -794,7 +794,7 @@ input.large-input {
 }
 
 .name-label{
-  margin-left: 18px;
+  /* margin-left: 18px; */
 
 }
 
@@ -838,8 +838,8 @@ input.large-input {
 }
 .editing-label {
   display: flex;
-  justify-content: flex-start;
-  margin-left: 50px;
+  justify-content: center;
+  /* margin-left: 50px; */
   font-size: 11px;
   text-rendering: geometricPrecision;
   color: #2149B9;
@@ -1368,7 +1368,7 @@ input[disabled],textarea[disabled] {
 
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 217px;
+  width: 223px;
   background-color: #ffffff;
   color: #2A2A2A;
   text-align: center;
@@ -1378,10 +1378,10 @@ input[disabled],textarea[disabled] {
   z-index: 1;
   top: 143%;
   left: 50%;
-  margin-left: -173px;
+  margin-left: -180px;
   box-shadow: 0px 3px 6px #00000029;
   border: 1px solid #E3E7EB;
-  font-family: Inter-Regular;
+  font-family: Inter-Medium;
 }
 
 .tooltip .tooltiptext::after {

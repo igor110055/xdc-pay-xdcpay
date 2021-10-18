@@ -193,14 +193,14 @@ class AddTokenScreen extends Component {
       }, [
 
         h('div', {style:{marginTop: '24px'}},[
-          h(Tooltip, {
-            position: 'top',
-            title: 'The contract of the actual token contract.',
-          }, [
+          // h(Tooltip, {
+          //   position: 'top',
+          //   title: 'The contract of the actual token contract.',
+          // }, [
             h('span', {
               style: { fontWeight: 'bold',fontSize: '12px',},
             }, 'Token Address' /* this.context.t('tokenAddress')*/),
-          ]),
+          // ]),
         ]),
 
         h('section.flex-row.flex-center', [
@@ -387,7 +387,7 @@ class AddTokenScreen extends Component {
     }
    
 
-    const validDecimals = decimals >= 0 && decimals < 36
+    const validDecimals = decimals >= 0 && decimals <= 36
     if (!validDecimals) {
       msg += 'Decimals must be at least 0 and not over 36. '
     }
