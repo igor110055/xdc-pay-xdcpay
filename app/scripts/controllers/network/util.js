@@ -173,16 +173,16 @@ const XDC_TESTNET_OBJ = {
 networks[XDC_TESTNET_CODE] = XDC_TESTNET_OBJ
 networks[XDC_TESTNET] = XDC_TESTNET_OBJ
 
-// const XDC_DEVNET_OBJ = {
-//   order: 3,
-//   chainType: TEST1,
-//   providerName: XDC_DEVNET,
-//   networkID: XDC_DEVNET_CODE,
-//   displayName: XDC_DEVNET_DISPLAY_NAME,
-//   displayNameDropdown: DROPDOWN_XDC_DEVNET_DISPLAY_NAME,
-// }
-// networks[XDC_DEVNET_CODE] = XDC_DEVNET_OBJ
-// networks[XDC_DEVNET] = XDC_DEVNET_OBJ
+const XDC_DEVNET_OBJ = {
+  order: 3,
+  chainType: TEST1,
+  providerName: XDC_DEVNET,
+  networkID: XDC_DEVNET_CODE,
+  displayName: XDC_DEVNET_DISPLAY_NAME,
+  displayNameDropdown: DROPDOWN_XDC_DEVNET_DISPLAY_NAME,
+}
+networks[XDC_DEVNET_CODE] = XDC_DEVNET_OBJ
+networks[XDC_DEVNET] = XDC_DEVNET_OBJ
 const getNetworkDisplayName = key => networks[key].displayName
 
 module.exports = {
