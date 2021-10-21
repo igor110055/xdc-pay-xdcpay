@@ -64,7 +64,7 @@ RestoreVaultScreen.prototype.render = function () {
         //     fontFamily: 'Nunito SemiBold',
         //   },
         // }, 'Wallet Seed'),
-        h('textarea.twelve-word-phrase', {
+        h('textarea.twelve-word-phrase1', {
           style: {marginTop: '24px'},
           placeholder: 'Enter your secret twelve word phrase here to restore your vault.',
         }),
@@ -183,9 +183,9 @@ RestoreVaultScreen.prototype.createNewVaultAndRestore = function () {
     return
   }
   // check seed
-  var seedBox = document.querySelector('textarea.twelve-word-phrase')
+  var seedBox = document.querySelector('textarea.twelve-word-phrase1')
   var seed = seedBox.value.trim()
-
+  // var seed = seedBox.value.split('  ')
   // true if the string has more than a space between words.
   if (seed.split('  ').length > 1) {
     this.warning = 'There can only be a space between words'

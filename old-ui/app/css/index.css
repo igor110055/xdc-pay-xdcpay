@@ -230,6 +230,16 @@ textarea.twelve-word-phrase {
   resize: none;
 }
 
+textarea.twelve-word-phrase1 {
+  font-family: 'Inter-Regular';
+  padding: 12px;
+  margin-top: 17px;
+  width: 265px;
+  height: 128px;
+  font-size: 14px;
+  background: white;
+  resize: none;
+}
 input.textarea.recipient-address {
   font-family: 'Nunito Regular';
   width: 265px;
