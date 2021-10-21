@@ -220,10 +220,11 @@ textarea {
 
 textarea.twelve-word-phrase {
   font-family: 'Inter-Regular';
-  padding: 12px;
+  padding: 4px;
   margin-top: 17px;
-  width: 265px;
-  height: 128px;
+  width: 84px;
+  height: 29px;
+  text-align: left;
   font-size: 14px;
   background: white;
   resize: none;

@@ -138,7 +138,7 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
           closeMenu: () => {},
           onClick: () => {
             const { network } = this.props
-            const url = ethNetProps.explorerLinks.getExplorerTokenLinkFor(address,userAddress.replace("0x", "xdc"), network)
+            const url = ethNetProps.explorerLinks.getExplorerTokenLinkFor(address.replace("0x", "xdc"),userAddress, network)
             global.platform.openWindow({ url })
           },
         },[

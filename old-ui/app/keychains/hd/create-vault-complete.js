@@ -22,7 +22,10 @@ function mapStateToProps (state) {
 CreateVaultCompleteScreen.prototype.render = function () {
   var state = this.props
   var seed = state.seed || state.cachedSeed || ''
-
+  console.log(seed, '*-*-*-*')
+  var seedArr = seed.split(' ')
+  
+  
   return (
 
     h('.initialize-screen.flex-column.flex-center.flex-grow', [
@@ -35,10 +38,10 @@ CreateVaultCompleteScreen.prototype.render = function () {
       h('h3.flex-center.section-title', {
         style: {
           color: '#333333',
-          fontWeight:'600'
+          fontWeight: '600'
         },
       }, [
-        h('img', {style:{marginRight: '3px', }, src: "/images/Assets/Check-Green.svg"}),
+        h('img', { style: { marginRight: '3px', }, src: "/images/Assets/Check-Green.svg" }),
 
         'Vault Created',
       ]),
@@ -54,15 +57,118 @@ CreateVaultCompleteScreen.prototype.render = function () {
       }, [
         h('div.error1', {
           style: { fontFamily: 'Inter-medium' },
-        },'These 12 words are the only way to restore your XDCPay accounts.\nSave them somewhere safe and secret.'),
+        }, 'These 12 words are the only way to restore your XDCPay accounts.\nSave them somewhere safe and secret.'),
       ]),
+      h('div', {
 
-      h('textarea.twelve-word-phrase', {
-        readOnly: true,
-        value: seed,
-      }),
+        style: {
+          display: 'flex',
+          flex: '1 3 auto ',
+        },
+      },
+        [
+          h('textarea.twelve-word-phrase', {
+            readOnly: true,
+            value: "1."+seedArr[0],
+          }),
+          
+            h('textarea.twelve-word-phrase', {
+              style: { marginLeft: '2px', },
+              readOnly: true,
+              value:"2."+ seedArr[1],
+            }),
+          
+        
+            h('textarea.twelve-word-phrase', {
+              style: { marginLeft: '2px', },
+              readOnly: true,
+              value:"3."+ seedArr[2],
+            }),
+        
+        ]),
+        h('div', {
 
-      h('button', {
+          style: {
+            display: 'flex',
+            flex: '1 3 auto ',
+          },
+        },
+          [
+            h('textarea.twelve-word-phrase', {
+              readOnly: true,
+              value: "4."+seedArr[3],
+            }),
+            
+              h('textarea.twelve-word-phrase', {
+                style: { marginLeft: '2px', },
+                readOnly: true,
+                value: "5."+seedArr[4],
+              }),
+            
+          
+              h('textarea.twelve-word-phrase', {
+                style: { marginLeft: '2px', },
+                readOnly: true,
+                value:"6."+seedArr[5],
+              }),
+          
+         ]),
+     
+         h('div', {
+
+          style: {
+            display: 'flex',
+            flex: '1 3 auto ',
+          },
+        },
+          [
+            h('textarea.twelve-word-phrase', {
+              readOnly: true,
+              value: "7."+seedArr[6],
+            }),
+            
+              h('textarea.twelve-word-phrase', {
+                style: { marginLeft: '2px', },
+                readOnly: true,
+                value:"8."+seedArr[7],
+              }),
+            
+          
+              h('textarea.twelve-word-phrase', {
+                style: { marginLeft: '2px', },
+                readOnly: true,
+                value:"9."+ seedArr[8],
+              }),
+          
+           ]),
+           h('div', {
+
+            style: {
+              display: 'flex',
+              flex: '1 3 auto ',
+            },
+          },
+            [
+              h('textarea.twelve-word-phrase', {
+                readOnly: true,
+                value: "10."+seedArr[9],
+              }),
+              
+                h('textarea.twelve-word-phrase', {
+                  style: { marginLeft: '2px', },
+                  readOnly: true,
+                  value: "11."+seedArr[10],
+                }),
+              
+            
+                h('textarea.twelve-word-phrase', {
+                  style: { marginLeft: '2px', },
+                  readOnly: true,
+                  value: "12."+seedArr[11],
+                }),
+            
+           ]),
+        h('button', {
         onClick: () => this.confirmSeedWords()
         .then(account => {
           exportAsFile(`XDCPay Seed Words`, seed)
