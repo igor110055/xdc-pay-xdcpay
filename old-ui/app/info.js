@@ -33,7 +33,7 @@ InfoScreen.prototype.render = function () {
       // subtitle and nav
       h('.section-title.flex-row.flex-center', [
         h('img.cursor-pointer', {
-          src:"/images/Assets/BackArrow.svg",
+          src: "/images/Assets/BackArrow.svg",
           onClick: (event) => {
             state.dispatch(actions.goHome())
           },
@@ -45,48 +45,95 @@ InfoScreen.prototype.render = function () {
         h('h2', {
           style: {
             fontFamily: 'Inter-Bold',
-          }}, 'Info'),
-        ]),
+          }
+        }, 'Info/Help'),
+      ]),
         
-        // main view
-        h('.flex-column.flex-justify-center.flex-grow.select-none', [
-          h('.flex-space-around', {
-            style: {
-              padding: '25px 58px',
-            },
-          }, [
-            // current version number
+      // main view
+      h('.flex-column.flex-justify-center.flex-grow.select-none', [
+        h('.flex-space-around', {
+          style: {
+            padding: '25px 38px',
+          },
+        }, [
+          // current version number
             
-            h('.info', [
-              h('div', 'XDCPay'),
-              h('div', `Version: ${version}`),
-              h('div', {
-                onClick: () => { openInNewTab('https://github.com/XinFinOrg/XDCPay')
-                  
-                },
-                style: {
-                  marginBottom: '10px',
-                  cursor: 'pointer',
-                  color: 'rgb(33, 73, 185)',
-                },
-              }, `Go to Github `),
+          h('.info', [
+            h('div', { style: { fontSize: '12px', fontWeight: '600', }, }, 'XDCPay Version'),
+            h('div', { style: { color: '#848484', fontSize: '12', }, }, `${version}`),
+            h('div', { style: { color: '#848484', width: '300px', height: '45px', textAlign: 'left', fontSize: '12', margin: '36px 0', lineHeight: '14px', }, }, 'The XDCPay is an extension for accessing XDC’s XDPoS enabled distributed applications, or “Dapps” in your browser!'),
+          ]),
+          h('div', {style:{fontSize:'12',}},[
+            h('div', { style: {fontWeight:'600', }, },'Link: '),
+            h('div', {
+              onClick: () => {
+                openInNewTab('https://github.com/XinFinOrg/XDCPay')
+                
+              },
+              style: {
+                marginBottom: '10px',
+                cursor: 'pointer',
+                color: 'rgb(33, 73, 185)',
+              },
+            }, `Privacy Policy `),
+            
+          
+            h('div', {
+              onClick: () => {
+                openInNewTab('https://github.com/XinFinOrg/XDCPay')
               
-            ]),
+              },
+              style: {
+                marginBottom: '10px',
+                cursor: 'pointer',
+                color: 'rgb(33, 73, 185)',
+              },
+            }, `Support Center`),
+          
+        
+            h('div', {
+              onClick: () => {
+                openInNewTab('https://github.com/XinFinOrg/XDCPay')
+            
+              },
+              style: {
+                marginBottom: '10px',
+                cursor: 'pointer',
+                color: 'rgb(33, 73, 185)',
+              },
+            }, `Visit Our Website`),
+        
+      
+            h('div', {
+              onClick: () => {
+                openInNewTab('https://github.com/XinFinOrg/XDCPay')
+              
+              },
+              style: {
+                marginBottom: '10px',
+                cursor: 'pointer',
+                color: 'rgb(33, 73, 185)',
+              },
+            }, `Contact Us `),
+          
+          ]),
 
           
-
-
-            
-            
-            
         ]),
-        
+      
       ]),
     ])
   )
 }
 
+
+
 InfoScreen.prototype.navigateTo = function (url) {
-  global.platform.openWindow({ url })
+global.platform.openWindow({ url })
 }
+
+
+            
+            
+            
 

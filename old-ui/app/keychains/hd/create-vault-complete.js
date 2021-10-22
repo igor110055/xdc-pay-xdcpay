@@ -30,7 +30,7 @@ CreateVaultCompleteScreen.prototype.render = function () {
 
     h('.initialize-screen.flex-column.flex-center.flex-grow', [
 
-      // // subtitle and nav
+      // subtitle and nav
       // h('.section-title.flex-row.flex-center', [
       //   h('h2.page-subtitle', 'Vault Created'),
       // ]),
@@ -73,14 +73,14 @@ CreateVaultCompleteScreen.prototype.render = function () {
           }),
           
             h('textarea.twelve-word-phrase', {
-              style: { marginLeft: '2px', },
+              style: { marginLeft: '4px', },
               readOnly: true,
               value:"2."+ seedArr[1],
             }),
           
         
             h('textarea.twelve-word-phrase', {
-              style: { marginLeft: '2px', },
+              style: { marginLeft: '4px', },
               readOnly: true,
               value:"3."+ seedArr[2],
             }),
@@ -100,14 +100,14 @@ CreateVaultCompleteScreen.prototype.render = function () {
             }),
             
               h('textarea.twelve-word-phrase', {
-                style: { marginLeft: '2px', },
+                style: { marginLeft: '4px', },
                 readOnly: true,
                 value: "5."+seedArr[4],
               }),
             
           
               h('textarea.twelve-word-phrase', {
-                style: { marginLeft: '2px', },
+                style: { marginLeft: '4px', },
                 readOnly: true,
                 value:"6."+seedArr[5],
               }),
@@ -128,14 +128,14 @@ CreateVaultCompleteScreen.prototype.render = function () {
             }),
             
               h('textarea.twelve-word-phrase', {
-                style: { marginLeft: '2px', },
+                style: { marginLeft: '4px', },
                 readOnly: true,
                 value:"8."+seedArr[7],
               }),
             
           
               h('textarea.twelve-word-phrase', {
-                style: { marginLeft: '2px', },
+                style: { marginLeft: '4px', },
                 readOnly: true,
                 value:"9."+ seedArr[8],
               }),
@@ -155,14 +155,14 @@ CreateVaultCompleteScreen.prototype.render = function () {
               }),
               
                 h('textarea.twelve-word-phrase', {
-                  style: { marginLeft: '2px', },
+                  style: { marginLeft: '4px', },
                   readOnly: true,
                   value: "11."+seedArr[10],
                 }),
               
             
                 h('textarea.twelve-word-phrase', {
-                  style: { marginLeft: '2px', },
+                  style: { marginLeft: '4px', },
                   readOnly: true,
                   value: "12."+seedArr[11],
                 }),
@@ -229,4 +229,124 @@ CreateVaultCompleteScreen.prototype.showAccountDetail = function (account) {
 CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
   return this.props.dispatch(actions.exportAsFile(`XDCPay Seed Words`, seed))
 }
+
+// const inherits = require('util').inherits
+// const Component = require('react').Component
+// const connect = require('react-redux').connect
+// const h = require('react-hyperscript')
+// const actions = require('../../../../ui/app/actions')
+// const exportAsFile = require('../../util').exportAsFile
+
+// module.exports = connect(mapStateToProps)(CreateVaultCompleteScreen)
+
+// inherits(CreateVaultCompleteScreen, Component)
+// function CreateVaultCompleteScreen () {
+//   Component.call(this)
+// }
+
+// function mapStateToProps (state) {
+//   return {
+//     seed: state.appState.currentView.seedWords,
+//     cachedSeed: state.metamask.seedWords,
+//   }
+// }
+
+// CreateVaultCompleteScreen.prototype.render = function () {
+//   var state = this.props
+//   var seed = state.seed || state.cachedSeed || ''
+//   console.log(seed, '*-*-*-*')
+//   var seedArr = seed.split(' ')
+  
+  
+//   return (
+
+//     h('.flex-column', [
+
+      
+      
+//       h('h3.flex-center.section-title', {
+//         style: {
+//           color: '#333333',
+//           fontWeight: '600',
+//           justifyContent: 'space-between',
+//           marginLeft: '24px',
+//         },
+//       }, [
+//         h('img', {
+//           onClick: ()=> this.goHome() , style: {
+//           color: '#333333',
+//           fontWeight: '600'
+//         },src: "/images/Assets/BackArrow.svg"}),  
+    
+
+//         'Confirm Recovery Phrase',
+//       ]),
+//       [
+//         h('input.large-input', {
+//           name: 'Word 1',
+//           // placeholder: '0.00',
+//           type: 'text',
+//           style: {
+//           },
+          
+//         }),
+//       ],
+      // h('.cell.row', [
+      //   h('.cell.label', { style: { marginTop: '30px' }, }, 'Word 1'),
+      //   h('.cell.value', {
+      //   }, [
+      //     h( {
+      //       id: 'word1',
+      //       // name: 'Gas Limit',
+      //       // value: word,
+      //       // precision: 0,
+      //       // scale: 0,
+      //       // The hard lower limit for gas.
+      //       // min: MIN_GAS_LIMIT_BN,
+      //       // max: safeGasLimit,
+      //       // suffix: 'UNITS',
+      //       style: {
+      //         position: 'relative',
+      //         width: '265px',
+      //       },
+      //       // onChange: this.gasLimitChanged.bind(this),
+
+      //       // ref: (hexInput) => { this.inputs.push(hexInput) },
+      //     }),
+      //   ]),
+      // ]),
+
+      
+        
+      
+//       h('button', {
+//         onClick: () => this.confirmSeedWords()
+//           .then(account => this.showAccountDetail(account)),
+//         style: {
+//           marginTop: '28px',
+//           fontSize: '14px',
+//           background: '#0CBE46',
+//           width: '265px',
+//           height: '40px',
+//           border: 'none'
+//         },
+//       }, 'I have copied it somewhere safe'),
+
+      
+//     ])                          
+//   )
+// }
+
+// CreateVaultCompleteScreen.prototype.confirmSeedWords = function () {
+//   return this.props.dispatch(actions.confirmSeedWords())
+// }
+
+// CreateVaultCompleteScreen.prototype.showAccountDetail = function (account) {
+//   return this.props.dispatch(actions.showAccountDetail(account))
+// }
+
+// CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
+//   return this.props.dispatch(actions.exportAsFile(`XDCPay Seed Words`, seed))
+// }
+
 
