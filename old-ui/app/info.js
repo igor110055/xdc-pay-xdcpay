@@ -67,7 +67,7 @@ InfoScreen.prototype.render = function () {
             h('div', { style: {fontWeight:'600', }, },'Link: '),
             h('div', {
               onClick: () => {
-                openInNewTab('https://github.com/XinFinOrg/XDCPay')
+                openInNewTab('https://xinfin.org/privacy')
                 
               },
               style: {
@@ -93,7 +93,7 @@ InfoScreen.prototype.render = function () {
         
             h('div', {
               onClick: () => {
-                openInNewTab('https://github.com/XinFinOrg/XDCPay')
+                openInNewTab('https://xinfin.org/')
             
               },
               style: {
@@ -106,7 +106,7 @@ InfoScreen.prototype.render = function () {
       
             h('div', {
               onClick: () => {
-                openInNewTab('https://github.com/XinFinOrg/XDCPay')
+                openInNewTab('https://xinfin.org/contactus')
               
               },
               style: {
