@@ -149,6 +149,7 @@ var actions = {
   setSelectedToken,
   SHOW_ACCOUNT_DETAIL: "SHOW_ACCOUNT_DETAIL",
   SHOW_ACCOUNTS_PAGE: "SHOW_ACCOUNTS_PAGE",
+  SHOW_CONF_REC_PAGE: "SHOW_CONF_REC_PAGE",
   SHOW_CONF_TX_PAGE: "SHOW_CONF_TX_PAGE",
   SHOW_CONF_MSG_PAGE: "SHOW_CONF_MSG_PAGE",
   SET_CURRENT_FIAT: "SET_CURRENT_FIAT",
@@ -245,9 +246,11 @@ var actions = {
   // app messages
   confirmSeedWords: confirmSeedWords,
   showAccountDetail: showAccountDetail,
+  confirmRecoveryPhrase: confirmRecoveryPhrase,
   BACK_TO_ACCOUNT_DETAIL: "BACK_TO_ACCOUNT_DETAIL",
   backToAccountDetail: backToAccountDetail,
   showAccountsPage: showAccountsPage,
+  showConfRecPage: showConfRecPage,
   showConfTxPage: showConfTxPage,
   // config screen
   SHOW_CONFIG_PAGE: "SHOW_CONFIG_PAGE",
@@ -461,6 +464,27 @@ function confirmSeedWords() {
     });
   };
 }
+
+function confirmRecoveryPhrase(seedArr) {
+  return (dispatch) => {
+    dispatch(actions.showLoadingIndication());
+    log.debug(`background.clearSeedWordCache`);
+    return new Promise((resolve, reject) => {
+      background.clearSeedWordCache((err, account) => {
+        dispatch(actions.hideLoadingIndication());
+        if (err) {
+          dispatch(actions.displayWarning(err.message));
+          return reject(err);
+        }
+
+        log.info("Seed word cache cleared. " + account);
+        dispatch(actions.showConfRecPage());
+        resolve(account);
+      });
+    });
+  };
+}
+
 
 function createNewVaultAndRestore(password, seed) {
   return (dispatch) => {
@@ -1802,6 +1826,12 @@ function backToAccountDetail(address) {
 function showAccountsPage() {
   return {
     type: actions.SHOW_ACCOUNTS_PAGE,
+  };
+}
+
+function showConfRecPage() {
+  return {
+    type: actions.SHOW_CONF_REC_PAGE,
   };
 }
 

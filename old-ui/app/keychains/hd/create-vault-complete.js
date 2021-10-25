@@ -22,9 +22,17 @@ function mapStateToProps (state) {
 CreateVaultCompleteScreen.prototype.render = function () {
   var state = this.props
   var seed = state.seed || state.cachedSeed || ''
-  console.log(seed, '*-*-*-*')
-  var seedArr = seed.split(' ')
   
+  // console.log(seedArr.random(), '*-*')
+  
+  function random_item(seedArr)
+  {
+    
+    return seedArr[Math.floor(Math.random()*seedArr.length)];
+    
+  }
+  var seedArr = seed.split(' ')
+  console.log(random_item(seedArr),'*+*');
   
   return (
 
@@ -169,10 +177,11 @@ CreateVaultCompleteScreen.prototype.render = function () {
             
            ]),
         h('button', {
-        onClick: () => this.confirmSeedWords()
-        .then(account => {
+          onClick: () =>
           exportAsFile(`XDCPay Seed Words`, seed)
-          this.showAccountDetail(account)
+            // this.confirmSeedWords()
+        .then(seedArr => {
+          this.confirmRecoveryPhrase(seedArr)
         }),
         // exportAsFile(`XDCPay Seed Words`, seed)
         // .then(account => this.showAccountDetail(account)),
@@ -201,8 +210,9 @@ CreateVaultCompleteScreen.prototype.render = function () {
       'Save as CSV File'),]),
       
       h('button', {
-        onClick: () => this.confirmSeedWords()
-          .then(account => this.showAccountDetail(account)),
+        onClick: (seedArr) =>
+          // this.confirmSeedWords()
+          this.confirmRecoveryPhrase(seedArr),
         style: {
           marginTop: '28px',
           fontSize: '14px',
@@ -222,13 +232,15 @@ CreateVaultCompleteScreen.prototype.confirmSeedWords = function () {
   return this.props.dispatch(actions.confirmSeedWords())
 }
 
-CreateVaultCompleteScreen.prototype.showAccountDetail = function (account) {
-  return this.props.dispatch(actions.showAccountDetail(account))
+CreateVaultCompleteScreen.prototype.confirmRecoveryPhrase = function (seedArr) {
+  return this.props.dispatch(actions.confirmRecoveryPhrase(seedArr))
 }
 
 CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
   return this.props.dispatch(actions.exportAsFile(`XDCPay Seed Words`, seed))
 }
+
+
 
 // const inherits = require('util').inherits
 // const Component = require('react').Component
@@ -269,70 +281,69 @@ CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
 //           color: '#333333',
 //           fontWeight: '600',
 //           justifyContent: 'space-between',
-//           marginLeft: '24px',
+//           // marginLeft: '24px',
+//           marginRight: '36px',
 //         },
 //       }, [
 //         h('img', {
 //           onClick: ()=> this.goHome() , style: {
 //           color: '#333333',
-//           fontWeight: '600'
+//             fontWeight: '600',
+//           marginLeft: '-28px',
 //         },src: "/images/Assets/BackArrow.svg"}),  
+        
     
 
 //         'Confirm Recovery Phrase',
 //       ]),
 //       [
+//       h('.word', 'Word 1'),
 //         h('input.large-input', {
 //           name: 'Word 1',
-//           // placeholder: '0.00',
+//           placeholder: 'word',
 //           type: 'text',
 //           style: {
 //           },
           
 //         }),
+    
+      
+      
+//         h('.word', 'Word 8'),
+//         h('input.large-input', {
+//           name: 'Word 8',
+//           placeholder: 'word',
+//           type: 'text',
+//           style: {
+//           },
+          
+//         }),
+      
+      
+//         h('.word', 'Word 12'),
+//         h('input.large-input', {
+//           name: 'Word 12',
+//           placeholder: 'word',
+//           type: 'text',
+//           style: {
+//           },
+          
+//         }),
+
+//         h('button', {
+//           onClick: () => this.confirmSeedWords()
+//             .then(account => this.showAccountDetail(account)),
+//           style: {
+//             marginTop: '34px',
+//             fontSize: '14px',
+//             background: '#0CBE46',
+//             width: '265px',
+//             height: '40px',
+//             border: 'none'
+//           },
+//         }, 'Confirm Recovery Phrase'),
 //       ],
-      // h('.cell.row', [
-      //   h('.cell.label', { style: { marginTop: '30px' }, }, 'Word 1'),
-      //   h('.cell.value', {
-      //   }, [
-      //     h( {
-      //       id: 'word1',
-      //       // name: 'Gas Limit',
-      //       // value: word,
-      //       // precision: 0,
-      //       // scale: 0,
-      //       // The hard lower limit for gas.
-      //       // min: MIN_GAS_LIMIT_BN,
-      //       // max: safeGasLimit,
-      //       // suffix: 'UNITS',
-      //       style: {
-      //         position: 'relative',
-      //         width: '265px',
-      //       },
-      //       // onChange: this.gasLimitChanged.bind(this),
-
-      //       // ref: (hexInput) => { this.inputs.push(hexInput) },
-      //     }),
-      //   ]),
-      // ]),
-
-      
         
-      
-//       h('button', {
-//         onClick: () => this.confirmSeedWords()
-//           .then(account => this.showAccountDetail(account)),
-//         style: {
-//           marginTop: '28px',
-//           fontSize: '14px',
-//           background: '#0CBE46',
-//           width: '265px',
-//           height: '40px',
-//           border: 'none'
-//         },
-//       }, 'I have copied it somewhere safe'),
-
-      
 //     ])                          
 //   )
 // }
@@ -347,6 +358,4 @@ CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
 
 // CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
 //   return this.props.dispatch(actions.exportAsFile(`XDCPay Seed Words`, seed))
-// }
-
-
+// } 
