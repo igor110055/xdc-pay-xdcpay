@@ -488,8 +488,9 @@ function reduceApp (state, action) {
         scrollToBottom: false,
         forgottenPassword: false,
       })
-    
+
       case actions.SHOW_CONF_REC_PAGE:
+        log.debug('--------- reducing SHOW_CONF_REC_PAGE for tx ')
         return extend(appState, {
           currentView: {
             name: seedWords ? 'confirmRecoveryPhrase' : 'confirmRecoveryPhrase',

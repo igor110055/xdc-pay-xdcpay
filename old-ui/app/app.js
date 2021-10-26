@@ -46,7 +46,7 @@ const DeleteImportedAccount = require('./components/delete-imported-account')
 const ConfirmChangePassword = require('./components/confirm-change-password')
 const ethNetProps = require('xdc-net-props')
 const { getMetaMaskAccounts } = require('../../ui/app/selectors')
-const ConfirmRecoveryPhrase = require('./keychains/hd/confirm-recovery-phrase') 
+const ConfirmRecoveryPhrase = require('./keychains/hd/confirm-recovery-phrase')
 module.exports = compose(
   withRouter,
   connect(mapStateToProps)
@@ -227,7 +227,7 @@ App.prototype.renderPrimary = function () {
   // show seed words screen
   if (props.seedWords) {
     log.debug('rendering seed words')
-    return h(HDCreateVaultComplete, {key: 'HDCreateVaultComplete'})
+    return props.currentView.name === 'confirmRecoveryPhrase' ? h(ConfirmRecoveryPhrase, {key: 'confirm-recovery-phrase'}):h(HDCreateVaultComplete, {key: 'HDCreateVaultComplete'})
   }
 
   // show current view

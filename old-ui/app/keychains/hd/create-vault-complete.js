@@ -22,15 +22,15 @@ function mapStateToProps (state) {
 CreateVaultCompleteScreen.prototype.render = function () {
   var state = this.props
   var seed = state.seed || state.cachedSeed || ''
-  
+
   // console.log(seedArr.random(), '*-*')
-  
+
   var seedArr = seed.split(' ')
-  
-  
-    
-    
-  
+
+
+
+
+
   return (
 
     h('.initialize-screen.flex-column.flex-center.flex-grow', [
@@ -39,7 +39,7 @@ CreateVaultCompleteScreen.prototype.render = function () {
       // h('.section-title.flex-row.flex-center', [
       //   h('h2.page-subtitle', 'Vault Created'),
       // ]),
-      
+
       h('h3.flex-center.section-title', {
         style: {
           color: '#333333',
@@ -76,20 +76,20 @@ CreateVaultCompleteScreen.prototype.render = function () {
             readOnly: true,
             value: "1." + seedArr[0],
           }),
-          
+
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
             value: "2." + seedArr[1],
           }),
-          
-        
+
+
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
             value: "3." + seedArr[2],
           }),
-        
+
         ]),
       h('div', {
 
@@ -103,22 +103,22 @@ CreateVaultCompleteScreen.prototype.render = function () {
             readOnly: true,
             value: "4." + seedArr[3],
           }),
-            
+
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
             value: "5." + seedArr[4],
           }),
-            
-          
+
+
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
             value: "6." + seedArr[5],
           }),
-          
+
         ]),
-     
+
       h('div', {
 
         style: {
@@ -131,20 +131,20 @@ CreateVaultCompleteScreen.prototype.render = function () {
             readOnly: true,
             value: "7." + seedArr[6],
           }),
-            
+
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
             value: "8." + seedArr[7],
           }),
-            
-          
+
+
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
             value: "9." + seedArr[8],
           }),
-          
+
         ]),
       h('div', {
 
@@ -158,30 +158,30 @@ CreateVaultCompleteScreen.prototype.render = function () {
             readOnly: true,
             value: "10." + seedArr[9],
           }),
-              
+
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
             value: "11." + seedArr[10],
           }),
-              
-            
+
+
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
             value: "12." + seedArr[11],
           }),
-            
+
         ]),
       h('button', {
         onClick: () => {
           this.confirmRecoveryPhrase()
-          exportAsFile(`XDCPay Seed Words`, seed)
+          // exportAsFile(`XDCPay Seed Words`, seed)
         },
         // .then(seed => {
         //   exportAsFile(`XDCPay Seed Words`, seed)
         // }),
-      
+
             // this.confirmSeedWords()
         // exportAsFile(`XDCPay Seed Words`, seed)
         // .then(account => this.showAccountDetail(account)),
@@ -208,12 +208,12 @@ CreateVaultCompleteScreen.prototype.render = function () {
             marginTop: '3px',
          },},
       'Save as CSV File'),]),
-      
+
       h('button', {
         onClick: () => {
           this.confirmRecoveryPhrase()
-            this.confirmSeedWords()
-          
+            // this.confirmSeedWords()
+
         },
           // this.confirmSeedWords()
         style: {
@@ -226,8 +226,8 @@ CreateVaultCompleteScreen.prototype.render = function () {
         },
       }, 'I have copied it somewhere safe'),
 
-      
-    ])                          
+
+    ])
   )
 }
 
