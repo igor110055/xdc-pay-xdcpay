@@ -46,7 +46,7 @@ const DeleteImportedAccount = require('./components/delete-imported-account')
 const ConfirmChangePassword = require('./components/confirm-change-password')
 const ethNetProps = require('xdc-net-props')
 const { getMetaMaskAccounts } = require('../../ui/app/selectors')
-
+const ConfirmRecoveryPhrase = require('./keychains/hd/confirm-recovery-phrase') 
 module.exports = compose(
   withRouter,
   connect(mapStateToProps)
@@ -235,7 +235,10 @@ App.prototype.renderPrimary = function () {
 
     case 'accountDetail':
       log.debug('rendering account detail screen')
-      return h(AccountDetailScreen, {key: 'account-detail'})
+      return h(AccountDetailScreen, { key: 'account-detail' })
+    case 'confirmRecoveryPhrase':
+        log.debug('rendering Confirm recovery screen')
+        return h(ConfirmRecoveryPhrase, {key: 'confirm-recovery-phrase'})
 
     case 'sendTransaction':
       log.debug('rendering send tx screen')

@@ -465,23 +465,25 @@ function confirmSeedWords() {
   };
 }
 
-function confirmRecoveryPhrase(seedArr) {
+function confirmRecoveryPhrase() {
   return (dispatch) => {
-    dispatch(actions.showLoadingIndication());
-    log.debug(`background.clearSeedWordCache`);
-    return new Promise((resolve, reject) => {
-      background.clearSeedWordCache((err, account) => {
-        dispatch(actions.hideLoadingIndication());
-        if (err) {
-          dispatch(actions.displayWarning(err.message));
-          return reject(err);
-        }
+    console.log('!!!!')
+    dispatch(actions.showConfRecPage());
+    // dispatch(actions.showLoadingIndication());
+    // log.debug(`background.clearSeedWordCache`);
+    // return new Promise((resolve, reject) => {
+    //   background.clearSeedWordCache((err, account) => {
+    //     dispatch(actions.hideLoadingIndication());
+    //     if (err) {
+    //       dispatch(actions.displayWarning(err.message));
+    //       return reject(err);
+    //     }
 
-        log.info("Seed word cache cleared. " + account);
-        dispatch(actions.showConfRecPage());
-        resolve(account);
-      });
-    });
+    //     log.info("Seed word cache cleared. " + account);
+    //     dispatch(actions.showConfRecPage());
+    //     resolve(account);
+    //   });
+    // });
   };
 }
 

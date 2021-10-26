@@ -577,7 +577,7 @@ ConfigScreen.prototype.render = function () {
       h(Modal, {}, []),
 
       // subtitle and nav
-      h(".section-title.flex-row", [
+      h(".section-title.flex-row",{ style: {borderBottom: '1px solid #E3E7EB',paddingBottom: '17px'},}, [
         h("img", {
           onClick: () => {
             state.dispatch(actions.goHome());
@@ -597,39 +597,30 @@ ConfigScreen.prototype.render = function () {
               fontWeight: "600",
               minHeight: '20px',
               padding: '0px 18px ',
-              borderBottom: '1px solid #E3E7EB',
-              // fontFamily: "Nunito Regular",
             },
           },
           "Settings"
         ),
       ]),
-      h('div', [
-        h('div', {
-          style: {
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            minHeight: '20px',
-            // flexFlow: 'column',
-            padding: '0px 18px ',
-            // margin: '0 13px',
-            borderBottom: '1px solid #E3E7EB',
-            fontSize: '14px',
-            color: '#2A2A2A',
-          },
-        },'General Settings'        )],
-        ),
-        // [
-        //   h('span', {
-        //     style: {
-             
-        //       // fontFamily: 'Inter',
-             
-        //       borderBottom: '1px solid #E3E7EB',
-        //     },
-        //   },'General Settings'),
-        // ],
-      ]
+      [
+
+        h('div', [
+          h('.settings', 'General Settings'),
+            h("img", {
+              src: "/images/Assets/BackArrow.svg",            
+            }),
+          ]),
+          // h('.settings',[h("img", {
+          //   src: "/images/Assets/BackArrow.svg",            
+          // },)], 'Advance Settings'),
+          // h('.settings', 'Security and Privacy Settings'),
+          // h('.settings', 'Contacts'),
+          // h('.settings', 'Alert Settings'),
+          // h('.settings', 'Network Settings'),
+          // h('.settings', 'About')],
+        // )
+      ],
+    ],
+    
     );
   }

@@ -25,14 +25,11 @@ CreateVaultCompleteScreen.prototype.render = function () {
   
   // console.log(seedArr.random(), '*-*')
   
-  function random_item(seedArr)
-  {
-    
-    return seedArr[Math.floor(Math.random()*seedArr.length)];
-    
-  }
   var seedArr = seed.split(' ')
-  console.log(random_item(seedArr),'*+*');
+  
+  
+    
+    
   
   return (
 
@@ -77,112 +74,115 @@ CreateVaultCompleteScreen.prototype.render = function () {
         [
           h('textarea.twelve-word-phrase', {
             readOnly: true,
-            value: "1."+seedArr[0],
+            value: "1." + seedArr[0],
           }),
           
-            h('textarea.twelve-word-phrase', {
-              style: { marginLeft: '4px', },
-              readOnly: true,
-              value:"2."+ seedArr[1],
-            }),
+          h('textarea.twelve-word-phrase', {
+            style: { marginLeft: '4px', },
+            readOnly: true,
+            value: "2." + seedArr[1],
+          }),
           
         
-            h('textarea.twelve-word-phrase', {
-              style: { marginLeft: '4px', },
-              readOnly: true,
-              value:"3."+ seedArr[2],
-            }),
+          h('textarea.twelve-word-phrase', {
+            style: { marginLeft: '4px', },
+            readOnly: true,
+            value: "3." + seedArr[2],
+          }),
         
         ]),
-        h('div', {
+      h('div', {
 
-          style: {
-            display: 'flex',
-            flex: '1 3 auto ',
-          },
+        style: {
+          display: 'flex',
+          flex: '1 3 auto ',
         },
-          [
-            h('textarea.twelve-word-phrase', {
-              readOnly: true,
-              value: "4."+seedArr[3],
-            }),
+      },
+        [
+          h('textarea.twelve-word-phrase', {
+            readOnly: true,
+            value: "4." + seedArr[3],
+          }),
             
-              h('textarea.twelve-word-phrase', {
-                style: { marginLeft: '4px', },
-                readOnly: true,
-                value: "5."+seedArr[4],
-              }),
+          h('textarea.twelve-word-phrase', {
+            style: { marginLeft: '4px', },
+            readOnly: true,
+            value: "5." + seedArr[4],
+          }),
             
           
-              h('textarea.twelve-word-phrase', {
-                style: { marginLeft: '4px', },
-                readOnly: true,
-                value:"6."+seedArr[5],
-              }),
+          h('textarea.twelve-word-phrase', {
+            style: { marginLeft: '4px', },
+            readOnly: true,
+            value: "6." + seedArr[5],
+          }),
           
-         ]),
+        ]),
      
-         h('div', {
+      h('div', {
 
-          style: {
-            display: 'flex',
-            flex: '1 3 auto ',
-          },
+        style: {
+          display: 'flex',
+          flex: '1 3 auto ',
         },
-          [
-            h('textarea.twelve-word-phrase', {
-              readOnly: true,
-              value: "7."+seedArr[6],
-            }),
+      },
+        [
+          h('textarea.twelve-word-phrase', {
+            readOnly: true,
+            value: "7." + seedArr[6],
+          }),
             
-              h('textarea.twelve-word-phrase', {
-                style: { marginLeft: '4px', },
-                readOnly: true,
-                value:"8."+seedArr[7],
-              }),
+          h('textarea.twelve-word-phrase', {
+            style: { marginLeft: '4px', },
+            readOnly: true,
+            value: "8." + seedArr[7],
+          }),
             
           
-              h('textarea.twelve-word-phrase', {
-                style: { marginLeft: '4px', },
-                readOnly: true,
-                value:"9."+ seedArr[8],
-              }),
+          h('textarea.twelve-word-phrase', {
+            style: { marginLeft: '4px', },
+            readOnly: true,
+            value: "9." + seedArr[8],
+          }),
           
-           ]),
-           h('div', {
+        ]),
+      h('div', {
 
-            style: {
-              display: 'flex',
-              flex: '1 3 auto ',
-            },
-          },
-            [
-              h('textarea.twelve-word-phrase', {
-                readOnly: true,
-                value: "10."+seedArr[9],
-              }),
+        style: {
+          display: 'flex',
+          flex: '1 3 auto ',
+        },
+      },
+        [
+          h('textarea.twelve-word-phrase', {
+            readOnly: true,
+            value: "10." + seedArr[9],
+          }),
               
-                h('textarea.twelve-word-phrase', {
-                  style: { marginLeft: '4px', },
-                  readOnly: true,
-                  value: "11."+seedArr[10],
-                }),
+          h('textarea.twelve-word-phrase', {
+            style: { marginLeft: '4px', },
+            readOnly: true,
+            value: "11." + seedArr[10],
+          }),
               
             
-                h('textarea.twelve-word-phrase', {
-                  style: { marginLeft: '4px', },
-                  readOnly: true,
-                  value: "12."+seedArr[11],
-                }),
+          h('textarea.twelve-word-phrase', {
+            style: { marginLeft: '4px', },
+            readOnly: true,
+            value: "12." + seedArr[11],
+          }),
             
-           ]),
-        h('button', {
-          onClick: () =>
+        ]),
+      h('button', {
+        onClick: () => {
+          this.confirmRecoveryPhrase()
           exportAsFile(`XDCPay Seed Words`, seed)
+        },
+        // .then(seed => {
+        //   exportAsFile(`XDCPay Seed Words`, seed)
+        // }),
+      
             // this.confirmSeedWords()
-        .then(seedArr => {
-          this.confirmRecoveryPhrase(seedArr)
-        }),
         // exportAsFile(`XDCPay Seed Words`, seed)
         // .then(account => this.showAccountDetail(account)),
         style: {
@@ -210,9 +210,12 @@ CreateVaultCompleteScreen.prototype.render = function () {
       'Save as CSV File'),]),
       
       h('button', {
-        onClick: (seedArr) =>
+        onClick: () => {
+          this.confirmRecoveryPhrase()
+            this.confirmSeedWords()
+          
+        },
           // this.confirmSeedWords()
-          this.confirmRecoveryPhrase(seedArr),
         style: {
           marginTop: '28px',
           fontSize: '14px',
@@ -232,8 +235,8 @@ CreateVaultCompleteScreen.prototype.confirmSeedWords = function () {
   return this.props.dispatch(actions.confirmSeedWords())
 }
 
-CreateVaultCompleteScreen.prototype.confirmRecoveryPhrase = function (seedArr) {
-  return this.props.dispatch(actions.confirmRecoveryPhrase(seedArr))
+CreateVaultCompleteScreen.prototype.confirmRecoveryPhrase = function () {
+  return this.props.dispatch(actions.confirmRecoveryPhrase())
 }
 
 CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
@@ -242,120 +245,5 @@ CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
 
 
 
-// const inherits = require('util').inherits
-// const Component = require('react').Component
-// const connect = require('react-redux').connect
-// const h = require('react-hyperscript')
-// const actions = require('../../../../ui/app/actions')
-// const exportAsFile = require('../../util').exportAsFile
 
-// module.exports = connect(mapStateToProps)(CreateVaultCompleteScreen)
 
-// inherits(CreateVaultCompleteScreen, Component)
-// function CreateVaultCompleteScreen () {
-//   Component.call(this)
-// }
-
-// function mapStateToProps (state) {
-//   return {
-//     seed: state.appState.currentView.seedWords,
-//     cachedSeed: state.metamask.seedWords,
-//   }
-// }
-
-// CreateVaultCompleteScreen.prototype.render = function () {
-//   var state = this.props
-//   var seed = state.seed || state.cachedSeed || ''
-//   console.log(seed, '*-*-*-*')
-//   var seedArr = seed.split(' ')
-  
-  
-//   return (
-
-//     h('.flex-column', [
-
-      
-      
-//       h('h3.flex-center.section-title', {
-//         style: {
-//           color: '#333333',
-//           fontWeight: '600',
-//           justifyContent: 'space-between',
-//           // marginLeft: '24px',
-//           marginRight: '36px',
-//         },
-//       }, [
-//         h('img', {
-//           onClick: ()=> this.goHome() , style: {
-//           color: '#333333',
-//             fontWeight: '600',
-//           marginLeft: '-28px',
-//         },src: "/images/Assets/BackArrow.svg"}),  
-        
-    
-
-//         'Confirm Recovery Phrase',
-//       ]),
-//       [
-//       h('.word', 'Word 1'),
-//         h('input.large-input', {
-//           name: 'Word 1',
-//           placeholder: 'word',
-//           type: 'text',
-//           style: {
-//           },
-          
-//         }),
-    
-      
-      
-//         h('.word', 'Word 8'),
-//         h('input.large-input', {
-//           name: 'Word 8',
-//           placeholder: 'word',
-//           type: 'text',
-//           style: {
-//           },
-          
-//         }),
-      
-      
-//         h('.word', 'Word 12'),
-//         h('input.large-input', {
-//           name: 'Word 12',
-//           placeholder: 'word',
-//           type: 'text',
-//           style: {
-//           },
-          
-//         }),
-
-//         h('button', {
-//           onClick: () => this.confirmSeedWords()
-//             .then(account => this.showAccountDetail(account)),
-//           style: {
-//             marginTop: '34px',
-//             fontSize: '14px',
-//             background: '#0CBE46',
-//             width: '265px',
-//             height: '40px',
-//             border: 'none'
-//           },
-//         }, 'Confirm Recovery Phrase'),
-//       ],
-        
-//     ])                          
-//   )
-// }
-
-// CreateVaultCompleteScreen.prototype.confirmSeedWords = function () {
-//   return this.props.dispatch(actions.confirmSeedWords())
-// }
-
-// CreateVaultCompleteScreen.prototype.showAccountDetail = function (account) {
-//   return this.props.dispatch(actions.showAccountDetail(account))
-// }
-
-// CreateVaultCompleteScreen.prototype.exportAsFile = function (seed) {
-//   return this.props.dispatch(actions.exportAsFile(`XDCPay Seed Words`, seed))
-// } 

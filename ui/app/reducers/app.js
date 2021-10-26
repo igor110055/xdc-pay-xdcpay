@@ -488,6 +488,19 @@ function reduceApp (state, action) {
         scrollToBottom: false,
         forgottenPassword: false,
       })
+    
+      case actions.SHOW_CONF_REC_PAGE:
+        return extend(appState, {
+          currentView: {
+            name: seedWords ? 'confirmRecoveryPhrase' : 'confirmRecoveryPhrase',
+            seedWords,
+          },
+          transForward: true,
+          isLoading: false,
+          warning: null,
+          scrollToBottom: false,
+          forgottenPassword: false,
+        })
 
     case actions.SHOW_NOTICE:
       return extend(appState, {
