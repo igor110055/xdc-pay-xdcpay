@@ -45,7 +45,9 @@ ConfirmRecoveryPhrase.prototype.render = function () {
         },
       }, [
         h('img', {
-          onClick: () => this.go(), style: {
+          onClick: () => this.dispatch(actions.CreateVaultCompleteScreen()),
+          // onClick: () => this.dispatch(actions.showNewVaultSeed(seed)),
+          style: {
             color: '#333333',
             fontWeight: '600',
             marginLeft: '-28px',
@@ -113,11 +115,15 @@ ConfirmRecoveryPhrase.prototype.render = function () {
 
 ConfirmRecoveryPhrase.prototype.validateRecoveryPhrase = function (seedNo,seedWord) {
   if (seedNo === seedWord) {
-
+  
+      // this.warning = 'seed'
+      // this.props.dispatch(actions.displayWarning(this.warning))
+      return
+    }
     return
-
   }
-}
+
+
 ConfirmRecoveryPhrase.prototype.confirmSeedWords = function () {
   return this.props.dispatch(actions.confirmSeedWords())
 }

@@ -605,11 +605,13 @@ ConfigScreen.prototype.render = function () {
       [
 
         h('div', [
-          h('.settings', 'General Settings'),
-            h("img", {
-              src: "/images/Assets/BackArrow.svg",            
+          h('.settings', 'General Settings'), [
+            h('img', {
+              src: "/images/Assets/Check-Green.svg",            
             }),
-          ]),
+          ]
+                
+        ]),
           // h('.settings',[h("img", {
           //   src: "/images/Assets/BackArrow.svg",            
           // },)], 'Advance Settings'),
