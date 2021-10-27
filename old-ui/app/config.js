@@ -604,25 +604,50 @@ ConfigScreen.prototype.render = function () {
       ]),
       [
 
-        h('div', [
-          h('.settings', 'General Settings'), [
-            h('img', {
-              src: "/images/Assets/Check-Green.svg",            
-            }),
-          ]
-                
+       
+        h('.settings',  ['General Settings' ,
+          h('img', {
+            src: "/images/Assets/Arrow.svg",            
+          }),
         ]),
-          // h('.settings',[h("img", {
-          //   src: "/images/Assets/BackArrow.svg",            
-          // },)], 'Advance Settings'),
-          // h('.settings', 'Security and Privacy Settings'),
-          // h('.settings', 'Contacts'),
-          // h('.settings', 'Alert Settings'),
-          // h('.settings', 'Network Settings'),
-          // h('.settings', 'About')],
-        // )
+        
+        h('.settings', ['Advance Settings',
+          h('img', {
+            src: "/images/Assets/Arrow.svg",            
+          }),
+        ]),
+        
+        h('.settings', ['Security and Privacy Settings',
+          h('img', {
+            src: "/images/Assets/Arrow.svg",            
+          }),
+        ]),
+        
+        h('.settings', ['Contacts',
+          h('img', {
+            src: "/images/Assets/Arrow.svg",            
+          }),
+        ]),
+        
+        h('.settings', ['Alert Settings',
+          h('img', {
+            src: "/images/Assets/Arrow.svg",            
+          }),
+        ]),
+        
+        h('.settings', ['Network Settings',
+          h('img', {
+            src: "/images/Assets/Arrow.svg",            
+          }),
+        ]),
+        
+        h('.settings',  ['About',
+          h('img', {
+            src: "/images/Assets/Arrow.svg",            
+          }),
+        ]),
+        
       ],
-    ],
+    ]);
+}
     
-    );
-  }

@@ -1434,5 +1434,6 @@ input[disabled],textarea[disabled] {
   padding: 13px 18px ;
   border-bottom: 1px solid #E3E7EB;
   font-size: 14px;
-  color: #2A2A2A;           
+  color: #2A2A2A;       
+  cursor: pointer;    
 }
