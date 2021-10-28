@@ -597,80 +597,88 @@ ConfigScreen.prototype.render = function () {
             },
           },
           "General Settings"
+          
         ),
-      ]),
-               
-        
-      currentConversionInformation(metamaskState, state),
-    ]),
-    
-      function currentConversionInformation(metamaskState, state) {
-        const currentCurrency = metamaskState.currentCurrency;
-        const conversionDate = metamaskState.conversionDate;
-        return h(
-          "div",
-          {
-            style: {
-              marginTop: "15px",
-              marginLeft: "9px",
-            },
-          },
-          [
-            h(
-              "span",
-              { style: { fontWeight: "bold", fontSize: "14px", color: "#2149B9" } },
-              "Current Conversion"
-            ),
-            h("br"),
-            h(
-              "span",
-              { style: { fontSize: "14px", color: "#2A2A2A" } },
-              `Updated ${Date(conversionDate)}`
-            ),
-            h("br"),
-            h(
-              "select#currentCurrency",
-              {
-                style: {
-                  width: "324px",
-                  height: "40px",
-                  border: "2px solid #C7CDD8",
-                  borderRadius: "4px",
-                  paddingLeft: "5px",
-                  marginTop: "10px",
-                },
-                onChange(event) {
-                  event.preventDefault();
-                  const element = document.getElementById("currentCurrency");
-                  const newCurrency = element.value;
-                  state.dispatch(actions.setCurrentCurrency(newCurrency));
-                },
-                defaultValue: currentCurrency,
+        h(
+        function currentConversionInformation(metamaskState, state) {
+          const currentCurrency = metamaskState.currentCurrency;
+          const conversionDate = metamaskState.conversionDate;
+          return h(
+            "div",
+            {
+              style: {
+                marginTop: "15px",
+                marginLeft: "9px",
               },
-              infuraCurrencies.map((currency) => {
-                return h(
-                  "option",
-                  { key: currency.quote.code, value: currency.quote.code },
-                  `${currency.quote.code.toUpperCase()} - ${currency.quote.name}`
-                );
-              })
-            ),
-          ]
-        );
-      }
-    // ]);
-}
-    
+            },
+            [
+              h(
+                "span",
+                { style: { fontWeight: "bold", fontSize: "14px", color: "#2149B9" } },
+                "Current Conversion"
+              ),
+              h("br"),
+              h(
+                "span",
+                { style: { fontSize: "14px", color: "#2A2A2A" } },
+                `Updated ${Date(conversionDate)}`
+              ),
+              h("br"),
+              h(
+                "select#currentCurrency",
+                {
+                  style: {
+                    width: "324px",
+                    height: "40px",
+                    border: "2px solid #C7CDD8",
+                    borderRadius: "4px",
+                    paddingLeft: "5px",
+                    marginTop: "10px",
+                  },
+                  onChange(event) {
+                    event.preventDefault();
+                    const element = document.getElementById("currentCurrency");
+                    const newCurrency = element.value;
+                    state.dispatch(actions.setCurrentCurrency(newCurrency));
+                  },
+                  defaultValue: currentCurrency,
+                },
+                infuraCurrencies.map((currency) => {
+                  return h(
+                    "option",
+                    { key: currency.quote.code, value: currency.quote.code },
+                    `${currency.quote.code.toUpperCase()} - ${currency.quote.name}`
+                  );
+                })
+              ),
+            ]
+          );
+        }),
+        
+        
 
-
-
-
-/*Latest Settings UI **/
-
-
-// const inherits = require("util").inherits;
-// const Component = require("react").Component;
-// const h = require("react-hyperscript");
+        
+        
+        
+      ]),
+      // currentConversionInformation(metamaskState, state),
+        
+      
+      
+    ]);
+                
+ }
+              
+              
+              
+              
+              
+              /*Latest Settings UI **/
+              
+              
+              // const inherits = require("util").inherits;
+              // const Component = require("react").Component;
+              // const h = require("react-hyperscript");
 // const connect = require("react-redux").connect;
 // const actions = require("../../ui/app/actions");
 // const LoadingIndicator = require("./components/loading");
