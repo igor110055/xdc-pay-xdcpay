@@ -47,6 +47,8 @@ const ConfirmChangePassword = require('./components/confirm-change-password')
 const ethNetProps = require('xdc-net-props')
 const { getMetaMaskAccounts } = require('../../ui/app/selectors')
 const ConfirmRecoveryPhrase = require('./keychains/hd/confirm-recovery-phrase')
+const GeneralSettings = require('../app/general-settings')
+const AdvanceSettings = require('../app/advance-settings')
 module.exports = compose(
   withRouter,
   connect(mapStateToProps)
@@ -266,7 +268,19 @@ App.prototype.renderPrimary = function () {
 
     case 'add-token':
       log.debug('rendering add-token screen from unlock screen.')
-      return h(AddTokenScreen, {key: 'add-token'})
+      return h(AddTokenScreen, { key: 'add-token' })
+      
+    case 'general-settings':
+        log.debug('rendering general-settings screen ')
+      return h(GeneralSettings, { key: 'general-settings' })
+      
+    case 'config':
+        log.debug('rendering config screen ')
+      return h(ConfigScreen, { key: 'config' })
+    
+    case 'advance-settings':
+        log.debug('rendering advance-settings screen ')
+        return h(AdvanceSettings, {key: 'advance-settings'})
 
     case 'confirm-add-token':
       log.debug('rendering confirm-add-token screen from unlock screen.')

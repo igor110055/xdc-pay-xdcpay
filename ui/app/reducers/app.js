@@ -222,6 +222,37 @@ function reduceApp (state, action) {
         transForward: action.value,
       })
 
+    case actions.SHOW_GENSETTINGS_PAGE:
+        return extend(appState, {
+        currentView: {
+          name: 'general-settings',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+          warning: null,
+        })
+       
+    
+    case actions.GO_CONFIG:
+          return extend(appState, {
+          currentView: {
+            name: 'config',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+            warning: null,
+          })
+        
+    case actions.SHOW_ADVSETTINGS_PAGE:
+          return extend(appState, {
+          currentView: {
+            name: 'advance-settings',
+            context: appState.currentView.context,
+          },
+            transForward: true,
+            warning: null,
+        })
+      
     case actions.SHOW_CONFIRM_ADD_TOKEN_PAGE:
       return extend(appState, {
         currentView: {
@@ -433,6 +464,7 @@ function reduceApp (state, action) {
         activeAddress: action.value,
       })
 
+    
     case actions.GO_HOME:
       return extend(appState, {
         currentView: extend(appState.currentView, {

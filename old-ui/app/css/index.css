@@ -126,11 +126,11 @@ button, input[type="submit"] {
   transform-origin: center center;
   transition: transform 50ms ease-in;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 14px; 
   /* default green */
   background: #03BE46;
   /*box-shadow: 0px 5px 10px 0px rgba(92, 52, 162, 0.3);*/
-}
+ } 
 
 .btn-green, input[type="submit"].btn-green {
   background: #60db97;
