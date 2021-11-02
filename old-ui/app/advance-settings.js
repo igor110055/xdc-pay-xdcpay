@@ -90,7 +90,9 @@ AdvanceSettings.prototype.render = function () {
                     "div",
                     {
                         style: {
-                            margin: "26px 0 0 9px",
+                            // margin: "26px 0 0 9px",
+                            padding: ' 27px 17px 22px 15px ',
+                            borderBottom: '1px solid #E3E7EB', 
                         },
                     },
                     [
@@ -154,7 +156,10 @@ AdvanceSettings.prototype.render = function () {
                     "div",
                     {
                         style: {
-                            margin: "26px 0 0 9px",
+                            // margin: "26px 0 0 9px",
+                            padding: ' 27px 17px 22px 15px ',
+                           borderBottom: '1px solid #E3E7EB', 
+                            
                         },
                     },
                     [

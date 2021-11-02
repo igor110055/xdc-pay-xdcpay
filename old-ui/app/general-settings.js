@@ -1,6 +1,5 @@
 const inherits = require("util").inherits;
 const Component = require("react").Component;
-const h = require("react-hyperscript");
 const connect = require("react-redux").connect;
 const actions = require("../../ui/app/actions");
 const LoadingIndicator = require("./components/loading");
@@ -8,6 +7,16 @@ const Web3 = require("web3");
 import SimpleDropdown from '../../ui/app/components/dropdowns/simple-dropdown'
 import locales from '../../app/_locales/index.json'
 import PropTypes from 'prop-types'
+// import '../../old-ui/app/css/index.css'
+
+const localeOptions = locales.map(locale => {
+    return {
+      displayValue: `${locale.name}`,
+      key: locale.code,
+      value: locale.code,
+    }
+  })
+
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
   (a, b) => {
     return a.quote.name
@@ -21,6 +30,7 @@ const Modal = require("../../ui/app/components/modals/index").Modal;
 const ethNetProps = require("xdc-net-props");
 const { networks } = require("../../app/scripts/controllers/network/util");
 import { Module } from 'module';
+
 const React = require('react')
 
 // const sortedCurrencies = infuraCurrencies.objects.sort((a, b) => {
@@ -47,7 +57,6 @@ class GeneralSettings extends React.Component {
     t: PropTypes.func,
   }
 
-
   render() {
     const state = this.props;
     console.log(state,'=-=-=-=')
@@ -58,20 +67,23 @@ class GeneralSettings extends React.Component {
       <div className="flex-column flex-grow">
         {/* <LoadingIndicator/> */}
         <div className="section-title flex-row">
-          <img src="/images/Assets/BackArrow.svg" onClick={() => { state.dispatch(actions.goConfig()) }} />
-          <h2>General Settings</h2>
+          <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'12px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.goConfig()) }} />
+          <h2 style={{ marginLeft:'88px'}}>General Settings</h2>
         </div>
-        <div>
+        <div style={{borderTop:'1px solid #E3E7EB'}}>
           {currentConversionInformation(metamaskState, state)}
         </div>
-        <div>
+        <div style={{borderTop:'1px solid #E3E7EB'}}>
           {currentLanguage(state)}
         </div>
+       <label class="switch">
+          <input type="checkbox" checked/>
+       <span class="slider round"></span>
+       </label>
       </div>
     )
   }
 }
-
 
 function mapStateToProps(state) {
   return {
@@ -81,11 +93,75 @@ function mapStateToProps(state) {
 }
 module.exports = connect(mapStateToProps)(GeneralSettings)
 
+  
+  function currentConversionInformation(metamaskState, state) {
+    const currentCurrency = metamaskState.currentCurrency;
+    const conversionDate = metamaskState.conversionDate;
+    // const { t } = this.context;
+    const setCurrentCurrency = metamaskState.setCurrentCurrency;
+    return (
+      <div style={{ padding:'10px 19px' }}>
+      <div style={{fontWeight: "bold", fontSize: "14px", color: "#2149B9"}}>
+      Current Conversion
+        </div>
+        <br />
+        <span style={{fontSize: "14px", color: "#2A2A2A"}}>
+          {`Updated` + Date(conversionDate) }
+        </span>
+        <br />
+        
+        <SimpleDropdown
+            style={{border: '1px solid #E3E7EB' }}
+            placeholder={('selectCurrency')}
+            options={infuraCurrencyOptions}
+            selectedOption={currentCurrency}
+            onSelect={newCurrency => setCurrentCurrency(newCurrency)}
+            />
+
+      </div>
+    )    
+  }
+  
+  function currentLanguage (state){
+    // const { t } = this.context
+    
+    console.log(state,'+-+-+')
+    const { updateCurrentLocale, currentLocale } = state
+    const currentLocaleMeta = locales.find(locale => locale.code === currentLocale)
+    const currentLocaleName = currentLocaleMeta ? currentLocaleMeta.name : ''
+  
+    return (
+      <div style={{ padding:'10px 19px' }}>
+      <div className="settings-page__content-row">
+        <div className="settings-page__content-item">
+          <span className="settings-page__content-label">
+            { ('currentLanguage') }
+          </span>
+          <span className="settings-page__content-description">
+            { currentLocaleName }
+          </span>
+        </div>
+        <div className="settings-page__content-item" style={{border:'1px solid grey'}} >
+          <div className="settings-page__content-item-col">
+            <SimpleDropdown
+              style={{ border: '1px solid #E3E7EB' }}
+              placeholder={('selectLocale')}
+              options={localeOptions}
+              selectedOption={currentLocale}
+              onSelect={async newLocale => updateCurrentLocale(newLocale)}
+            />
+          </div>
+        </div>
+        </div>
+        </div>
+    )
+  }
+  
   // h(
-  //   ".flex-column.flex-grow",
-  //   {
-  //     style: {
-  //       maxHeight: "585px",
+    //   ".flex-column.flex-grow",
+    //   {
+      //     style: {
+        //       maxHeight: "585px",
   //       overflowY: "auto",
   //     },
   //   },
@@ -133,73 +209,15 @@ module.exports = connect(mapStateToProps)(GeneralSettings)
      
         
   //   ]);
-  function currentConversionInformation(metamaskState, state) {
-    const currentCurrency = metamaskState.currentCurrency;
-    const conversionDate = metamaskState.conversionDate;
-    // const { t } = this.context;
-    const setCurrentCurrency = metamaskState.setCurrentCurrency;
-    return (
-      <div style={{ marginTop: "15px",
-        marginLeft: "9px",
-      }}>
-      <div style={{fontWeight: "bold", fontSize: "14px", color: "#2149B9"}}>
-      Current Conversion
-        </div>
-        <br />
-        <span style={{fontSize: "14px", color: "#2A2A2A"}}>
-          {`Updated` + Date(conversionDate) }
-        </span>
-        <br />
-        
-        <SimpleDropdown
-              placeholder={('selectCurrency')}
-              options={infuraCurrencyOptions}
-              selectedOption={currentCurrency}
-              onSelect={newCurrency => setCurrentCurrency(newCurrency)}
-            />
 
-      </div>
-    )    
-}
-const localeOptions = locales.map(locale => {
-    return {
-      displayValue: `${locale.name}`,
-      key: locale.code,
-      value: locale.code,
-    }
-})
+// const localeOptions = locales.map(locale => {
+//     return {
+//       displayValue: `${locale.name}`,
+//       key: locale.code,
+//       value: locale.code,
+//     }
+// })
   
-  function currentLanguage (state){
-    // const { t } = this.context
-    
-    
-    const { updateCurrentLocale, currentLocale } = state
-    const currentLocaleMeta = locales.find(locale => locale.code === currentLocale)
-    const currentLocaleName = currentLocaleMeta ? currentLocaleMeta.name : ''
-
-    return (
-      <div className="settings-page__content-row">
-        <div className="settings-page__content-item">
-          <span className="settings-page__content-label">
-            { t('currentLanguage') }
-          </span>
-          <span className="settings-page__content-description">
-            { currentLocaleName }
-          </span>
-        </div>
-        <div className="settings-page__content-item">
-          <div className="settings-page__content-item-col">
-            <SimpleDropdown
-              placeholder={t('selectLocale')}
-              options={localeOptions}
-              selectedOption={currentLocale}
-              onSelect={async newLocale => updateCurrentLocale(newLocale)}
-            />
-          </div>
-        </div>
-      </div>
-    )
-  }
 
 
 

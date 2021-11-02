@@ -701,7 +701,7 @@ ConfigScreen.prototype.render = function () {
           "h2",
           {
             style: {
-              marginLeft: "114px",
+              marginLeft: "94px",
               fontWeight: "600",
               minHeight: '20px',
               padding: '0px 18px ',
