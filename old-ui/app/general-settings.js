@@ -76,14 +76,15 @@ class GeneralSettings extends React.Component {
         <div style={{borderTop:'1px solid #E3E7EB'}}>
           {currentLanguage(state)}
         </div>
-       <label class="switch">
-          <input type="checkbox" checked/>
-       <span class="slider round"></span>
+       <label className="switch">
+          <input type="checkbox"/>
+       <span className="slider round"></span>
        </label>
       </div>
     )
   }
 }
+module.exports = connect(mapStateToProps)(GeneralSettings)
 
 function mapStateToProps(state) {
   return {
@@ -91,7 +92,6 @@ function mapStateToProps(state) {
     warning: state.appState.warning,
   }
 }
-module.exports = connect(mapStateToProps)(GeneralSettings)
 
   
   function currentConversionInformation(metamaskState, state) {
@@ -101,9 +101,9 @@ module.exports = connect(mapStateToProps)(GeneralSettings)
     const setCurrentCurrency = metamaskState.setCurrentCurrency;
     return (
       <div style={{ padding:'10px 19px' }}>
-      <div style={{fontWeight: "bold", fontSize: "14px", color: "#2149B9"}}>
+      <span style={{fontWeight: "bold", fontSize: "14px", color: "#2149B9"}}>
       Current Conversion
-        </div>
+        </span>
         <br />
         <span style={{fontSize: "14px", color: "#2A2A2A"}}>
           {`Updated` + Date(conversionDate) }
