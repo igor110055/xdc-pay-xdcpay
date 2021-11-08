@@ -76,7 +76,7 @@ function reduceMetamask (state, action) {
         noActiveNotices: true,
       })
 
-    case actions.UPDATE_METAMASK_STATE:
+    case actions.UPDATE_XDC_STATE:
       return extend(metamaskState, action.value)
 
     case actions.UNLOCK_METAMASK:

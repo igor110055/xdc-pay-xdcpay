@@ -17,7 +17,7 @@ const provider = createTestProviderTools({ scaffold: {}}).provider
 
 const enLocale = require('../../../../app/_locales/en/messages.json')
 const actions = require('../../../../ui/app/actions')
-const MetaMaskController = require('../../../../app/scripts/metamask-controller')
+const MetaMaskController = require('../../../../app/scripts/xdc-controller')
 
 const firstTimeState = require('../../../unit/localhostState')
 const devState = require('../../../data/2-state.json')
@@ -717,7 +717,7 @@ describe('Actions', () => {
       const store = mockStore()
       const expectedActions = [
         { type: 'SHOW_LOADING_INDICATION', value: undefined },
-        { type: 'UPDATE_METAMASK_STATE', value: undefined },
+        { type: 'UPDATE_XDC_STATE', value: undefined },
         { type: 'HIDE_LOADING_INDICATION' },
         { type: 'DISPLAY_WARNING', value: 'error' },
       ]
@@ -772,7 +772,7 @@ describe('Actions', () => {
       const store = mockStore()
       const expectedActions = [
         { type: 'SHOW_LOADING_INDICATION', value: undefined },
-        { type: 'UPDATE_METAMASK_STATE', value: undefined },
+        { type: 'UPDATE_XDC_STATE', value: undefined },
         { type: 'HIDE_LOADING_INDICATION' },
         { type: 'DISPLAY_WARNING', value: 'error' },
       ]

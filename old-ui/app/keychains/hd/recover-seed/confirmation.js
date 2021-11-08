@@ -64,13 +64,13 @@ RevealSeedConfirmation.prototype.render = function () {
           },
         }),
 
-        (props.warning) && (
-          h('span.error', {
-            style: {
-              margin: '20px 0',
-            },
-          }, props.warning.split('-'))
-        ),
+        // (props.warning) && (
+        //   h('span.error', {
+        //     style: {
+        //       margin: '20px 0',
+        //     },
+        //   }, props.warning.split('-'))
+        // ),
 
         props.inProgress && (
           h('span.in-progress-notification', 'Generating Seed...')

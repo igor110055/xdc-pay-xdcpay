@@ -1,5 +1,5 @@
 /**
- * @file      The central metamask controller. Aggregates other controllers and exports an api.
+ * @file      The central xdc controller. Aggregates other controllers and exports an api.
  * @copyright Copyright (c) 2018 MetaMask
  * @license   MIT
  */
@@ -83,7 +83,7 @@ module.exports = class XdcController extends EventEmitter {
     this.recordFirstTimeInfo(initState)
 
     // this keeps track of how many "controllerStream" connections are open
-    // the only thing that uses controller connections are open metamask UI instances
+    // the only thing that uses controller connections are open xdc UI instances
     this.activeControllerConnections = 0
 
     // platform-specific api
@@ -337,7 +337,7 @@ module.exports = class XdcController extends EventEmitter {
 //=============================================================================
 
   /**
-   * The metamask-state of the various controllers, made available to the UI
+   * The xdc-state of the various controllers, made available to the UI
    *
    * @returns {Object} status
    */
@@ -1039,10 +1039,10 @@ module.exports = class XdcController extends EventEmitter {
    */
   signMessage (msgParams) {
     log.info('MetaMaskController - signMessage')
-    const msgId = msgParams.metamaskId
+    const msgId = msgParams.xdcId
 
     // sets the status op the message to 'approved'
-    // and removes the metamaskId for signing
+    // and removes the xdcId for signing
     return this.messageManager.approveMessage(msgParams)
     .then((cleanMsgParams) => {
       // signs the message
@@ -1098,9 +1098,9 @@ module.exports = class XdcController extends EventEmitter {
    */
   signPersonalMessage (msgParams) {
     log.info('MetaMaskController - signPersonalMessage')
-    const msgId = msgParams.metamaskId
+    const msgId = msgParams.xdcId
     // sets the status op the message to 'approved'
-    // and removes the metamaskId for signing
+    // and removes the xdcId for signing
     return this.personalMessageManager.approveMessage(msgParams)
     .then((cleanMsgParams) => {
       // signs the message
@@ -1151,7 +1151,7 @@ module.exports = class XdcController extends EventEmitter {
    */
   async signTypedMessage (msgParams) {
     log.info('MetaMaskController - eth_signTypedData')
-    const msgId = msgParams.metamaskId
+    const msgId = msgParams.xdcId
     const version = msgParams.version
     try {
       const cleanMsgParams = await this.typedMessageManager.approveMessage(msgParams)
@@ -1197,7 +1197,7 @@ module.exports = class XdcController extends EventEmitter {
    * key management library that we depended on.
    *
    * Described in:
-   * https://medium.com/metamask/metamask-3-migration-guide-914b79533cdd
+   * https://medium.com/xdc/xdc-3-migration-guide-914b79533cdd
    *
    * @deprecated
    * @param  {} migratorOutput
@@ -1232,7 +1232,7 @@ module.exports = class XdcController extends EventEmitter {
    * Imports a hash of accounts to private keys into the vault.
    *
    * Described in:
-   * https://medium.com/metamask/metamask-3-migration-guide-914b79533cdd
+   * https://medium.com/xdc/xdc-3-migration-guide-914b79533cdd
    *
    * Uses the array's private keys to create a new Simple Key Pair keychain
    * and add it to the keyring controller.
@@ -1434,7 +1434,7 @@ module.exports = class XdcController extends EventEmitter {
     engine.push(this.createTypedDataMiddleware('eth_signTypedData', 'V1').bind(this))
     engine.push(this.createTypedDataMiddleware('eth_signTypedData_v1', 'V1').bind(this))
     engine.push(this.createTypedDataMiddleware('eth_signTypedData_v3', 'V3', true).bind(this))
-    // forward to metamask primary provider
+    // forward to xdc primary provider
     engine.push(createProviderMiddleware({ provider }))
 
     // setup connection
