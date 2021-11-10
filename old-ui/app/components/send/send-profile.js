@@ -52,9 +52,9 @@ class SendProfile extends Component {
 					background: '#F8F8F8',
 					border: '2px solid #C7CDD8',
 					borderRadius: '4px',
-					width:'265px',
+					width:'268px',
 					height: '32px',
-					paddingLeft: '9px',
+					// paddingLef	t: '9px',
 					paddingTop: '4px',
 				}}>
 				<div className="flex-row" style={{ alignItems: 'flex-start' }} >

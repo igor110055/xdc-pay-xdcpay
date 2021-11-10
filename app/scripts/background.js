@@ -21,7 +21,7 @@ const migrations = require('./migrations/')
 const PortStream = require('extension-port-stream')
 const createStreamSink = require('./lib/createStreamSink')
 const NotificationManager = require('./lib/notification-manager.js')
-const MetamaskController = require('./metamask-controller')
+const XdcController = require('./xdc-controller')
 const rawFirstTimeState = require('./first-time-state')
 const setupRaven = require('./lib/setupRaven')
 const reportFailedTxToSentry = require('./lib/reportFailedTxToSentry')
@@ -254,7 +254,7 @@ function setupController (initState, initLangCode) {
   // MetaMask Controller
   //
 
-  const controller = new MetamaskController({
+  const controller = new XdcController({
     // User confirmation callbacks:
     showUnconfirmedMessage: triggerUi,
     unlockAccountMessage: triggerUi,

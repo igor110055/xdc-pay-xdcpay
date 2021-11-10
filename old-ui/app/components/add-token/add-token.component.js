@@ -194,27 +194,29 @@ class AddTokenScreen extends Component {
 
         h('div', {style:{marginTop: '24px'}},[
           // h(Tooltip, {
-          //   position: 'top',
-          //   title: 'The contract of the actual token contract.',
-          // }, [
-            h('span', {
-              style: { fontWeight: 'bold',fontSize: '12px',},
-            }, 'Token Address' /* this.context.t('tokenAddress')*/),
-          // ]),
-        ]),
-
-        h('section.flex-row.flex-center', [
-          h('input.large-input#token-address', {
-            name: 'address',
-            placeholder: 'Token Contract Address',
-            value: customAddress,
-            style: {
-              width: '100%',
-              marginTop: '-4px',
-              border: '2px solid #c7cdd8',
-              borderRadius: '4px',
-            },
-            onChange: e => this.handleCustomAddressChange(e.target.value),
+            //   position: 'top',
+            //   title: 'The contract of the actual token contract.',
+            // }, [
+              h('span', {
+                style: { fontWeight: 'bold',fontSize: '12px',},
+              }, 'Token Address' /* this.context.t('tokenAddress')*/),
+              // ]),
+            ]),
+            
+            h('section.flex-row.flex-center', [
+              h('input.large-input#token-address', {
+                name: 'address',
+                placeholder: 'Token Contract Address',
+                value: customAddress,
+                style: {
+                  width: '100%',
+                  marginTop: '-4px',
+                  border: '2px solid #c7cdd8',
+                  borderRadius: '4px',
+                },
+                onChange: e =>{ 
+                  this.handleCustomAddressChange(e.target.value),
+                  this.addSuggestedERC20Asset(e.target.value) },
           }),
         ]),
 
@@ -572,6 +574,26 @@ class AddTokenScreen extends Component {
     }
 
     this.setState({ customDecimals, customDecimalsError })
+  }
+
+  addSuggestedERC20Asset (tokenOpts) {
+    this._validateERC20AssetParams(tokenOpts)
+    const suggested = this.getSuggestedTokens()
+    const { rawAddress, symbol, decimals, image } = tokenOpts
+    const address = normalizeAddress(rawAddress)
+    const newEntry = { address, symbol, decimals, image }
+    suggested[address] = newEntry
+    this.store.updateState({ suggestedTokens: suggested })
+  }
+  _validateERC20AssetParams (opts) {
+    const { rawAddress, symbol, decimals } = opts
+    if (!rawAddress || !symbol || !decimals) throw new Error(`Cannot suggest token without address, symbol, and decimals`)
+    if (!(symbol.length < 6)) throw new Error(`Invalid symbol ${symbol} more than five characters`)
+    const numDecimals = parseInt(decimals, 10)
+    if (isNaN(numDecimals) || numDecimals > 36 || numDecimals < 0) {
+      throw new Error(`Invalid decimals ${decimals} must be at least 0, and not over 36`)
+    }
+    if (!isValidAddress(rawAddress)) throw new Error(`Invalid address ${rawAddress}`)
   }
 
   /**

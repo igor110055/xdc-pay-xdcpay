@@ -20,7 +20,7 @@ const actions = require('../ui/app/actions')
 const states = require('./states')
 const backGroundConnectionModifiers = require('./backGroundConnectionModifiers')
 const Selector = require('./selector')
-const MetamaskController = require('../app/scripts/metamask-controller')
+const XdcController = require('../app/scripts/xdc-controller')
 const firstTimeState = require('../app/scripts/first-time-state')
 const ExtensionPlatform = require('../app/scripts/platforms/extension')
 const noop = function () {}
@@ -69,7 +69,7 @@ const injectCss = require('inject-css')
 // MetaMask Controller
 //
 
-const controller = new MetamaskController({
+const controller = new XdcController({
   // User confirmation callbacks:
   showUnconfirmedMessage: noop,
   unlockAccountMessage: noop,

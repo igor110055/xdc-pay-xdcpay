@@ -63,7 +63,7 @@ var actions = {
   transitionForward,
   transitionBackward,
   // remote state
-  UPDATE_METAMASK_STATE: "UPDATE_METAMASK_STATE",
+  UPDATE_XDC_STATE: "UPDATE_XDC_STATE",
   updateMetamaskState: updateMetamaskState,
   // notices
   MARK_NOTICE_READ: "MARK_NOTICE_READ",
@@ -1730,7 +1730,7 @@ function unlockMetamask(account) {
 
 function updateMetamaskState(newState) {
   return {
-    type: actions.UPDATE_METAMASK_STATE,
+    type: actions.UPDATE_XDC_STATE,
     value: newState,
   };
 }
