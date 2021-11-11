@@ -4,7 +4,7 @@ const clone = require('clone')
 const nock = require('nock')
 const createThoughStream = require('through2').obj
 const blacklistJSON = require('eth-phishing-detect/src/config')
-const MetaMaskController = require('../../../../app/scripts/metamask-controller')
+const MetaMaskController = require('../../../../app/scripts/xdc-controller')
 const firstTimeState = require('../../../unit/localhostState')
 const createTxMeta = require('../../../lib/createTxMeta')
 const EthQuery = require('eth-query')
@@ -288,7 +288,7 @@ describe('MetaMaskController', function () {
       try {
         await metamaskController.connectHardware('Some random device name', 0, `m/44/0'/0'`)
       } catch (e) {
-        assert.equal(e, 'Error: MetamaskController:getKeyringForDevice - Unknown device')
+        assert.equal(e, 'Error: XdcController:getKeyringForDevice - Unknown device')
       }
     })
 
@@ -319,7 +319,7 @@ describe('MetaMaskController', function () {
       try {
         await metamaskController.checkHardwareStatus('Some random device name', `m/44/0'/0'`)
       } catch (e) {
-        assert.equal(e, 'Error: MetamaskController:getKeyringForDevice - Unknown device')
+        assert.equal(e, 'Error: XdcController:getKeyringForDevice - Unknown device')
       }
     })
 
@@ -335,7 +335,7 @@ describe('MetaMaskController', function () {
       try {
         await metamaskController.forgetDevice('Some random device name')
       } catch (e) {
-        assert.equal(e, 'Error: MetamaskController:getKeyringForDevice - Unknown device')
+        assert.equal(e, 'Error: XdcController:getKeyringForDevice - Unknown device')
       }
     })
 
@@ -487,7 +487,7 @@ describe('MetaMaskController', function () {
         await addNewAccount
         assert.equal(1 === 0)
       } catch (e) {
-        assert.equal(e.message, 'MetamaskController - No HD Key Tree found')
+        assert.equal(e.message, 'XdcController - No HD Key Tree found')
       }
     })
   })
@@ -499,7 +499,7 @@ describe('MetaMaskController', function () {
       try {
         await metamaskController.verifySeedPhrase()
       } catch (error) {
-        assert.equal(error.message, 'MetamaskController - No HD Key Tree found')
+        assert.equal(error.message, 'XdcController - No HD Key Tree found')
       }
     })
 

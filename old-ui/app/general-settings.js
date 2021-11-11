@@ -1,668 +1,638 @@
-// const inherits = require("util").inherits;
-// const Component = require("react").Component;
-// const h = require("react-hyperscript");
-// const connect = require("react-redux").connect;
-// const actions = require("../../ui/app/actions");
-// const LoadingIndicator = require("./components/loading");
-// const Web3 = require("web3");
-// const infuraCurrencies = require("./infura-conversion.json").objects.sort(
-//   (a, b) => {
-//     return a.quote.name
-//       .toLocaleLowerCase()
-//       .localeCompare(b.quote.name.toLocaleLowerCase());
-//   }
-// );
-// const validUrl = require("valid-url");
-// const exportAsFile = require("./util").exportAsFile;
-// const Modal = require("../../ui/app/components/modals/index").Modal;
-// const ethNetProps = require("xdc-net-props");
-// const { networks } = require("../../app/scripts/controllers/network/util");
+const inherits = require("util").inherits;
+const Component = require("react").Component;
+const connect = require("react-redux").connect;
+const actions = require("../../ui/app/actions");
+const LoadingIndicator = require("./components/loading");
+const Web3 = require("web3");
+import SimpleDropdown from '../../ui/app/components/dropdowns/simple-dropdown'
+import locales from '../../app/_locales/index.json'
+import PropTypes from 'prop-types'
+// import '../../old-ui/app/css/index.css'
 
-// module.exports = connect(mapStateToProps)(ConfigScreen);
+const localeOptions = locales.map(locale => {
+    return {
+      displayValue: `${locale.name}`,
+      key: locale.code,
+      value: locale.code,
+    }
+  })
 
-// function mapStateToProps(state) {
-//   return {
-//     metamask: state.metamask,
-//     warning: state.appState.warning,
-//   };
+const infuraCurrencies = require("./infura-conversion.json").objects.sort(
+  (a, b) => {
+    return a.quote.name
+      .toLocaleLowerCase()
+      .localeCompare(b.quote.name.toLocaleLowerCase());
+  }
+);
+const validUrl = require("valid-url");
+const exportAsFile = require("./util").exportAsFile;
+const Modal = require("../../ui/app/components/modals/index").Modal;
+const ethNetProps = require("xdc-net-props");
+const { networks } = require("../../app/scripts/controllers/network/util");
+import { Module } from 'module';
+
+const React = require('react')
+
+// const sortedCurrencies = infuraCurrencies.objects.sort((a, b) => {
+//   return a.quote.name.toLocaleLowerCase().localeCompare(b.quote.name.toLocaleLowerCase())
+// })
+const infuraCurrencyOptions = infuraCurrencies.map(({ quote: { code, name } }) => {
+  return {
+    displayValue: `${code.toUpperCase()} - ${name}`,
+    key: code,
+    value: code,
+  }
+})
+
 // }
-
-// inherits(ConfigScreen, Component);
-// function ConfigScreen() {
+// inherits(GeneralSettings, Component);
+// function GeneralSettings() {
 //   this.state = {
 //     loading: false,
 //   };
 //   Component.call(this);
 // }
+class GeneralSettings extends React.Component {
+  static contextTypes = {
+    t: PropTypes.func,
+  }
 
-// ConfigScreen.prototype.render = function () {
-//   const state = this.props;
-//   const metamaskState = state.metamask;
-//   const warning = state.warning;
+  render() {
+    const state = this.props;
+    console.log(state,'=-=-=-=')
+    const metamaskState = state.metamask;
+    const warning = state.warning;
 
-//   return h(
-//     ".flex-column.flex-grow",
-//     {
-//       style: {
-//         maxHeight: "585px",
-//         overflowY: "auto",
-//       },
-//     },
-//     [
-//       h(LoadingIndicator, {
-//         isLoading: this.state.loading,
-//       }),
+    return (
+      <div className="flex-column flex-grow">
+        {/* <LoadingIndicator/> */}
+        <div className="section-title flex-row">
+          <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'12px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.goConfig()) }} />
+          <h2 style={{ marginLeft:'88px'}}>General Settings</h2>
+        </div>
+        <div style={{borderTop:'1px solid #E3E7EB'}}>
+          {currentConversionInformation(metamaskState, state)}
+        </div>
+        <div style={{borderTop:'1px solid #E3E7EB'}}>
+          {currentLanguage(state)}
+        </div>
+       <label className="switch">
+          <input type="checkbox"/>
+       <span className="slider round"></span>
+       </label>
+      </div>
+    )
+  }
+}
+module.exports = connect(mapStateToProps)(GeneralSettings)
 
-//       h(Modal, {}, []),
+function mapStateToProps(state) {
+  return {
+    metamask: state.metamask,
+    warning: state.appState.warning,
+  }
+}
 
-//       // subtitle and nav
-//       h(".section-title.flex-row", [
-//         h("img", {
-//           onClick: () => {
-//             state.dispatch(actions.goHome());
-//           },
-//           src: "/images/Assets/BackArrow.svg",
-//           style: {
-//             position: "static",
-//             marginLeft: "15px",
-//             cursor: "pointer",
-//           },
-//         }),
-//         h(
-//           "h2",
-//           {
-//             style: {
-//               marginLeft: "114px",
-//               fontWeight: "600",
-//               // fontFamily: "Nunito Regular",
-//             },
-//           },
-//           "Settings"
-//         ),
-//       ]),
+  
+  function currentConversionInformation(metamaskState, state) {
+    const currentCurrency = metamaskState.currentCurrency;
+    const conversionDate = metamaskState.conversionDate;
+    // const { t } = this.context;
+    const setCurrentCurrency = metamaskState.setCurrentCurrency;
+    return (
+      <div style={{ padding:'10px 19px' }}>
+      <span style={{fontWeight: "bold", fontSize: "14px", color: "#2149B9"}}>
+      Current Conversion
+        </span>
+        <br />
+        <span style={{fontSize: "14px", color: "#2A2A2A"}}>
+          {`Updated` + Date(conversionDate) }
+        </span>
+        <br />
+        
+        <SimpleDropdown
+            style={{border: '1px solid #E3E7EB' }}
+            placeholder={('selectCurrency')}
+            options={infuraCurrencyOptions}
+            selectedOption={currentCurrency}
+            onSelect={newCurrency => setCurrentCurrency(newCurrency)}
+            />
 
-//       h(
-//         "div",
-//         {
-//           style: {
-//             marginLeft: "9px",
-//           },
-//         },
-//         [
-//           h(
-//             ".error",
-//             {
-//               style: {
-//                 display: warning ? "block" : "none",
-//                 width: "324px",
-//                 marginBottom: "-20px",
-//               },
-//             },
-//             warning
-//           ),
-//         ]
-//       ),
+      </div>
+    )    
+  }
+  
+  function currentLanguage (state){
+    // const { t } = this.context
+    
+    console.log(state,'+-+-+')
+    const { updateCurrentLocale, currentLocale } = state
+    const currentLocaleMeta = locales.find(locale => locale.code === currentLocale)
+    const currentLocaleName = currentLocaleMeta ? currentLocaleMeta.name : ''
+  
+    return (
+      <div style={{ padding:'10px 19px' }}>
+      <div className="settings-page__content-row">
+        <div className="settings-page__content-item">
+          <span className="settings-page__content-label">
+            { ('currentLanguage') }
+          </span>
+          <span className="settings-page__content-description">
+            { currentLocaleName }
+          </span>
+        </div>
+        <div className="settings-page__content-item" style={{border:'1px solid grey'}} >
+          <div className="settings-page__content-item-col">
+            <SimpleDropdown
+              style={{ border: '1px solid #E3E7EB' }}
+              placeholder={('selectLocale')}
+              options={localeOptions}
+              selectedOption={currentLocale}
+              onSelect={async newLocale => updateCurrentLocale(newLocale)}
+            />
+          </div>
+        </div>
+        </div>
+        </div>
+    )
+  }
+  
+  // h(
+    //   ".flex-column.flex-grow",
+    //   {
+      //     style: {
+        //       maxHeight: "585px",
+  //       overflowY: "auto",
+  //     },
+  //   },
+  //   [
+  //     // (LoadingIndicator, {
+  //     //   isLoading: this.state.loading,
+  //     // }),
 
-//       // conf view
-//       h(".flex-column.flex-justify-center.flex-grow.select-none", [
-//         h(
-//           ".flex-space-around",
-//           {
-//             style: {
-//               padding: "0",
-//               overflow: "auto",
-//             },
-//           },
-//           [
-//             currentProviderDisplay(metamaskState, state),
+  //     h(Modal, {}, []),
 
-//             h(
-//               "div",
-//               {
-//                 style: {
-//                   display: "flex",
-//                   flex: "wrap",
-//                   width: "100%",
-//                 },
-//               },
-//               [
-//                 h("input#new_rpc", {
-//                   placeholder: "New RPC URL",
-//                   style: {
-//                     flex: "1 0 auto",
-//                     width: "238px",
-//                     height: "40px",
-//                     margin: "15px 0 0 9px",
-//                     borderRadius: "4px",
-//                     border: "2px solid #C7CDD8",
-//                     padding: "10px",
-//                   },
-//                   onKeyPress: (event) => {
-//                     if (event.key === "Enter") {
-//                       const element = event.target;
-//                       const newRpc = element.value;
-//                       this.rpcValidation(newRpc, state);
-//                     }
-//                   },
-//                 }),
-//                 h(
-//                   "button",
-//                   {
-//                     style: {
-//                       // alignSelf: 'center',
-//                       margin: "15px 7px 0 9px",
-//                       width: "74px",
-//                       height: "40px",
-//                       background: "#FFFFFF",
-//                       color: "#0CBE46",
-//                       border: "2px solid #0CBE46",
-//                       fontWeight: "600",
-//                     },
-//                     onClick: (event) => {
-//                       event.preventDefault();
-//                       const element = document.querySelector("input#new_rpc");
-//                       const newRpc = element.value;
-//                       this.rpcValidation(newRpc, state);
-//                     },
-//                   },
-//                   "Save"
-//                 ),
-//               ]
-//             ),
+  //     // subtitle and nav
+  //     h(".section-title.flex-row", { style: { borderBottom: '1px solid #E3E7EB', paddingBottom: '17px' }, }, [
+  //       h("img", {
+  //         onClick: () => {
+  //           state.dispatch(actions.goHome());
+  //         },
+  //         src: "/images/Assets/BackArrow.svg",
+  //         style: {
+  //           position: "static",
+  //           marginLeft: "15px",
+  //           cursor: "pointer",
+  //         },
+  //       }),
+  //       h(
+  //         "h2",
+  //         {
+  //           style: {
+  //             marginLeft: "114px",
+  //             fontWeight: "600",
+  //             minHeight: '20px',
+  //             padding: '0px 18px ',
+  //           },
+  //         },
+  //         "General Settings"
+  //       ),
+  //     ]),
+  //     [
 
-//             h("hr.horizontal-line", {
-//               style: {
-//                 marginTop: "26px",
-//               },
-//             }),
+        
+  //       currentConversionInformation(metamaskState, state),
+  //     ]
+      
 
-//             currentConversionInformation(metamaskState, state),
+      
+     
+        
+  //   ]);
 
-//             h("hr.horizontal-line", {
-//               style: {
-//                 marginTop: "20px",
-//               },
-//             }),
+// const localeOptions = locales.map(locale => {
+//     return {
+//       displayValue: `${locale.name}`,
+//       key: locale.code,
+//       value: locale.code,
+//     }
+// })
+  
 
-//             h(
-//               "div",
-//               {
-//                 style: {
-//                   margin: "26px 0 0 9px",
-//                 },
-//               },
-//               [
-//                 h(
-//                   "p",
-//                   {
-//                     style: {
-//                       fontFamily: "Nunito Regular",
-//                       fontSize: "14px",
-//                       lineHeight: "18px",
-//                       marginBottom: "-11px",
-//                     },
-//                   },
-//                   `State logs contain your public account addresses and sent transactions.`
-//                 ),
-//                 h("br"),
-//                 h(
-//                   "button",
-//                   {
-//                     style: {
-//                       width: "324px",
-//                       height: "40px",
-//                       color: "#03BE46",
-//                       background: "#FFFFFF",
-//                       border: "2px solid #03BE46",
-//                       fontWeight: "600",
-//                     },
-//                     onClick(event) {
-//                       window.logStateString((err, result) => {
-//                         if (err) {
-//                           state.dispatch(
-//                             actions.displayWarning(
-//                               "Error in retrieving state logs."
-//                             )
-//                           );
-//                         } else {
-//                           exportAsFile("XDCPay State Logs.json", result);
-//                         }
-//                       });
-//                     },
-//                   },
-//                   "Download State Logs"
-//                 ),
-//               ]
-//             ),
 
-//             h("hr.horizontal-line", {
-//               style: {
-//                 marginTop: "17px",
-//               },
-//             }),
 
-//             h(
-//               "div",
-//               {
-//                 style: {
-//                   margin: "17px 0 0 9px",
-//                 },
-//               },
-//               [
-//                 h(
-//                   "button",
-//                   {
-//                     style: {
-//                       // alignSelf: 'center',
-//                       width: "324px",
-//                       height: "40px",
-//                       color: "#03BE46",
-//                       background: "#FFFFFF",
-//                       border: "2px solid #03BE46",
-//                       fontWeight: "600",
-//                       marginBottom: "6px",
-//                     },
-//                     onClick(event) {
-//                       event.preventDefault();
-//                       state.dispatch(actions.revealSeedConfirmation());
-//                     },
-//                   },
-//                   "Reveal Seed Words"
-//                 ),
-//               ]
-//             ),
 
-//             h("hr.horizontal-line", {
-//               style: {
-//                 marginTop: "20px",
-//               },
-//             }),
 
-//             h(
-//               "div",
-//               {
-//                 style: {
-//                   marginTop: "20px",
-//                 },
-//               },
-//               [
-//                 h(
-//                   "p",
-//                   {
-//                     style: {
-//                       fontFamily: "Nunito Regular",
-//                       fontSize: "14px",
-//                       lineHeight: "18px",
-//                       marginLeft: "9px",
-//                     },
-//                   },
-//                   ["Resetting is for developer use only. "]
-//                 ),
-//                 h("br"),
+//   import React, { PureComponent } from 'react'
+// import PropTypes from 'prop-types'
+// import infuraCurrencies from '../../ui/app/infura-conversion.json'
+// import validUrl from 'valid-url'
+// import { exportAsFile } from '../../ui/app/util'
+// import SimpleDropdown from '../../ui/app/components/dropdowns/simple-dropdown'
+// import ToggleButton from 'react-toggle-button'
+// import { REVEAL_SEED_ROUTE } from '../../ui/app/routes'
+// import locales from '../../app/_locales/index.json'
+// import TextField from '../../ui/app/components/text-field'
+// import Button from '../../ui/app/components/button'
 
-//                 h(
-//                   "button",
-//                   {
-//                     style: {
-//                       // alignSelf: "center",
-//                       width: "324px",
-//                       height: "40px",
-//                       color: "#03BE46",
-//                       background: "#FFFFFF",
-//                       border: "2px solid #03BE46",
-//                       fontWeight: "600",
-//                       marginLeft: "9px",
-//                     },
-//                     onClick(event) {
-//                       event.preventDefault();
-//                       state.dispatch(actions.resetAccount());
-//                     },
-//                   },
-//                   "Reset Account"
-//                 ),
+// const sortedCurrencies = infuraCurrencies.objects.sort((a, b) => {
+//   return a.quote.name.toLocaleLowerCase().localeCompare(b.quote.name.toLocaleLowerCase())
+// })
 
-//                 h("hr.horizontal-line", {
-//                   style: {
-//                     marginTop: "20px",
-//                   },
-//                 }),
+// const infuraCurrencyOptions = sortedCurrencies.map(({ quote: { code, name } }) => {
+//   return {
+//     displayValue: `${code.toUpperCase()} - ${name}`,
+//     key: code,
+//     value: code,
+//   }
+// })
 
-//                 h(
-//                   "button",
-//                   {
-//                     style: {
-//                       // alignSelf: "center",
-//                       width: "324px",
-//                       height: "40px",
-//                       color: "#03BE46",
-//                       background: "#FFFFFF",
-//                       border: "2px solid #03BE46",
-//                       fontWeight: "600",
-//                       marginLeft: "9px",
-//                       marginBottom: "50px",
-//                     },
-//                     onClick(event) {
-//                       event.preventDefault();
-//                       state.dispatch(actions.confirmChangePassword());
-//                     },
-//                   },
-//                   "Change password"
-//                 ),
-//                 // h("hr.horizontal-line", {
-//                 //   style: {
-//                 //     marginTop: "20px",
-//                 //   },
-//                 // }),
-//                 // h("hr.horizontal-line", {
-//                 //   style: {
-//                 //     marginTop: "20px",
-//                 //   },
-//                 // }),
-//               ]
-//             ),
-//           ]
-//         ),
-//       ]),
-//     ]
-//   );
-// };
+// const localeOptions = locales.map(locale => {
+//   return {
+//     displayValue: `${locale.name}`,
+//     key: locale.code,
+//     value: locale.code,
+//   }
+// })
 
-// ConfigScreen.prototype.componentWillUnmount = function () {
-//   this.props.dispatch(actions.displayWarning(""));
-// };
+// export default class GeneralSettings extends PureComponent {
+//   static contextTypes = {
+//     t: PropTypes.func,
+//   }
 
-// ConfigScreen.prototype.rpcValidation = function (newRpc, state) {
-//   if (validUrl.isWebUri(newRpc)) {
-//     this.setState({
-//       loading: true,
-//     });
-//     const web3 = new Web3(new Web3.providers.HttpProvider(newRpc));
-//     web3.eth.getBlockNumber((err, res) => {
-//       if (err) {
-//         state.dispatch(actions.displayWarning("Invalid RPC endpoint"));
-//       } else {
-//         state.dispatch(actions.setRpcTarget(newRpc));
-//       }
-//       this.setState({
-//         loading: false,
-//       });
-//     });
-//   } else {
-//     if (!newRpc.startsWith("http")) {
-//       state.dispatch(
-//         actions.displayWarning(
-//           "URIs require the appropriate HTTP/HTTPS prefix."
-//         )
-//       );
+//   static propTypes = {
+//     metamask: PropTypes.object,
+//     setUseBlockie: PropTypes.func,
+//     setHexDataFeatureFlag: PropTypes.func,
+//     setCurrentCurrency: PropTypes.func,
+//     setRpcTarget: PropTypes.func,
+//     delRpcTarget: PropTypes.func,
+//     displayWarning: PropTypes.func,
+//     revealSeedConfirmation: PropTypes.func,
+//     setFeatureFlagToBeta: PropTypes.func,
+//     showResetAccountConfirmationModal: PropTypes.func,
+//     warning: PropTypes.string,
+//     history: PropTypes.object,
+//     isMascara: PropTypes.bool,
+//     updateCurrentLocale: PropTypes.func,
+//     currentLocale: PropTypes.string,
+//     useBlockie: PropTypes.bool,
+//     sendHexData: PropTypes.bool,
+//     currentCurrency: PropTypes.string,
+//     conversionDate: PropTypes.number,
+//     useETHAsPrimaryCurrency: PropTypes.bool,
+//     setUseETHAsPrimaryCurrencyPreference: PropTypes.func,
+//   }
+
+//   state = {
+//     newRpc: '',
+//   }
+
+//   renderCurrentConversion () {
+//     const { t } = this.context
+//     const { currentCurrency, conversionDate, setCurrentCurrency } = this.props
+
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ t('currentConversion') }</span>
+//           <span className="settings-page__content-description">
+//             { t('updatedWithDate', [Date(conversionDate)]) }
+//           </span>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <SimpleDropdown
+//               placeholder={t('selectCurrency')}
+//               options={infuraCurrencyOptions}
+//               selectedOption={currentCurrency}
+//               onSelect={newCurrency => setCurrentCurrency(newCurrency)}
+//             />
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+
+//   renderCurrentLocale () {
+//     const { t } = this.context
+//     const { updateCurrentLocale, currentLocale } = this.props
+//     const currentLocaleMeta = locales.find(locale => locale.code === currentLocale)
+//     const currentLocaleName = currentLocaleMeta ? currentLocaleMeta.name : ''
+
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span className="settings-page__content-label">
+//             { t('currentLanguage') }
+//           </span>
+//           <span className="settings-page__content-description">
+//             { currentLocaleName }
+//           </span>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <SimpleDropdown
+//               placeholder={t('selectLocale')}
+//               options={localeOptions}
+//               selectedOption={currentLocale}
+//               onSelect={async newLocale => updateCurrentLocale(newLocale)}
+//             />
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+
+//   renderNewRpcUrl () {
+//     const { t } = this.context
+//     const { newRpc } = this.state
+
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ t('newRPC') }</span>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <TextField
+//               type="text"
+//               id="new-rpc"
+//               placeholder={t('newRPC')}
+//               value={newRpc}
+//               onChange={e => this.setState({ newRpc: e.target.value })}
+//               onKeyPress={e => {
+//                 if (e.key === 'Enter') {
+//                   this.validateRpc(newRpc)
+//                 }
+//               }}
+//               fullWidth
+//               margin="none"
+//             />
+//             <div
+//               className="settings-tab__rpc-save-button"
+//               onClick={e => {
+//                 e.preventDefault()
+//                 this.validateRpc(newRpc)
+//               }}
+//             >
+//               { t('save') }
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+
+//   validateRpc (newRpc) {
+//     const { setRpcTarget, displayWarning } = this.props
+
+//     if (validUrl.isWebUri(newRpc)) {
+//       setRpcTarget(newRpc)
 //     } else {
-//       state.dispatch(actions.displayWarning("Invalid RPC URI"));
+//       const appendedRpc = `https://${newRpc}`
+
+//       if (validUrl.isWebUri(appendedRpc)) {
+//         displayWarning(this.context.t('uriErrorMsg'))
+//       } else {
+//         displayWarning(this.context.t('invalidRPC'))
+//       }
 //     }
 //   }
-// };
 
-// ConfigScreen.prototype.networkNameValidation = function (networkName, state) {
-//   if (networkName != null) {
-//     state.dispatch(actions.setNetworkName(networkName));
-//   }
-// };
-// function currentConversionInformation(metamaskState, state) {
-//   const currentCurrency = metamaskState.currentCurrency;
-//   const conversionDate = metamaskState.conversionDate;
-//   return h(
-//     "div",
-//     {
-//       style: {
-//         marginTop: "15px",
-//         marginLeft: "9px",
-//       },
-//     },
-//     [
-//       h(
-//         "span",
-//         { style: { fontWeight: "bold", fontSize: "14px", color: "#2149B9" } },
-//         "Current Conversion"
-//       ),
-//       h("br"),
-//       h(
-//         "span",
-//         { style: { fontSize: "14px", color: "#2A2A2A" } },
-//         `Updated ${Date(conversionDate)}`
-//       ),
-//       h("br"),
-//       h(
-//         "select#currentCurrency",
-//         {
-//           style: {
-//             width: "324px",
-//             height: "40px",
-//             border: "2px solid #C7CDD8",
-//             borderRadius: "4px",
-//             paddingLeft: "5px",
-//             marginTop: "10px",
-//           },
-//           onChange(event) {
-//             event.preventDefault();
-//             const element = document.getElementById("currentCurrency");
-//             const newCurrency = element.value;
-//             state.dispatch(actions.setCurrentCurrency(newCurrency));
-//           },
-//           defaultValue: currentCurrency,
-//         },
-//         infuraCurrencies.map((currency) => {
-//           return h(
-//             "option",
-//             { key: currency.quote.code, value: currency.quote.code },
-//             `${currency.quote.code.toUpperCase()} - ${currency.quote.name}`
-//           );
-//         })
-//       ),
-//     ]
-//   );
-// }
+//   renderStateLogs () {
+//     const { t } = this.context
+//     const { displayWarning } = this.props
 
-// function currentProviderDisplay(metamaskState, state) {
-//   const provider = metamaskState.provider;
-//   let title, value;
-
-//   if (networks[provider.type]) {
-//     title = "Current Network";
-//     value = ethNetProps.props.getNetworkDisplayName(
-//       networks[provider.type].networkID
-//     );
-//   } else {
-//     title = "Current RPC";
-//     value = metamaskState.provider.rpcTarget;
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ t('stateLogs') }</span>
+//           <span className="settings-page__content-description">
+//             { t('stateLogsDescription') }
+//           </span>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <Button
+//               type="primary"
+//               large
+//               onClick={() => {
+//                 window.logStateString((err, result) => {
+//                   if (err) {
+//                     displayWarning(t('stateLogError'))
+//                   } else {
+//                     exportAsFile('MetaMask State Logs.json', result)
+//                   }
+//                 })
+//               }}
+//             >
+//               { t('downloadStateLogs') }
+//             </Button>
+//           </div>
+//         </div>
+//       </div>
+//     )
 //   }
 
-//   return h(
-//     "div",
-//     {
-//       style: {
-//         marginTop: "20px",
-//         marginLeft: "9px",
-//       },
-//     },
-//     [
-//       h(
-//         "span",
-//         { style: { fontWeight: "bold", fontSize: "14px", color: "#2149B9" } },
-//         title
-//       ),
-//       h("br"),
-//       h("span", { style: { fontSize: "14px", color: "#2A2A2A" } }, value),
-//       provider.type === "rpc" &&
-//         h(
-//           "button",{
-//             style: {
-//               // alignSelf: 'center',
-//               margin: "15px 2px 0 9px",
-//               width: "74px",
-//               height: "40px",
-//               background: "#FFFFFF",
-//               color: "#0CBE46",
-//               border: "2px solid #0CBE46",
-//               fontWeight: "600",
-//             },
-          
-//             onClick(event) {
-//               event.preventDefault();
-//               state.dispatch(actions.showDeleteRPC());
-//             },
-//           },
-//           "Delete"
-//         ),
-//     ]
-//   );
-// }
+//   renderSeedWords () {
+//     const { t } = this.context
+//     const { history } = this.props
 
-
-
-
-
-
-// const inherits = require("util").inherits;
-// const Component = require("react").Component;
-// const h = require("react-hyperscript");
-// const connect = require("react-redux").connect;
-// const actions = require("../../ui/app/actions");
-// const LoadingIndicator = require("./components/loading");
-// const Web3 = require("web3");
-// const infuraCurrencies = require("./infura-conversion.json").objects.sort(
-//   (a, b) => {
-//     return a.quote.name
-//       .toLocaleLowerCase()
-//       .localeCompare(b.quote.name.toLocaleLowerCase());
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ t('revealSeedWords') }</span>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <Button
+//               type="secondary"
+//               large
+//               onClick={event => {
+//                 event.preventDefault()
+//                 history.push(REVEAL_SEED_ROUTE)
+//               }}
+//             >
+//               { t('revealSeedWords') }
+//             </Button>
+//           </div>
+//         </div>
+//       </div>
+//     )
 //   }
-// );
-// const validUrl = require("valid-url");
-// const exportAsFile = require("./util").exportAsFile;
-// const Modal = require("../../ui/app/components/modals/index").Modal;
-// const ethNetProps = require("xdc-net-props");
-// const { networks } = require("../../app/scripts/controllers/network/util");
 
-// module.exports = connect(mapStateToProps)(ConfigScreen);
+//   renderOldUI () {
+//     const { t } = this.context
+//     const { setFeatureFlagToBeta } = this.props
 
-// function mapStateToProps(state) {
-//   return {
-//     metamask: state.metamask,
-//     warning: state.appState.warning,
-//   };
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ t('useOldUI') }</span>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <Button
+//               type="secondary"
+//               large
+//               className="settings-tab__button--orange"
+//               onClick={event => {
+//                 event.preventDefault()
+//                 setFeatureFlagToBeta()
+//               }}
+//             >
+//               { t('useOldUI') }
+//             </Button>
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+
+//   renderResetAccount () {
+//     const { t } = this.context
+//     const { showResetAccountConfirmationModal } = this.props
+
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ t('resetAccount') }</span>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <Button
+//               type="secondary"
+//               large
+//               className="settings-tab__button--orange"
+//               onClick={event => {
+//                 event.preventDefault()
+//                 showResetAccountConfirmationModal()
+//               }}
+//             >
+//               { t('resetAccount') }
+//             </Button>
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+
+//   renderBlockieOptIn () {
+//     const { useBlockie, setUseBlockie } = this.props
+
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ this.context.t('blockiesIdenticon') }</span>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <ToggleButton
+//               value={useBlockie}
+//               onToggle={value => setUseBlockie(!value)}
+//               activeLabel=""
+//               inactiveLabel=""
+//             />
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+
+//   renderHexDataOptIn () {
+//     const { t } = this.context
+//     const { sendHexData, setHexDataFeatureFlag } = this.props
+
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ t('showHexData') }</span>
+//           <div className="settings-page__content-description">
+//             { t('showHexDataDescription') }
+//           </div>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <ToggleButton
+//               value={sendHexData}
+//               onToggle={value => setHexDataFeatureFlag(!value)}
+//               activeLabel=""
+//               inactiveLabel=""
+//             />
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+
+//   renderUseEthAsPrimaryCurrency () {
+//     const { t } = this.context
+//     const { useETHAsPrimaryCurrency, setUseETHAsPrimaryCurrencyPreference } = this.props
+
+//     return (
+//       <div className="settings-page__content-row">
+//         <div className="settings-page__content-item">
+//           <span>{ t('primaryCurrencySetting') }</span>
+//           <div className="settings-page__content-description">
+//             { t('primaryCurrencySettingDescription') }
+//           </div>
+//         </div>
+//         <div className="settings-page__content-item">
+//           <div className="settings-page__content-item-col">
+//             <div className="settings-tab__radio-buttons">
+//               <div className="settings-tab__radio-button">
+//                 <input
+//                   type="radio"
+//                   id="eth-primary-currency"
+//                   onChange={() => setUseETHAsPrimaryCurrencyPreference(true)}
+//                   checked={Boolean(useETHAsPrimaryCurrency)}
+//                 />
+//                 <label
+//                   htmlFor="eth-primary-currency"
+//                   className="settings-tab__radio-label"
+//                 >
+//                   { t('eth') }
+//                 </label>
+//               </div>
+//               <div className="settings-tab__radio-button">
+//                 <input
+//                   type="radio"
+//                   id="fiat-primary-currency"
+//                   onChange={() => setUseETHAsPrimaryCurrencyPreference(false)}
+//                   checked={!useETHAsPrimaryCurrency}
+//                 />
+//                 <label
+//                   htmlFor="fiat-primary-currency"
+//                   className="settings-tab__radio-label"
+//                 >
+//                   { t('fiat') }
+//                 </label>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     )
+//   }
+
+//   render () {
+//     const { warning, isMascara } = this.props
+
+//     return (
+//       <div className="settings-page__content">
+//         { warning && <div className="settings-tab__error">{ warning }</div> }
+//         { this.renderCurrentConversion() }
+//         { this.renderUseEthAsPrimaryCurrency() }
+//         { this.renderCurrentLocale() }
+//         { this.renderNewRpcUrl() }
+//         { this.renderStateLogs() }
+//         { this.renderSeedWords() }
+//         { !isMascara && this.renderOldUI() }
+//         { this.renderResetAccount() }
+//         { this.renderBlockieOptIn() }
+//         { this.renderHexDataOptIn() }
+//       </div>
+//     )
+//   }
 // }
-// inherits(ConfigScreen, Component);
-// function ConfigScreen() {
-//   this.state = {
-//     loading: false,
-//   };
-//   Component.call(this);
-// }
-
-// ConfigScreen.prototype.render = function () {
-//   const state = this.props;
-//   const metamaskState = state.metamask;
-//   const warning = state.warning;
-
-//   return h(
-//     ".flex-column.flex-grow",
-//     {
-//       style: {
-//         maxHeight: "585px",
-//         overflowY: "auto",
-//       },
-//     },
-//     [
-//       h(LoadingIndicator, {
-//         isLoading: this.state.loading,
-//       }),
-
-//       h(Modal, {}, []),
-
-//       // subtitle and nav
-//       h(".section-title.flex-row",{ style: {borderBottom: '1px solid #E3E7EB',paddingBottom: '17px'},}, [
-//         h("img", {
-//           onClick: () => {
-//             state.dispatch(actions.goHome());
-//           },
-//           src: "/images/Assets/BackArrow.svg",
-//           style: {
-//             position: "static",
-//             marginLeft: "15px",
-//             cursor: "pointer",
-//           },
-//         }),
-//         h(
-//           "h2",
-//           {
-//             style: {
-//               marginLeft: "114px",
-//               fontWeight: "600",
-//               minHeight: '20px',
-//               padding: '0px 18px ',
-//             },
-//           },
-//           "General Settings"
-//         ),
-//       ]),
-
-//       function currentConversionInformation(metamaskState, state) {
-//         const currentCurrency = metamaskState.currentCurrency;
-//         const conversionDate = metamaskState.conversionDate;
-//         return h(
-//           "div",
-//           {
-//             style: {
-//               marginTop: "15px",
-//               marginLeft: "9px",
-//             },
-//           },
-//           [
-//             h(
-//               "span",
-//               { style: { fontWeight: "bold", fontSize: "14px", color: "#2149B9" } },
-//               "Current Conversion"
-//             ),
-//             h("br"),
-//             h(
-//               "span",
-//               { style: { fontSize: "14px", color: "#2A2A2A" } },
-//               `Updated ${Date(conversionDate)}`
-//             ),
-//             h("br"),
-//             h(
-//               "select#currentCurrency",
-//               {
-//                 style: {
-//                   width: "324px",
-//                   height: "40px",
-//                   border: "2px solid #C7CDD8",
-//                   borderRadius: "4px",
-//                   paddingLeft: "5px",
-//                   marginTop: "10px",
-//                 },
-//                 onChange(event) {
-//                   event.preventDefault();
-//                   const element = document.getElementById("currentCurrency");
-//                   const newCurrency = element.value;
-//                   state.dispatch(actions.setCurrentCurrency(newCurrency));
-//                 },
-//                 defaultValue: currentCurrency,
-//               },
-//               infuraCurrencies.map((currency) => {
-//                 return h(
-//                   "option",
-//                   { key: currency.quote.code, value: currency.quote.code },
-//                   `${currency.quote.code.toUpperCase()} - ${currency.quote.name}`
-//                 );
-//               })
-//             ),
-//           ]
-//         );
-//       }
-
-       
-        
-        
-        
-      
-//     ]);
-// }
-    

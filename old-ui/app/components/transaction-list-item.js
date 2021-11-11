@@ -139,8 +139,9 @@ TransactionListItem.prototype.render = function () {
           width: '100%',
         },
       }, [
-        h('.identicon-wrapper.flex-column.flex-center.select-none', [
-          h(TransactionIcon, { txParams, transaction, isTx, isMsg }),
+        h('div.flex-row', [
+          h('.identicon-wrapper.flex-column.flex-center.select-none', [
+            h(TransactionIcon, { txParams, transaction, isTx, isMsg }),
         ]),
 
         // h(Tooltip, {
@@ -163,7 +164,7 @@ TransactionListItem.prototype.render = function () {
         h('.flex-column', {
           style: {
             textAlign: 'left',
-            marginRight: '74px',
+            marginLeft: '14px',
           },
         }, [
           domainField(txParams),
@@ -178,6 +179,7 @@ TransactionListItem.prototype.render = function () {
             },
           }, date),
         ]),
+      ]),
 
         isTx ? h(EthBalance, {
           valueStyle,

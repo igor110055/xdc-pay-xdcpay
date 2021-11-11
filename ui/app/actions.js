@@ -31,6 +31,8 @@ var actions = {
 
   GO_HOME: "GO_HOME",
   goHome: goHome,
+  goConfig: goConfig,
+  GO_CONFIG: "GO_CONFIG",
   // modal state
   MODAL_OPEN: "UI_MODAL_OPEN",
   MODAL_CLOSE: "UI_MODAL_CLOSE",
@@ -61,7 +63,7 @@ var actions = {
   transitionForward,
   transitionBackward,
   // remote state
-  UPDATE_METAMASK_STATE: "UPDATE_METAMASK_STATE",
+  UPDATE_XDC_STATE: "UPDATE_XDC_STATE",
   updateMetamaskState: updateMetamaskState,
   // notices
   MARK_NOTICE_READ: "MARK_NOTICE_READ",
@@ -258,6 +260,12 @@ var actions = {
   SET_DEFAULT_RPC_TARGET: "SET_DEFAULT_RPC_TARGET",
   SET_PROVIDER_TYPE: "SET_PROVIDER_TYPE",
   showConfigPage,
+  // generalSettings:
+    generalSettings,
+  // advanceSettings:
+    advanceSettings,
+  SHOW_GENSETTINGS_PAGE: "SHOW_GENSETTINGS_PAGE",
+  SHOW_ADVSETTINGS_PAGE: "SHOW_ADVSETTINGS_PAGE",
   SHOW_ADD_TOKEN_PAGE: "SHOW_ADD_TOKEN_PAGE",
   SHOW_CONFIRM_ADD_TOKEN_PAGE: "SHOW_CONFIRM_ADD_TOKEN_PAGE",
   SHOW_REMOVE_TOKEN_PAGE: "SHOW_REMOVE_TOKEN_PAGE",
@@ -381,6 +389,12 @@ function _setBackgroundConnection(backgroundConnection) {
 function goHome() {
   return {
     type: actions.GO_HOME,
+  };
+}
+
+function goConfig() {
+  return {
+    type: actions.GO_CONFIG,
   };
 }
 
@@ -1716,7 +1730,7 @@ function unlockMetamask(account) {
 
 function updateMetamaskState(newState) {
   return {
-    type: actions.UPDATE_METAMASK_STATE,
+    type: actions.UPDATE_XDC_STATE,
     value: newState,
   };
 }
@@ -1883,6 +1897,20 @@ function showAddTokenPage(transitionForward = true) {
   return {
     type: actions.SHOW_ADD_TOKEN_PAGE,
     value: transitionForward,
+  };
+}
+
+function generalSettings() {
+  return {
+    type: actions.SHOW_GENSETTINGS_PAGE,
+    // value: transitionForward,
+  };
+}
+
+function advanceSettings() {
+  return {
+    type: actions.SHOW_ADVSETTINGS_PAGE,
+    // value: transitionForward,
   };
 }
 
