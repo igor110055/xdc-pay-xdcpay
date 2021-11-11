@@ -50,13 +50,13 @@ const getExplorerTokenLinkFor = (tokenAddress, account, network) => {
 	const prefix = getExplorerPrefix(network)
 	// const chain = getExplorerChain(network)
 	if (prefix === 'devnetscan') {
-		return `${devLink(prefix)}/tokens/${account}`
+		return `${devLink(prefix)}/tokens/${tokenAddress}`
 	}
 	else if (prefix === 'xinfin') {
-		return `${xdcLink(prefix)}/token/${account}`
+		return `${xdcLink(prefix)}/token/${tokenAddress}`
 	}
 	else
-	return `${xdcLink(prefix)}/tokens/${account}`
+	return `${xdcLink(prefix)}/tokens/${tokenAddress}`
 }
 
 

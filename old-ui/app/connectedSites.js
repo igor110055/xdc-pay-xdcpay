@@ -46,7 +46,7 @@ const DeleteImportedAccount = require('./components/delete-imported-account')
 const ConfirmChangePassword = require('./components/confirm-change-password')
 const ethNetProps = require('xdc-net-props')
 const { getMetaMaskAccounts } = require('../../ui/app/selectors')
-const ConfirmRecoveryPhrase = require('./keychains/hd/confirm-recovery-phrase')
+
 module.exports = compose(
   withRouter,
   connect(mapStateToProps)
@@ -227,7 +227,7 @@ App.prototype.renderPrimary = function () {
   // show seed words screen
   if (props.seedWords) {
     log.debug('rendering seed words')
-    return props.currentView.name === 'confirmRecoveryPhrase' ? h(ConfirmRecoveryPhrase, {key: 'confirm-recovery-phrase'}):h(HDCreateVaultComplete, {key: 'HDCreateVaultComplete'})
+    return h(HDCreateVaultComplete, {key: 'HDCreateVaultComplete'})
   }
 
   // show current view
@@ -235,10 +235,7 @@ App.prototype.renderPrimary = function () {
 
     case 'accountDetail':
       log.debug('rendering account detail screen')
-      return h(AccountDetailScreen, { key: 'account-detail' })
-    case 'confirmRecoveryPhrase':
-        log.debug('rendering Confirm recovery screen')
-        return h(ConfirmRecoveryPhrase, {key: 'confirm-recovery-phrase'})
+      return h(AccountDetailScreen, {key: 'account-detail'})
 
     case 'sendTransaction':
       log.debug('rendering send tx screen')
@@ -340,14 +337,15 @@ App.prototype.renderPrimary = function () {
               marginBottom: '0px',
               textAlign: 'center',
               fontWeight: 'bold',
+              borderBottom: '1px solid #E3E7EB'
             },
-          }, 'QR Code'),
+          }, 'Connected Sites'),
         ]),
-        h('div', [
-          h(AccountQrScreen, {
-            key: 'account-qr',
-          }),
-        ]),
+        // h('div', [
+        //   h(AccountQrScreen, {
+        //     key: 'account-qr',
+        //   }),
+        // ]),
       ])
     case 'delete-rpc':
       log.debug('rendering delete rpc confirmation screen')

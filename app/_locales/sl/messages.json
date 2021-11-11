@@ -286,10 +286,10 @@
   "gasFee": {
     "message": "Gas fee"
   },
-  "gasLimit": {
+  "gas Limit": {
     "message": "Gas limit"
   },
-  "gasLimit": {
+  "gasLimit ": {
     "message": "Priporočen gas limit je izračunan glede na omrežje."
   },
   "gasLimitRequired": {

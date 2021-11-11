@@ -75,7 +75,7 @@ function isTestnet(network) {
     case POA_CORE_CODE:
     case XDAI_CODE:
     case XDC_CODE:
-    // case XDC_DEVNET_CODE:
+    case XDC_DEVNET_CODE:
 
     case CLASSIC_CODE:
       return false;

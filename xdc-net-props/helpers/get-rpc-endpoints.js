@@ -34,9 +34,9 @@ function getRPCEndpoints(network) {
     case XDAI_CODE:
       return ["https://dai.poa.network/"];
     case XDC_CODE:
-      return ["https://explorer.xinfin.network"];
+      return ["https://rpc.xinfin.network"];
     case XDC_TESTNET_CODE:
-      return ["https://explorer.apothem.network"];
+      return ["https://rpc.apothem.network"];
     case XDC_DEVNET_CODE:
       return [" https://devnetrpc.apothem.network"];
     case CLASSIC_CODE:

@@ -211,6 +211,26 @@ class AccountDropdowns extends Component {
         </div>
         <DropdownMenuItem
           closeMenu={() => {}}
+          onClick={() => global.platform.openExtensionInBrowser()}
+        >
+          <img
+            className="account-options-icon"
+            src="/images/Assets/ExpandedView.svg"
+          ></img>
+          Expanded View
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          closeMenu={() => {}}
+          onClick={() => this.connectedSites()}
+        >
+          <img
+            className="account-options-icon"
+            src="/images/Assets/ConnectedSites.svg"
+          ></img>
+          Connected Sites
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          closeMenu={() => {}}
           onClick={() => this.viewOnBlockExplorer()}
         >
           <img
@@ -229,6 +249,16 @@ class AccountDropdowns extends Component {
           ></img>
           Show QR Code
         </DropdownMenuItem>
+        {/* <DropdownMenuItem
+          closeMenu={() => {}}
+          onClick={() => this.connectedSites()}
+        >
+          <img
+            className="account-options-icon"
+            src="/images/Assets/QRCode.svg"
+          ></img>
+          Connected Sites
+        </DropdownMenuItem> */}
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.copyAddress()}
@@ -278,6 +308,12 @@ class AccountDropdowns extends Component {
   };
 
   showQRCode = () => {
+    const { selected, identities, actions } = this.props;
+    const identity = identities[selected];
+    actions.showQrView(selected, identity ? identity.name : "");
+  };
+  
+  connectedSites = () => {
     const { selected, identities, actions } = this.props;
     const identity = identities[selected];
     actions.showQrView(selected, identity ? identity.name : "");

@@ -62,18 +62,18 @@ TokenList.prototype.render = function () {
         padding: '30px',
       },
     }, [
-      'We had trouble loading your token balances. You can view them ',
-      h('span.hotFix', {
-        style: {
-          color: '#60db97',
-          cursor: 'pointer',
-        },
-        onClick: () => {
-          global.platform.openWindow({
-          url: `https://ethplorer.io/address/${userAddress}`,
-        })
-        },
-      }, 'here'),
+      'We had trouble loading your token balances. Please try again. ',
+      // h('span.hotFix', {
+      //   style: {
+      //     color: '#60db97',
+      //     cursor: 'pointer',
+      //   },
+      //   onClick: () => {
+      //     global.platform.openWindow({
+      //     url: `https://ethplorer.io/address/${userAddress}`,
+      //   })
+      //   },
+      // }, 'here'),
     ])
   }
 

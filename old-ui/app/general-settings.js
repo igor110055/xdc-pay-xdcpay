@@ -515,170 +515,14 @@
 //   );
 // }
 
-/* General Settings test**/
 
-const inherits = require("util").inherits;
-const Component = require("react").Component;
-const h = require("react-hyperscript");
-const connect = require("react-redux").connect;
-const actions = require("../../ui/app/actions");
-const LoadingIndicator = require("./components/loading");
-const Web3 = require("web3");
-const infuraCurrencies = require("./infura-conversion.json").objects.sort(
-  (a, b) => {
-    return a.quote.name
-      .toLocaleLowerCase()
-      .localeCompare(b.quote.name.toLocaleLowerCase());
-  }
-);
-const validUrl = require("valid-url");
-const exportAsFile = require("./util").exportAsFile;
-const Modal = require("../../ui/app/components/modals/index").Modal;
-const ethNetProps = require("xdc-net-props");
-const { networks } = require("../../app/scripts/controllers/network/util");
 
-module.exports = connect(mapStateToProps)(ConfigScreen);
 
-function mapStateToProps(state) {
-  return {
-    metamask: state.metamask,
-    warning: state.appState.warning,
-  };
-}
-inherits(ConfigScreen, Component);
-function ConfigScreen() {
-  this.state = {
-    loading: false,
-  };
-  Component.call(this);
-}
 
-ConfigScreen.prototype.render = function () {
-  const state = this.props;
-  const metamaskState = state.metamask;
-  const warning = state.warning;
 
-  return h(
-    ".flex-column.flex-grow",
-    {
-      style: {
-        maxHeight: "585px",
-        overflowY: "auto",
-      },
-    },
-    [
-      h(LoadingIndicator, {
-        isLoading: this.state.loading,
-      }),
-
-      h(Modal, {}, []),
-
-      // subtitle and nav
-      h(".section-title.flex-row",{ style: {borderBottom: '1px solid #E3E7EB',paddingBottom: '17px'},}, [
-        h("img", {
-          onClick: () => {
-            state.dispatch(actions.goHome());
-          },
-          src: "/images/Assets/BackArrow.svg",
-          style: {
-            position: "static",
-            marginLeft: "15px",
-            cursor: "pointer",
-          },
-        }),
-        h(
-          "h2",
-          {
-            style: {
-              marginLeft: "114px",
-              fontWeight: "600",
-              minHeight: '20px',
-              padding: '0px 18px ',
-            },
-          },
-          "General Settings"
-          
-        ),
-        h(
-        function currentConversionInformation(metamaskState, state) {
-          const currentCurrency = metamaskState.currentCurrency;
-          const conversionDate = metamaskState.conversionDate;
-          return h(
-            "div",
-            {
-              style: {
-                marginTop: "15px",
-                marginLeft: "9px",
-              },
-            },
-            [
-              h(
-                "span",
-                { style: { fontWeight: "bold", fontSize: "14px", color: "#2149B9" } },
-                "Current Conversion"
-              ),
-              h("br"),
-              h(
-                "span",
-                { style: { fontSize: "14px", color: "#2A2A2A" } },
-                `Updated ${Date(conversionDate)}`
-              ),
-              h("br"),
-              h(
-                "select#currentCurrency",
-                {
-                  style: {
-                    width: "324px",
-                    height: "40px",
-                    border: "2px solid #C7CDD8",
-                    borderRadius: "4px",
-                    paddingLeft: "5px",
-                    marginTop: "10px",
-                  },
-                  onChange(event) {
-                    event.preventDefault();
-                    const element = document.getElementById("currentCurrency");
-                    const newCurrency = element.value;
-                    state.dispatch(actions.setCurrentCurrency(newCurrency));
-                  },
-                  defaultValue: currentCurrency,
-                },
-                infuraCurrencies.map((currency) => {
-                  return h(
-                    "option",
-                    { key: currency.quote.code, value: currency.quote.code },
-                    `${currency.quote.code.toUpperCase()} - ${currency.quote.name}`
-                  );
-                })
-              ),
-            ]
-          );
-        }),
-        
-        
-
-        
-        
-        
-      ]),
-      // currentConversionInformation(metamaskState, state),
-        
-      
-      
-    ]);
-                
- }
-              
-              
-              
-              
-              
-              /*Latest Settings UI **/
-              
-              
-              // const inherits = require("util").inherits;
-              // const Component = require("react").Component;
-              // const h = require("react-hyperscript");
+// const inherits = require("util").inherits;
+// const Component = require("react").Component;
+// const h = require("react-hyperscript");
 // const connect = require("react-redux").connect;
 // const actions = require("../../ui/app/actions");
 // const LoadingIndicator = require("./components/loading");
@@ -755,55 +599,70 @@ ConfigScreen.prototype.render = function () {
 //               padding: '0px 18px ',
 //             },
 //           },
-//           "Settings"
+//           "General Settings"
 //         ),
 //       ]),
-//       [
+
+//       function currentConversionInformation(metamaskState, state) {
+//         const currentCurrency = metamaskState.currentCurrency;
+//         const conversionDate = metamaskState.conversionDate;
+//         return h(
+//           "div",
+//           {
+//             style: {
+//               marginTop: "15px",
+//               marginLeft: "9px",
+//             },
+//           },
+//           [
+//             h(
+//               "span",
+//               { style: { fontWeight: "bold", fontSize: "14px", color: "#2149B9" } },
+//               "Current Conversion"
+//             ),
+//             h("br"),
+//             h(
+//               "span",
+//               { style: { fontSize: "14px", color: "#2A2A2A" } },
+//               `Updated ${Date(conversionDate)}`
+//             ),
+//             h("br"),
+//             h(
+//               "select#currentCurrency",
+//               {
+//                 style: {
+//                   width: "324px",
+//                   height: "40px",
+//                   border: "2px solid #C7CDD8",
+//                   borderRadius: "4px",
+//                   paddingLeft: "5px",
+//                   marginTop: "10px",
+//                 },
+//                 onChange(event) {
+//                   event.preventDefault();
+//                   const element = document.getElementById("currentCurrency");
+//                   const newCurrency = element.value;
+//                   state.dispatch(actions.setCurrentCurrency(newCurrency));
+//                 },
+//                 defaultValue: currentCurrency,
+//               },
+//               infuraCurrencies.map((currency) => {
+//                 return h(
+//                   "option",
+//                   { key: currency.quote.code, value: currency.quote.code },
+//                   `${currency.quote.code.toUpperCase()} - ${currency.quote.name}`
+//                 );
+//               })
+//             ),
+//           ]
+//         );
+//       }
 
        
-//         h('.settings',  ['General Settings' ,
-//           h('img', {
-//             src: "/images/Assets/Arrow.svg",            
-//           }),
-//         ]),
         
-//         h('.settings', ['Advance Settings',
-//           h('img', {
-//             src: "/images/Assets/Arrow.svg",            
-//           }),
-//         ]),
         
-//         h('.settings', ['Security and Privacy Settings',
-//           h('img', {
-//             src: "/images/Assets/Arrow.svg",            
-//           }),
-//         ]),
         
-//         h('.settings', ['Contacts',
-//           h('img', {
-//             src: "/images/Assets/Arrow.svg",            
-//           }),
-//         ]),
-        
-//         h('.settings', ['Alert Settings',
-//           h('img', {
-//             src: "/images/Assets/Arrow.svg",            
-//           }),
-//         ]),
-        
-//         h('.settings', ['Network Settings',
-//           h('img', {
-//             src: "/images/Assets/Arrow.svg",            
-//           }),
-//         ]),
-        
-//         h('.settings',  ['About',
-//           h('img', {
-//             src: "/images/Assets/Arrow.svg",            
-//           }),
-//         ]),
-        
-//       ],
+      
 //     ]);
 // }
     
