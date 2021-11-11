@@ -199,7 +199,7 @@ AccountDetailScreen.prototype.render = function () {
                       overflow: 'hidden',
                       textOverflow: 'ellipsis',
                       paddingTop: '5px',
-                      width: '8em',
+                      width: '9em',
                       height: '15px',
                       fontSize: '12px',
                       fontFamily: 'Inter-Regular',
