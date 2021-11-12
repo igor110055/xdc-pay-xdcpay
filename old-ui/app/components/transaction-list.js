@@ -44,7 +44,11 @@ TransactionList.prototype.render = function () {
       h('.tx-list', {
         style: {
           overflowY: 'auto',
+<<<<<<< HEAD
           padding: '0 13px 20px 13px',
+=======
+          padding: '0px 13px 20px 13px',
+>>>>>>> f9e374d7e47752cacc25d70f01da3e9644347b2b
           textAlign: 'center',
         },
       }, [

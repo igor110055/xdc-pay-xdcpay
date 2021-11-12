@@ -52,9 +52,13 @@ class SendProfile extends Component {
 					background: '#F8F8F8',
 					border: '2px solid #C7CDD8',
 					borderRadius: '4px',
+<<<<<<< HEAD
 					width:'269px',
+=======
+					width:'265px',
+>>>>>>> f9e374d7e47752cacc25d70f01da3e9644347b2b
 					height: '32px',
-					// paddingLef	t: '9px',
+					paddingLeft: '9px',
 					paddingTop: '4px',
 				}}>
 				<div className="flex-row" style={{ alignItems: 'flex-start' }} >
@@ -63,6 +67,7 @@ class SendProfile extends Component {
 						style={{
 							color: '#2A2A2A',
 							fontSize: '14px',
+							marginLeft: '-1px',
 						}}
 					>{identity && identity.name}</div>
 					{/* address and getter actions */}
@@ -71,8 +76,8 @@ class SendProfile extends Component {
 						style={{
 							color: '#2A2A2A',
 							fontSize: '14px',
-							paddingLeft: '4px',
-							paddingRight: '4px',
+							paddingLeft: '1.9px',
+							// paddingRight: '4px',
 						}}
 					>
 						-
