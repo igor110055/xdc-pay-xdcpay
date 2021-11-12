@@ -52,11 +52,7 @@ class SendProfile extends Component {
 					background: '#F8F8F8',
 					border: '2px solid #C7CDD8',
 					borderRadius: '4px',
-<<<<<<< HEAD
-					width:'269px',
-=======
 					width:'265px',
->>>>>>> f9e374d7e47752cacc25d70f01da3e9644347b2b
 					height: '32px',
 					paddingLeft: '9px',
 					paddingTop: '4px',
