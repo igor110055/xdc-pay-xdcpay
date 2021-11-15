@@ -53,9 +53,9 @@ module.exports = compose(
 )(App)
 
 inherits(App, Component)
-function App () { Component.call(this) }
+function App() { Component.call(this) }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
 
   const accounts = getMetaMaskAccounts(state)
 
@@ -162,7 +162,7 @@ App.prototype.renderLoadingIndicator = function ({ isLoading, isLoadingNetwork, 
 App.prototype.renderPrimary = function () {
   log.debug('rendering primary')
   var props = this.props
-  const {isMascara, isOnboarding} = props
+  const { isMascara, isOnboarding } = props
 
   if (isMascara && isOnboarding) {
     return h(MascaraFirstTime)
@@ -198,11 +198,11 @@ App.prototype.renderPrimary = function () {
 
       case 'restoreVault':
         log.debug('rendering restore vault screen')
-        return h(HDRestoreVaultScreen, {key: 'HDRestoreVaultScreen'})
+        return h(HDRestoreVaultScreen, { key: 'HDRestoreVaultScreen' })
 
       default:
         log.debug('rendering menu screen')
-        return h(InitializeMenuScreen, {key: 'menuScreenInit'})
+        return h(InitializeMenuScreen, { key: 'menuScreenInit' })
     }
   }
 
@@ -212,22 +212,22 @@ App.prototype.renderPrimary = function () {
 
       case 'restoreVault':
         log.debug('rendering restore vault screen')
-        return h(HDRestoreVaultScreen, {key: 'HDRestoreVaultScreen'})
+        return h(HDRestoreVaultScreen, { key: 'HDRestoreVaultScreen' })
 
       case 'config':
         log.debug('rendering config screen from unlock screen.')
-        return h(ConfigScreen, {key: 'config'})
+        return h(ConfigScreen, { key: 'config' })
 
       default:
         log.debug('rendering locked screen')
-        return h(UnlockScreen, {key: 'locked'})
+        return h(UnlockScreen, { key: 'locked' })
     }
   }
 
   // show seed words screen
   if (props.seedWords) {
     log.debug('rendering seed words')
-    return h(HDCreateVaultComplete, {key: 'HDCreateVaultComplete'})
+    return h(HDCreateVaultComplete, { key: 'HDCreateVaultComplete' })
   }
 
   // show current view
@@ -235,79 +235,79 @@ App.prototype.renderPrimary = function () {
 
     case 'accountDetail':
       log.debug('rendering account detail screen')
-      return h(AccountDetailScreen, {key: 'account-detail'})
+      return h(AccountDetailScreen, { key: 'account-detail' })
 
     case 'sendTransaction':
       log.debug('rendering send tx screen')
-      return h(SendTransactionScreen, {key: 'send-transaction'})
+      return h(SendTransactionScreen, { key: 'send-transaction' })
 
     case 'sendToken':
       log.debug('rendering send token tx screen')
-      return h(SendTokenScreen, {key: 'send-token'})
+      return h(SendTokenScreen, { key: 'send-token' })
 
     case 'sendContract':
       log.debug('rendering send contract tx screen')
-      return h(SendContractScreen, {key: 'send-contract'})
+      return h(SendContractScreen, { key: 'send-contract' })
 
     case 'show-choose-contract-executor-page':
       log.debug('rendering choose contract executor screen')
-      return h(ChooseContractExecutorScreen, {key: 'show-choose-contract-executor-page'})
+      return h(ChooseContractExecutorScreen, { key: 'show-choose-contract-executor-page' })
 
     case 'newKeychain':
       log.debug('rendering new keychain screen')
-      return h(NewKeyChainScreen, {key: 'new-keychain'})
+      return h(NewKeyChainScreen, { key: 'new-keychain' })
 
     case 'confTx':
       log.debug('rendering confirm tx screen')
-      return h(ConfirmTxScreen, {key: 'confirm-tx'})
+      return h(ConfirmTxScreen, { key: 'confirm-tx' })
 
     case 'add-token':
       log.debug('rendering add-token screen from unlock screen.')
-      return h(AddTokenScreen, {key: 'add-token'})
+      return h(AddTokenScreen, { key: 'add-token' })
 
     case 'confirm-add-token':
       log.debug('rendering confirm-add-token screen from unlock screen.')
-      return h(ConfirmAddTokenScreen, {key: 'confirm-add-token'})
+      return h(ConfirmAddTokenScreen, { key: 'confirm-add-token' })
 
     case 'remove-token':
       log.debug('rendering remove-token screen from unlock screen.')
-      return h(RemoveTokenScreen, {key: 'remove-token', ...props.currentView.context })
+      return h(RemoveTokenScreen, { key: 'remove-token', ...props.currentView.context })
 
     case 'add-suggested-token':
       log.debug('rendering add-suggested-token screen from unlock screen.')
-      return h(AddSuggestedTokenScreen, {key: 'add-suggested-token'})
+      return h(AddSuggestedTokenScreen, { key: 'add-suggested-token' })
 
     case 'config':
       log.debug('rendering config screen')
-      return h(ConfigScreen, {key: 'config'})
+      return h(ConfigScreen, { key: 'config' })
 
     case 'import-menu':
       log.debug('rendering import screen')
-      return h(Import, {key: 'import-menu'})
+      return h(Import, { key: 'import-menu' })
 
     case 'forget-device':
       log.debug('rendering forget device screen')
-      return h(ForgetDeviceScreen, {key: 'forget-device'})
+      return h(ForgetDeviceScreen, { key: 'forget-device' })
 
     case 'hardware-wallets-menu':
       log.debug('rendering hardware wallet menu screen')
-      return h(ConnectHardwareForm, {key: 'hardware-wallets-menu'})
+      return h(ConnectHardwareForm, { key: 'hardware-wallets-menu' })
 
     case 'reveal-seed-conf':
       log.debug('rendering reveal seed confirmation screen')
-      return h(RevealSeedConfirmation, {key: 'reveal-seed-conf'})
+      return h(RevealSeedConfirmation, { key: 'reveal-seed-conf' })
 
     case 'info':
       log.debug('rendering info screen')
-      return h(InfoScreen, {key: 'info'})
+      return h(InfoScreen, { key: 'info' })
 
     case 'buyEth':
       log.debug('rendering buy ether screen')
-      return h(BuyView, {key: 'buyEthView'})
+      return h(BuyView, { key: 'buyEthView' })
 
     case 'onboardingBuyEth':
       log.debug('rendering onboarding buy ether screen')
-      return h(MascaraBuyEtherScreen, {key: 'buyEthView'})
+      return h(MascaraBuyEtherScreen, { key: 'buyEthView' })
 
     case 'qr':
       log.debug('rendering show qr screen')
@@ -319,8 +319,9 @@ App.prototype.renderPrimary = function () {
           width: '100%',
         },
       }, [
-        h('.section-title.flex-row.flex-center', {style:{marginTop: '38px',},},[
-          h('img', { src: "/images/Assets/BackArrow.svg",
+        h('.section-title.flex-row.flex-center', { style: { marginTop: '38px', }, }, [
+          h('img', {
+            src: "/images/Assets/BackArrow.svg",
             onClick: () => props.dispatch(actions.backToAccountDetail(props.selectedAddress)),
             style: {
               marginLeft: '15px',
@@ -349,16 +350,16 @@ App.prototype.renderPrimary = function () {
       ])
     case 'delete-rpc':
       log.debug('rendering delete rpc confirmation screen')
-      return h(DeleteRpc, {key: 'delete-rpc'})
+      return h(DeleteRpc, { key: 'delete-rpc' })
     case 'delete-imported-account':
       log.debug('rendering delete imported account confirmation screen')
-      return h(DeleteImportedAccount, {key: 'delete-imported-account'})
+      return h(DeleteImportedAccount, { key: 'delete-imported-account' })
     case 'confirm-change-password':
       log.debug('rendering confirm password changing screen')
-      return h(ConfirmChangePassword, {key: 'confirm-change-password'})
+      return h(ConfirmChangePassword, { key: 'confirm-change-password' })
     default:
       log.debug('rendering default, account detail screen')
-      return h(AccountDetailScreen, {key: 'account-detail'})
+      return h(AccountDetailScreen, { key: 'account-detail' })
   }
 }
 
