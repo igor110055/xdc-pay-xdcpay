@@ -1,18 +1,27 @@
-const inherits = require('util').inherits
 const EventEmitter = require('events').EventEmitter
-const Component = require('react').Component
 const connect = require('react-redux').connect
 const h = require('react-hyperscript')
 const actions = require('../../../ui/app/actions')
-const Tooltip = require('../components/tooltip')
+const React = require('react')
+
+class InitializeMenuScreen extends React.Component {
+  constructor (props) {
+    super(props)
+    this.animationEventEmitter = new EventEmitter()
+    this.state = {
+    }
+  }
+
+  render () {
+    const state = this.props
+    switch (state.currentView.name) {
+      default:
+        return this.renderMenu(state)
+    }
+  }
+}
 
 module.exports = connect(mapStateToProps)(InitializeMenuScreen)
-
-inherits(InitializeMenuScreen, Component)
-function InitializeMenuScreen () {
-  Component.call(this)
-  this.animationEventEmitter = new EventEmitter()
-}
 
 function mapStateToProps (state) {
   return {
@@ -22,95 +31,43 @@ function mapStateToProps (state) {
   }
 }
 
-InitializeMenuScreen.prototype.render = function () {
-  var state = this.props
-
-  switch (state.currentView.name) {
-
-    default:
-      return this.renderMenu(state)
-
-  }
-}
-
-// InitializeMenuScreen.prototype.componentDidMount = function(){
-//   document.getElementById('password-box').focus()
-// }
-
 InitializeMenuScreen.prototype.renderMenu = function (state) {
   return (
-
     h('.initialize-screen.flex-column.flex-center.flex-grow', [
-
-      // disable fox's animation
-      /* h(Mascot, {
-        animationEventEmitter: this.animationEventEmitter,
-      }),*/
-
       h('.logo'),
-
-      // h('h1', {
-      //   style: {
-      //     paddingTop: '50px',
-      //     fontSize: '1.3em',
-      //     color: '#ffffff',
-      //     marginBottom: 10,
-      //   },
-      // }, 'XDCPay'),
-
-
-      h('div',{
-        style:{
-          marginTop: '40px',
-          display: 'flex',
-          flexDirection: 'row-reverse',
-          marginLeft: '-22px',
-        },
-      }, 
-        [
-        h('h3', {
+      h('div', {
           style: {
-            fontSize: '15px',
-            color: '#2a2a2a',
-            display: 'inline',
-            fontWeight: 'bold',
+            marginTop: '40px',
+            display: 'flex',
+            flexDirection: 'row-reverse',
+            marginLeft: '-22px',
           },
-        }, 'Encrypt your new DEN'),
-
-      //   h(Tooltip, {
-      //     title: 'Your DEN is your password-encrypted storage within XDCPay.',
-      //   }, [
-      //     h('img', { src: "/images/Assets/QuestionMark.svg",
-      //       style: {
-      //         position: 'relative',
-      //         top: '3px',
-      //         marginLeft: '6px',
-      //         marginTop: '48px',
-      //       },
-      //     }),
-      //   ]),
-      h('div',{className:'tooltip'},
-      [
-        h('img', { src: "/images/Assets/QuestionMark.svg",
+        },
+        [
+          h('h3', {
             style: {
-              marginRight: '-22px',
-              paddingTop: '3px',
-              paddingLeft: '5px'
-              },
-        }),
-        // h('img', onmouseover={ src: "/images/Assets/QuestionMarkActive.svg",
-        //     style: {
-        //       marginRight: '-22px',
-        //       paddingTop: '3px',
-        //       paddingLeft: '5px'
-        //       },
-        //     }),
-        h('span',{className: 'tooltiptext'},
-          'Your DEN is your password-encrypted Storage within XDC Pay'
-        ),
-      ]
-      )
-      ]),
+              fontSize: '15px',
+              color: '#2a2a2a',
+              display: 'inline',
+              fontWeight: 'bold',
+            },
+          }, 'Encrypt your new DEN'),
+          h('div', {className: 'tooltip'},
+            [
+              h('img', {
+                src: '/images/Assets/QuestionMark.svg',
+                style: {
+                  marginRight: '-22px',
+                  paddingTop: '3px',
+                  paddingLeft: '5px',
+                },
+              }),
+              h('span', {className: 'tooltiptext'},
+                'Your DEN is your password-encrypted Storage within XDC Pay',
+              ),
+            ],
+          ),
+        ]),
 
       state.warning ? h('div', {
         style: {
