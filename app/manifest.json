@@ -16,8 +16,8 @@
     }
   },
   "icons": {
-    "16": "images/Assets/XDC-icon-16X16.png",
-    "128": "images/Assets/XDC-icon-128X128.png"
+    "16": "images/Assets/xdc-icon-16X16.png",
+    "128": "images/Assets/xdc-icon-128X128.png"
   },
   "applications": {
     "gecko": {
@@ -34,8 +34,8 @@
   },
   "browser_action": {
     "default_icon": {
-      "19": "images/Assets/XDC-icon.png",
-      "38": "images/Assets/XDC-icon-48X48.png"
+      "19": "images/Assets/xdc-icon.png",
+      "38": "images/Assets/xdc-icon-48X48.png"
     },
     "default_title": "XDCPay",
     "default_popup": "popup.html"

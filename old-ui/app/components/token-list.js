@@ -6,8 +6,9 @@ const TokenCell = require('./token-cell.js')
 const connect = require('react-redux').connect
 const selectors = require('../../../ui/app/selectors')
 const log = require('loglevel')
+import { XDC_TESTNET_CODE, GOERLI_TESTNET_CODE, XDC_CODE, XDC_DEVNET_CODE  } from '../../../app/scripts/controllers/network/enums'
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     network: state.metamask.network,
     tokens: state.metamask.tokens,

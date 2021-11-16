@@ -295,7 +295,7 @@ PendingTx.prototype.render = function () {
           h('.flex-row.flex-center', {
             style: {
               maxWidth: '100%',
-              padding: showRejectAll ? '0 0 30px 0' : '0 0 30px 0',
+              padding: showRejectAll ? '0 0 20px 0' : '0 0 20px 0',
               background: '#FFFFFF',
               position: 'relative',
             },
@@ -378,7 +378,7 @@ PendingTx.prototype.render = function () {
           h('.table-box', {
             style: {
               overflowY: 'scroll',
-              height: '284px',
+              height: '265px',
               width: 'fit-content',
             },
           }, [
@@ -407,7 +407,7 @@ PendingTx.prototype.render = function () {
 
             // Gas Limit (customizable)
             h('.cell.row', [
-              h('.cell.label', { style: { marginTop: '30px' }, }, 'Gas Limit (Units)'),
+              h('.cell.label', { style: { marginTop: '20px' }, }, 'Gas Limit (Units)'),
               h('.cell.value', {
               }, [
                 h(BNInput, {
@@ -433,7 +433,7 @@ PendingTx.prototype.render = function () {
 
             // Gas Price (customizable)
             h('.cell.row', [
-              h('.cell.label', { style: { marginTop: '30px' }, }, 'Gas Price (GWEI)'),
+              h('.cell.label', { style: { marginTop: '20px' }, }, 'Gas Price (GWEI)'),
               h('.cell.value', {
               }, [
                 h(BNInput, {
@@ -456,7 +456,7 @@ PendingTx.prototype.render = function () {
 
             // Max Transaction Fee (calculated)
             h('.cell.row', [
-              h('.cell.label', { style: { marginTop: '30px' }, }, 'Max Transaction Fee'),
+              h('.cell.label', { style: { marginTop: '20px' }, }, 'Max Transaction Fee'),
               h(EthBalance, {
                 valueStyle,
                 dimStyle,
@@ -472,7 +472,7 @@ PendingTx.prototype.render = function () {
                 fontFamily: 'Inter-Regular',
               },
             }, [
-              h('.cell.label', { style: { marginTop: '30px' }, }, 'Max Total'),
+              h('.cell.label', { style: { marginTop: '20px' }, }, 'Max Total'),
               h('.cell.value', {
                 style: {
                   display: 'flex',
@@ -525,7 +525,7 @@ PendingTx.prototype.render = function () {
           style: {
             display: 'flex',
             justifyContent: 'flex-end',
-            marginTop: '22px',
+            marginTop: '20px',
           },
         }, [
           h('button.cancel.btn-red', {
