@@ -1,5 +1,4 @@
 const connect = require('react-redux').connect
-const h = require('react-hyperscript')
 const actions = require('../../../../ui/app/actions')
 const React = require('react')
 
@@ -28,22 +27,6 @@ class ConfirmRecoveryPhrase extends React.Component {
     // const img = () => (<img src='/images/Assets/Check-Green.svg' />);
     
     return (
-      // h('.flex-column', [
-      //   h('h3.flex-center.section-title', {
-      //     style: {
-      //       color: '#333333',
-      //       fontWeight: '600',
-      //       justifyContent: 'space-between',
-      //       // marginLeft: '24px',
-      //       marginRight: '36px',
-      //     },
-      //   }, [
-      //     h('img', {
-      //       onClick: () => this.dispatch(actions.CreateVaultCompleteScreen()),
-      //       // onClick: () => this.dispatch(actions.showNewVaultSeed(seed)),
-            
-      //     'Confirm Recovery Phrase',
-      //   ]),
       <div>
         <div>         
           <row className="h3 flex-center section-title" style={{
@@ -112,9 +95,7 @@ class ConfirmRecoveryPhrase extends React.Component {
             }}
             // disabled={!isValid}
             onClick={() => this.confirmSeedWords()
-              .then(account => this.showAccountDetail(account))}
-        >
-                      Confirm Recovery Phrase
+              .then(account => this.showAccountDetail(account))}> Confirm Recovery Phrase
           </div>
         </div>
       </div>
@@ -204,9 +185,6 @@ ConfirmRecoveryPhrase.prototype.confirmSeedWords = function () {
   // }
 }
 
-// ConfirmRecoveryPhrase.prototype.confirmSeedWords = function () {
-//   return this.props.dispatch(actions.confirmSeedWords())
-// }
 
 ConfirmRecoveryPhrase.prototype.showAccountDetail = function (account) {
   return this.props.dispatch(actions.showAccountDetail(account))

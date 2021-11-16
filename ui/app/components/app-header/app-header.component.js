@@ -113,7 +113,7 @@ export default class AppHeader extends PureComponent {
             />
             <img
               className="app-header__metafox-logo app-header__metafox-logo--icon"
-              src="/images/logo/XDC-icon-16X16.png"
+              src="/images/logo/xdc-icon-16X16.png"
               height={42}
               width={42}
             />
