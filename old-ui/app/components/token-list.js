@@ -50,12 +50,14 @@ TokenList.prototype.render = function () {
   const state = this.state
   const { tokens, isLoading, error } = state
   const { userAddress, network } = this.props
-
+  const isTestnet = parseInt(network) === XDC_TESTNET_CODE
+  const isMainnet = parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
+  const isDevnet =  parseInt(network) === XDC_DEVNET_CODE 
   if (isLoading) {
     return this.message('Loading')
   }
 
-  if (error) {
+  if (error &&  isMainnet) {
     log.error(error)
     return h('.hotFix', {
       style: {
@@ -63,17 +65,63 @@ TokenList.prototype.render = function () {
       },
     }, [
       'We had trouble loading your token balances. Please try again. ',
-      // h('span.hotFix', {
-      //   style: {
-      //     color: '#60db97',
-      //     cursor: 'pointer',
-      //   },
-      //   onClick: () => {
-      //     global.platform.openWindow({
-      //     url: `https://ethplorer.io/address/${userAddress}`,
-      //   })
-      //   },
-      // }, 'here'),
+      h('span.hotFix', {
+        style: {
+          color: '#60db97',
+          cursor: 'pointer',
+        },
+        onClick: () => {
+          global.platform.openWindow({
+          url: `https://explorer.xinfin.network/token/${userAddress}`,
+        })
+        },
+      }, 'here'),
+    ])
+  }
+
+
+
+  if (error && isTestnet) {
+    log.error(error)
+    return h('.hotFix', {
+      style: {
+        padding: '30px',
+      },
+    }, [
+      'We had trouble loading your token balances. Please try again. ',
+      h('span.hotFix', {
+        style: {
+          color: '#60db97',
+          cursor: 'pointer',
+        },
+        onClick: () => {
+          global.platform.openWindow({
+          url: `https://explorer.apothem.network/token/${userAddress}`,
+        })
+        },
+      }, 'here'),
+    ])
+  }
+
+  if (error && isDevnet) {
+    log.error(error)
+    return h('.hotFix', {
+      style: {
+        padding: '30px',
+      },
+    }, [
+      'We had trouble loading your token balances. Please try again. ',
+      h('span.hotFix', {
+        style: {
+          color: '#60db97',
+          cursor: 'pointer',
+        },
+        onClick: () => {
+          global.platform.openWindow({
+          url: `https://devnet.apothem.network/tokens/${userAddress}`,
+        })
+        },
+      }, 'here'),
     ])
   }
 
