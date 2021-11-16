@@ -35,7 +35,7 @@ RestoreVaultScreen.prototype.render = function () {
         background: '#E3E7EB',
         marginTop: '-38px',
       }},
-        h('img', {style: { marginTop:'8px', marginLeft:'9px' }, src: "/images/Assets/XDC-icon-16X16.png"} ),
+        h('img', {style: { marginTop:'8px', marginLeft:'9px' }, src: "/images/Assets/xdc-icon-16X16.png"} ),
       ),
       h('.initialize-screen.flex-column.flex-center.flex-grow', {
         style: {

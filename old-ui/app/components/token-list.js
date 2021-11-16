@@ -6,8 +6,9 @@ const TokenCell = require('./token-cell.js')
 const connect = require('react-redux').connect
 const selectors = require('../../../ui/app/selectors')
 const log = require('loglevel')
+import { XDC_TESTNET_CODE, GOERLI_TESTNET_CODE, XDC_CODE, XDC_DEVNET_CODE  } from '../../../app/scripts/controllers/network/enums'
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     network: state.metamask.network,
     tokens: state.metamask.tokens,
@@ -50,19 +51,21 @@ TokenList.prototype.render = function () {
   const state = this.state
   const { tokens, isLoading, error } = state
   const { userAddress, network } = this.props
-
+  const isTestnet = parseInt(network) === XDC_TESTNET_CODE
+  const isMainnet = parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
+  const isDevnet =  parseInt(network) === XDC_DEVNET_CODE 
   if (isLoading) {
     return this.message('Loading')
   }
 
-  if (error) {
+  if (error &&  isMainnet) {
     log.error(error)
     return h('.hotFix', {
       style: {
         padding: '30px',
       },
     }, [
-      'We had trouble loading your token balances. You can view them ',
+      'We had trouble loading your token balances. Please try again. ',
       h('span.hotFix', {
         style: {
           color: '#60db97',
@@ -70,7 +73,53 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://ethplorer.io/address/${userAddress}`,
+          url: `https://explorer.xinfin.network/token/${userAddress}`,
+        })
+        },
+      }, 'here'),
+    ])
+  }
+
+
+
+  if (error && isTestnet) {
+    log.error(error)
+    return h('.hotFix', {
+      style: {
+        padding: '30px',
+      },
+    }, [
+      'We had trouble loading your token balances. Please try again. ',
+      h('span.hotFix', {
+        style: {
+          color: '#60db97',
+          cursor: 'pointer',
+        },
+        onClick: () => {
+          global.platform.openWindow({
+          url: `https://explorer.apothem.network/token/${userAddress}`,
+        })
+        },
+      }, 'here'),
+    ])
+  }
+
+  if (error && isDevnet) {
+    log.error(error)
+    return h('.hotFix', {
+      style: {
+        padding: '30px',
+      },
+    }, [
+      'We had trouble loading your token balances. Please try again. ',
+      h('span.hotFix', {
+        style: {
+          color: '#60db97',
+          cursor: 'pointer',
+        },
+        onClick: () => {
+          global.platform.openWindow({
+          url: `https://devnet.apothem.network/tokens/${userAddress}`,
         })
         },
       }, 'here'),

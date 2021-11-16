@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="76.487" height="92.478" viewBox="0 0 76.487 92.478">
   <g id="XDCPay" transform="translate(-34 -57.385)">
-    <g id="XDC-Icon" transform="translate(40 57.385)">
+    <g id="xdc-icon" transform="translate(40 57.385)">
       <path id="Combined_Shape" data-name="Combined Shape" d="M31.979,64.356A32.184,32.184,0,0,1,0,35.791l7.225-3.612L0,28.566a32.181,32.181,0,0,1,63.955,0L56.73,32.179l7.225,3.612A32.182,32.182,0,0,1,31.979,64.356Z" fill="#2149b9"/>
       <path id="X" d="M4.975,24.637,10.288,15.6l5.3,9.036h4.992l-7.614-12.42L20.406,0H15.466L10.288,8.9,5.11,0H.169L7.631,12.217,0,24.637Z" transform="translate(21.636 19.918)" fill="#fff"/>
     </g>
