@@ -5,6 +5,7 @@ const connect = require("react-redux").connect;
 const actions = require("../../ui/app/actions");
 const LoadingIndicator = require("./components/loading");
 const Web3 = require("web3");
+const {useState,setState} 
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
   (a, b) => {
     return a.quote.name
@@ -36,11 +37,11 @@ class AdvanceSettings extends React.Component{
             <h2 style={{ marginLeft:'88px'}}>Advances Settings</h2>
             </div>
             <div style={{
-                padding: ' 27px 17px 22px 15px ',
+                padding: ' 15px 17px 20px 15px ',
                 borderBottom: '1px solid #E3E7EB',
             }}>
                 <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>State Logs</span><br />
-                <p style={{fontSize:'14px'}}>State logs contain your public account addresses and sent transactions.</p><br />
+                <p style={{fontSize:'14px', marginBottom:'15px'}}>State logs contain your public account addresses and sent transactions.</p>
                 <button style={{ width: "324px", height: "40px", color: "#03BE46", background: "#FFFFFF", border: "2px solid #03BE46", fontWeight: "600", }}
                     onClick={(event) => {
                         window.logStateString((err, result) => {
@@ -57,11 +58,11 @@ class AdvanceSettings extends React.Component{
                 
                 </div>
                 <div style={{
-                padding: ' 27px 17px 22px 15px ',
+                padding: ' 15px 17px 20px 15px ',
                 borderBottom: '1px solid #E3E7EB',
             }}>
                 <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Reset Logs</span><br />
-                <p style={{fontSize:'14px'}}>Resetting your account will clear your transaction history. This will not change the balances in your accounts or require you to re-enter your Secret Recovery Phrase.</p><br />
+                <p style={{fontSize:'14px',marginBottom:'15px'}}>Resetting your account will clear your transaction history. This will not change the balances in your accounts or require you to re-enter your Secret Recovery Phrase.</p>
                 <button style={{ width: "324px", height: "40px", color: "#FF0035", background: "#FFFFFF", border: "2px solid #FF0035", fontWeight: "600", }}
                     onClick={(event) => {
                         window.logStateString((err, result) => {
@@ -77,11 +78,11 @@ class AdvanceSettings extends React.Component{
                                     }) }}>Reset Account</button>
                 </div>
                 <div style={{
-                padding: ' 27px 17px 22px 15px ',
+                padding: ' 15px 17px 20px 15px ',
                 borderBottom: '1px solid #E3E7EB',
             }}>
                 <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Advanced gas controls</span><br />
-                <p style={{fontSize:'14px'}}>Select this to show gas price and limit controls directly on the send and confirm screens.</p><br />
+                <p style={{fontSize:'14px',marginBottom:'15px'}}>Select this to show gas price and limit controls directly on the send and confirm screens.</p>
                 <label className="switch">
                 <input type="checkbox"/>
                 <span className="slider round"></span>
