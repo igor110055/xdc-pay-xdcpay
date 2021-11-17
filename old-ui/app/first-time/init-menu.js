@@ -102,10 +102,10 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
         borderRadius: 4,
       },
     }),
-    h(
-      PasswordStrengthMeter
-      // [h("div.error", this.state.class)]
-    ),
+    // h(
+    //   PasswordStrengthMeter
+    //   // [h("div.error", this.state.class)]
+    // ),
     // confirm password
     h("input.large-input", {
       type: "password",
