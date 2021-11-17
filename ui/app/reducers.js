@@ -56,14 +56,19 @@ window.logStateString = function (cb) {
   const state = window.METAMASK_CACHED_LOG_STATE
   const version = global.platform.getVersion()
   const browser = window.navigator.userAgent
+  const xdcState = {}
+  
   return global.platform.getPlatformInfo((err, platform) => {
     if (err) {
       return cb(err)
     }
-    state.version = version
-    state.platform = platform
-    state.browser = browser
-    const stateString = JSON.stringify(state, removeSeedWords, 2)
+    console.log(state,'$$$$$')
+    xdcState.xdc = state.metamask
+  
+    xdcState.version = version
+    xdcState.platform = platform
+    xdcState.browser = browser
+    const stateString = JSON.stringify(xdcState, removeSeedWords, 2)
     return cb(null, stateString)
   })
 }

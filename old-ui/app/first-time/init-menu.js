@@ -1,20 +1,28 @@
-const inherits = require("util").inherits;
 const EventEmitter = require("events").EventEmitter;
-const Component = require("react").Component;
 const connect = require("react-redux").connect;
 const h = require("react-hyperscript");
 const actions = require("../../../ui/app/actions");
-// const PasswordStrengthMeter = require("../../../old-ui/app/components/passwordStrengthMeter");
+const React = require("react");
+import PasswordStrengthMeter from "../../../old-ui/app/components/PasswordStrengthMeter";
+class InitializeMenuScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.animationEventEmitter = new EventEmitter();
+    this.state = {
+      class: "JIII",
+    };
+  }
 
-const Tooltip = require("../components/tooltip");
+  render() {
+    const state = this.props;
+    switch (state.currentView.name) {
+      default:
+        return this.renderMenu(state);
+    }
+  }
+}
 
 module.exports = connect(mapStateToProps)(InitializeMenuScreen);
-
-inherits(InitializeMenuScreen, Component);
-function InitializeMenuScreen() {
-  Component.call(this);
-  this.animationEventEmitter = new EventEmitter();
-}
 
 function mapStateToProps(state) {
   return {
@@ -24,37 +32,9 @@ function mapStateToProps(state) {
   };
 }
 
-InitializeMenuScreen.prototype.render = function () {
-  var state = this.props;
-
-  switch (state.currentView.name) {
-    default:
-      return this.renderMenu(state);
-  }
-};
-
-// InitializeMenuScreen.prototype.componentDidMount = function(){
-//   document.getElementById('password-box').focus()
-// }
-
 InitializeMenuScreen.prototype.renderMenu = function (state) {
   return h(".initialize-screen.flex-column.flex-center.flex-grow", [
-    // disable fox's animation
-    /* h(Mascot, {
-        animationEventEmitter: this.animationEventEmitter,
-      }),*/
-
     h(".logo"),
-
-    // h('h1', {
-    //   style: {
-    //     paddingTop: '50px',
-    //     fontSize: '1.3em',
-    //     color: '#ffffff',
-    //     marginBottom: 10,
-    //   },
-    // }, 'XDCPay'),
-
     h(
       "div",
       {
@@ -78,19 +58,6 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
           },
           "Encrypt your new DEN"
         ),
-
-        //   h(Tooltip, {
-        //     title: 'Your DEN is your password-encrypted storage within XDCPay.',
-        //   }, [
-        //     h('img', { src: "/images/Assets/QuestionMark.svg",
-        //       style: {
-        //         position: 'relative',
-        //         top: '3px',
-        //         marginLeft: '6px',
-        //         marginTop: '48px',
-        //       },
-        //     }),
-        //   ]),
         h("div", { className: "tooltip" }, [
           h("img", {
             src: "/images/Assets/QuestionMark.svg",
@@ -100,13 +67,6 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
               paddingLeft: "5px",
             },
           }),
-          // h('img', onmouseover={ src: "/images/Assets/QuestionMarkActive.svg",
-          //     style: {
-          //       marginRight: '-22px',
-          //       paddingTop: '3px',
-          //       paddingLeft: '5px'
-          //       },
-          //     }),
           h(
             "span",
             { className: "tooltiptext" },
@@ -142,7 +102,10 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
         borderRadius: 4,
       },
     }),
-
+    h(
+      PasswordStrengthMeter
+      // [h("div.error", this.state.class)]
+    ),
     // confirm password
     h("input.large-input", {
       type: "password",
