@@ -25,6 +25,7 @@ const {
   hasUnconfirmedTransactions,
 } = require("./helpers/confirm-transaction/util");
 const WebcamUtils = require("../lib/webcam-utils");
+const { retry } = require("async");
 
 var actions = {
   _setBackgroundConnection: _setBackgroundConnection,
@@ -37,6 +38,8 @@ var actions = {
   MODAL_OPEN: "UI_MODAL_OPEN",
   MODAL_CLOSE: "UI_MODAL_CLOSE",
   showModal: showModal,
+  SHOW_SEEDWORDS: "SHOW_SEEDWORDS",
+  showSeedWords: showSeedWords,
   hideModal: hideModal,
   // sidebar state
   SIDEBAR_OPEN: "UI_SIDEBAR_OPEN",
@@ -129,10 +132,14 @@ var actions = {
   requestRevealSeedWords,
   // unlock screen
   UNLOCK_IN_PROGRESS: "UNLOCK_IN_PROGRESS",
-  UNLOCK_FAILED: "UNLOCK_FAILED",
+  UNLOCK_FAILED: "UNLOCK_FAILED",  
   UNLOCK_SUCCEEDED: "UNLOCK_SUCCEEDED",
   UNLOCK_METAMASK: "UNLOCK_METAMASK",
   LOCK_METAMASK: "LOCK_METAMASK",
+  UPDATE_GASFIELDS: "UPDATE_GASFIELDS",
+  UPDATE_TOKENSLIST: "UPDATE_TOKENSLIST",
+  showTokens: showTokens,
+  showGasFields: showGasFields,
   tryUnlockMetamask: tryUnlockMetamask,
   lockMetamask: lockMetamask,
   unlockInProgress: unlockInProgress,
@@ -261,11 +268,14 @@ var actions = {
   SET_PROVIDER_TYPE: "SET_PROVIDER_TYPE",
   showConfigPage,
   // generalSettings:
-    generalSettings,
+  generalSettings,
   // advanceSettings:
-    advanceSettings,
+  advanceSettings,
+  alertSettings,
   SHOW_GENSETTINGS_PAGE: "SHOW_GENSETTINGS_PAGE",
   SHOW_ADVSETTINGS_PAGE: "SHOW_ADVSETTINGS_PAGE",
+  SHOW_ALERTSETTINGS_PAGE:"SHOW_ALERTSETTINGS_PAGE",
+
   SHOW_ADD_TOKEN_PAGE: "SHOW_ADD_TOKEN_PAGE",
   SHOW_CONFIRM_ADD_TOKEN_PAGE: "SHOW_CONFIRM_ADD_TOKEN_PAGE",
   SHOW_REMOVE_TOKEN_PAGE: "SHOW_REMOVE_TOKEN_PAGE",
@@ -451,6 +461,13 @@ function transitionForward() {
   return {
     type: this.TRANSITION_FORWARD,
   };
+}
+
+function showSeedWords() {
+  return {
+    type:actions.SHOW_SEEDWORDS,
+  }
+  
 }
 
 function transitionBackward() {
@@ -1735,6 +1752,19 @@ function updateMetamaskState(newState) {
   };
 }
 
+function showGasFields(newState) {
+  return {
+    type: actions.UPDATE_GASFIELDS,
+    value: newState,
+  };
+}
+function showTokens(newState) {
+  return{
+    type: actions.UPDATE_TOKENSLIST,
+    value: newState,
+  }
+}
+
 const backgroundSetLocked = () => {
   return new Promise((resolve, reject) => {
     background.setLocked((error) => {
@@ -1910,6 +1940,13 @@ function generalSettings() {
 function advanceSettings() {
   return {
     type: actions.SHOW_ADVSETTINGS_PAGE,
+    // value: transitionForward,
+  };
+}
+
+function alertSettings() {
+  return {
+    type: actions.SHOW_ALERTSETTINGS_PAGE,
     // value: transitionForward,
   };
 }

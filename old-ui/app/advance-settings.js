@@ -5,7 +5,7 @@ const connect = require("react-redux").connect;
 const actions = require("../../ui/app/actions");
 const LoadingIndicator = require("./components/loading");
 const Web3 = require("web3");
-const {useState,setState} 
+import React, { useState } from 'react';
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
   (a, b) => {
     return a.quote.name
@@ -18,15 +18,28 @@ const exportAsFile = require("./util").exportAsFile;
 const Modal = require("../../ui/app/components/modals/index").Modal;
 const ethNetProps = require("xdc-net-props");
 const { networks } = require("../../app/scripts/controllers/network/util");
-const React = require('react')
+// const React = require('react');
 
 class AdvanceSettings extends React.Component{
-    
-    render() {
+    // constructor() {
+    //     super()
+    //     this.state = {showGasFields: false}
+    // }
+    // state = { checked : false }
+
+    // onChange = newValue => {
+    //   this.setState({ checked: newValue });
+    // }
+    handleCheckBox = () => {
+        const showGasFields = this.props.metamask.showGasFields
+        // this.setState({ showGasFields: !showGasFields })
+        this.props.dispatch(actions.showGasFields(!showGasFields))
+   }
+    render(){
         const state = this.props;
         const metamaskState = state.metamask;
         const warning = state.warning;
-    
+        // let [checked, setChecked] = useState(false);
     
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",
@@ -34,7 +47,7 @@ class AdvanceSettings extends React.Component{
             <div className="section-title flex-row"
                  style={{ borderBottom: "1px solid #E3E7EB", paddingBottom: "17px" } }>
             <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'12px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.goConfig()) }} />
-            <h2 style={{ marginLeft:'88px'}}>Advances Settings</h2>
+            <h2 style={{ marginLeft:'88px'}}>Advance Settings</h2>
             </div>
             <div style={{
                 padding: ' 15px 17px 20px 15px ',
@@ -78,31 +91,52 @@ class AdvanceSettings extends React.Component{
                                     }) }}>Reset Account</button>
                 </div>
                 <div style={{
-                padding: ' 15px 17px 20px 15px ',
-                borderBottom: '1px solid #E3E7EB',
-            }}>
+                    padding: ' 15px 17px 20px 15px ',
+                    borderBottom: '1px solid #E3E7EB',
+                }}>
                 <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Advanced gas controls</span><br />
                 <p style={{fontSize:'14px',marginBottom:'15px'}}>Select this to show gas price and limit controls directly on the send and confirm screens.</p>
                 <label className="switch">
-                <input type="checkbox"/>
-                <span className="slider round"></span>
+                <input type="checkbox"  onChange={this.handleCheckBox} />
+                <span className="slider round" ></span>
                 </label>
             </div>    
             
       </div>
-     
-        )
+            
+            )
+        }
     }
-}
+   
+    module.exports = connect(mapStateToProps)(AdvanceSettings);
+    
+    function mapStateToProps(state) {
+      return {
+        metamask: state.metamask,
+        warning: state.appState.warning,
+      };
+    }
+    // const ToggleSwitch = ({checked, onChange}) => (
+        //     <div>
+//       <input
+//         type="checkbox"
+//         className="toggle-switch-checkbox"
+//         checked={checked}
+//         onChange={e => onChange(e.target.checked)}
+//       />
+//     </div>
+//   );
+  
+//   export default ToggleSwitch;
+    
+//   function AdvanceSettings() {
+//       let [checked, setChecked] = useState(false);
+    
+//       return (
+//         <ToggleSwitch id="toggleSwitch" checked={checked} onChange={setChecked} />
+//       )
+//     }
 
-module.exports = connect(mapStateToProps)(AdvanceSettings);
-
-function mapStateToProps(state) {
-  return {
-    metamask: state.metamask,
-    warning: state.appState.warning,
-  };
-}
 // inherits(AdvanceSettings, Component);
 // function AdvanceSettings() {
 //   this.state = {

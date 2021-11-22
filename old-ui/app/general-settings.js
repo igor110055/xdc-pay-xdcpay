@@ -56,6 +56,11 @@ class GeneralSettings extends React.Component {
   static contextTypes = {
     t: PropTypes.func,
   }
+  handleCheckBox = () => {
+    const showTokens = this.props.metamask.showTokens
+    this.setState({ showTokens: !showTokens })
+    this.props.dispatch(actions.showTokens(!showTokens))
+  }
 
   render() {
     const state = this.props;
@@ -77,7 +82,8 @@ class GeneralSettings extends React.Component {
           {currentLanguage(state)}
         </div>
        <label className="switch">
-          <input type="checkbox"/>
+          {/* <input type="checkbox" id="checked" /> */}
+          <input type="checkbox"  id="checked" onChange={this.handleCheckBox} />
        <span className="slider round"></span>
        </label>
       </div>

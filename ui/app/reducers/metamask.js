@@ -54,6 +54,8 @@ function reduceMetamask (state, action) {
     preferences: {
       useETHAsPrimaryCurrency: true,
     },
+    showGasFields: true,
+    showTokens: true,
   }, state.metamask)
 
   switch (action.type) {
@@ -64,7 +66,8 @@ function reduceMetamask (state, action) {
       })
       delete newState.seedWords
       return newState
-
+    
+    
     case actions.SHOW_NOTICE:
       return extend(metamaskState, {
         noActiveNotices: false,
@@ -85,7 +88,16 @@ function reduceMetamask (state, action) {
         isInitialized: true,
         selectedAddress: action.value,
       })
-
+    
+      case actions.UPDATE_GASFIELDS:
+        return extend(metamaskState, {
+          showGasFields: action.value,
+        })
+      
+        case actions.UPDATE_TOKENSLIST:
+          return extend(metamaskState, {
+            showTokens: action.value,
+          })
     case actions.LOCK_METAMASK:
       return extend(metamaskState, {
         isUnlocked: false,

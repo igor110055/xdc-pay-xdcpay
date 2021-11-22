@@ -251,7 +251,17 @@ function reduceApp (state, action) {
           },
             transForward: true,
             warning: null,
-        })
+          })
+    
+    case actions.SHOW_ALERTSETTINGS_PAGE:
+      return extend(appState, {
+      currentView: {
+        name: 'alert-settings',
+        context: appState.currentView.context,
+      },
+        transForward: true,
+        warning: null,
+    })
       
     case actions.SHOW_CONFIRM_ADD_TOKEN_PAGE:
       return extend(appState, {
@@ -534,7 +544,14 @@ function reduceApp (state, action) {
           scrollToBottom: false,
           forgottenPassword: false,
         })
-
+      
+    case actions.SHOW_SEEDWORDS:
+      return extend(appState, {
+        currentView: {
+          name: 'CreateVaultCompleteScreen' ,
+        }
+      })
+      
     case actions.SHOW_NOTICE:
       return extend(appState, {
         transForward: true,

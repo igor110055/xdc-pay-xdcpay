@@ -33,7 +33,9 @@ const RemoveTokenScreen = require('./remove-token')
 const AddSuggestedTokenScreen = require('./add-suggested-token')
 const Import = require('./accounts/import')
 const ForgetDeviceScreen = require('./components/connect-hardware/forget-screen')
+import { alertSettings } from '../../ui/app/actions'
 import ConnectHardwareForm from './components/connect-hardware/index'
+import createVaultComplete from './keychains/hd/create-vault-complete'
 const InfoScreen = require('./info')
 const AppBar = require('./components/app-bar/app-bar.component')
 const Loading = require('./components/loading')
@@ -49,6 +51,8 @@ const { getMetaMaskAccounts } = require('../../ui/app/selectors')
 const ConfirmRecoveryPhrase = require('./keychains/hd/confirm-recovery-phrase')
 const GeneralSettings = require('../app/general-settings')
 const AdvanceSettings = require('../app/advance-settings')
+const AlertSettings = require('../app/alert-settings')
+
 module.exports = compose(
   withRouter,
   connect(mapStateToProps)
@@ -278,9 +282,17 @@ App.prototype.renderPrimary = function () {
         log.debug('rendering config screen ')
       return h(ConfigScreen, { key: 'config' })
     
+    case 'CreateVaultCompleteScreen':
+      log.debug('rendering seed words screen')
+      return h(createVaultComplete, {key: 'CreateVaultCompleteScreen'})
+    
     case 'advance-settings':
         log.debug('rendering advance-settings screen ')
-        return h(AdvanceSettings, {key: 'advance-settings'})
+      return h(AdvanceSettings, { key: 'advance-settings' })
+    
+    case 'alert-settings':
+      log.debug('rendering alert-settings screen')
+      return h(AlertSettings, {key: 'alert-settings'})
 
     case 'confirm-add-token':
       log.debug('rendering confirm-add-token screen from unlock screen.')
