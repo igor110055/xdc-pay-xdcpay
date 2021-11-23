@@ -231,6 +231,16 @@ function reduceApp (state, action) {
         transForward: true,
           warning: null,
         })
+    
+        case actions.SHOW_SEEDWORDS:
+          return extend(appState, {
+          currentView: {
+            name: 'CreateVaultCompleteScreen',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+            warning: null,
+          })
        
     
     case actions.GO_CONFIG:
@@ -545,12 +555,6 @@ function reduceApp (state, action) {
           forgottenPassword: false,
         })
       
-    case actions.SHOW_SEEDWORDS:
-      return extend(appState, {
-        currentView: {
-          name: 'CreateVaultCompleteScreen' ,
-        }
-      })
       
     case actions.SHOW_NOTICE:
       return extend(appState, {

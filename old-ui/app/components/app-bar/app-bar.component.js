@@ -90,7 +90,7 @@ module.exports = class AppBar extends Component {
           style={{
             alignItems: 'center',
             // visibility: isUnlocked ? 'visible' : 'none',
-            background: '#E3E7EB',
+            background: 'rgb(245, 246, 247)',
             height: '38px',
             position: 'relative',
             zIndex: 12,

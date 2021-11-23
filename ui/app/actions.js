@@ -39,7 +39,7 @@ var actions = {
   MODAL_CLOSE: "UI_MODAL_CLOSE",
   showModal: showModal,
   SHOW_SEEDWORDS: "SHOW_SEEDWORDS",
-  showSeedWords: showSeedWords,
+  showSeedWords,
   hideModal: hideModal,
   // sidebar state
   SIDEBAR_OPEN: "UI_SIDEBAR_OPEN",

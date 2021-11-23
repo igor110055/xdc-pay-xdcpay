@@ -38,7 +38,7 @@ class ConfirmRecoveryPhrase extends React.Component {
           margin:'29px 50px 36px 0 ',
           }} >
          <img style={ {marginRight:'35px',cursor:'pointer',}}src={'/images/Assets/BackArrow.svg'}
-              onClick={() => this.dispatch(actions.showSeedWords())}
+              onClick={() => this.props.dispatch(actions.showSeedWords())}
               />
             Confirm Recovery Phrase
         </row> 

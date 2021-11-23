@@ -74,20 +74,20 @@ CreateVaultCompleteScreen.prototype.render = function () {
         [
           h('textarea.twelve-word-phrase', {
             readOnly: true,
-            value: "1." + seedArr[0],
+            value: "1. " + seedArr[0],
           }),
 
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
-            value: "2." + seedArr[1],
+            value: "2. " + seedArr[1],
           }),
 
 
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
-            value: "3." + seedArr[2],
+            value: "3. " + seedArr[2],
           }),
 
         ]),
@@ -96,25 +96,26 @@ CreateVaultCompleteScreen.prototype.render = function () {
         style: {
           display: 'flex',
           flex: '1 3 auto ',
+          marginTop: '-10px',
         },
       },
         [
           h('textarea.twelve-word-phrase', {
             readOnly: true,
-            value: "4." + seedArr[3],
+            value: "4. " + seedArr[3],
           }),
 
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
-            value: "5." + seedArr[4],
+            value: "5. " + seedArr[4],
           }),
 
 
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
-            value: "6." + seedArr[5],
+            value: "6. " + seedArr[5],
           }),
 
         ]),
@@ -124,25 +125,26 @@ CreateVaultCompleteScreen.prototype.render = function () {
         style: {
           display: 'flex',
           flex: '1 3 auto ',
+          marginTop: '-10px',
         },
       },
         [
           h('textarea.twelve-word-phrase', {
             readOnly: true,
-            value: "7." + seedArr[6],
+            value: "7. " + seedArr[6],
           }),
 
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
-            value: "8." + seedArr[7],
+            value: "8. " + seedArr[7],
           }),
 
 
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
-            value: "9." + seedArr[8],
+            value: "9. " + seedArr[8],
           }),
 
         ]),
@@ -151,25 +153,26 @@ CreateVaultCompleteScreen.prototype.render = function () {
         style: {
           display: 'flex',
           flex: '1 3 auto ',
+          marginTop: '-10px',
         },
       },
         [
           h('textarea.twelve-word-phrase', {
             readOnly: true,
-            value: "10." + seedArr[9],
+            value: "10. " + seedArr[9],
           }),
 
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
-            value: "11." + seedArr[10],
+            value: "11. " + seedArr[10],
           }),
 
 
           h('textarea.twelve-word-phrase', {
             style: { marginLeft: '4px', },
             readOnly: true,
-            value: "12." + seedArr[11],
+            value: "12. " + seedArr[11],
           }),
 
         ]),
@@ -194,6 +197,7 @@ CreateVaultCompleteScreen.prototype.render = function () {
           height: '40px',
           border: '1px solid #0CBE46',
           display: 'flex',
+          fontFamily: 'Inter-Medium',
           paddingLeft: '58px',
           paddingTop: '7px',
         },
@@ -207,7 +211,7 @@ CreateVaultCompleteScreen.prototype.render = function () {
          h('div',{style: {
             marginTop: '3px',
          },},
-      'Save as CSV File'),]),
+      'Save as CSV file'),]),
 
       h('button', {
         onClick: () => {

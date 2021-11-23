@@ -77,7 +77,7 @@ CreateVaultCompleteScreen.prototype.render = function () {
           margin: '10px',
           fontSize: '0.9em',
         },
-      }, 'Save Seed Words As File'),
+      }, 'Save Seed Words As file'),
     ])
   )
 }
