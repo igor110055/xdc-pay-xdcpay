@@ -51,8 +51,8 @@ class ConfirmRecoveryPhrase extends React.Component {
               {`Word ${this.state.seed1+1}`}
             
             </label><br />
-            <div style={{ marginBottom: '24px', border: '1px solid #e2e2e2' }}>
-            <input className="input large-input" type='text' placeholder='word' id="password-box1" style={{ width: '265px', border: 'none' }} onChange={(e) => this.setState({ firstWord: e.target.value })}
+            <div style={{ marginBottom: '24px', border: '1px solid #e2e2e2',borderRadius:'3px' }}>
+            <input className="input large-input" type='text' placeholder='word' id="password-box1" style={{ width: '265px', border: 'none',color: '#2A2A2A' }} onChange={(e) => this.setState({ firstWord: e.target.value })}
           />
           { this.state.firstWord === seedArr[this.state.seed1] ? <img src='/images/Assets/Check-Green.svg'   style={{ position: 'absolute',right: '10%',marginTop: '7px'}}/> : ' ' } 
           </div>
@@ -63,8 +63,8 @@ class ConfirmRecoveryPhrase extends React.Component {
          <label className="word" >
          {`Word ${this.state.seed2+1}`}  
             </label><br />
-            <div style={{marginBottom:'24px', border:'1px solid #e2e2e2'}}>
-            <input className="input large-input" type='text' placeholder='word' id="password-box2"  style={{width:'265px', border:'none'}} onChange={(e) => this.setState({ secondWord: e.target.value })}/>
+            <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'3px'}}>
+            <input className="input large-input" type='text' placeholder='word' id="password-box2"  style={{width:'265px', border:'none' ,color: '#2A2A2A'}} onChange={(e) => this.setState({ secondWord: e.target.value })}/>
               {this.state.secondWord === seedArr[this.state.seed2] ? <img src='/images/Assets/Check-Green.svg' style={{ position: 'absolute',right: '10%',marginTop: '7px'}}/> : ' ' }
             </div>
          </div>
@@ -74,8 +74,8 @@ class ConfirmRecoveryPhrase extends React.Component {
          <label className="word" >
          {`Word ${this.state.seed3}`}  
             </label><br />
-            <div style={{ marginBottom: '24px', border: '1px solid #e2e2e2' }}>
-            <input className="input large-input" type='text' placeholder='word' id="password-box3" style={{ width: '265px', border: 'none' }} onChange={(e) => this.setState({ thirdWord: e.target.value })} />
+            <div style={{ marginBottom: '24px', border: '1px solid #e2e2e2',borderRadius:'3px' }}>
+            <input className="input large-input" type='text' placeholder='word' id="password-box3" style={{ width: '265px', border: 'none' ,color: '#2A2A2A' }} onChange={(e) => this.setState({ thirdWord: e.target.value })} />
               {this.state.thirdWord === seedArr[this.state.seed3-1] ? <img src='/images/Assets/Check-Green.svg' style={{ position: 'absolute',right: '10%',marginTop: '7px'}}/> : ' ' }
             </div>
           </div>
@@ -90,7 +90,7 @@ class ConfirmRecoveryPhrase extends React.Component {
           
               marginTop: '34px',
               fontSize: '14px',
-              background: '#0CBE46',
+              background: '#03BE46',
               width: '265px',
               height: '40px',
               border: 'none',
