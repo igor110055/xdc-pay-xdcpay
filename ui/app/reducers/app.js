@@ -263,6 +263,26 @@ function reduceApp (state, action) {
             warning: null,
           })
     
+    case actions.SHOW_NETWORKSETTINGS_PAGE:
+      return extend(appState, {
+      currentView: {
+      name: 'network-settings',
+      context: appState.currentView.context,
+      },
+      transForward: true,
+      warning: null,
+      })
+    
+    case actions.SHOW_ADDNETWORK_PAGE:
+        return extend(appState, {
+        currentView: {
+        name: 'add-network',
+        context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+       })
+    
     case actions.SHOW_ALERTSETTINGS_PAGE:
       return extend(appState, {
       currentView: {

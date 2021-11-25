@@ -51,7 +51,7 @@ function TokenList () {
 TokenList.prototype.render = function () {
   const state = this.state
   const { tokens, isLoading, error } = state
-  const { userAddress, network } = this.props
+  const { userAddress, network,address } = this.props
   const isTestnet = parseInt(network) === XDC_TESTNET_CODE
   const isMainnet = parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
   const isDevnet =  parseInt(network) === XDC_DEVNET_CODE 
@@ -74,7 +74,7 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://explorer.xinfin.network/token/${userAddress}`,
+          url: `https://explorer.xinfin.network/token/${address.replace("0x","xdc")}`,
         })
         },
       }, 'here'),
@@ -98,7 +98,7 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://explorer.apothem.network/token/${userAddress}`,
+          url: `https://explorer.apothem.network/token/${address.replace("0x","xdc")}`,
         })
         },
       }, 'here'),
@@ -120,7 +120,7 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://devnet.apothem.network/tokens/${userAddress}`,
+          url: `https://devnet.apothem.network/tokens/${address.replace("0x","xdc")}`,
         })
         },
       }, 'here'),

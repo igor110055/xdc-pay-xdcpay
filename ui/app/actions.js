@@ -271,10 +271,15 @@ var actions = {
   generalSettings,
   // advanceSettings:
   advanceSettings,
+  networkSettings,
+  addNetwork,
   alertSettings,
+  
   SHOW_GENSETTINGS_PAGE: "SHOW_GENSETTINGS_PAGE",
   SHOW_ADVSETTINGS_PAGE: "SHOW_ADVSETTINGS_PAGE",
-  SHOW_ALERTSETTINGS_PAGE:"SHOW_ALERTSETTINGS_PAGE",
+  SHOW_ALERTSETTINGS_PAGE: "SHOW_ALERTSETTINGS_PAGE",
+  SHOW_NETWORKSETTINGS_PAGE: "SHOW_NETWORKSETTINGS_PAGE",
+  SHOW_ADDNETWORK_PAGE: "SHOW_ADDNETWORK_PAGE",
 
   SHOW_ADD_TOKEN_PAGE: "SHOW_ADD_TOKEN_PAGE",
   SHOW_CONFIRM_ADD_TOKEN_PAGE: "SHOW_CONFIRM_ADD_TOKEN_PAGE",
@@ -1940,6 +1945,20 @@ function generalSettings() {
 function advanceSettings() {
   return {
     type: actions.SHOW_ADVSETTINGS_PAGE,
+    // value: transitionForward,
+  };
+}
+
+function networkSettings() {
+  return {
+    type: actions.SHOW_NETWORKSETTINGS_PAGE,
+    // value: transitionForward,
+  };
+}
+
+function addNetwork() {
+  return {
+    type: actions.SHOW_ADDNETWORK_PAGE,
     // value: transitionForward,
   };
 }

@@ -753,7 +753,7 @@ ConfigScreen.prototype.render = function () {
           }),
         ]),
         
-        h('.settings',{ onClick: () => state.dispatch(actions.about()) },  ['About',
+        h('.settings',{ onClick: () => state.dispatch(actions.showInfoPage()) },  ['About',
           h('img', {
             src: "/images/Assets/Arrow.svg",            
           }),
