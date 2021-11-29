@@ -48,7 +48,7 @@ class AddNetwork extends React.Component{
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",overflowY: "auto",}}>
         <div className="section-title flex-row" style={{ borderBottom: "1px solid #E3E7EB", paddingBottom: "17px" } }>
-        <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'12px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.goConfig()) }} />
+        <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'12px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.networkSettings()) }} />
         <h2 style={{ marginLeft: '88px', fontFamily: 'Inter-bold' }}>Add Network</h2>
         </div>
         
@@ -103,7 +103,7 @@ class AddNetwork extends React.Component{
 
         <div style={{display:'flex', justifyContent: 'space-around',}}>
         <div className="button"
-            //   
+                  onClick={() => { state.dispatch(actions.networkSettings()) } }
             style={{
               fontFamily:'Inter-Medium',
               marginTop: '10px',
