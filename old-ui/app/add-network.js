@@ -118,8 +118,13 @@ class AddNetwork extends React.Component{
                         }}> Cancel
                         
                     </div>
-                    <div className="button"
-              
+                <div className="button"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    const element = document.querySelector("input#new_rpc");
+                    const newRpc = element.value;
+                    this.rpcValidation(newRpc, state);
+                  }}
             style={{
             fontFamily:'Inter-Medium',
               marginTop: '10px',
