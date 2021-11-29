@@ -103,7 +103,7 @@ class AddNetwork extends React.Component{
 
         <div style={{display:'flex', justifyContent: 'space-around',}}>
         <div className="button"
-                  onClick={() => { state.dispatch(actions.networkSettings()) } }
+            onClick={() => { state.dispatch(actions.networkSettings()) } }
             style={{
               fontFamily:'Inter-Medium',
               marginTop: '10px',
@@ -148,7 +148,36 @@ class AddNetwork extends React.Component{
             
             )
         }
+}
+    
+AddNetwork.prototype.rpcValidation = function (newRpc, state) {
+  if (validUrl.isWebUri(newRpc)) {
+    this.setState({
+      loading: true,
+    });
+    const web3 = new Web3(new Web3.providers.HttpProvider(newRpc));
+    web3.eth.getBlockNumber((err, res) => {
+      if (err) {
+        state.dispatch(actions.displayWarning("Invalid RPC endpoint"));
+      } else {
+        state.dispatch(actions.setRpcTarget(newRpc));
+      }
+      this.setState({
+        loading: false,
+      });
+    });
+  } else {
+    if (!newRpc.startsWith("http")) {
+      state.dispatch(
+        actions.displayWarning(
+          "URIs require the appropriate HTTP/HTTPS prefix."
+        )
+      );
+    } else {
+      state.dispatch(actions.displayWarning("Invalid RPC URI"));
     }
+  }
+};
    
     module.exports = connect(mapStateToProps)(AddNetwork);
     
