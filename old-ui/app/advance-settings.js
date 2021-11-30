@@ -44,7 +44,8 @@ class AdvanceSettings extends React.Component{
     render(){
         const state = this.props;
         const metamaskState = state.metamask;
-        const warning = state.warning;
+        const showGasFields = metamaskState.showGasFields;
+
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",
         overflowY: "auto",}}>
@@ -101,11 +102,11 @@ class AdvanceSettings extends React.Component{
                 <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Advanced gas controls</span><br />
                 <p style={{fontSize:'14px',marginBottom:'15px',fontFamily:'Inter-medium'}}>Select this to show gas price and limit controls directly on the send and confirm screens.</p>
                     <label className="switch">
-                        <input type="checkbox" onChange={this.handleCheckBox} />
+                        <input type="checkbox" onChange={this.handleCheckBox} checked={showGasFields }/>
                 <span className="slider round" ></span>
                         
                     </label>
-                    <span>Off</span>
+                    <span>{showGasFields?"On":"Off"}</span>
                         {/* {toggle? <span>ON</span> :<span> OFF</span>} */}
             </div>    
             

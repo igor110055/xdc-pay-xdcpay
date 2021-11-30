@@ -21,7 +21,7 @@ const ethNetProps = require("xdc-net-props");
 const { networks } = require("../../app/scripts/controllers/network/util");
 // const React = require('react');
 
-class AddNetwork extends React.Component{
+class ViewNetwork extends React.Component{
     // constructor() {
     //     super()
     //     this.state = {showGasFields: false}
@@ -49,7 +49,7 @@ class AddNetwork extends React.Component{
         <div className="flex-column flex-grow" style={{maxHeight: "585px",overflowY: "auto",}}>
         <div className="section-title flex-row" style={{ borderBottom: "1px solid #E3E7EB", paddingBottom: "17px" } }>
         <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'12px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.networkSettings()) }} />
-        <h2 style={{ marginLeft: '88px', fontFamily: 'Inter-bold' }}>Add Network</h2>
+        <h2 style={{ marginLeft: '88px', fontFamily: 'Inter-bold' }}>View Network</h2>
         </div>
         
        <div style={{margin:'18px 30px'}}>
@@ -59,7 +59,7 @@ class AddNetwork extends React.Component{
                     }} >{`Network Name`}  
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}} style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+        <input className="input large-input" type='text'  style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
         </div>
                 
 
@@ -69,7 +69,7 @@ class AddNetwork extends React.Component{
                     }}>{`New RPC URL`}  
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}} style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+        <input className="input large-input" type='text'  style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
         </div>
               
 
@@ -78,7 +78,7 @@ class AddNetwork extends React.Component{
                     }}>{`Chain ID`}  
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}}  style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+        <input className="input large-input" type='text'  style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
         </div>
                 
 
@@ -88,7 +88,7 @@ class AddNetwork extends React.Component{
                     }} >{`Currency Symbol (Optional)`}
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}} style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+        <input className="input large-input" type='text'  style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
         </div>
 
         
@@ -97,7 +97,7 @@ class AddNetwork extends React.Component{
                     }}>{`Block Explorer (Optional)`}  
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}} style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+        <input className="input large-input" type='text'  style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
         </div>
                 
 
@@ -119,12 +119,7 @@ class AddNetwork extends React.Component{
                         
                     </div>
                 <div className="button"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    const element = document.querySelector("input#new_rpc");
-                    const newRpc = element.value;
-                    this.rpcValidation(newRpc, state);
-                  }}
+                  
             style={{
             fontFamily:'Inter-Medium',
               marginTop: '10px',
@@ -135,7 +130,7 @@ class AddNetwork extends React.Component{
               border: 'none',
               padding: '8px 47px',
           
-                        }}> Add
+                        }}> Update
                         
             </div>
                              
@@ -150,36 +145,9 @@ class AddNetwork extends React.Component{
         }
 }
     
-AddNetwork.prototype.rpcValidation = function (newRpc, state) {
-  if (validUrl.isWebUri(newRpc)) {
-    this.setState({
-      loading: true,
-    });
-    const web3 = new Web3(new Web3.providers.HttpProvider(newRpc));
-    web3.eth.getBlockNumber((err, res) => {
-      if (err) {
-        state.dispatch(actions.displayWarning("Invalid RPC endpoint"));
-      } else {
-        state.dispatch(actions.setRpcTarget(newRpc));
-      }
-      this.setState({
-        loading: false,
-      });
-    });
-  } else {
-    if (!newRpc.startsWith("http")) {
-      state.dispatch(
-        actions.displayWarning(
-          "URIs require the appropriate HTTP/HTTPS prefix."
-        )
-      );
-    } else {
-      state.dispatch(actions.displayWarning("Invalid RPC URI"));
-    }
-  }
-};
+
    
-    module.exports = connect(mapStateToProps)(AddNetwork);
+    module.exports = connect(mapStateToProps)(ViewNetwork);
     
     function mapStateToProps(state) {
       return {

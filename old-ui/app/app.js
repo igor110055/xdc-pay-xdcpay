@@ -53,6 +53,7 @@ const GeneralSettings = require('../app/general-settings')
 const AdvanceSettings = require('../app/advance-settings')
 const NetworkSettings = require('../app/network-settings')
 const AddNetwork = require('../app/add-network')
+const ViewNetwork = require('../app/view-network')
 const AlertSettings = require('../app/alert-settings')
 
 module.exports = compose(
@@ -298,7 +299,11 @@ App.prototype.renderPrimary = function () {
     
       case 'add-network':
         log.debug('rendering add-network screen ')
-        return h(AddNetwork, { key: 'add-network' })
+      return h(AddNetwork, { key: 'add-network' })
+    
+      case 'view-network':
+        log.debug('rendering view-network screen ')
+        return h(ViewNetwork, { key: 'view-network' })
     
     case 'alert-settings':
       log.debug('rendering alert-settings screen')

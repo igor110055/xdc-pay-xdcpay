@@ -281,7 +281,19 @@ function reduceApp (state, action) {
         },
         transForward: true,
         warning: null,
+        })
+    
+    case actions.SHOW_VIEWNETWORK_PAGE:
+        return extend(appState, {
+        currentView: {
+        name: 'view-network',
+        context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
        })
+    
+    
     
     case actions.SHOW_ALERTSETTINGS_PAGE:
       return extend(appState, {

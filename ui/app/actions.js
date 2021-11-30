@@ -273,6 +273,7 @@ var actions = {
   advanceSettings,
   networkSettings,
   addNetwork,
+  viewNetwork,
   alertSettings,
   
   SHOW_GENSETTINGS_PAGE: "SHOW_GENSETTINGS_PAGE",
@@ -280,6 +281,7 @@ var actions = {
   SHOW_ALERTSETTINGS_PAGE: "SHOW_ALERTSETTINGS_PAGE",
   SHOW_NETWORKSETTINGS_PAGE: "SHOW_NETWORKSETTINGS_PAGE",
   SHOW_ADDNETWORK_PAGE: "SHOW_ADDNETWORK_PAGE",
+  SHOW_VIEWNETWORK_PAGE: "SHOW_VIEWNETWORK_PAGE",
 
   SHOW_ADD_TOKEN_PAGE: "SHOW_ADD_TOKEN_PAGE",
   SHOW_CONFIRM_ADD_TOKEN_PAGE: "SHOW_CONFIRM_ADD_TOKEN_PAGE",
@@ -1962,6 +1964,15 @@ function addNetwork() {
     // value: transitionForward,
   };
 }
+
+function viewNetwork() {
+  return {
+    type: actions.SHOW_VIEWNETWORK_PAGE,
+    // value: transitionForward,
+  };
+}
+
+
 
 function alertSettings() {
   return {
