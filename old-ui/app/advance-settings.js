@@ -106,7 +106,7 @@ class AdvanceSettings extends React.Component{
                 <span className="slider round" ></span>
                         
                     </label>
-                    <span>{showGasFields?"On":"Off"}</span>
+                    <span style={{marginLeft:'8px',}}>{showGasFields?"On":"Off"}</span>
                         {/* {toggle? <span>ON</span> :<span> OFF</span>} */}
             </div>    
             

@@ -30,6 +30,7 @@ const Modal = require("../../ui/app/components/modals/index").Modal;
 const ethNetProps = require("xdc-net-props");
 const { networks } = require("../../app/scripts/controllers/network/util");
 import { Module } from 'module';
+import { showTokens } from '../../ui/app/actions';
 
 const React = require('react')
 
@@ -66,7 +67,7 @@ class GeneralSettings extends React.Component {
     const state = this.props;
     console.log(state,'=-=-=-=')
     const metamaskState = state.metamask;
-    const warning = state.warning;
+    const showTokens = metamaskState.showTokens;
 
     return (
       <div className="flex-column flex-grow">
@@ -81,11 +82,14 @@ class GeneralSettings extends React.Component {
         <div style={{borderTop:'1px solid #E3E7EB'}}>
           {currentLanguage(state)}
         </div>
+        <div>
        <label className="switch">
           {/* <input type="checkbox" id="checked" /> */}
           <input type="checkbox"  id="checked" onChange={this.handleCheckBox} />
-       <span className="slider round"></span>
+          <span className="slider round"></span>
        </label>
+          <span style={{ marginLeft: '8px', }}>{showTokens ? "On" : "Off"}</span>
+          </div>
       </div>
     )
   }
