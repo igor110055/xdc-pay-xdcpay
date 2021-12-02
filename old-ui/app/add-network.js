@@ -7,6 +7,7 @@ const LoadingIndicator = require("./components/loading");
 const Web3 = require("web3");
 import { Checkbox } from '@material-ui/core';
 import React, { useState } from 'react';
+import { $$typeof } from './config';
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
   (a, b) => {
     return a.quote.name
@@ -59,17 +60,25 @@ class AddNetwork extends React.Component{
                     }} >{`Network Name`}  
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}} style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+                <input className="input large-input" type='text'
+                  onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    const element = event.target;
+                    const networkName = element.value;
+                    
+                  }
+                  }}
+                  style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
         </div>
                 
 
       
          <label className="word"  style={{
                         fontFamily: 'Inter-Medium',
-                    }}>{`New RPC URL`}  
+              }}>{`New RPC URL`}
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}} style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+        <input className="input large-input" type='text' onChange={{}}  style = {{ width: '265px', border:'none' ,color: '#2A2A2A'}} />
         </div>
               
 

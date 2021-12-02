@@ -7,6 +7,7 @@ const LoadingIndicator = require("./components/loading");
 const Web3 = require("web3");
 import { Checkbox } from '@material-ui/core';
 import React, { useState } from 'react';
+import { props } from 'xdc-net-props';
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
   (a, b) => {
     return a.quote.name
@@ -44,7 +45,8 @@ class NetworkSettings extends React.Component{
     render(){
         const state = this.props;
         const metamaskState = state.metamask;
-        const warning = state.warning;
+      const warning = state.warning;
+      const networkName =props
         const {network} = state.metamask
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",
@@ -70,7 +72,7 @@ class NetworkSettings extends React.Component{
                 <div style={{ padding: ' 11px 17px 11px 15px ', borderBottom: '1px solid #E3E7EB',fontFamily:'inter-medium',fontSize:'14px' }}>{`Localhost 8545`}
               <img src="/images/Assets/Lock.png" style={{ position: 'absolute', right: '30px', }} /><img src="/images/Assets/Arrow.svg" style={{ position: 'absolute', right: '15px', marginTop: '6px', cursor:'pointer' }} onClick={() => { state.dispatch(actions.viewNetwork()) }} />
                 </div>
-                <div style={{ padding: ' 11px 17px 11px 15px ', borderBottom: '1px solid #E3E7EB',fontFamily:'inter-medium',fontSize:'14px' }}>{`Manual Added network`}
+            <div style={{ padding: ' 11px 17px 11px 15px ', borderBottom: '1px solid #E3E7EB', fontFamily: 'inter-medium', fontSize: '14px' }}>{`${networkName}`}
                     <img src="/images/Assets/Delete.svg" style={{position:'absolute',right:'30px',width:'21px'}}/><img src="/images/Assets/Arrow.svg" style={{position:'absolute',right:'15px',marginTop:'4px' , cursor:'pointer'}} onClick={() => { state.dispatch(actions.viewNetwork()) }} />
                 </div>
                

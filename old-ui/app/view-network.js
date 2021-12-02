@@ -128,7 +128,7 @@ class ViewNetwork extends React.Component{
               width: '120px',
               height: '40px',
               border: 'none',
-              padding: '8px 47px',
+              padding: '8px 35px',
           
                         }}> Update
                         
