@@ -23,7 +23,7 @@ const AddNetworkComponent = (props) => {
           <input className="input large-input" id="new_rpc" type="text" name="rpcUrl"
                  onChange={onStateChange} style={{width: '265px', border: 'none', color: '#2A2A2A'}}/>
         </div>
-        {warningMsg && <p>{warningMsg}</p>}
+        {warningMsg && <div className="error">{warningMsg}</div>}
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>Chain ID</label>
         <br/>
         <div style={{marginBottom: '24px', border: '1px solid #e2e2e2', borderRadius: '4px'}}>
