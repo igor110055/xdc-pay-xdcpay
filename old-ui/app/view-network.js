@@ -39,11 +39,11 @@ class ViewNetwork extends React.Component{
     render(){
         const state = this.props;
         // const metamaskState = state.metamask;
-      // const {networkName,rpcUrl,chainId,networkSymbol,explorerLink} = state
+      const {networkName,rpcUrl,chainId,networkSymbol,explorerLink} = state
         // const warning = state.warning;
-      const networkName = state.networkName;
-      console.log(networkName, ': (');
-      const rpcUrl = state.rpcUrl;
+      // const networkName = state.metamask;
+      console.log(networkName,': (')
+      // const rpcUrl = state.rpcUrl;
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",overflowY: "auto",}}>
         <div className="section-title flex-row" style={{ borderBottom: "1px solid #E3E7EB", paddingBottom: "17px" }}>

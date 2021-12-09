@@ -161,14 +161,15 @@ AddNetwork.prototype.rpcValidation = ((newRpc, state,networkName,rpcUrl,chainId,
         state.dispatch(actions.setRpcTarget(newRpc));
       }
       state.dispatch(actions.viewNetwork(networkName,rpcUrl,chainId,networkSymbol,explorerLink));
+      state.dispatch(actions.networkSettings());
       
     });
   } else {
     if (!newRpc.startsWith("http")) {
-     state.dispatch(
+      state.dispatch(
         actions.displayWarning(
           "URIs require the appropriate HTTP/HTTPS prefix."
-        )
+          )
       );
     } else {
       state.dispatch(actions.displayWarning("Invalid RPC URI"));
@@ -176,7 +177,7 @@ AddNetwork.prototype.rpcValidation = ((newRpc, state,networkName,rpcUrl,chainId,
   }
 });
    
-    module.exports = connect(mapStateToProps)(AddNetwork);
+module.exports = connect(mapStateToProps)(AddNetwork);
     
     function mapStateToProps(state) {
       return {

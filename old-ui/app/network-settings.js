@@ -62,7 +62,7 @@ class NetworkSettings extends React.Component{
               <img src="/images/Assets/Lock.png" style={{ position: 'absolute', right: '30px', }} /><img src="/images/Assets/Arrow.svg" style={{ position: 'absolute', right: '15px', marginTop: '6px', cursor:'pointer' }} onClick={() => { state.dispatch(actions.viewNetwork()) }} />
                 </div>
             <div style={{ padding: ' 11px 17px 11px 15px ', borderBottom: '1px solid #E3E7EB', fontFamily: 'inter-medium', fontSize: '14px' }}>{`${networkName}`}
-                    <img src="/images/Assets/Delete.svg" style={{position:'absolute',right:'30px',width:'21px'}}/><img src="/images/Assets/Arrow.svg" style={{position:'absolute',right:'15px',marginTop:'4px' , cursor:'pointer'}} onClick={() => { state.dispatch(actions.viewNetwork()) }} />
+              <img src="/images/Assets/Delete.svg" style={{ position: 'absolute', right: '30px', width: '21px' }} onClick={()=> {state.dispatch(actions.delRpcTarget()) }}/><img src="/images/Assets/Arrow.svg" style={{position:'absolute',right:'15px',marginTop:'4px' , cursor:'pointer'}} onClick={() => { state.dispatch(actions.viewNetwork()) }} />
                 </div>
                
                 
