@@ -6,7 +6,10 @@ const actions = require("../../ui/app/actions");
 const LoadingIndicator = require("./components/loading");
 const Web3 = require("web3");
 import { Checkbox } from '@material-ui/core';
+import { symbol } from 'prop-types';
+import { andThen } from 'ramda';
 import React, { useState } from 'react';
+import { explorerLinks } from 'xdc-net-props';
 import { $$typeof } from './config';
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
   (a, b) => {
@@ -22,28 +25,22 @@ const ethNetProps = require("xdc-net-props");
 const { networks } = require("../../app/scripts/controllers/network/util");
 // const React = require('react');
 
-class AddNetwork extends React.Component{
-    // constructor() {
-    //     super()
-    //     this.state = {showGasFields: false}
-    // }
-    // state = { checked : false }
-
-    // onChange = newValue => {
-    //   this.setState({ checked: newValue });
-    // }
-    
-    handleCheckBox = () => {
-        const showGasFields = this.props.metamask.showGasFields
-        // const [toggle, setToggle] = useState(false);
-        // toggle ? setToggle(false) : setToggle(true);
-        // this.setState({ showGasFields: !showGasFields })
-        this.props.dispatch(actions.showGasFields(!showGasFields))
-        
+export default class AddNetwork extends React.Component{
+  constructor (props) {
+    super(props)
+    this.state = {
+      networkName: '',
+      rpcUrl: ' ',
+      chainId: ' ',
+      networkSymbol: ' ',
+      explorerLink: ' ',
     }
-    
+
+  }
+        
     render(){
-        const state = this.props;
+      const state = this.props;
+      const enteredRpcUrl = this.state.rpcUrl;
         // const metamaskState = state.metamask;
         // const warning = state.warning;
         return(
@@ -57,17 +54,11 @@ class AddNetwork extends React.Component{
         
          <label className="word"  style={{
                         fontFamily: 'Inter-Medium',
-                    }} >{`Network Name`}  
+                    }} >Network Name  
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-                <input className="input large-input" type='text'
-                  onKeyPress={(event) => {
-                  if (event.key === "Enter") {
-                    const element = event.target;
-                    const networkName = element.value;
-                    
-                  }
-                  }}
+                <input className="input large-input" type='text' onChange={(e) => this.setState({networkName:e.target.value})}
+                 
                   style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
         </div>
                 
@@ -78,8 +69,11 @@ class AddNetwork extends React.Component{
               }}>{`New RPC URL`}
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}}  style = {{ width: '265px', border:'none' ,color: '#2A2A2A'}} />
+                <input className="input large-input" id="new_rpc" type='text' onChange={(event) => this.setState({rpcUrl:event.target.value}) }
+               
+                style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
         </div>
+                
               
 
          <label className="word"  style={{
@@ -87,17 +81,13 @@ class AddNetwork extends React.Component{
                     }}>{`Chain ID`}  
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}}  style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
-        </div>
-                
-
-       
-                    <label className="word" style={{
-                        fontFamily: 'Inter-Medium',
-                    }} >{`Currency Symbol (Optional)`}
+        <input className="input large-input" type='text'   style={{width:'265px', border:'none' ,color: '#2A2A2A'}} onChange={(e) => this.setState({chainId:e.target.value})} />
+              </div>
+              
+        <label className="word" style={{fontFamily: 'Inter-Medium',}} >{`Currency Symbol (Optional)`}
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}} style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+        <input className="input large-input" type='text'  style={{width:'265px', border:'none' ,color: '#2A2A2A'}}  onChange={(e) => this.setState({networkSymbol:e.target.value})}/>
         </div>
 
         
@@ -106,7 +96,7 @@ class AddNetwork extends React.Component{
                     }}>{`Block Explorer (Optional)`}  
         </label><br/>
         <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-        <input className="input large-input" type='text' onChange={{}} style={{width:'265px', border:'none' ,color: '#2A2A2A'}} />
+        <input className="input large-input" type='text'  style={{width:'265px', border:'none' ,color: '#2A2A2A'}}  onChange={(e) => this.setState({explorerLink:e.target.value})}/>
         </div>
                 
 
@@ -128,14 +118,8 @@ class AddNetwork extends React.Component{
                         
                     </div>
                 <div className="button"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    const element = document.querySelector("input#new_rpc");
-                    const newRpc = element.value;
-                    this.rpcValidation(newRpc, state);
-                  }}
             style={{
-            fontFamily:'Inter-Medium',
+              fontFamily:'Inter-Medium',
               marginTop: '10px',
               fontSize: '14px',
               background: '#03BE46',
@@ -143,13 +127,21 @@ class AddNetwork extends React.Component{
               height: '40px',
               border: 'none',
               padding: '8px 47px',
-          
-                        }}> Add
+            }}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    // const rpcUrl=
+                    const newRpc = enteredRpcUrl;
+                    console.log(newRpc, '+.+.+');
+                    this.rpcValidation(newRpc, state);
+                    
+                    
+              
+            }}
+           > Add
                         
             </div>
-                             
-                
-
+           
             </div>
         </div>
              
@@ -159,25 +151,21 @@ class AddNetwork extends React.Component{
         }
 }
     
-AddNetwork.prototype.rpcValidation = function (newRpc, state) {
+AddNetwork.prototype.rpcValidation = ((newRpc, state,networkName,rpcUrl,chainId,networkSymbol,explorerLink) =>  {
   if (validUrl.isWebUri(newRpc)) {
-    this.setState({
-      loading: true,
-    });
     const web3 = new Web3(new Web3.providers.HttpProvider(newRpc));
     web3.eth.getBlockNumber((err, res) => {
       if (err) {
-        state.dispatch(actions.displayWarning("Invalid RPC endpoint"));
+       state.dispatch(actions.displayWarning("Invalid RPC endpoint"));
       } else {
         state.dispatch(actions.setRpcTarget(newRpc));
       }
-      this.setState({
-        loading: false,
-      });
+      state.dispatch(actions.viewNetwork(networkName,rpcUrl,chainId,networkSymbol,explorerLink));
+      
     });
   } else {
     if (!newRpc.startsWith("http")) {
-      state.dispatch(
+     state.dispatch(
         actions.displayWarning(
           "URIs require the appropriate HTTP/HTTPS prefix."
         )
@@ -186,7 +174,7 @@ AddNetwork.prototype.rpcValidation = function (newRpc, state) {
       state.dispatch(actions.displayWarning("Invalid RPC URI"));
     }
   }
-};
+});
    
     module.exports = connect(mapStateToProps)(AddNetwork);
     

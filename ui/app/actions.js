@@ -273,9 +273,11 @@ var actions = {
   advanceSettings,
   networkSettings,
   addNetwork,
-  viewNetwork,
+  viewNetwork: viewNetwork,
   alertSettings,
   
+
+  SHOW_VIEWNETWORK: "SHOW_VIEWNETWORK",
   SHOW_GENSETTINGS_PAGE: "SHOW_GENSETTINGS_PAGE",
   SHOW_ADVSETTINGS_PAGE: "SHOW_ADVSETTINGS_PAGE",
   SHOW_ALERTSETTINGS_PAGE: "SHOW_ALERTSETTINGS_PAGE",
@@ -1965,14 +1967,19 @@ function addNetwork() {
   };
 }
 
-function viewNetwork() {
+function viewNetwork(networkName,  rpcUrl,  chainId,  networkSymbol,  explorerLink,) {
   return {
     type: actions.SHOW_VIEWNETWORK_PAGE,
     // value: transitionForward,
+    value: {
+      networkName,
+      rpcUrl,
+      chainId,
+      networkSymbol,
+      explorerLink,
+    }
   };
 }
-
-
 
 function alertSettings() {
   return {
@@ -2289,6 +2296,7 @@ function setNetworkName(networkName) {
     });
   };
 }
+
 function delRpcTarget(oldRpc) {
   return (dispatch) => {
     log.debug(`background.delRpcTarget: ${oldRpc}`);

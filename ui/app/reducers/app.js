@@ -291,9 +291,15 @@ function reduceApp (state, action) {
         },
         transForward: true,
         warning: null,
-       })
+        networkName: '',
+        rpcUrl: '',
+        chainId: '',
+        networkSymbol: '',
+        explorerLink: '',
+        
+        })
     
-    
+      
     
     case actions.SHOW_ALERTSETTINGS_PAGE:
       return extend(appState, {

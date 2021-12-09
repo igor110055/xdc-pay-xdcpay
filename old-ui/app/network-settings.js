@@ -23,16 +23,7 @@ const { networks } = require("../../app/scripts/controllers/network/util");
 // const React = require('react');
 
 class NetworkSettings extends React.Component{
-    // constructor() {
-    //     super()
-    //     this.state = {showGasFields: false}
-    // }
-    // state = { checked : false }
-
-    // onChange = newValue => {
-    //   this.setState({ checked: newValue });
-    // }
-    
+       
     handleCheckBox = () => {
         const showGasFields = this.props.metamask.showGasFields
         // const [toggle, setToggle] = useState(false);
@@ -43,11 +34,9 @@ class NetworkSettings extends React.Component{
     }
     
     render(){
-        const state = this.props;
-        const metamaskState = state.metamask;
-      const warning = state.warning;
-      const networkName =props
-        const {network} = state.metamask
+      const state = this.props;
+      const networkName = state.networkName;
+      const {network} = state.metamask
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",
         overflowY: "auto",}}>
