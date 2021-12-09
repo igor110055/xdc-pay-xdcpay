@@ -89,7 +89,7 @@ class NetworksMenu extends Component {
 
         <DropdownMenuItem
           closeMenu={() => this.props.updateNetworksMenuOpenState(!isOpen)}
-          onClick={() => this.props.showConfigPage()}
+          onClick={() => this.props.showAddNetworkPage()}
           className={'app-bar-networks-dropdown-custom-rpc'}
         >Custom RPC</DropdownMenuItem>
 
@@ -237,7 +237,7 @@ class NetworksMenu extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showConfigPage: () => dispatch(actions.showConfigPage()),
+    showAddNetworkPage: () => dispatch(actions.addNetwork()),
     setRpcTarget: (rpcTarget) => dispatch(actions.setRpcTarget(rpcTarget)),
     setProviderType: (providerType) => dispatch(actions.setProviderType(providerType)),
     showDeleteRPC: (label) => dispatch(actions.showDeleteRPC(label)),

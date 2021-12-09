@@ -1524,3 +1524,9 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.input-Box{
+  margin-bottom: 24px;
+   border:1px solid #e2e2e2;
+   border-radius: 4px;
+}
