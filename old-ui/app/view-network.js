@@ -40,10 +40,9 @@ class ViewNetwork extends React.Component{
         const state = this.props;
         // const metamaskState = state.metamask;
       // const {networkName,rpcUrl,chainId,networkSymbol,explorerLink} = state
-        // const warning = state.warning;
-      const networkName = state.networkName;
-      console.log(networkName, ': (');
-      const rpcUrl = state.rpcUrl;
+       
+      // console.log(networkName,': (')
+     
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",overflowY: "auto",}}>
         <div className="section-title flex-row" style={{ borderBottom: "1px solid #E3E7EB", paddingBottom: "17px" }}>
@@ -55,10 +54,10 @@ class ViewNetwork extends React.Component{
         
          <label className="word"  style={{
          fontFamily: 'Inter-Medium',
-         }} >Network Name
+         }} >{`Network Name`}
         </label><br/>
-        <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-                <div className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >{networkName} </div >
+        <div className="input-Box">
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
         </div>
                 
 
@@ -67,17 +66,17 @@ class ViewNetwork extends React.Component{
          fontFamily: 'Inter-Medium',
          }}>{`New RPC URL`}  
         </label><br/>
-        <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-                <div className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >{rpcUrl}</div>
+        <div className="input-Box">
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
         </div>
               
 
-         {/* <label className="word"  style={{
+         <label className="word"  style={{
          fontFamily: 'Inter-Medium',
          }}>{`Chain ID`}  
         </label><br/>
-        <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >{chainId}</input>
+        <div className="input-Box">
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }}/>
         </div>
                 
 
@@ -86,18 +85,18 @@ class ViewNetwork extends React.Component{
         fontFamily: 'Inter-Medium',
         }} >{`Currency Symbol (Optional)`}
         </label><br/>
-        <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >{networkSymbol}</input>
+        <div className="input-Box">
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
         </div>
 
         
          <label className="word"  style={{
-                        fontFamily: 'Inter-Medium',
-                    }}>{`Block Explorer (Optional)`}  
+         fontFamily: 'Inter-Medium',
+         }}>{`Block Explorer (Optional)`}  
         </label><br/>
-        <div style={{marginBottom:'24px', border:'1px solid #e2e2e2',borderRadius:'4px'}}>
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >{explorerLink }</input>
-        </div> */}
+        <div className="input-Box">
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
+        </div>
                 
 
         <div style={{display:'flex', justifyContent: 'space-around',}}>
@@ -110,7 +109,7 @@ class ViewNetwork extends React.Component{
               background: '#E3E7EB',
               width: '120px',
               height: '40px',
-                border: 'none',
+              border: 'none',
               color:'#2a2a2a',
               padding: '8px 35px',
           
