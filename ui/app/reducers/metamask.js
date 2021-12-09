@@ -1,9 +1,9 @@
 const extend = require('xtend')
 const actions = require('../actions')
 const MetamascaraPlatform = require('../../../app/scripts/platforms/window')
-const { getEnvironmentType } = require('../../../app/scripts/lib/util')
-const { ENVIRONMENT_TYPE_POPUP } = require('../../../app/scripts/lib/enums')
-const { OLD_UI_NETWORK_TYPE } = require('../../../app/scripts/controllers/network/enums')
+const {getEnvironmentType} = require('../../../app/scripts/lib/util')
+const {ENVIRONMENT_TYPE_POPUP} = require('../../../app/scripts/lib/enums')
+const {OLD_UI_NETWORK_TYPE} = require('../../../app/scripts/controllers/network/enums')
 
 module.exports = reduceMetamask
 
@@ -57,7 +57,8 @@ function reduceMetamask (state, action) {
     showGasFields: true,
     showTokens: true,
   }, state.metamask)
-
+  console.log('========action ', action)
+  console.log('========OldMetamask ', metamaskState)
   switch (action.type) {
 
     case actions.SHOW_ACCOUNTS_PAGE:
@@ -66,8 +67,8 @@ function reduceMetamask (state, action) {
       })
       delete newState.seedWords
       return newState
-    
-    
+
+
     case actions.SHOW_NOTICE:
       return extend(metamaskState, {
         noActiveNotices: false,
@@ -88,16 +89,16 @@ function reduceMetamask (state, action) {
         isInitialized: true,
         selectedAddress: action.value,
       })
-    
-      case actions.UPDATE_GASFIELDS:
-        return extend(metamaskState, {
-          showGasFields: action.value,
-        })
-      
-        case actions.UPDATE_TOKENSLIST:
-          return extend(metamaskState, {
-            showTokens: action.value,
-          })
+
+    case actions.UPDATE_GASFIELDS:
+      return extend(metamaskState, {
+        showGasFields: action.value,
+      })
+
+    case actions.UPDATE_TOKENSLIST:
+      return extend(metamaskState, {
+        showTokens: action.value,
+      })
     case actions.LOCK_METAMASK:
       return extend(metamaskState, {
         isUnlocked: false,
@@ -183,9 +184,9 @@ function reduceMetamask (state, action) {
       const account = action.value.account
       const name = action.value.label
       const id = {}
-      id[account] = extend(metamaskState.identities[account], { name })
+      id[account] = extend(metamaskState.identities[account], {name})
       const identities = extend(metamaskState.identities, id)
-      return extend(metamaskState, { identities })
+      return extend(metamaskState, {identities})
 
     case actions.SET_CURRENT_FIAT:
       return extend(metamaskState, {
@@ -312,8 +313,8 @@ function reduceMetamask (state, action) {
       })
 
     case actions.UPDATE_TRANSACTION_PARAMS:
-      const { id: txId, value } = action
-      let { selectedAddressTxList } = metamaskState
+      const {id: txId, value} = action
+      let {selectedAddressTxList} = metamaskState
       selectedAddressTxList = selectedAddressTxList.map(tx => {
         if (tx.id === txId) {
           tx.txParams = value
@@ -326,7 +327,7 @@ function reduceMetamask (state, action) {
       })
 
     case actions.PAIR_UPDATE:
-      const { value: { marketinfo: pairMarketInfo } } = action
+      const {value: {marketinfo: pairMarketInfo}} = action
       return extend(metamaskState, {
         tokenExchangeRates: {
           ...metamaskState.tokenExchangeRates,
@@ -335,7 +336,7 @@ function reduceMetamask (state, action) {
       })
 
     case actions.SHAPESHIFT_SUBVIEW:
-      const { value: { marketinfo: ssMarketInfo, coinOptions } } = action
+      const {value: {marketinfo: ssMarketInfo, coinOptions}} = action
       return extend(metamaskState, {
         tokenExchangeRates: {
           ...metamaskState.tokenExchangeRates,
@@ -345,9 +346,9 @@ function reduceMetamask (state, action) {
       })
 
     case actions.SET_USE_BLOCKIE:
-          return extend(metamaskState, {
-            useBlockie: action.value,
-          })
+      return extend(metamaskState, {
+        useBlockie: action.value,
+      })
 
     case actions.UPDATE_FEATURE_FLAGS:
       return extend(metamaskState, {
@@ -371,7 +372,7 @@ function reduceMetamask (state, action) {
 
     case actions.SET_PENDING_TOKENS:
       return extend(metamaskState, {
-        pendingTokens: { ...action.payload },
+        pendingTokens: {...action.payload},
       })
 
     case actions.CLEAR_PENDING_TOKENS: {
@@ -382,7 +383,7 @@ function reduceMetamask (state, action) {
 
     case actions.UPDATE_PREFERENCES: {
       return extend(metamaskState, {
-        preferences: { ...action.payload },
+        preferences: {...action.payload},
       })
     }
 

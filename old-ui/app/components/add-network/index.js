@@ -27,6 +27,7 @@ export default class AddNetwork extends React.Component {
   onStateChange = (event) => {
     this.setState({[event.target.name]: event.target.value})
   }
+
   validateRPC = () => {
     const newRPC = this.state.rpcUrl
     if (!validUrl.isWebUri(newRPC)) {
@@ -39,7 +40,7 @@ export default class AddNetwork extends React.Component {
       } else {
         this.props.dispatch(actions.setRpcTarget(newRPC))
       }
-      // this.props.dispatch(actions.viewNetwork(networkName, newRPC, chainId, networkSymbol, explorerLink))
+      this.props.dispatch(actions.viewNetwork(networkName, newRPC, chainId, networkSymbol, explorerLink))
     })
   }
 
