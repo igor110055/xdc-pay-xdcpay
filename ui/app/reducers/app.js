@@ -75,6 +75,13 @@ function reduceApp (state, action) {
       trezor: `m/44'/60'/0'/0`,
       ledger: `m/44'/60'/0'/0/0`,
     },
+    addNetwork: {
+      networkName: null,
+      rpcUrl: null,
+      chainId: null,
+      currencySymbol: null,
+      explorerLink: null,
+    },
   }, state.appState)
 
   let curPendingTxIndex = appState.currentView.pendingTxIndex || 0
@@ -291,11 +298,11 @@ function reduceApp (state, action) {
         },
         transForward: true,
         warning: null,
-        networkName: '',
-        rpcUrl: '',
-        chainId: '',
-        networkSymbol: '',
-        explorerLink: '',
+        networkName: action.value,
+        rpcUrl: action.value,
+        chainId: action.value,
+        currencySymbol: action.value,
+        explorerLink: action.value,
         
         })
     

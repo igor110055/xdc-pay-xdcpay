@@ -6,6 +6,7 @@ const actions = require("../../ui/app/actions");
 const LoadingIndicator = require("./components/loading");
 const Web3 = require("web3");
 import { Checkbox } from '@material-ui/core';
+import { parse } from 'path/posix';
 import React, { useState } from 'react';
 import { explorerLinks } from 'xdc-net-props';
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
@@ -23,26 +24,32 @@ const { networks } = require("../../app/scripts/controllers/network/util");
 // const React = require('react');
 // import AddNetwork from './add-network';
 class ViewNetwork extends React.Component{
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {
-  //     networkName: '',
-  //     rpcUrl: ' ',
-  //     chainId: ' ',
-  //     symbol: ' ',
-  //     explorerLink: ' ',
-  //   }
+  constructor (props) {
+    super(props)
+    this.state = {
+      networkName: '',
+      rpcUrl: ' ',
+      chainId: ' ',
+      symbol: ' ',
+      explorerLink: ' ',
+    }
 
-  // }
+  }
   
     
     render(){
-        const state = this.props;
+      const state = this.props;
+      // const {selected,network} = state
         // const metamaskState = state.metamask;
-      // const {networkName,rpcUrl,chainId,networkSymbol,explorerLink} = state
-       
-      // console.log(networkName,': (')
+      const {networkName,rpcUrl,chainId,networkSymbol,explorerLink} = state
      
+     
+      // const { userAddress, network,address } = this.props
+      const isTestnet = parseInt(network) === XDC_TESTNET_CODE
+      const isMainnet = parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
+      const isDevnet =  parseInt(network) === XDC_DEVNET_CODE 
+      // console.log(networkName,': (')
+       if (isTestnet)
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",overflowY: "auto",}}>
         <div className="section-title flex-row" style={{ borderBottom: "1px solid #E3E7EB", paddingBottom: "17px" }}>
@@ -50,14 +57,16 @@ class ViewNetwork extends React.Component{
         <h2 style={{ marginLeft: '88px', fontFamily: 'Inter-bold' }}>View Network</h2>
         </div>
         
+        
        <div style={{margin:'18px 30px'}}>
+        
         
          <label className="word"  style={{
          fontFamily: 'Inter-Medium',
          }} >{`Network Name`}
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }}>XDC APOTHEM TESNET</input>
         </div>
                 
 
@@ -67,7 +76,7 @@ class ViewNetwork extends React.Component{
          }}>{`New RPC URL`}  
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >https://rpc.apothem.network</input>
         </div>
               
 
@@ -76,7 +85,7 @@ class ViewNetwork extends React.Component{
          }}>{`Chain ID`}  
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }}/>
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }}>50</input>
         </div>
                 
 
@@ -86,7 +95,7 @@ class ViewNetwork extends React.Component{
         }} >{`Currency Symbol (Optional)`}
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >XDC</input>
         </div>
 
         
@@ -95,7 +104,7 @@ class ViewNetwork extends React.Component{
          }}>{`Block Explorer (Optional)`}  
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} />
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >https://explorer.apothem.testnet</input>
         </div>
                 
 

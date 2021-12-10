@@ -1967,7 +1967,7 @@ function addNetwork() {
   };
 }
 
-function viewNetwork(networkName,  rpcUrl,  chainId,  networkSymbol,  explorerLink,) {
+function viewNetwork(networkName,  rpcUrl,  chainId,  currencySymbol,  explorerLink,) {
   return {
     type: actions.SHOW_VIEWNETWORK_PAGE,
     // value: transitionForward,
@@ -1975,7 +1975,7 @@ function viewNetwork(networkName,  rpcUrl,  chainId,  networkSymbol,  explorerLi
       networkName,
       rpcUrl,
       chainId,
-      networkSymbol,
+      currencySymbol,
       explorerLink,
     }
   };
