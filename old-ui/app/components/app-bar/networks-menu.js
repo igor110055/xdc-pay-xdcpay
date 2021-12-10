@@ -24,7 +24,7 @@ class NetworksMenu extends Component {
     const {provider: {type: providerType}} = props
     const rpcList = props.frequentRpcList
     const isOpen = props.isNetworkMenuOpen
-
+    console.log('======== Networks in  menu', networks)
     const knownNetworks = Object.keys(networks)
       .filter((networkID) => {
         return !isNaN(networkID)
@@ -65,8 +65,8 @@ class NetworksMenu extends Component {
       >
         <div className="select-network-list">
           Select Network
-          <img className="select-network-close-icon" onClick={() => this.props.updateNetworksMenuOpenState(!isOpen)}
-               src="/images/Assets/Close.svg"></img>
+          <img className="select-network-close-icon" src="/images/Assets/Close.svg"
+               onClick={() => this.props.updateNetworksMenuOpenState(!isOpen)}/>
         </div>
         {networksView}
         <DropdownMenuItem
@@ -91,7 +91,6 @@ class NetworksMenu extends Component {
           onClick={() => this.props.showAddNetworkPage()}
           className={'app-bar-networks-dropdown-custom-rpc'}
         >Custom RPC</DropdownMenuItem>
-
         {this.renderSelectedCustomOption(props.provider)}
         {this.renderCommonRpc(rpcList, props.provider)}
       </Dropdown>
@@ -100,10 +99,10 @@ class NetworksMenu extends Component {
 
   _renderNetworksView (_networks) {
     const props = this.props
-    const {provider: {type: providerType}} = props
+    const {provider: {type: providerType}, networkList} = props
     const state = this.state || {}
     const isOpen = state.isNetworkMenuOpen
-
+    console.log('=======networkList', networkList)
     const networkDropdownItems = _networks
       .map((networkID) => {
         const networkObj = networks[networkID]
@@ -243,4 +242,11 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(NetworksMenu)
+const mapStateToProps = ({metamask}) => {
+  const {networkList} = metamask
+  return {
+    networkList,
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NetworksMenu)
