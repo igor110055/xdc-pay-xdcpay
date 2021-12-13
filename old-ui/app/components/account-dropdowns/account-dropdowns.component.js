@@ -171,7 +171,10 @@ class AccountDropdowns extends Component {
             src="/images/Assets/Close.svg"
           ></img>
         </div>
+        <div>
+         {/* style={{ overflowY: 'scroll' }}> */}
         {menuItems}
+        </div>
       </Dropdown>
     );
   }
@@ -183,6 +186,8 @@ class AccountDropdowns extends Component {
     const keyring = getCurrentKeyring(selected, network, keyrings, identities);
 
     return (
+      <div>
+
       <Dropdown
         style={{
           position: "absolute",
@@ -196,37 +201,37 @@ class AccountDropdowns extends Component {
           const { classList } = event.target;
           const isNotToggleElement = !classList.contains(
             this.optionsMenuToggleClassName
-          );
-          if (optionsMenuActive && isNotToggleElement) {
-            this.setState({ optionsMenuActive: false });
-          }
-        }}
-      >
+            );
+            if (optionsMenuActive && isNotToggleElement) {
+              this.setState({ optionsMenuActive: false });
+            }
+          }}
+          >
         <div className="account-options-list">
           Account Options
           <img
             className="account-options-close-icon"
             src="/images/Assets/Close.svg"
-          ></img>
+            ></img>
         </div>
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => global.platform.openExtensionInBrowser()}
-        >
+          >
           <img
             className="account-options-icon"
             src="/images/Assets/ExpandedView.svg"
-          ></img>
+            ></img>
           Expanded View
         </DropdownMenuItem>
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.connectedSites()}
-        >
+          >
           <img
             className="account-options-icon"
             src="/images/Assets/ConnectedSites.svg"
-          ></img>
+            ></img>
           Connected Sites
         </DropdownMenuItem>
         <DropdownMenuItem
@@ -242,31 +247,31 @@ class AccountDropdowns extends Component {
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.showQRCode()}
-        >
+          >
           <img
             className="account-options-icon"
             src="/images/Assets/QRCode.svg"
-          ></img>
+            ></img>
           Show QR Code
         </DropdownMenuItem>
         {/* <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.connectedSites()}
-        >
+          >
           <img
-            className="account-options-icon"
-            src="/images/Assets/QRCode.svg"
+          className="account-options-icon"
+          src="/images/Assets/QRCode.svg"
           ></img>
           Connected Sites
         </DropdownMenuItem> */}
         <DropdownMenuItem
           closeMenu={() => {}}
           onClick={() => this.copyAddress()}
-        >
+          >
           <img
             className="account-options-icon"
             src="/images/Assets/CopyClipboard.svg"
-          ></img>
+            ></img>
           Copy address to clipboard
         </DropdownMenuItem>
         {ifContractAcc(keyring) ? (
@@ -276,25 +281,26 @@ class AccountDropdowns extends Component {
         ) : null}
         {isProxy ? (
           <DropdownMenuItem
-            closeMenu={() => {}}
-            onClick={() => this.updateABI()}
+          closeMenu={() => {}}
+          onClick={() => this.updateABI()}
           >
             Update implementation ABI
           </DropdownMenuItem>
         ) : null}
         {!ifHardwareAcc(keyring) && !ifContractAcc(keyring) ? (
           <DropdownMenuItem
-            closeMenu={() => {}}
-            onClick={() => actions.requestAccountExport()}
+          closeMenu={() => {}}
+          onClick={() => actions.requestAccountExport()}
           >
             <img
               className="account-options-icon"
               src="/images/Assets/ExportPvtKey.svg"
-            ></img>
+              ></img>
             Export Private Key
           </DropdownMenuItem>
         ) : null}
       </Dropdown>
+  </div>
     );
   }
 

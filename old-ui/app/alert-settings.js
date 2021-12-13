@@ -5,6 +5,7 @@ const connect = require("react-redux").connect;
 const actions = require("../../ui/app/actions");
 
 import React, { useState } from 'react';
+import { showAlert } from '../../ui/app/actions';
 
 
 
@@ -12,14 +13,15 @@ import React, { useState } from 'react';
 class AlertSettings extends React.Component{
    
     handleCheckBox = () => {
-        const showGasField = this.props.metamask.showGasField
+        const showAlert = this.props.metamask.showAlert
         // this.setState({ showGasFields: !showGasFields })
-        this.props.dispatch(actions.showGasField(!showGasField))
+        this.props.dispatch(actions.showAlert(!showAlert))
    }
     render(){
         const state = this.props;
         const metamaskState = state.metamask;
         const warning = state.warning;
+        const showAlert = metamaskState.showAlert;
         // let [checked, setChecked] = useState(false);
     
         return(
@@ -39,8 +41,10 @@ class AlertSettings extends React.Component{
                
                 <label className="switch">
                 <input type="checkbox"  onChange={this.handleCheckBox} />
-                <span className="slider round" ></span>
-                </label>
+                        <span className="slider round" ></span>
+                        
+                    </label>
+                    <span style={{ marginLeft: '8px', }}>{showAlert ? "On" : "Off"}</span>
                 
                 </div>
            
