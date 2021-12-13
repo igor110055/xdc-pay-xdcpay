@@ -284,7 +284,7 @@ var actions = {
   SHOW_ALERTSETTINGS_PAGE: 'SHOW_ALERTSETTINGS_PAGE',
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
-  SHOW_VIEWNETWORK_PAGE: 'SHOW_VIEWNETWORK_PAGE',
+  SHOW_VIEW_NETWORK_PAGE: 'SHOW_VIEW_NETWORK_PAGE',
   ADD_NEW_NETWORK: 'ADD_NEW_NETWORK',
 
   SHOW_ADD_TOKEN_PAGE: 'SHOW_ADD_TOKEN_PAGE',
@@ -1979,17 +1979,10 @@ function addNetwork (networkObj) {
   }
 }
 
-function viewNetwork (networkName, rpcUrl, chainId, networkSymbol, explorerLink) {
+function viewNetwork (networkObj) {
   return {
-    type: actions.SHOW_VIEWNETWORK_PAGE,
-    // value: transitionForward,
-    value: {
-      networkName,
-      rpcUrl,
-      chainId,
-      networkSymbol,
-      explorerLink,
-    },
+    type: actions.SHOW_VIEW_NETWORK_PAGE,
+    value: networkObj,
   }
 }
 

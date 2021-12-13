@@ -4,14 +4,12 @@ import {Dropdown, DropdownMenuItem} from '../dropdown'
 import actions from '../../../../ui/app/actions'
 import {LOCALHOST} from '../../../../app/scripts/controllers/network/enums'
 import {networks} from '../../../../app/scripts/controllers/network/util'
-import ethNetProps from 'xdc-net-props'
 import {connect} from 'react-redux'
 
 const LOCALHOST_RPC_URL = 'http://localhost:8545'
 
 class NetworksMenu extends Component {
   static propTypes = {
-    showConfigPage: PropTypes.func.isRequired,
     setRpcTarget: PropTypes.func.isRequired,
     updateNetworksMenuOpenState: PropTypes.func.isRequired,
     provider: PropTypes.any.isRequired,

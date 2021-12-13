@@ -130,16 +130,16 @@ function reduceApp (state, action) {
 
     // modal methods:
     case actions.MODAL_OPEN:
-      const { name, ...modalProps } = action.payload
+      const {name, ...modalProps} = action.payload
 
       return extend(appState, {
         modal: {
           open: true,
           modalState: {
             name: name,
-            props: { ...modalProps },
+            props: {...modalProps},
           },
-          previousModalState: { ...appState.modal.modalState },
+          previousModalState: {...appState.modal.modalState},
         },
       })
 
@@ -147,9 +147,9 @@ function reduceApp (state, action) {
       return extend(appState, {
         modal: Object.assign(
           state.appState.modal,
-          { open: false },
-          { modalState: { name: null, props: {} } },
-          { previousModalState: appState.modal.modalState},
+          {open: false},
+          {modalState: {name: null, props: {}}},
+          {previousModalState: appState.modal.modalState},
         ),
       })
 
@@ -223,94 +223,88 @@ function reduceApp (state, action) {
       })
 
     case actions.SHOW_GENSETTINGS_PAGE:
-        return extend(appState, {
+      return extend(appState, {
         currentView: {
           name: 'general-settings',
           context: appState.currentView.context,
         },
         transForward: true,
-          warning: null,
-        })
-    
-        case actions.SHOW_SEEDWORDS:
-          return extend(appState, {
-          currentView: {
-            name: 'CreateVaultCompleteScreen',
-            context: appState.currentView.context,
-          },
-          transForward: true,
-            warning: null,
-          })
-       
-    
+        warning: null,
+      })
+
+    case actions.SHOW_SEEDWORDS:
+      return extend(appState, {
+        currentView: {
+          name: 'CreateVaultCompleteScreen',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+      })
+
+
     case actions.GO_CONFIG:
-          return extend(appState, {
-          currentView: {
-            name: 'config',
-            context: appState.currentView.context,
-          },
-          transForward: true,
-            warning: null,
-          })
-        
+      return extend(appState, {
+        currentView: {
+          name: 'config',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+      })
+
     case actions.SHOW_ADVSETTINGS_PAGE:
-          return extend(appState, {
-          currentView: {
-            name: 'advance-settings',
-            context: appState.currentView.context,
-          },
-            transForward: true,
-            warning: null,
-          })
-    
+      return extend(appState, {
+        currentView: {
+          name: 'advance-settings',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+      })
+
     case actions.SHOW_NETWORKSETTINGS_PAGE:
       return extend(appState, {
-      currentView: {
-      name: 'network-settings',
-      context: appState.currentView.context,
-      },
-      transForward: true,
-      warning: null,
+        currentView: {
+          name: 'network-settings',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
       })
-    
+
     case actions.SHOW_ADDNETWORK_PAGE:
-        return extend(appState, {
+      return extend(appState, {
         currentView: {
-        name: 'add-network',
-        context: appState.currentView.context,
+          name: 'add-network',
+          context: appState.currentView.context,
         },
         transForward: true,
         warning: null,
-        })
-    
-    case actions.SHOW_VIEWNETWORK_PAGE:
-        return extend(appState, {
+        currentViewNetworkObj: null,
+      })
+
+    case actions.SHOW_VIEW_NETWORK_PAGE:
+      return extend(appState, {
         currentView: {
-        name: 'view-network',
-        context: appState.currentView.context,
+          name: 'add-network',
+          context: appState.currentView.context,
         },
         transForward: true,
         warning: null,
-        networkName: '',
-        rpcUrl: '',
-        chainId: '',
-        networkSymbol: '',
-        explorerLink: '',
-        
-        })
-    
-      
-    
+        currentViewNetworkObj: action.value,
+      })
+
     case actions.SHOW_ALERTSETTINGS_PAGE:
       return extend(appState, {
-      currentView: {
-        name: 'alert-settings',
-        context: appState.currentView.context,
-      },
+        currentView: {
+          name: 'alert-settings',
+          context: appState.currentView.context,
+        },
         transForward: true,
         warning: null,
-    })
-      
+      })
+
     case actions.SHOW_CONFIRM_ADD_TOKEN_PAGE:
       return extend(appState, {
         currentView: {
@@ -467,7 +461,7 @@ function reduceApp (state, action) {
         transForward: true,
       })
 
-  // unlock
+    // unlock
 
     case actions.UNLOCK_METAMASK:
       return extend(appState, {
@@ -504,7 +498,7 @@ function reduceApp (state, action) {
           name: 'UnlockScreen',
         },
       })
-  // reveal seed words
+    // reveal seed words
 
     case actions.REVEAL_SEED_CONFIRMATION:
       return extend(appState, {
@@ -515,14 +509,14 @@ function reduceApp (state, action) {
         warning: null,
       })
 
-  // accounts
+    // accounts
 
     case actions.SET_SELECTED_ACCOUNT:
       return extend(appState, {
         activeAddress: action.value,
       })
 
-    
+
     case actions.GO_HOME:
       return extend(appState, {
         currentView: extend(appState.currentView, {
@@ -579,21 +573,21 @@ function reduceApp (state, action) {
         forgottenPassword: false,
       })
 
-      case actions.SHOW_CONF_REC_PAGE:
-        log.debug('--------- reducing SHOW_CONF_REC_PAGE for tx ')
-        return extend(appState, {
-          currentView: {
-            name: seedWords ? 'confirmRecoveryPhrase' : 'confirmRecoveryPhrase',
-            seedWords,
-          },
-          transForward: true,
-          isLoading: false,
-          warning: null,
-          scrollToBottom: false,
-          forgottenPassword: false,
-        })
-      
-      
+    case actions.SHOW_CONF_REC_PAGE:
+      log.debug('--------- reducing SHOW_CONF_REC_PAGE for tx ')
+      return extend(appState, {
+        currentView: {
+          name: seedWords ? 'confirmRecoveryPhrase' : 'confirmRecoveryPhrase',
+          seedWords,
+        },
+        transForward: true,
+        isLoading: false,
+        warning: null,
+        scrollToBottom: false,
+        forgottenPassword: false,
+      })
+
+
     case actions.SHOW_NOTICE:
       return extend(appState, {
         transForward: true,
@@ -711,7 +705,7 @@ function reduceApp (state, action) {
       })
 
     case actions.SET_HARDWARE_WALLET_DEFAULT_HD_PATH:
-      const { device, path } = action.value
+      const {device, path} = action.value
       const newDefaults = {...appState.defaultHdPaths}
       newDefaults[device] = path
 
@@ -974,8 +968,10 @@ function checkUnconfActions (state) {
 }
 
 function getUnconfActionList (state) {
-  const { unapprovedTxs, unapprovedMsgs,
-    unapprovedPersonalMsgs, unapprovedTypedMessages, network } = state.metamask
+  const {
+    unapprovedTxs, unapprovedMsgs,
+    unapprovedPersonalMsgs, unapprovedTypedMessages, network,
+  } = state.metamask
 
   const unconfActionList = txHelper(unapprovedTxs, unapprovedMsgs, unapprovedPersonalMsgs, unapprovedTypedMessages, network)
   return unconfActionList

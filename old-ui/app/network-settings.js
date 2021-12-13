@@ -4,13 +4,6 @@ const React = require('react')
 
 class NetworkSettings extends React.Component {
 
-  handleCheckBox = () => {
-    // eslint-disable-next-line react/prop-types
-    const showGasFields = this.props.metamask.showGasFields
-    // eslint-disable-next-line react/prop-types
-    this.props.dispatch(actions.showGasFields(!showGasFields))
-  }
-
   render () {
     const state = this.props
     const networkList = state.metamask.networkList
@@ -36,9 +29,10 @@ class NetworkSettings extends React.Component {
             fontFamily: 'inter-medium',
             fontSize: '14px',
           }} key={networkObj.chainId}>{networkObj.name}
-            <img src="/images/Assets/Lock.png" style={{position: 'absolute', right: '30px'}}/>
+            <img src={networkObj.isPermanent ? '/images/Assets/Lock.png' : '/images/Assets/Delete.svg'}
+                 style={{position: 'absolute', right: '30px'}}/>
             <img src="/images/Assets/Arrow.svg" onClick={() => {
-              state.dispatch(actions.viewNetwork())
+              state.dispatch(actions.viewNetwork(networkObj))
             }} style={{position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer'}}/>
           </div>)
         }

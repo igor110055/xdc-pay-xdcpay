@@ -57,9 +57,8 @@ function reduceMetamask (state, action) {
     showGasFields: true,
     showTokens: true,
     networkList: permanentNetworks,
+    currentViewNetwork: null,
   }, state.metamask)
-  console.log('========action ', action)
-  console.log('========OldMetamask ', metamaskState)
   switch (action.type) {
 
     case actions.SHOW_ACCOUNTS_PAGE:
