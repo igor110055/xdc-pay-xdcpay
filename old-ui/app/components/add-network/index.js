@@ -29,18 +29,28 @@ export default class AddNetwork extends React.Component {
   }
 
   validateRPC = () => {
-    const newRPC = this.state.rpcUrl
-    if (!validUrl.isWebUri(newRPC)) {
-      return this.props.dispatch(actions.displayWarning(!newRPC.startsWith('http') ? 'URIs require the appropriate HTTP/HTTPS prefix.' : 'Invalid RPC URI'))
+    this.props.dispatch(actions.displayWarning(''))
+    const {networkName, rpcUrl, chainId, currencySymbol, explorerLink} = this.state
+    if (!validUrl.isWebUri(rpcUrl)) {
+      return this.props.dispatch(actions.displayWarning(!rpcUrl.startsWith('http') ? 'URIs require the appropriate HTTP/HTTPS prefix.' : 'Invalid RPC URI'))
     }
-    const web3 = new Web3(new Web3.providers.HttpProvider(newRPC))
+    const web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl))
     web3.eth.getBlockNumber((err, res) => {
       if (err) {
         this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
       } else {
-        this.props.dispatch(actions.setRpcTarget(newRPC))
+        this.props.dispatch(actions.setRpcTarget(rpcUrl))
+        this.props.dispatch(actions.addNetwork({
+          name: networkName,
+          rpcURL: rpcUrl,
+          chainId,
+          currencySymbol,
+          blockExplorer: explorerLink,
+          isPermanent: false,
+          providerType: 'rpc',
+        }))
+        this.onBackClick()
       }
-      this.props.dispatch(actions.viewNetwork(networkName, newRPC, chainId, networkSymbol, explorerLink))
     })
   }
 

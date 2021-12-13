@@ -24,7 +24,6 @@ class NetworksMenu extends Component {
     const {provider: {type: providerType}} = props
     const rpcList = props.frequentRpcList
     const isOpen = props.isNetworkMenuOpen
-    console.log('======== Networks in  menu', networks)
     const knownNetworks = Object.keys(networks)
       .filter((networkID) => {
         return !isNaN(networkID)
@@ -45,8 +44,6 @@ class NetworksMenu extends Component {
             classList.contains('network-name'),
             classList.contains('network-indicator'),
           ].filter(bool => bool).length === 0
-          // classes from three constituent nodes of the toggle element
-
           if (isNotToggleElement) {
             this.props.updateNetworksMenuOpenState(false)
           }
@@ -58,10 +55,7 @@ class NetworksMenu extends Component {
           width: '317px',
           maxHeight: isOpen ? '524px' : '0px',
         }}
-        innerStyle={{
-          // padding: '2px 16px 2px 0px',
-          padding: 0,
-        }}
+        innerStyle={{padding: 0}}
       >
         <div className="select-network-list">
           Select Network
@@ -69,30 +63,13 @@ class NetworksMenu extends Component {
                onClick={() => this.props.updateNetworksMenuOpenState(!isOpen)}/>
         </div>
         {networksView}
-        <DropdownMenuItem
-          key={'default'}
-          closeMenu={() => this.props.updateNetworksMenuOpenState(!isOpen)}
-          onClick={() => {
-            props.setRpcTarget('https://localhost:8545')
-            props.setProviderType(LOCALHOST)
-          }}
-          style={{
-            paddingLeft: '20px',
-            fontSize: '14px',
-            color: providerType === LOCALHOST ? '#2A2A2A' : '',
-          }}
-        >
-          {providerType === LOCALHOST ? <div className="selected-network"/> : null}
-          {`Localhost 8545`}
-        </DropdownMenuItem>
-
+        {this.renderSelectedCustomOption(props.provider)}
+        {this.renderCommonRpc(rpcList, props.provider)}
         <DropdownMenuItem
           closeMenu={() => this.props.updateNetworksMenuOpenState(!isOpen)}
           onClick={() => this.props.showAddNetworkPage()}
           className={'app-bar-networks-dropdown-custom-rpc'}
         >Custom RPC</DropdownMenuItem>
-        {this.renderSelectedCustomOption(props.provider)}
-        {this.renderCommonRpc(rpcList, props.provider)}
       </Dropdown>
     )
   }
@@ -102,27 +79,30 @@ class NetworksMenu extends Component {
     const {provider: {type: providerType}, networkList} = props
     const state = this.state || {}
     const isOpen = state.isNetworkMenuOpen
-    console.log('=======networkList', networkList)
-    const networkDropdownItems = _networks
-      .map((networkID) => {
-        const networkObj = networks[networkID]
+
+    const onNetworkClicked = (networkObj) => {
+      props.setProviderType(networkObj.providerType)
+      if (networkObj.providerType === LOCALHOST || networkObj.providerType === 'rpc') {
+        props.setRpcTarget(networkObj.providerType === LOCALHOST ? 'https://localhost:8545' : networkObj.rpcUrl)
+      }
+    }
+    return networkList
+      .map((networkObj) => {
         return (
           <DropdownMenuItem
             key={networkObj.providerName}
             closeMenu={() => this.props.updateNetworksMenuOpenState(!isOpen)}
-            onClick={() => props.setProviderType(networkObj.providerName)}
+            onClick={() => onNetworkClicked(networkObj)}
             style={{
               paddingLeft: '20px',
-              color: providerType === networkObj.providerName ? '#2149B9' : '',
+              color: providerType === networkObj.providerType ? '#2149B9' : '',
             }}
           >
-            {providerType === networkObj.providerName ? <div className="selected-network"/> : null}
-            {ethNetProps.props.getNetworkDisplayName(networkID)}
+            {providerType === networkObj.providerType ? <div className="selected-network"/> : null}
+            {networkObj.name}
           </DropdownMenuItem>
         )
       })
-
-    return networkDropdownItems
   }
 
   _sortNetworks (networkID1, networkID2) {
@@ -235,7 +215,7 @@ class NetworksMenu extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showAddNetworkPage: () => dispatch(actions.addNetwork()),
+    showAddNetworkPage: () => dispatch(actions.showAddNetworkPage()),
     setRpcTarget: (rpcTarget) => dispatch(actions.setRpcTarget(rpcTarget)),
     setProviderType: (providerType) => dispatch(actions.setProviderType(providerType)),
     showDeleteRPC: (label) => dispatch(actions.showDeleteRPC(label)),

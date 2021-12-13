@@ -273,6 +273,7 @@ var actions = {
   advanceSettings,
   networkSettings,
   addNetwork,
+  showAddNetworkPage,
   viewNetwork: viewNetwork,
   alertSettings,
 
@@ -284,6 +285,7 @@ var actions = {
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
   SHOW_VIEWNETWORK_PAGE: 'SHOW_VIEWNETWORK_PAGE',
+  ADD_NEW_NETWORK: 'ADD_NEW_NETWORK',
 
   SHOW_ADD_TOKEN_PAGE: 'SHOW_ADD_TOKEN_PAGE',
   SHOW_CONFIRM_ADD_TOKEN_PAGE: 'SHOW_CONFIRM_ADD_TOKEN_PAGE',
@@ -1963,10 +1965,17 @@ function networkSettings () {
   }
 }
 
-function addNetwork () {
+function showAddNetworkPage () {
   return {
     type: actions.SHOW_ADDNETWORK_PAGE,
     // value: transitionForward,
+  }
+}
+
+function addNetwork (networkObj) {
+  return {
+    type: actions.ADD_NEW_NETWORK,
+    value: networkObj,
   }
 }
 
@@ -2996,7 +3005,7 @@ function showDeleteImportedAccount (identity, keyring) {
 function confirmChangePassword () {
   return {
     type: actions.CONFIRM_CHANGE_PASSWORD,
-  };
+  }
 }
 
 // module.exports = {
