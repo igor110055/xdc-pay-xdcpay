@@ -5,10 +5,12 @@ const connect = require("react-redux").connect;
 const actions = require("../../ui/app/actions");
 const LoadingIndicator = require("./components/loading");
 const Web3 = require("web3");
+// const {permanentNetworks} = require("../../app/scripts/controllers/network/enums")
 import { Checkbox } from '@material-ui/core';
 import { parse } from 'path/posix';
 import React, { useState } from 'react';
 import { explorerLinks } from 'xdc-net-props';
+
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
   (a, b) => {
     return a.quote.name
@@ -23,18 +25,28 @@ const ethNetProps = require("xdc-net-props");
 const { networks } = require("../../app/scripts/controllers/network/util");
 // const React = require('react');
 // import AddNetwork from './add-network';
+const permanentNetworks = 
+        {
+          name: XDC_DISPLAY_NAME,
+          rpcURL: XDC_RPC_ENDPOINT,
+          chainId: XDC_CODE,
+          currencySymbol: XDC,
+          blockExplorer: XDC_BLOCK_EXPLORER_URL,
+          providerType: XDC,
+          // isPermanent: true,
+        } = require("../../app/scripts/controllers/network/enums")
 class ViewNetwork extends React.Component{
-  constructor (props) {
-    super(props)
-    this.state = {
-      networkName: '',
-      rpcUrl: ' ',
-      chainId: ' ',
-      symbol: ' ',
-      explorerLink: ' ',
-    }
+  // constructor (props) {
+  //   super(props)
+  //   this.state = {
+  //     networkName: '',
+  //     rpcUrl: ' ',
+  //     chainId: ' ',
+  //     symbol: ' ',
+  //     explorerLink: ' ',
+  //   }
 
-  }
+  // }
   
     
     render(){
@@ -45,11 +57,9 @@ class ViewNetwork extends React.Component{
      
      
       // const { userAddress, network,address } = this.props
-      const isTestnet = parseInt(network) === XDC_TESTNET_CODE
-      const isMainnet = parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
-      const isDevnet =  parseInt(network) === XDC_DEVNET_CODE 
+      
       // console.log(networkName,': (')
-       if (isTestnet)
+      //  if (isTestnet)
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",overflowY: "auto",}}>
         <div className="section-title flex-row" style={{ borderBottom: "1px solid #E3E7EB", paddingBottom: "17px" }}>
@@ -66,7 +76,7 @@ class ViewNetwork extends React.Component{
          }} >{`Network Name`}
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }}>XDC APOTHEM TESNET</input>
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }}>{permanentNetworks.name}</input>
         </div>
                 
 
@@ -76,7 +86,7 @@ class ViewNetwork extends React.Component{
          }}>{`New RPC URL`}  
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >https://rpc.apothem.network</input>
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >{permanentNetworks.rpcUrl}</input>
         </div>
               
 
@@ -85,7 +95,7 @@ class ViewNetwork extends React.Component{
          }}>{`Chain ID`}  
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }}>50</input>
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }}>{permanentNetworks.chainId}</input>
         </div>
                 
 
@@ -95,7 +105,7 @@ class ViewNetwork extends React.Component{
         }} >{`Currency Symbol (Optional)`}
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >XDC</input>
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >{permanentNetworks.currencySymbol}</input>
         </div>
 
         
@@ -104,7 +114,7 @@ class ViewNetwork extends React.Component{
          }}>{`Block Explorer (Optional)`}  
         </label><br/>
         <div className="input-Box">
-                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >https://explorer.apothem.testnet</input>
+                <input className="input large-input" type='text' style={{ width: '265px', border: 'none', color: '#2A2A2A' }} >{permanentNetworks.blockExplorer}</input>
         </div>
                 
 
@@ -160,6 +170,7 @@ class ViewNetwork extends React.Component{
       return {
         metamask: state.metamask,
         warning: state.appState.warning,
+        permanentNetworks: state.permanentNetworks,
       };
     }
                

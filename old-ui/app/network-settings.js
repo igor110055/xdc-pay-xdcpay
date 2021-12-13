@@ -14,6 +14,7 @@ class NetworkSettings extends React.Component {
   render () {
     const state = this.props
     const networkName = state.networkName
+  
     return (
       <div className="flex-column flex-grow" style={{
         maxHeight: '585px',
