@@ -28,18 +28,17 @@ class ConfirmRecoveryPhrase extends React.Component {
     
     return (
       <div>
-        <div>         
+        <div>
+          <img style={{ position:'absolute', left:'18px' ,cursor: 'pointer', }} src={'/images/Assets/BackArrow.svg'}
+              onClick={() => this.props.dispatch(actions.showSeedWords())}
+              />      
           <row className="h3 flex-center section-title" style={{
           color: '#333333',
           fontWeight: '600',
-          justifyContent: 'space-between',
-          // marginLeft: '24px',
-            
-          margin:'29px 50px 36px 0 ',
+          justifyContent: 'center',           
+          margin:'29px 0 36px 0 ',
           }} >
-         <img style={ {marginRight:'35px',cursor:'pointer',}}src={'/images/Assets/BackArrow.svg'}
-              onClick={() => this.props.dispatch(actions.showSeedWords())}
-              />
+         
             Confirm Recovery Phrase
         </row> 
         </div>

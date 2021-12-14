@@ -73,22 +73,23 @@ class GeneralSettings extends React.Component {
       <div className="flex-column flex-grow">
         {/* <LoadingIndicator/> */}
         <div className="section-title flex-row">
-          <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'12px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.goConfig()) }} />
-          <h2 style={{ marginLeft:'88px'}}>General Settings</h2>
+          <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'34px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.goConfig()) }} />
+          <h2 style={{ marginLeft:'88px',fontFamily:'Inter-Bold'}}>General Settings</h2>
         </div>
-        <div style={{borderTop:'1px solid #E3E7EB'}}>
+        <div style={{borderTop:'1px solid #E3E7EB',padding:'20px 40px'}}>
           {currentConversionInformation(metamaskState, state)}
         </div>
-        <div style={{borderTop:'1px solid #E3E7EB'}}>
+        <div style={{borderTop:'1px solid #E3E7EB',padding:'20px 40px'}}>
           {currentLanguage(state)}
         </div>
-        <div>
+        <div style={{ padding:'20px 40px',borderTop:'1px solid #E3E7EB' }}>
+          <div style={{color:'#2149B9',fontSize:'14px',fontFamily:'Inter-Medium', }}>Hide Tokens Without</div><br/>
        <label className="switch">
           {/* <input type="checkbox" id="checked" /> */}
           <input type="checkbox"  id="checked" onChange={this.handleCheckBox} />
           <span className="slider round"></span>
        </label>
-          <span style={{ marginLeft: '8px', }}>{showTokens ? "On" : "Off"}</span>
+          <span style={{ marginLeft: '8px', }}>{showTokens ? "Off" : "On"}</span>
           </div>
       </div>
     )
@@ -110,16 +111,17 @@ function mapStateToProps(state) {
     // const { t } = this.context;
     const setCurrentCurrency = metamaskState.setCurrentCurrency;
     return (
-      <div style={{ padding:'10px 19px' }}>
-      <span style={{fontWeight: "bold", fontSize: "14px", color: "#2149B9"}}>
+      <div >
+      <span style={{fontFamily:'Inter-Medium', fontSize: "14px", color: "#2149B9"}}>
       Current Conversion
         </span>
         <br />
-        <span style={{fontSize: "14px", color: "#2A2A2A"}}>
-          {`Updated` + Date(conversionDate) }
+        <span style={{fontSize: "14px", color: "#2A2A2A",fontFamily:'Inter-Medium' ,}}>
+          {`Updated ` + Date(conversionDate) }
         </span>
         <br />
-        
+        <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324',}} >
+          <div className="settings-page__content-item-col">
         <SimpleDropdown
             style={{border: '1px solid #E3E7EB' }}
             placeholder={('selectCurrency')}
@@ -127,7 +129,8 @@ function mapStateToProps(state) {
             selectedOption={currentCurrency}
             onSelect={newCurrency => setCurrentCurrency(newCurrency)}
             />
-
+            </div>
+            </div>
       </div>
     )    
   }
@@ -141,20 +144,20 @@ function mapStateToProps(state) {
     const currentLocaleName = currentLocaleMeta ? currentLocaleMeta.name : ''
   
     return (
-      <div style={{ padding:'10px 19px' }}>
+      <div >
       <div className="settings-page__content-row">
         <div className="settings-page__content-item">
-          <span className="settings-page__content-label">
-            { ('currentLanguage') }
-          </span>
+          <div style={{fontFamily:'Inter-Medium' ,color:'#2149B9',fontSize:'14px',height:'34px'}}>
+          Current Language
+          </div>
           <span className="settings-page__content-description">
             { currentLocaleName }
           </span>
         </div>
-        <div className="settings-page__content-item" style={{border:'1px solid grey'}} >
+        <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324',}} >
           <div className="settings-page__content-item-col">
             <SimpleDropdown
-              style={{ border: '1px solid #E3E7EB' }}
+              style={{ border: '1px solid #E3E7EB',}}
               placeholder={('selectLocale')}
               options={localeOptions}
               selectedOption={currentLocale}

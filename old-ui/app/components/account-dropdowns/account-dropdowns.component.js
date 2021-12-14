@@ -145,7 +145,7 @@ class AccountDropdowns extends Component {
           left: "0",
           bottom: "-543px",
           minWidth: "180px",
-          maxHeight: accountSelectorActive ? "392px" : "0px",
+         
           width: "317px",
         }}
         innerStyle={
@@ -171,8 +171,12 @@ class AccountDropdowns extends Component {
             src="/images/Assets/Close.svg"
           ></img>
         </div>
-        <div>
-         {/* style={{ overflowY: 'scroll' }}> */}
+        <div style={{
+          maxHeight: accountSelectorActive ? "271px" : "0px",
+          height: '100%',
+          overflowY: 'auto',
+
+        }}>
         {menuItems}
         </div>
       </Dropdown>
