@@ -7,6 +7,8 @@ class NetworkSettings extends React.Component {
   render () {
     const state = this.props
     const networkList = state.metamask.networkList
+    const frequentRPCList = state.metamask.frequentRpcList
+    const netList= [...networkList,...frequentRPCList]
     return (
       <div className="flex-column flex-grow" style={{
         maxHeight: '585px',
@@ -22,7 +24,7 @@ class NetworkSettings extends React.Component {
                  state.dispatch(actions.showAddNetworkPage())
                }}/>
         </div>
-        {networkList.map((networkObj) =>
+        {netList.map((networkObj) =>
           <div style={{
             padding: ' 11px 17px 11px 15px ',
             borderBottom: '1px solid #E3E7EB',

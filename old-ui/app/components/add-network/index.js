@@ -32,6 +32,15 @@ export default class AddNetwork extends React.Component {
   validateRPC = (isToUpdate) => {
     this.props.dispatch(actions.displayWarning(''))
     const {networkName, rpcUrl, chainId, currencySymbol, explorerLink} = this.state
+    const rpcNetworkObj = {
+          name: networkName,
+          rpcURL: rpcUrl,
+          chainId,
+          currencySymbol,
+          blockExplorer: explorerLink,
+          isPermanent: false,
+          providerType: 'rpc',
+        }
     if (!validUrl.isWebUri(rpcUrl)) {
       return this.props.dispatch(actions.displayWarning(!rpcUrl.startsWith('http') ? 'URIs require the appropriate HTTP/HTTPS prefix.' : 'Invalid RPC URI'))
     }
@@ -40,16 +49,8 @@ export default class AddNetwork extends React.Component {
       if (err) {
         this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
       } else {
-        this.props.dispatch(actions.setRpcTarget(rpcUrl))
-        !isToUpdate && this.props.dispatch(actions.addNetwork({
-          name: networkName,
-          rpcURL: rpcUrl,
-          chainId,
-          currencySymbol,
-          blockExplorer: explorerLink,
-          isPermanent: false,
-          providerType: 'rpc',
-        }))
+        this.props.dispatch(actions.setRpcTarget(rpcNetworkObj))
+        !isToUpdate && this.props.dispatch(actions.addNetwork(rpcNetworkObj))
         this.onBackClick()
       }
     })

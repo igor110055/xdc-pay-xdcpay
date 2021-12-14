@@ -101,6 +101,7 @@ function mapStateToProps (state) {
     nextUnreadNotice: state.metamask.nextUnreadNotice,
     lostAccounts: state.metamask.lostAccounts,
     frequentRpcList: state.metamask.frequentRpcList || [],
+    networkList: state.metamask.networkList || [],
     featureFlags,
     suggestedTokens: state.metamask.suggestedTokens,
 
