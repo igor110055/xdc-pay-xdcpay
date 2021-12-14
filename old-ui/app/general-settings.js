@@ -72,7 +72,7 @@ class GeneralSettings extends React.Component {
     return (
       <div className="flex-column flex-grow">
         {/* <LoadingIndicator/> */}
-        <div className="section-title flex-row">
+        <div className="section-title flex-row" style={{paddingBottom:'17px'}}>
           <img src="/images/Assets/BackArrow.svg" style={{marginLeft:'34px', cursor:'pointer'}} onClick={() => { state.dispatch(actions.goConfig()) }} />
           <h2 style={{ marginLeft:'88px',fontFamily:'Inter-Bold'}}>General Settings</h2>
         </div>
