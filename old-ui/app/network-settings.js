@@ -36,7 +36,7 @@ class NetworkSettings extends React.Component {
           fontFamily: 'inter-medium',
           fontSize: '14px',
         }}>{`XDC Mainnet`}
-          <img src="/images/Assets/Lock.png" style={{position: 'absolute', right: '30px'}}/><img
+          <img src="/images/Assets/Lock.svg" style={{position: 'absolute', right: '30px'}}/><img
             src="/images/Assets/Arrow.svg"
             style={{position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer'}} onClick={() => {
             state.dispatch(actions.viewNetwork())
@@ -49,7 +49,7 @@ class NetworkSettings extends React.Component {
           fontFamily: 'inter-medium',
           fontSize: '14px',
         }}>{`XDC Apothem Testnet`}
-          <img src="/images/Assets/Lock.png" style={{position: 'absolute', right: '30px'}}/><img
+          <img src="/images/Assets/Lock.svg" style={{position: 'absolute', right: '30px'}}/><img
             src="/images/Assets/Arrow.svg"
             style={{position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer'}} onClick={() => {
             state.dispatch(actions.viewNetwork())
@@ -62,7 +62,7 @@ class NetworkSettings extends React.Component {
           fontFamily: 'inter-medium',
           fontSize: '14px',
         }}>{`XDC Devnet`}
-          <img src="/images/Assets/Lock.png" style={{position: 'absolute', right: '30px'}}/><img
+          <img src="/images/Assets/Lock.svg" style={{position: 'absolute', right: '30px'}}/><img
             src="/images/Assets/Arrow.svg"
             style={{position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer'}} onClick={() => {
             state.dispatch(actions.viewNetwork())
@@ -75,7 +75,7 @@ class NetworkSettings extends React.Component {
           fontFamily: 'inter-medium',
           fontSize: '14px',
         }}>{`Localhost 8545`}
-          <img src="/images/Assets/Lock.png" style={{position: 'absolute', right: '30px'}}/><img
+          <img src="/images/Assets/Lock.svg" style={{position: 'absolute', right: '30px'}}/><img
             src="/images/Assets/Arrow.svg"
             style={{position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer'}} onClick={() => {
             state.dispatch(actions.viewNetwork())
