@@ -203,7 +203,7 @@ class AdvanceSettings extends React.Component{
 //                         style: {
 //                             // margin: "26px 0 0 9px",
 //                             padding: ' 27px 17px 22px 15px ',
-//                             borderBottom: '1px solid #E3E7EB', 
+//                             borderBottom: '1px solid #E3E7EB',
 //                         },
 //                     },
 //                     [
@@ -269,8 +269,8 @@ class AdvanceSettings extends React.Component{
 //                         style: {
 //                             // margin: "26px 0 0 9px",
 //                             padding: ' 27px 17px 22px 15px ',
-//                            borderBottom: '1px solid #E3E7EB', 
-                            
+//                            borderBottom: '1px solid #E3E7EB',
+
 //                         },
 //                     },
 //                     [
@@ -319,7 +319,7 @@ class AdvanceSettings extends React.Component{
 //                         },
 //                         "Reset Account"
 //                     )],
-//         ), 
+//         ),
 //       ],
 //     ]
 //   );
