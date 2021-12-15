@@ -78,15 +78,15 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
 
     state.warning
       ? h(
-          "div",
-          {
-            style: {
-              width: "260px",
-              padding: "20px 0 0",
-            },
+        "div",
+        {
+          style: {
+            width: "260px",
+            padding: "20px 0 0",
           },
-          [h("div.error", state.warning)]
-        )
+        },
+        [h("div.error", state.warning)]
+      )
       : null,
 
     // password
@@ -102,10 +102,10 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
         borderRadius: 4,
       },
     }),
-    // h(
-    //   PasswordStrengthMeter
-    //   // [h("div.error", this.state.class)]
-    // ),
+    h(
+       this.createNewVaultAndKeychain()
+      // [h("div.error", this.state.class)]
+    ),
     // confirm password
     h("input.large-input", {
       type: "password",
@@ -155,6 +155,7 @@ InitializeMenuScreen.prototype.createVaultOnEnter = function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
     this.createNewVaultAndKeychain();
+
   }
 };
 
@@ -176,6 +177,8 @@ InitializeMenuScreen.prototype.createNewVaultAndKeychain = function () {
   var passwordConfirmBox = document.getElementById("password-box-confirm");
   var passwordConfirm = passwordConfirmBox.value;
 
+PasswordStrengthMeter();
+
   if (password.length < 8) {
     this.warning = "Password is not long enough";
     this.props.dispatch(actions.displayWarning(this.warning));
@@ -189,3 +192,7 @@ InitializeMenuScreen.prototype.createNewVaultAndKeychain = function () {
 
   this.props.dispatch(actions.createNewVaultAndKeychain(password));
 };
+
+
+  
+
