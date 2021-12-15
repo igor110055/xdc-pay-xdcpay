@@ -124,13 +124,6 @@ function reduceMetamask (state, action) {
         },
       })
 
-    case actions.ADD_NEW_NETWORK:
-      const updatedNetworkList = [...metamaskState.networkList]
-      updatedNetworkList.push(action.value)
-      return extend(metamaskState, {
-        networkList: updatedNetworkList,
-      })
-
     case actions.COMPLETED_TX:
       var stringId = String(action.id)
       newState = extend(metamaskState, {

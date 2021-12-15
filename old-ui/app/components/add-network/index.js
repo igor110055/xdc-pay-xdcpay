@@ -12,6 +12,7 @@ export default class AddNetwork extends React.Component {
     // eslint-disable-next-line react/prop-types
     const viewNetworkObj = this.props.viewNetworkObj
     this.state = {
+      rpcNetworkId: viewNetworkObj ? viewNetworkObj.rpcNetworkId : '',
       networkName: viewNetworkObj ? viewNetworkObj.name : '',
       rpcUrl: viewNetworkObj ? viewNetworkObj.rpcURL : '',
       chainId: viewNetworkObj ? viewNetworkObj.chainId : '',
@@ -31,16 +32,18 @@ export default class AddNetwork extends React.Component {
 
   validateRPC = (isToUpdate) => {
     this.props.dispatch(actions.displayWarning(''))
-    const {networkName, rpcUrl, chainId, currencySymbol, explorerLink} = this.state
+    const {rpcNetworkId, networkName, rpcUrl, chainId, currencySymbol, explorerLink} = this.state
+    const networkId = rpcNetworkId || 'rpc_network_' + new Date().getTime()
     const rpcNetworkObj = {
-          name: networkName,
-          rpcURL: rpcUrl,
-          chainId,
-          currencySymbol,
-          blockExplorer: explorerLink,
-          isPermanent: false,
-          providerType: 'rpc',
-        }
+      rpcNetworkId: networkId,
+      name: networkName,
+      rpcURL: rpcUrl,
+      chainId,
+      currencySymbol,
+      blockExplorer: explorerLink,
+      isPermanent: false,
+      providerType: 'rpc',
+    }
     if (!validUrl.isWebUri(rpcUrl)) {
       return this.props.dispatch(actions.displayWarning(!rpcUrl.startsWith('http') ? 'URIs require the appropriate HTTP/HTTPS prefix.' : 'Invalid RPC URI'))
     }

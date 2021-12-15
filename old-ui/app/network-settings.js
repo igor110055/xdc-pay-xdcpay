@@ -4,11 +4,19 @@ const React = require('react')
 
 class NetworkSettings extends React.Component {
 
+  onDeleteRPCNetwork = (networkObj) => {
+    const state = this.props
+    state.dispatch(actions.delRpcTarget(networkObj))
+    if (state.metamask.network === networkObj.chainId) {
+      state.dispatch(actions.setProviderType('xdc'))
+    }
+  }
+
   render () {
     const state = this.props
     const networkList = state.metamask.networkList
     const frequentRPCList = state.metamask.frequentRpcList
-    const netList= [...networkList,...frequentRPCList]
+    const netList = [...networkList, ...frequentRPCList]
     return (
       <div className="flex-column flex-grow" style={{
         maxHeight: '585px',
@@ -32,10 +40,10 @@ class NetworkSettings extends React.Component {
             fontSize: '14px',
           }} key={networkObj.chainId}>{networkObj.name}
             <img src={networkObj.isPermanent ? '/images/Assets/Lock.png' : '/images/Assets/Delete.svg'}
-                 style={{position: 'absolute', right: '30px'}}/>
-            <img src="/images/Assets/Arrow.svg" onClick={() => {
-              state.dispatch(actions.viewNetwork(networkObj))
-            }} style={{position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer'}}/>
+                 style={{position: 'absolute', right: '30px', cursor: networkObj.isPermanent ? 'normal' : 'pointer'}}
+                 onClick={() => !networkObj.isPermanent && this.onDeleteRPCNetwork(networkObj)}/>
+            <img src="/images/Assets/Arrow.svg" onClick={() => state.dispatch(actions.viewNetwork(networkObj))}
+                 style={{position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer'}}/>
           </div>)
         }
       </div>
