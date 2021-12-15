@@ -8,14 +8,21 @@ module.exports = Network
 
 inherits(Network, Component)
 
-function Network () {
+function Network() {
   Component.call(this)
 }
 
 Network.prototype.render = function () {
   const props = this.props
-  const { provider, network: networkNumber } = props
+  const { provider, network: networkNumber, networkList, frequentRpcList } = props
   let displayName, hoverText
+  if (provider.type === 'rpc') {
+    displayName = frequentRpcList.find((netObj) => netObj.rpcURL === provider.rpcTarget) ? frequentRpcList.find((netObj) => netObj.rpcURL === provider.rpcTarget).name : ''
+    hoverText = `Private Network (${provider.rpcTarget})`
+  } else {
+    displayName = networkList.find((netObj) => netObj.providerType === provider.type) ? networkList.find((netObj) => netObj.providerType === provider.type).name : ''
+    hoverText = ethNetProps.props.getNetworkDisplayName(networkList.find((netObj) => netObj.providerType === provider.type).chainId)
+  }
   if (networkNumber === 'loading') {
     return h('span.pointer', {
       className: props.onClick && 'pointer',
@@ -33,18 +40,8 @@ Network.prototype.render = function () {
         },
         src: 'images/loading.svg',
       }),
-      h('img',{className: '', src: "/images/Assets/DownArrow.svg"}),
+      h('img', { className: '', src: "/images/Assets/DownArrow.svg" }),
     ])
-  } else {
-    if (networkNumber && networks[networkNumber]) {
-      displayName = networks[networkNumber].displayNameDropdown
-      hoverText = ethNetProps.props.getNetworkDisplayName(networkNumber)
-    } else {
-      // networkName = provider.rpcName,
-      // networkName = networkName.replace(https.'')
-      displayName = `XDC Private Network`
-      hoverText = `Private Network (${provider.rpcTarget})`
-    }
   }
 
   return (
@@ -56,8 +53,8 @@ Network.prototype.render = function () {
       (function () {
         return h(props.isUnlocked ? '.network-indicator' : '.network-indicator.hidden', [
           h('.network-name',
-          displayName),
-          props.onClick && h('img',{className: '', src: "/images/Assets/DownArrow.svg"}),
+            displayName),
+          props.onClick && h('img', { className: '', src: "/images/Assets/DownArrow.svg" }),
         ])
       })(),
     ])
