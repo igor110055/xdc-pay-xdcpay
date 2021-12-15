@@ -64,7 +64,7 @@ class SimpleDropdown extends Component {
     ])
   }
 
-  render () {
+  render() {
     const { placeholder } = this.props
     const { isOpen } = this.state
 
@@ -74,8 +74,10 @@ class SimpleDropdown extends Component {
         onClick: () => this.toggleOpen(),
       },
       [
-        h('div.simple-dropdown__selected', this.getDisplayValue() || placeholder || 'Select'),
-        h('i.fa.fa-caret-down.fa-lg.simple-dropdown__caret'),
+        h('div.simple-dropdown__selected', this.getDisplayValue() || placeholder || 'Select', [
+          
+          h('i.fa.fa-angle-down.fa-lg.simple-dropdown__caret',{style:{position:'absolute',right:'30px' , marginTop:'10px' }}, ),
+      ]),
         isOpen && this.renderOptions(),
       ]
     )

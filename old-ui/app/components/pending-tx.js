@@ -24,8 +24,10 @@ const abiDecoder = require('abi-decoder')
 const { tokenInfoGetter, calcTokenAmount } = require('../../../ui/app/token-util')
 const BigNumber = require('bignumber.js')
 const ethNetProps = require('xdc-net-props')
+import { showGasFields } from '../../../ui/app/actions'
 import { getMetaMaskAccounts } from '../../../ui/app/selectors'
 import ToastComponent from './toast'
+// const handleCheckBox = require ('../../../old-ui/app/advance-settings' )
 
 const MIN_GAS_PRICE_BN = new BN('0')
 const MIN_GAS_LIMIT_BN = new BN('21000')
@@ -63,6 +65,7 @@ function PendingTx (props) {
     tokenDecimals: 0,
     tokenDataRetrieved: false,
     coinName: ethNetProps.props.getNetworkCoinName(props.network),
+
   }
   this.tokenInfoGetter = tokenInfoGetter()
 }
@@ -86,9 +89,9 @@ function mapStateToProps (state) {
     currentCurrency: state.metamask.currentCurrency,
     blockGasLimit: state.metamask.currentBlockGasLimit,
     computedBalances: state.metamask.computedBalances,
+    showGasFields: state.metamask.showGasFields,
   }
 }
-
 
 PendingTx.prototype.render = function () {
   const state = this.state
@@ -96,8 +99,8 @@ PendingTx.prototype.render = function () {
     if (!state.tokenDataRetrieved) return null
   }
   const props = this.props
-  const { currentCurrency, blockGasLimit, network, provider, isUnlocked } = props
-
+  const { currentCurrency, blockGasLimit, network, provider, isUnlocked , showGasFields} = props
+  // const showGasFields = this.state.showGasFields
   const conversionRate = this.state.conversionRate
   const txMeta = this.gatherTxMeta()
   const txParams = txMeta.txParams || {}
@@ -166,7 +169,9 @@ PendingTx.prototype.render = function () {
   const showRejectAll = props.unconfTxListLength > 1
 
   var isNotification = getEnvironmentType(window.location.href) === ENVIRONMENT_TYPE_NOTIFICATION
-
+  // const setState = this.state.setState
+  // const checked= this.state.setState
+  
   this.inputs = []
 
   const valueStyle = {
@@ -389,23 +394,23 @@ PendingTx.prototype.render = function () {
             // Ether Value
             // Currently not customizable, but easily modified
             // in the way that gas and gasLimit currently are.
-
-            h('.row', [
-              h('.cell.label', 'Amount'),
-              h(EthBalance, {
-                valueStyle,
-                dimStyle,
-                value: isToken ? tokensToSend/* (new BN(tokensToSend)).mul(1e18)*/ : txParams.value,
-                currentCurrency,
-                conversionRate,
-                network,
-                isToken,
-                tokenSymbol: this.state.tokenSymbol,
-                showFiat: !isToken,
-              }),
-            ]),
-
-            // Gas Limit (customizable)
+            
+              h('.row', [
+                h('.cell.label', 'Amount'),
+                h(EthBalance, {
+                  valueStyle,
+                  dimStyle,
+                  value: isToken ? tokensToSend/* (new BN(tokensToSend)).mul(1e18)*/ : txParams.value,
+                  currentCurrency,
+                  conversionRate,
+                  network,
+                  isToken,
+                  tokenSymbol: this.state.tokenSymbol,
+                  showFiat: !isToken,
+                }),
+              ]),
+              // Gas Limit (customizable)
+            showGasFields ? h('div',[
             h('.cell.row', [
               h('.cell.label', { style: { marginTop: '20px' }, }, 'Gas Limit (Units)'),
               h('.cell.value', {
@@ -430,8 +435,9 @@ PendingTx.prototype.render = function () {
                 }),
               ]),
             ]),
-
+            
             // Gas Price (customizable)
+            // this.props.showGasFields ?
             h('.cell.row', [
               h('.cell.label', { style: { marginTop: '20px' }, }, 'Gas Price (GWEI)'),
               h('.cell.value', {
@@ -453,6 +459,7 @@ PendingTx.prototype.render = function () {
                 }),
               ]),
             ]),
+            ]) : null,
 
             // Max Transaction Fee (calculated)
             h('.cell.row', [

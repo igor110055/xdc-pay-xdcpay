@@ -188,7 +188,7 @@ ExportAccountView.prototype.render = function () {
            h('div',{style: {
               marginTop: '4px',
            },},
-        'Save as File'),]),
+        'Save as file'),]),
         // }, 'Save as File'),
         h('button', {
           style: {

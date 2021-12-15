@@ -124,7 +124,7 @@ class ExtensionPlatform {
   }
 
   _getExplorer (hash, networkId) {
-    const explorerName = 'XinFinScan'
+    const explorerName = 'XDC BlocksScan'
 
     return {
       explorerName: explorerName,

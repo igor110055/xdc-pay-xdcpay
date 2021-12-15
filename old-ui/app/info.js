@@ -73,7 +73,7 @@ InfoScreen.prototype.render = function () {
               style: {
                 marginBottom: '10px',
                 cursor: 'pointer',
-                color: 'rgb(33, 73, 185)',
+                color:'#2049B9',
               },
             }, `Privacy Policy `),
             
@@ -86,7 +86,7 @@ InfoScreen.prototype.render = function () {
               style: {
                 marginBottom: '10px',
                 cursor: 'pointer',
-                color: 'rgb(33, 73, 185)',
+                color:'#2049B9',
               },
             }, `Support Center`),
           
@@ -99,7 +99,7 @@ InfoScreen.prototype.render = function () {
               style: {
                 marginBottom: '10px',
                 cursor: 'pointer',
-                color: 'rgb(33, 73, 185)',
+                color:'#2049B9',
               },
             }, `Visit Our Website`),
         
@@ -112,7 +112,7 @@ InfoScreen.prototype.render = function () {
               style: {
                 marginBottom: '10px',
                 cursor: 'pointer',
-                color: 'rgb(33, 73, 185)',
+                color:'#2049B9',
               },
             }, `Contact Us `),
           

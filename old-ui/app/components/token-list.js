@@ -7,6 +7,7 @@ const connect = require('react-redux').connect
 const selectors = require('../../../ui/app/selectors')
 const log = require('loglevel')
 import { XDC_TESTNET_CODE, GOERLI_TESTNET_CODE, XDC_CODE, XDC_DEVNET_CODE  } from '../../../app/scripts/controllers/network/enums'
+import { showTokens } from '../../../ui/app/actions'
 
 function mapStateToProps(state) {
   return {
@@ -50,7 +51,7 @@ function TokenList () {
 TokenList.prototype.render = function () {
   const state = this.state
   const { tokens, isLoading, error } = state
-  const { userAddress, network } = this.props
+  const { userAddress, network,address } = this.props
   const isTestnet = parseInt(network) === XDC_TESTNET_CODE
   const isMainnet = parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
   const isDevnet =  parseInt(network) === XDC_DEVNET_CODE 
@@ -73,7 +74,7 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://explorer.xinfin.network/token/${userAddress}`,
+          url: `https://explorer.xinfin.network/token/${address.replace("0x","xdc")}`,
         })
         },
       }, 'here'),
@@ -97,7 +98,7 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://explorer.apothem.network/token/${userAddress}`,
+          url: `https://explorer.apothem.network/token/${address.replace("0x","xdc")}`,
         })
         },
       }, 'here'),
@@ -119,7 +120,7 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://devnet.apothem.network/tokens/${userAddress}`,
+          url: `https://devnet.apothem.network/tokens/${address.replace("0x","xdc")}`,
         })
         },
       }, 'here'),
@@ -316,6 +317,8 @@ TokenList.prototype.createFreshTokenTracker = function () {
   }
 
   if (!global.ethereumProvider) return
+  !showTokens && updateSendTokenBalance
+  
   const { userAddress } = this.props
 
   const tokensFromCurrentNetwork = this.props.tokens.filter(token => (parseInt(token.network) === parseInt(this.props.network) || !token.network))
@@ -364,14 +367,15 @@ TokenList.prototype.componentDidUpdate = function (nextProps) {
 
   const oldTokensLength = tokens ? tokens.length : 0
   const tokensLengthUnchanged = oldTokensLength === newTokens.length
-
+  
   if (tokensLengthUnchanged && shouldUpdateTokens) return
 
-  this.setState({ isLoading: true })
+  this.setState({ isLoading: true})
   this.createFreshTokenTracker()
 }
 
 TokenList.prototype.updateBalances = function (tokens) {
+  
   if (!this.tracker.running) {
     return
   }
@@ -379,7 +383,7 @@ TokenList.prototype.updateBalances = function (tokens) {
 }
 
 TokenList.prototype.componentWillUnmount = function () {
-  if (!this.tracker) return
+  if (!this.tracker) return 
   this.tracker.stop()
   this.tracker.removeListener('update', this.balanceUpdater)
   this.tracker.removeListener('error', this.showError)

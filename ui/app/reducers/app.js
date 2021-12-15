@@ -75,6 +75,13 @@ function reduceApp (state, action) {
       trezor: `m/44'/60'/0'/0`,
       ledger: `m/44'/60'/0'/0/0`,
     },
+    addNetwork: {
+      networkName: null,
+      rpcUrl: null,
+      chainId: null,
+      currencySymbol: null,
+      explorerLink: null,
+    },
   }, state.appState)
 
   let curPendingTxIndex = appState.currentView.pendingTxIndex || 0
@@ -231,6 +238,16 @@ function reduceApp (state, action) {
         transForward: true,
           warning: null,
         })
+    
+        case actions.SHOW_SEEDWORDS:
+          return extend(appState, {
+          currentView: {
+            name: 'CreateVaultCompleteScreen',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+            warning: null,
+          })
        
     
     case actions.GO_CONFIG:
@@ -251,7 +268,55 @@ function reduceApp (state, action) {
           },
             transForward: true,
             warning: null,
+          })
+    
+    case actions.SHOW_NETWORKSETTINGS_PAGE:
+      return extend(appState, {
+      currentView: {
+      name: 'network-settings',
+      context: appState.currentView.context,
+      },
+      transForward: true,
+      warning: null,
+      })
+    
+    case actions.SHOW_ADDNETWORK_PAGE:
+        return extend(appState, {
+        currentView: {
+        name: 'add-network',
+        context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
         })
+    
+    case actions.SHOW_VIEWNETWORK_PAGE:
+        return extend(appState, {
+        currentView: {
+        name: 'view-network',
+        context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+        networkName: action.value,
+        rpcUrl: action.value,
+        chainId: action.value,
+        currencySymbol: action.value,
+        explorerLink: action.value,
+        
+        })
+    
+      
+    
+    case actions.SHOW_ALERTSETTINGS_PAGE:
+      return extend(appState, {
+      currentView: {
+        name: 'alert-settings',
+        context: appState.currentView.context,
+      },
+        transForward: true,
+        warning: null,
+    })
       
     case actions.SHOW_CONFIRM_ADD_TOKEN_PAGE:
       return extend(appState, {
@@ -534,7 +599,8 @@ function reduceApp (state, action) {
           scrollToBottom: false,
           forgottenPassword: false,
         })
-
+      
+      
     case actions.SHOW_NOTICE:
       return extend(appState, {
         transForward: true,

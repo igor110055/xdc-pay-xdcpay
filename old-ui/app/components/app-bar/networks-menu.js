@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import { Dropdown, DropdownMenuItem } from '../dropdown'
+import {Dropdown, DropdownMenuItem} from '../dropdown'
 import actions from '../../../../ui/app/actions'
-import { LOCALHOST } from '../../../../app/scripts/controllers/network/enums'
-import { networks } from '../../../../app/scripts/controllers/network/util'
+import {LOCALHOST} from '../../../../app/scripts/controllers/network/enums'
+import {networks} from '../../../../app/scripts/controllers/network/util'
 import ethNetProps from 'xdc-net-props'
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 const LOCALHOST_RPC_URL = 'http://localhost:8545'
 
@@ -21,17 +21,17 @@ class NetworksMenu extends Component {
 
   render () {
     const props = this.props
-    const { provider: { type: providerType } } = props
+    const {provider: {type: providerType}} = props
     const rpcList = props.frequentRpcList
     const isOpen = props.isNetworkMenuOpen
-
+    console.log('======== Networks in  menu', networks)
     const knownNetworks = Object.keys(networks)
-    .filter((networkID) => {
-      return !isNaN(networkID)
-    })
+      .filter((networkID) => {
+        return !isNaN(networkID)
+      })
 
     const sortedNetworks = knownNetworks
-    .sort(this._sortNetworks)
+      .sort(this._sortNetworks)
     const networksView = this._renderNetworksView(sortedNetworks)
 
     return (
@@ -39,7 +39,7 @@ class NetworksMenu extends Component {
         useCssTransition={true}
         isOpen={isOpen}
         onClickOutside={(event) => {
-          const { classList } = event.target
+          const {classList} = event.target
           const isNotToggleElement = [
             classList.contains('menu-icon'),
             classList.contains('network-name'),
@@ -60,16 +60,15 @@ class NetworksMenu extends Component {
         }}
         innerStyle={{
           // padding: '2px 16px 2px 0px',
-          padding: 0
+          padding: 0,
         }}
       >
-        <div className='select-network-list'>
+        <div className="select-network-list">
           Select Network
-          <img className='select-network-close-icon' onClick={() => this.props.updateNetworksMenuOpenState(!isOpen)} src='/images/Assets/Close.svg'></img>
+          <img className="select-network-close-icon" src="/images/Assets/Close.svg"
+               onClick={() => this.props.updateNetworksMenuOpenState(!isOpen)}/>
         </div>
-
         {networksView}
-
         <DropdownMenuItem
           key={'default'}
           closeMenu={() => this.props.updateNetworksMenuOpenState(!isOpen)}
@@ -83,16 +82,15 @@ class NetworksMenu extends Component {
             color: providerType === LOCALHOST ? '#2A2A2A' : '',
           }}
         >
-          {providerType === LOCALHOST ? <div className="selected-network" /> : null}
+          {providerType === LOCALHOST ? <div className="selected-network"/> : null}
           {`Localhost 8545`}
         </DropdownMenuItem>
 
         <DropdownMenuItem
           closeMenu={() => this.props.updateNetworksMenuOpenState(!isOpen)}
-          onClick={() => this.props.showConfigPage()}
+          onClick={() => this.props.showAddNetworkPage()}
           className={'app-bar-networks-dropdown-custom-rpc'}
         >Custom RPC</DropdownMenuItem>
-
         {this.renderSelectedCustomOption(props.provider)}
         {this.renderCommonRpc(rpcList, props.provider)}
       </Dropdown>
@@ -101,28 +99,28 @@ class NetworksMenu extends Component {
 
   _renderNetworksView (_networks) {
     const props = this.props
-    const { provider: { type: providerType } } = props
+    const {provider: {type: providerType}, networkList} = props
     const state = this.state || {}
     const isOpen = state.isNetworkMenuOpen
-
+    console.log('=======networkList', networkList)
     const networkDropdownItems = _networks
-    .map((networkID) => {
-      const networkObj = networks[networkID]
-      return (
-        <DropdownMenuItem
-          key={networkObj.providerName}
-          closeMenu={() => this.props.updateNetworksMenuOpenState(!isOpen)}
-          onClick={() => props.setProviderType(networkObj.providerName)}
-          style={{
-            paddingLeft: '20px',
-            color: providerType === networkObj.providerName ? '#2149B9' : '',
-          }}
-        >
-          {providerType === networkObj.providerName ? <div className="selected-network" /> : null}
-          {ethNetProps.props.getNetworkDisplayName(networkID)}
-        </DropdownMenuItem>
-      )
-    })
+      .map((networkID) => {
+        const networkObj = networks[networkID]
+        return (
+          <DropdownMenuItem
+            key={networkObj.providerName}
+            closeMenu={() => this.props.updateNetworksMenuOpenState(!isOpen)}
+            onClick={() => props.setProviderType(networkObj.providerName)}
+            style={{
+              paddingLeft: '20px',
+              color: providerType === networkObj.providerName ? '#2149B9' : '',
+            }}
+          >
+            {providerType === networkObj.providerName ? <div className="selected-network"/> : null}
+            {ethNetProps.props.getNetworkDisplayName(networkID)}
+          </DropdownMenuItem>
+        )
+      })
 
     return networkDropdownItems
   }
@@ -133,7 +131,7 @@ class NetworksMenu extends Component {
     return networkObj1.order - networkObj2.order
   }
 
-  renderCustomOption ({ rpcTarget, type }) {
+  renderCustomOption ({rpcTarget, type}) {
     if (type !== 'rpc') {
       return null
     }
@@ -154,7 +152,7 @@ class NetworksMenu extends Component {
             onClick={() => this.props.setRpcTarget(rpcTarget)}
             closeMenu={() => this.props.updateNetworksMenuOpenState(false)}
           >
-            <i className="fa fa-question-circle fa-lg menu-icon" />
+            <i className="fa fa-question-circle fa-lg menu-icon"/>
             {label}
             <div className="check">✓</div>
           </DropdownMenuItem>
@@ -164,7 +162,7 @@ class NetworksMenu extends Component {
 
   renderCommonRpc (rpcList, provider) {
     const props = this.props
-    const { rpcTarget, type } = provider
+    const {rpcTarget, type} = provider
 
     return rpcList.map((rpc) => {
       if (type === 'rpc' && rpc === rpcTarget) {
@@ -196,7 +194,7 @@ class NetworksMenu extends Component {
   }
 
   renderSelectedCustomOption (provider) {
-    const { rpcTarget, type } = provider
+    const {rpcTarget, type} = provider
     const props = this.props
     if (type !== 'rpc') return null
 
@@ -218,7 +216,7 @@ class NetworksMenu extends Component {
               color: '#2149B9',
             }}
           >
-            <div className="selected-network" />
+            <div className="selected-network"/>
             <span className="custom-rpc">{label}</span>
             <div
               className="remove"
@@ -237,11 +235,18 @@ class NetworksMenu extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    showConfigPage: () => dispatch(actions.showConfigPage()),
+    showAddNetworkPage: () => dispatch(actions.addNetwork()),
     setRpcTarget: (rpcTarget) => dispatch(actions.setRpcTarget(rpcTarget)),
     setProviderType: (providerType) => dispatch(actions.setProviderType(providerType)),
     showDeleteRPC: (label) => dispatch(actions.showDeleteRPC(label)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(NetworksMenu)
+const mapStateToProps = ({metamask}) => {
+  const {networkList} = metamask
+  return {
+    networkList,
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NetworksMenu)

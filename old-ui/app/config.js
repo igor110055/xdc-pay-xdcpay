@@ -735,25 +735,25 @@ ConfigScreen.prototype.render = function () {
           }),
         ]),
         
-        h('.settings', ['Contacts',
+        h('.settings',{ onClick: () => state.dispatch(actions.contacts()) }, ['Contacts',
           h('img', {
             src: "/images/Assets/Arrow.svg",            
           }),
         ]),
         
-        h('.settings', ['Alert Settings',
+        h('.settings',{ onClick: () => state.dispatch(actions.alertSettings()) }, ['Alert Settings',
           h('img', {
             src: "/images/Assets/Arrow.svg",            
           }),
         ]),
         
-        h('.settings', ['Network Settings',
+        h('.settings',{ onClick: () => state.dispatch(actions.networkSettings()) }, ['Network Settings',
           h('img', {
             src: "/images/Assets/Arrow.svg",            
           }),
         ]),
         
-        h('.settings',  ['About',
+        h('.settings',{ onClick: () => state.dispatch(actions.showInfoPage()) },  ['About',
           h('img', {
             src: "/images/Assets/Arrow.svg",            
           }),
