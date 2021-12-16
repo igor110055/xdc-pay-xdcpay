@@ -250,7 +250,7 @@ function reduceApp (state, action) {
       })
 
 
-    case actions.GO_CONFIG:
+      case actions.GO_CONFIG:
       return extend(appState, {
         currentView: {
           name: 'config',
@@ -260,7 +260,7 @@ function reduceApp (state, action) {
         warning: null,
       })
 
-    case actions.SHOW_ADVSETTINGS_PAGE:
+      case actions.SHOW_ADVSETTINGS_PAGE:
       return extend(appState, {
         currentView: {
           name: 'advance-settings',
@@ -270,6 +270,16 @@ function reduceApp (state, action) {
         warning: null,
       })
 
+      case actions.SHOW_SECURITYANDPRIVACY_PAGE:
+        return extend(appState, {
+          currentView: {
+            name: 'securityandprivacy-settings',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+          warning: null,
+        })
+    
     case actions.SHOW_NETWORKSETTINGS_PAGE:
       return extend(appState, {
         currentView: {

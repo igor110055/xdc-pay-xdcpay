@@ -269,8 +269,8 @@ var actions = {
   showConfigPage,
   // generalSettings:
   generalSettings,
-  // advanceSettings:
   advanceSettings,
+  securityAndPrivacy,
   networkSettings,
   addNetwork,
   showAddNetworkPage,
@@ -281,6 +281,7 @@ var actions = {
   SHOW_VIEWNETWORK: 'SHOW_VIEWNETWORK',
   SHOW_GENSETTINGS_PAGE: 'SHOW_GENSETTINGS_PAGE',
   SHOW_ADVSETTINGS_PAGE: 'SHOW_ADVSETTINGS_PAGE',
+  SHOW_SECURITYANDPRIVACY_PAGE: "SHOW_SECURITYANDPRIVACY_PAGE ",
   SHOW_ALERTSETTINGS_PAGE: 'SHOW_ALERTSETTINGS_PAGE',
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
@@ -1957,6 +1958,16 @@ function advanceSettings () {
     // value: transitionForward,
   }
 }
+
+function securityAndPrivacy () {
+  return {
+    type: actions.SHOW_SECURITYANDPRIVACY_PAGE,
+    // value: transitionForward,
+  }
+}
+
+
+   
 
 function networkSettings () {
   return {
