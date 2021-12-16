@@ -273,6 +273,7 @@ var actions = {
   advanceSettings,
   networkSettings,
   addNetwork,
+  showAddNetworkPage,
   viewNetwork: viewNetwork,
   alertSettings,
 
@@ -283,7 +284,8 @@ var actions = {
   SHOW_ALERTSETTINGS_PAGE: 'SHOW_ALERTSETTINGS_PAGE',
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
-  SHOW_VIEWNETWORK_PAGE: 'SHOW_VIEWNETWORK_PAGE',
+  SHOW_VIEW_NETWORK_PAGE: 'SHOW_VIEW_NETWORK_PAGE',
+  ADD_NEW_NETWORK: 'ADD_NEW_NETWORK',
 
   SHOW_ADD_TOKEN_PAGE: 'SHOW_ADD_TOKEN_PAGE',
   SHOW_CONFIRM_ADD_TOKEN_PAGE: 'SHOW_CONFIRM_ADD_TOKEN_PAGE',
@@ -1963,24 +1965,25 @@ function networkSettings () {
   }
 }
 
-function addNetwork () {
+function showAddNetworkPage () {
   return {
     type: actions.SHOW_ADDNETWORK_PAGE,
     // value: transitionForward,
   }
 }
 
-function viewNetwork (networkName, rpcUrl, chainId, networkSymbol, explorerLink) {
+function addNetwork (networkObj) {
   return {
-    type: actions.SHOW_VIEWNETWORK_PAGE,
-    // value: transitionForward,
-    value: {
-      networkName,
-      rpcUrl,
-      chainId,
-      currencySymbol,
-      explorerLink,
-    },
+    type: actions.ADD_NEW_NETWORK,
+    value: networkObj,
+  }
+}
+
+function viewNetwork (networkObj) {
+  this.updatePreferences('networkList')
+  return {
+    type: actions.SHOW_VIEW_NETWORK_PAGE,
+    value: networkObj,
   }
 }
 
@@ -2270,10 +2273,10 @@ function updateProviderType (type) {
   }
 }
 
-function setRpcTarget (newRpc) {
+function setRpcTarget (rpcNetworkObj) {
   return (dispatch) => {
-    log.debug(`background.setRpcTarget: ${newRpc}`)
-    background.setCustomRpc(newRpc, (err, result) => {
+    log.debug(`background.setRpcTarget: ${rpcNetworkObj}`)
+    background.setCustomRpc(rpcNetworkObj, (err, result) => {
       if (err) {
         log.error(err)
         return dispatch(
@@ -2300,10 +2303,10 @@ function setNetworkName (networkName) {
   }
 }
 
-function delRpcTarget (oldRpc) {
+function delRpcTarget (oldRPCObj) {
   return (dispatch) => {
-    log.debug(`background.delRpcTarget: ${oldRpc}`)
-    background.delCustomRpc(oldRpc, (err, result) => {
+    log.debug(`background.delRpcTarget: ${oldRPCObj}`)
+    background.delCustomRpc(oldRPCObj, (err, result) => {
       if (err) {
         log.error(err)
         return dispatch(self.displayWarning('Had a problem removing network!'))
@@ -2996,7 +2999,7 @@ function showDeleteImportedAccount (identity, keyring) {
 function confirmChangePassword () {
   return {
     type: actions.CONFIRM_CHANGE_PASSWORD,
-  };
+  }
 }
 
 // module.exports = {

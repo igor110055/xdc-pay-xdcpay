@@ -1690,13 +1690,13 @@ module.exports = class XdcController extends EventEmitter {
 
   /**
    * A method for selecting a custom URL for an ethereum RPC provider.
-   * @param {string} rpcTarget - A URL for a valid Ethereum RPC API.
+   * @param {string} customRPCObject - A custom RPC Object for a valid Ethereum RPC API.
    * @returns {Promise<String>} - The RPC Target URL confirmed.
    */
-  async setCustomRpc (rpcTarget) {
-    this.networkController.setRpcTarget(rpcTarget)
-    await this.preferencesController.updateFrequentRpcList(rpcTarget)
-    return rpcTarget
+   async setCustomRpc (customRPCObject) {
+    this.networkController.setRpcTarget(customRPCObject.rpcURL)
+    await this.preferencesController.updateFrequentRpcList(customRPCObject)
+    return customRPCObject
   }
 
   /**

@@ -3,6 +3,7 @@ const connect = require("react-redux").connect;
 const h = require("react-hyperscript");
 const actions = require("../../../ui/app/actions");
 const React = require("react");
+import { construct } from "ramda";
 import PasswordStrengthMeter from "../../../old-ui/app/components/PasswordStrengthMeter";
 class InitializeMenuScreen extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ class InitializeMenuScreen extends React.Component {
     this.animationEventEmitter = new EventEmitter();
     this.state = {
       class: "JIII",
+      password: ' ',
     };
   }
 
@@ -78,15 +80,15 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
 
     state.warning
       ? h(
-          "div",
-          {
-            style: {
-              width: "260px",
-              padding: "20px 0 0",
-            },
+        "div",
+        {
+          style: {
+            width: "260px",
+            padding: "20px 0 0",
           },
-          [h("div.error", state.warning)]
-        )
+        },
+        [h("div.error", state.warning)]
+      )
       : null,
 
     // password
@@ -94,6 +96,7 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
       type: "password",
       id: "password-box",
       placeholder: "New Password (min 8 chars)",
+      // onchange:{e = this.setState({password: e.target.value}) },
       style: {
         width: 265,
         height: 40,
@@ -101,9 +104,11 @@ InitializeMenuScreen.prototype.renderMenu = function (state) {
         border: "2px solid #C7CDD8",
         borderRadius: 4,
       },
+      
+      // onChange = {e => this.setState({ password: e.target.value })} 
     }),
     // h(
-    //   PasswordStrengthMeter
+    //    this.createNewVaultAndKeychain()
     //   // [h("div.error", this.state.class)]
     // ),
     // confirm password
@@ -155,6 +160,8 @@ InitializeMenuScreen.prototype.createVaultOnEnter = function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
     this.createNewVaultAndKeychain();
+    
+
   }
 };
 
@@ -175,10 +182,12 @@ InitializeMenuScreen.prototype.createNewVaultAndKeychain = function () {
   var password = passwordBox.value;
   var passwordConfirmBox = document.getElementById("password-box-confirm");
   var passwordConfirm = passwordConfirmBox.value;
-
-  if (password.length < 8) {
-    this.warning = "Password is not long enough";
-    this.props.dispatch(actions.displayWarning(this.warning));
+  
+  this.setState({ password: password });
+// PasswordStrengthMeter();
+if (password.length < 8) {
+  this.warning = "Password is not long enough";
+  this.props.dispatch(actions.displayWarning(this.warning));
     return;
   }
   if (password !== passwordConfirm) {
@@ -189,3 +198,7 @@ InitializeMenuScreen.prototype.createNewVaultAndKeychain = function () {
 
   this.props.dispatch(actions.createNewVaultAndKeychain(password));
 };
+
+
+  
+
