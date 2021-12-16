@@ -102,7 +102,7 @@ class ViewNetwork extends Component {
                    width: '120px',
                    height: '40px',
                    border: 'none',
-                   padding: '8px 35px',
+                   padding: '8px 27px',
 
                  }}> Update
 

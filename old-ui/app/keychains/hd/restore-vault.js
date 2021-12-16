@@ -3,39 +3,44 @@ const PersistentForm = require('../../../lib/persistent-form')
 const connect = require('react-redux').connect
 const h = require('react-hyperscript')
 const actions = require('../../../../ui/app/actions')
+import { props } from 'bluebird'
+import { construct } from 'ramda'
+import React, { useState, useEffect } from "react";
+import PasswordStrengthMeter from '../../components/PasswordStrengthMeter'
 
-module.exports = connect(mapStateToProps)(RestoreVaultScreen)
 
-inherits(RestoreVaultScreen, PersistentForm)
-function RestoreVaultScreen () {
-  PersistentForm.call(this)
-}
 
-function mapStateToProps (state) {
-  return {
-    warning: state.appState.warning,
-    forgottenPassword: state.appState.forgottenPassword,
+// RestoreVaultScreen.prototype.render = function () {
+class RestoreVaultScreen extends React.Component{
+
+  constructor (props) {
+    super(props)
+    this.animationEventEmitter = new EventEmitter()
+    this.state = {
+      password: ' ',
+    }
   }
-}
 
-RestoreVaultScreen.prototype.render = function () {
-  var state = this.props
-  this.persistentFormParentId = 'restore-vault-form'
+  render() {
 
-  return (
-
-    h('div', {
+    var state = this.props
+    this.persistentFormParentId = 'restore-vault-form';
+    
+    const {password} = this.props
+    return h('div', {
       style: {
         width: '100%',
       },
     }, [
-      h('.section-title', { style: {
-        width: '100%',
-        height: '38px',
-        background: '#E3E7EB',
-        marginTop: '-38px',
-      }},
-        h('img', {style: { marginTop:'8px', marginLeft:'9px' }, src: "/images/Assets/xdc-icon-16X16.png"} ),
+      h('.section-title', {
+        style: {
+          width: '100%',
+          height: '38px',
+          background: '#E3E7EB',
+          marginTop: '-38px',
+        }
+      },
+        h('img', { style: { marginTop: '8px', marginLeft: '9px' }, src: "/images/Assets/xdc-icon-16X16.png" }),
       ),
       h('.initialize-screen.flex-column.flex-center.flex-grow', {
         style: {
@@ -53,7 +58,7 @@ RestoreVaultScreen.prototype.render = function () {
             paddingTop: 40,
           },
         }, [
-          h('.page-subtitle', {style:{fontWeight: 600}}, 'Restore Vault'),
+          h('.page-subtitle', { style: { fontWeight: 600 } }, 'Restore Vault'),
         ]),
 
         // wallet seed entry
@@ -65,7 +70,7 @@ RestoreVaultScreen.prototype.render = function () {
         //   },
         // }, 'Wallet Seed'),
         h('textarea.twelve-word-phrase1', {
-          style: {marginTop: '24px'},
+          style: { marginTop: '24px' },
           placeholder: 'Enter your secret twelve word phrase here to restore your vault.',
         }),
 
@@ -84,6 +89,12 @@ RestoreVaultScreen.prototype.render = function () {
             border: '2px solid #C7CDD8',
           },
         }),
+
+        h(
+          PasswordStrengthMeter, {
+          password: password,
+        },
+        ),
 
         // confirm password
         h('input.large-input', {
@@ -148,8 +159,9 @@ RestoreVaultScreen.prototype.render = function () {
         ]),
       ]),
     ])
-  )
+  }
 }
+
 
 RestoreVaultScreen.prototype.showInitializeMenu = function () {
   if (this.props.forgottenPassword) {
@@ -207,4 +219,21 @@ RestoreVaultScreen.prototype.createNewVaultAndRestore = function () {
   this.warning = null
   this.props.dispatch(actions.displayWarning(this.warning))
   this.props.dispatch(actions.createNewVaultAndRestore(password, seed))
+}
+
+
+module.exports = connect(mapStateToProps)(RestoreVaultScreen)
+
+// inherits(RestoreVaultScreen, PersistentForm)
+// function RestoreVaultScreen () {
+  
+//   PersistentForm.call(this)
+// }
+
+function mapStateToProps(state) {  
+  return {
+    currentView: state.appState.currentView,
+    warning: state.appState.warning,
+    forgottenPassword: state.appState.forgottenPassword,
+  }
 }

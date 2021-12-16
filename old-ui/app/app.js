@@ -33,7 +33,7 @@ const RemoveTokenScreen = require('./remove-token')
 const AddSuggestedTokenScreen = require('./add-suggested-token')
 const Import = require('./accounts/import')
 const ForgetDeviceScreen = require('./components/connect-hardware/forget-screen')
-import { alertSettings } from '../../ui/app/actions'
+import { alertSettings, securityAndPrivacy } from '../../ui/app/actions'
 import ConnectHardwareForm from './components/connect-hardware/index'
 import createVaultComplete from './keychains/hd/create-vault-complete'
 const InfoScreen = require('./info')
@@ -51,6 +51,7 @@ const { getMetaMaskAccounts } = require('../../ui/app/selectors')
 const ConfirmRecoveryPhrase = require('./keychains/hd/confirm-recovery-phrase')
 const GeneralSettings = require('../app/general-settings')
 const AdvanceSettings = require('../app/advance-settings')
+const SecurityAndPrivacy = require('../app/components/security-and-privacy/security-and-privacy')
 const NetworkSettings = require('../app/network-settings')
 const AddNetwork = require('../app/components/add-network/index')
 const ViewNetwork = require('../app/view-network')
@@ -293,6 +294,10 @@ App.prototype.renderPrimary = function () {
     case 'advance-settings':
         log.debug('rendering advance-settings screen ')
       return h(AdvanceSettings, { key: 'advance-settings' })
+    
+    case 'securityandprivacy-settings':
+      log.debug('rendering security-privacy-screen')
+      return h(SecurityAndPrivacy, { key: 'securityandprivacy-settings' })
 
     case 'network-settings':
      log.debug('rendering network-settings screen ')

@@ -1,68 +1,71 @@
-import React, { Component } from 'react';
-import '../../app/css/passwordStrengthMeter.css';
-import zxcvbn from 'zxcvbn';
+import React, {Component} from 'react'
 
 class PasswordStrengthMeter extends Component {
 
   createPasswordLabel = (result) => {
-    switch (result.score) {
+    switch (result) {
       case 0:
-        return 'Weak';
+        return 'Weak'
       case 1:
-        return 'Weak';
+        return 'Weak'
       case 2:
-        return 'Fair';
+        return 'Fair'
       case 3:
-        return 'Good';
+        return 'Good'
       case 4:
-        return 'Strong';
+        return 'Strong'
       default:
-        return 'Weak';
+        return 'Weak'
     }
   }
 
-  render() {  
-    const { password } = this.props;
-    // const testedResult = zxcvbn(password);
-    const testedResult = checkpassword(password);
-    
+  render () {
+    // eslint-disable-next-line react/prop-types
+    const {password} = this.props
+    const testedResult = checkPassword(password)
+
     return (
-      <div className="password-strength-meter">
-        <progress
-          className={`password-strength-meter-progress strength-${this.createPasswordLabel(testedResult)}`}
-          value={testedResult.score}
+      <div className="password-strength-meter" style={{margin:'-8px 0'}}>
+        <progress className="strength-bar "
+          value={testedResult}
           max="4"
+          style={{width:'264px',height:'5px'}}
         />
-        <br />
+        <br/>
         <label
           className="password-strength-meter-label"
         >
           {password && (
-            <div>
-              <strong>Password strength:</strong> {this.createPasswordLabel(testedResult)}
+            <div style={{display:'flex', justifyContent: 'space-between',
+          }}>
+              <div style={{ fontSize: '10px',color:'#9FA9BA' }}>Password strength:</div>
+              <div style={{ fontSize: '10px',color:'#2A2A2A' }}> {this.createPasswordLabel(testedResult)}</div>
             </div>
           )}
         </label>
       </div>
-    );
+    )
   }
 }
 
-function checkpassword(password) {
-  var strength = 0;
+function checkPassword (password) {
+  if (!password) {
+    return 0
+  }
+  let strength = 0
   if (password.match(/[a-z]+/)) {
-    strength += 1;
+    strength += 1
   }
   if (password.match(/[A-Z]+/)) {
-    strength += 1;
+    strength += 1
   }
   if (password.match(/[0-9]+/)) {
-    strength += 1;
+    strength += 1
   }
   if (password.match(/[$@#&!]+/)) {
-    strength += 1;
-
+    strength += 1
   }
+  return strength
 }
 
-export default PasswordStrengthMeter;
+export default PasswordStrengthMeter
