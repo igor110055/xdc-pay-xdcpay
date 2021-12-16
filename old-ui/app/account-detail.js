@@ -4,8 +4,7 @@ const Component = require('react').Component
 const h = require('react-hyperscript')
 const connect = require('react-redux').connect
 const actions = require('../../ui/app/actions')
-const { getCurrentKeyring, ifContractAcc, valuesFor, toChecksumAddress } = require('./util')
-const Identicon = require('./components/identicon')
+const {getCurrentKeyring, ifContractAcc, valuesFor, toChecksumAddress} = require('./util')
 const EthBalance = require('./components/eth-balance')
 const TransactionList = require('./components/transaction-list')
 const ExportAccountView = require('./components/account-export')
@@ -15,9 +14,7 @@ const TokenList = require('./components/token-list')
 const AccountDropdowns = require('./components/account-dropdowns/account-dropdowns.component').AccountDropdowns
 const CopyButton = require('./components/copy/copy-button')
 const ToastComponent = require('./components/toast')
-import { url } from 'inspector'
 import { getMetaMaskAccounts } from '../../ui/app/selectors'
-// import {useEffect,useState} from 'react'
 
 
 module.exports = connect(mapStateToProps)(AccountDetailScreen)
@@ -33,6 +30,7 @@ function mapStateToProps (state) {
     address: state.metamask.selectedAddress,
     accountDetail: state.appState.accountDetail,
     network: state.metamask.network,
+    networkList: [...state.metamask.networkList, ...state.metamask.frequentRpcList],
     unapprovedMsgs: valuesFor(state.metamask.unapprovedMsgs),
     shapeShiftTxList: state.metamask.shapeShiftTxList,
     transactions: state.metamask.selectedAddressTxList || [],
@@ -46,14 +44,15 @@ function mapStateToProps (state) {
 }
 
 inherits(AccountDetailScreen, Component)
+
 function AccountDetailScreen () {
   Component.call(this)
-  
+
 }
 
 AccountDetailScreen.prototype.render = function () {
   var props = this.props
-  const { network, conversionRate, currentCurrency } = props
+  const {network, conversionRate, currentCurrency, networkList} = props
   var selected = props.address || Object.keys(props.accounts)[0]
   var checksumAddress = selected && toChecksumAddress(network, selected)
   var identity = props.identities[selected]
@@ -65,15 +64,13 @@ AccountDetailScreen.prototype.render = function () {
 
   const currentKeyring = getCurrentKeyring(props.address, network, props.keyrings, props.identities)
 
-  function shorten(b, amountL = 7, /*amountR = 4,*/ stars = 3) {
+  function shorten (b, amountL = 7, /*amountR = 4,*/ stars = 3) {
 
-    return `${b.slice(0, amountL)}${".".repeat(stars)}${b.slice(
-  
+    return `${b.slice(0, amountL)}${'.'.repeat(stars)}${b.slice(
       b.length - 4,
-  
-      b.length
-  
-    )}`;
+
+      b.length,
+    )}`
   }
 
   return (
@@ -97,7 +94,7 @@ AccountDetailScreen.prototype.render = function () {
         // header - identicon + nav
         h('div', {
           style: {
-           
+
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'flex-start',
@@ -148,7 +145,7 @@ AccountDetailScreen.prototype.render = function () {
                   h(
                     'div.font-medium.color-forest',
                     {
-                      
+
                       name: 'edit',
                     },
                     [
@@ -160,7 +157,7 @@ AccountDetailScreen.prototype.render = function () {
                           padding: '8px 0 6px 0',
                           fontWeight: '600',
                           textAlign: 'left',
-                          
+
                           // lineHeight: '25px',
                           fontSize: '14px',
                           // fontFamily: 'Inter',
@@ -169,13 +166,12 @@ AccountDetailScreen.prototype.render = function () {
                       }, [
                         identity && identity.name,
                       ]),
-                    ]
+                    ],
                   ),
-                  
+
                 ],
-                
               ),
-            
+
               h('.flex-row', {
                 style: {
                   width: '100%',
@@ -206,11 +202,12 @@ AccountDetailScreen.prototype.render = function () {
                       textRendering: 'geometricPrecision',
                       color: '#848484',
                       marginLeft: '18px',
-                    }
+                    },
                   }, shorten(checksumAddress)),
-                  h(CopyButton, { style: {
-                    marginLeft: "-11px",
-                  },
+                  h(CopyButton, {
+                    style: {
+                      marginLeft: '-11px',
+                    },
                     value: checksumAddress,
                     isWhite: true,
                   }),
@@ -228,12 +225,13 @@ AccountDetailScreen.prototype.render = function () {
                       },
                       selected,
                       network,
+                      networkList,
                       identities: props.identities,
                       keyrings: props.keyrings,
                       enableAccountOptions: true,
                     },
                   ),
-                ]
+                ],
               ]),
 
               // account ballance
@@ -242,7 +240,7 @@ AccountDetailScreen.prototype.render = function () {
           ]),
         ]),
 
-        
+
         h('.flex-row', {
           style: {
             justifyContent: 'space-between',
@@ -251,91 +249,91 @@ AccountDetailScreen.prototype.render = function () {
             margin: '45px 0 45px 0',
           },
         }, [
-        
+
           h(EthBalance, {
             value: account && account.balance,
             conversionRate,
             currentCurrency,
             network,
+            networkList,
             style: {
               lineHeight: '7px',
               // marginBottom: '42px',
             },
           }),
         ]),
-        
+
         h('.flex-grow'),
-                
-          
-          !ifContractAcc(currentKeyring) ? h('button',
-        
-          
-        
+
+
+        !ifContractAcc(currentKeyring) ? h('button',
+
+
           {
             onClick: () => props.dispatch(actions.buyEthView(selected)),
-          
+
             style: {
-            margin: '0 10px 20px 100px',
+              margin: '0 10px 20px 100px',
+              width: '74px',
+              height: '29px',
+              background: '#2149B9',
+              borderRadius: '4px',
+              opacity: '1',
+              // image: 'url(/images/Assets/downarrow-2.svg)',
+              // img:'/images/Assets/downarrow-2.svg',
+            },
+          }, [h('img',
+            {
+              style: {
+                marginRight: '8px',
+                marginTop: '0.5px',
+
+              }, src: '/images/Assets/downarrow-2.svg',
+            },
+          ), 'Buy']) : null,
+
+
+        // h('img',
+        //   {src: "/images/Assets/downarrow-2.svg" },
+        // ),
+
+
+        h('button', {
+          onClick: () => {
+            if (ifContractAcc(currentKeyring)) {
+              return props.dispatch(actions.showSendContractPage({}))
+            } else {
+              return props.dispatch(actions.showSendPage())
+            }
+          },
+          style: {
+
             width: '74px',
             height: '29px',
             background: '#2149B9',
             borderRadius: '4px',
             opacity: '1',
-            // image: 'url(/images/Assets/downarrow-2.svg)',
-            // img:'/images/Assets/downarrow-2.svg',
+
+
           },
-        }, [ h('img',
-              {
-                style: {
-                  marginRight: '8px',
-                  marginTop: '0.5px',
-              
-                }, src: "/images/Assets/downarrow-2.svg" },
-                ),'Buy']) : null,
-                
-                
-                
-            // h('img',
-            //   {src: "/images/Assets/downarrow-2.svg" },
-            // ),
-            
-            
-            
-            h('button', {
-              onClick: () => {
-                if (ifContractAcc(currentKeyring)) {
-                  return props.dispatch(actions.showSendContractPage({}))
-                } else {
-                  return props.dispatch(actions.showSendPage())
-                }
-              },
-              style: {
-                
-                width: '74px',
-                height: '29px',
-                background: '#2149B9', 
-                borderRadius: '4px',
-                opacity: '1',
-                
-                
-            },
-          },[ h('img',
+        }, [h('img',
           {
             style: {
               marginRight: '8px',
-              
-            }, src: "/images/Assets/downarrow-2-1.svg" },
-            ), ifContractAcc(currentKeyring) ? 'Execute methods' : 'Send']),
-            
-            // ]),
-          ]),
-          
-          // subview (tx history, pk export confirm, buy eth warning)
-          this.subview(),
-          
-        ])
-        )
-      
+
+            }, src: '/images/Assets/downarrow-2-1.svg',
+          },
+        ), ifContractAcc(currentKeyring) ? 'Execute methods' : 'Send']),
+
+        // ]),
+      ]),
+
+      // subview (tx history, pk export confirm, buy eth warning)
+      this.subview(),
+
+    ])
+  )
+
 }
 
 AccountDetailScreen.prototype.subview = function () {
@@ -358,14 +356,14 @@ AccountDetailScreen.prototype.subview = function () {
 }
 
 AccountDetailScreen.prototype.tabSections = function () {
-  const { currentAccountTab } = this.props
+  const {currentAccountTab} = this.props
 
   return h('section.tabSection.full-flex-height.grow-tenx', [
 
     h(TabBar, {
       tabs: [
-        { content: 'Sent', key: 'history', id: 'wallet-view__tab-history' },
-        { content: 'Tokens', key: 'tokens', id: 'wallet-view__tab-tokens' },
+        {content: 'Sent', key: 'history', id: 'wallet-view__tab-history'},
+        {content: 'Tokens', key: 'tokens', id: 'wallet-view__tab-tokens'},
       ],
       defaultTab: currentAccountTab || 'history',
       tabSelected: (key) => {
@@ -379,8 +377,8 @@ AccountDetailScreen.prototype.tabSections = function () {
 
 AccountDetailScreen.prototype.tabSwitchView = function () {
   const props = this.props
-  const { address, network } = props
-  const { currentAccountTab, tokens } = this.props
+  const {address, network} = props
+  const {currentAccountTab, tokens} = this.props
 
   switch (currentAccountTab) {
     case 'tokens':
@@ -397,8 +395,10 @@ AccountDetailScreen.prototype.tabSwitchView = function () {
 }
 
 AccountDetailScreen.prototype.transactionList = function () {
-  const {transactions, unapprovedMsgs, address,
-    network, shapeShiftTxList, conversionRate } = this.props
+  const {
+    transactions, unapprovedMsgs, address,
+    network, shapeShiftTxList, conversionRate,
+  } = this.props
 
   return h(TransactionList, {
     transactions: transactions.sort((a, b) => b.time - a.time),
