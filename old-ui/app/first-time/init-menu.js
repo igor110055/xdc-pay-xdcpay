@@ -15,32 +15,63 @@ class InitializeMenuScreen extends React.Component {
     }
   }
 
+  componentDidMount = () => {
+    document.getElementById('password-box').focus()
+  }
+
+  componentWillUnmount = () => {
+    // eslint-disable-next-line react/prop-types
+    this.props.dispatch(actions.displayWarning(''))
+  }
+
+  showRestoreVault = () => {
+    this.props.dispatch(actions.showRestoreVault())
+  }
+
   onPasswordChange = (e) => {
     this.setState({password: e.target.value})
   }
 
-  render () {
-    const state = this.props
-    switch (state.currentView.name) {
-      default:
-        return this.renderMenu(state, this.state.password, this.onPasswordChange)
+  createVaultOnEnter = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault()
+      this.createNewVaultAndKeychain()
     }
   }
-}
 
-module.exports = connect(mapStateToProps)(InitializeMenuScreen)
+  createNewVaultAndKeychain = () => {
+    const passwordBox = document.getElementById('password-box')
+    const password = passwordBox.value
+    const passwordConfirmBox = document.getElementById('password-box-confirm')
+    const passwordConfirm = passwordConfirmBox.value
+    if (password.length < 8) {
+      this.warning = 'Password is not long enough'
+      this.props.dispatch(actions.displayWarning(this.warning))
+      return
+    }
+    if (password !== passwordConfirm) {
+      this.warning = 'Passwords don\'t match'
+      this.props.dispatch(actions.displayWarning(this.warning))
+      return
+    }
+    this.props.dispatch(actions.createNewVaultAndKeychain(password))
+  }
 
-function mapStateToProps (state) {
-  return {
-    // state from plugin
-    currentView: state.appState.currentView,
-    warning: state.appState.warning,
+  render () {
+    const state = this.props
+    return (
+      <RenderMenu state={state}
+                  password={this.state.password}
+                  createVaultOnEnter={this.createVaultOnEnter}
+                  showRestoreVault={this.showRestoreVault}
+                  createNewVaultAndKeychain={this.createNewVaultAndKeychain}
+                  onPasswordChange={this.onPasswordChange}/>
+    )
   }
 }
 
-InitializeMenuScreen.prototype.renderMenu = function (state,password, onPasswordChange) {
-  console.log('=====', state)
-  console.log('=====onPasswordChange', onPasswordChange)
+const RenderMenu = (props) => {
+  const {state, password, onPasswordChange, createVaultOnEnter, createNewVaultAndKeychain, showRestoreVault} = props
   return h('.initialize-screen.flex-column.flex-center.flex-grow', [
     h('.logo'),
     h(
@@ -102,7 +133,7 @@ InitializeMenuScreen.prototype.renderMenu = function (state,password, onPassword
       type: 'password',
       id: 'password-box',
       placeholder: 'New Password (min 8 chars)',
-      onchange: onPasswordChange,
+      onChange: onPasswordChange,
       style: {
         width: 265,
         height: 40,
@@ -121,7 +152,7 @@ InitializeMenuScreen.prototype.renderMenu = function (state,password, onPassword
       type: 'password',
       id: 'password-box-confirm',
       placeholder: 'Confirm Password',
-      onKeyPress: this.createVaultOnEnter.bind(this),
+      onKeyPress: createVaultOnEnter,
       style: {
         width: 265,
         height: 40,
@@ -134,7 +165,7 @@ InitializeMenuScreen.prototype.renderMenu = function (state,password, onPassword
     h(
       'button',
       {
-        onClick: this.createNewVaultAndKeychain.bind(this),
+        onClick: createNewVaultAndKeychain,
         style: {
           marginTop: 29,
           width: 265,
@@ -148,7 +179,7 @@ InitializeMenuScreen.prototype.renderMenu = function (state,password, onPassword
       h(
         'p.pointer',
         {
-          onClick: this.showRestoreVault.bind(this),
+          onClick: showRestoreVault,
           style: {
             fontSize: '14px',
             color: '#2149B9',
@@ -161,45 +192,12 @@ InitializeMenuScreen.prototype.renderMenu = function (state,password, onPassword
   ])
 }
 
-InitializeMenuScreen.prototype.createVaultOnEnter = function (event) {
-  if (event.key === 'Enter') {
-    event.preventDefault()
-    this.createNewVaultAndKeychain()
-
-
+function mapStateToProps (state) {
+  return {
+    // state from plugin
+    currentView: state.appState.currentView,
+    warning: state.appState.warning,
   }
 }
 
-InitializeMenuScreen.prototype.componentDidMount = function () {
-  document.getElementById('password-box').focus()
-}
-
-InitializeMenuScreen.prototype.componentWillUnmount = function () {
-  this.props.dispatch(actions.displayWarning(''))
-}
-
-InitializeMenuScreen.prototype.showRestoreVault = function () {
-  this.props.dispatch(actions.showRestoreVault())
-}
-
-InitializeMenuScreen.prototype.createNewVaultAndKeychain = function () {
-  var passwordBox = document.getElementById('password-box')
-  var password = passwordBox.value
-  var passwordConfirmBox = document.getElementById('password-box-confirm')
-  var passwordConfirm = passwordConfirmBox.value
-
-  this.setState({password: password})
-// PasswordStrengthMeter();
-  if (password.length < 8) {
-    this.warning = 'Password is not long enough'
-    this.props.dispatch(actions.displayWarning(this.warning))
-    return
-  }
-  if (password !== passwordConfirm) {
-    this.warning = 'Passwords don\'t match'
-    this.props.dispatch(actions.displayWarning(this.warning))
-    return
-  }
-
-  this.props.dispatch(actions.createNewVaultAndKeychain(password))
-}
+module.exports = connect(mapStateToProps)(InitializeMenuScreen)
