@@ -25,18 +25,21 @@ class PasswordStrengthMeter extends Component {
     const testedResult = checkPassword(password)
 
     return (
-      <div className="password-strength-meter">
-        <progress
+      <div className="password-strength-meter" style={{margin:'-8px 0'}}>
+        <progress className="strength-bar "
           value={testedResult}
           max="4"
+          style={{width:'264px',height:'5px'}}
         />
         <br/>
         <label
           className="password-strength-meter-label"
         >
           {password && (
-            <div>
-              <strong>Password strength:</strong> {this.createPasswordLabel(testedResult)}
+            <div style={{display:'flex', justifyContent: 'space-between',
+          }}>
+              <div style={{ fontSize: '10px',color:'#9FA9BA' }}>Password strength:</div>
+              <div style={{ fontSize: '10px',color:'#2A2A2A' }}> {this.createPasswordLabel(testedResult)}</div>
             </div>
           )}
         </label>
