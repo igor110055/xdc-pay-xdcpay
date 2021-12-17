@@ -69,7 +69,7 @@ const AddNetworkComponent = (props) => {
                 width: '120px',
                 height: '40px',
                 border: 'none',
-                padding: '8px 47px',
+                padding: '8px 40px',
               }}
               onClick={(event) => {
                 event.preventDefault()
