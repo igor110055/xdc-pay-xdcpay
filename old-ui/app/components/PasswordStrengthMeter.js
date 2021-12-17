@@ -26,7 +26,7 @@ class PasswordStrengthMeter extends Component {
 
     return (
       <div className="password-strength-meter" style={{margin:'-8px 0'}}>
-        <progress className="strength-bar "
+        <progress 
           value={testedResult}
           max="4"
           style={{width:'264px',height:'5px'}}
@@ -48,7 +48,7 @@ class PasswordStrengthMeter extends Component {
   }
 }
 
-function checkPassword (password) {
+function checkPassword(password) {
   if (!password) {
     return 0
   }

@@ -49,27 +49,30 @@ const AddNetworkComponent = (props) => {
             <div className="button" onClick={onBackClick}
               style={{
                 fontFamily: 'Inter-Medium',
-                marginTop: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 fontSize: '14px',
                 background: '#E3E7EB',
                 width: '120px',
                 height: '40px',
                 border: 'none',
                 color: '#2a2a2a',
-                padding: '8px 35px',
               }}> Cancel
             </div>
 
             <div className="button"
               style={{
                 fontFamily: 'Inter-Medium',
-                marginTop: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
                 fontSize: '14px',
                 background: '#03BE46',
                 width: '120px',
                 height: '40px',
                 border: 'none',
-                padding: '8px 47px',
+                
               }}
               onClick={(event) => {
                 event.preventDefault()

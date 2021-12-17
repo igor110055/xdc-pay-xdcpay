@@ -87,7 +87,8 @@ class AdvanceSettings extends React.Component{
                             state.dispatch(actions.resetAccount());
                         }}>Reset Account</button>
                 </div>
-                <div style={{
+                      
+               <div style={{
                     padding: ' 15px 17px 20px 15px ',
                     borderBottom: '1px solid #E3E7EB',
                 }}>

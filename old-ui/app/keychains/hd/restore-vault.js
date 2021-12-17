@@ -1,4 +1,5 @@
 const inherits = require('util').inherits
+const EventEmitter = require('events').EventEmitter
 const PersistentForm = require('../../../lib/persistent-form')
 const connect = require('react-redux').connect
 const h = require('react-hyperscript')
@@ -20,13 +21,19 @@ class RestoreVaultScreen extends React.Component{
       password: ' ',
     }
   }
+  onPasswordChange = (e) => {
+    this.setState({password: e.target.value})
+  }
 
   render() {
+
+   
+    
 
     var state = this.props
     this.persistentFormParentId = 'restore-vault-form';
     
-    const {password} = this.props
+    const password = this.state.password;
     return h('div', {
       style: {
         width: '100%',
@@ -78,6 +85,7 @@ class RestoreVaultScreen extends React.Component{
         h('input.large-input', {
           type: 'password',
           id: 'password-box',
+          onChange: this.onPasswordChange,
           placeholder: 'New Password (min 8 chars)',
           dataset: {
             persistentFormId: 'password',

@@ -26,7 +26,7 @@ class AccountsDropdownItemView extends Component {
     }
   }
 
-  render () {
+  render() {
     const { isSelected, keyring, identity } = this.props
     const { label } = this.state
     const { address, name } = identity
@@ -57,19 +57,24 @@ class AccountsDropdownItemView extends Component {
           this.props.closeMenu()
         }}
       />) : null
+      
     return (
       <DropdownMenuItem
-        closeMenu={() => {}}
+        closeMenu={() => { }}
         onClick={() => this.accountOnClick(keyring, address)}
         style={{
           padding: '8px 16px',
+          backgroundColor: isSelected ? '#c9e6ff': '',
         }}
       >
-        {leftBorder}
-        {accountIcon}
-        {accountName}
-        {accountLabel}
-        {removeIcon}
+       
+          {leftBorder}
+          {accountIcon}
+          {accountName}
+          {accountLabel}
+          {removeIcon}
+    
+        
       </DropdownMenuItem>
     )
   }
