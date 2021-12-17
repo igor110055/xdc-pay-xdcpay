@@ -87,19 +87,6 @@ class AdvanceSettings extends React.Component{
                             state.dispatch(actions.resetAccount());
                         }}>Reset Account</button>
                 </div>
-
-                <div style={{
-                padding: ' 15px 17px 20px 15px ',
-                borderBottom: '1px solid #E3E7EB',
-                }}>
-                <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Change Password</span><br />
-                {/* <p style={{fontSize:'14px',marginBottom:'15px',fontFamily:'Inter-medium'}}>Resetting your account will clear your transaction history. This will not change the balances in your accounts or require you to re-enter your Secret Recovery Phrase.</p> */}
-                    <button style={{ width: "324px", height: "40px", color: "#FF0035", background: "#FFFFFF", border: "2px solid #FF0035", fontWeight: "600", }}
-                        onClick={(event) => {
-                            event.preventDefault();
-                            state.dispatch(actions.confirmChangePassword());
-                        }}>Reset Account</button>
-                </div>
                       
                <div style={{
                     padding: ' 15px 17px 20px 15px ',
