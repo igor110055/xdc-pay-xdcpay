@@ -103,7 +103,7 @@ const permanentNetworks = [
     currencySymbol: '',
     blockExplorer: '',
     providerType: LOCALHOST,
-    isPermanent: true,
+    isPermanent: false,
   }]
 
 module.exports = {

@@ -52,6 +52,7 @@ class FiatValue extends Component {
     const value = formatBalance(props.value, 6, undefined, props.network)
 
     if (value === 'None') return value
+    console.log(props,'+-+-+')
     const splitBalance = value.split(' ')
 
     const fiatTooltipNumber = Number(splitBalance[0]) * conversionRate

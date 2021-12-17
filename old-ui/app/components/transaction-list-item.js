@@ -125,9 +125,9 @@ TransactionListItem.prototype.render = function () {
           this.props.showTx(transaction.id)
         }
         event.stopPropagation()
-        if (!transaction.hash || !isLinkable) return
-        const url = ethNetProps.explorerLinks.getExplorerTxLinkFor(transaction.hash, numericNet)
-        global.platform.openWindow({ url })
+        // if (!transaction.hash || !isLinkable) return
+        // const url = ethNetProps.explorerLinks.getExplorerTxLinkFor(transaction.hash, numericNet)
+        // global.platform.openWindow({ url })
       },
       style: {
         padding: '10px 0',
