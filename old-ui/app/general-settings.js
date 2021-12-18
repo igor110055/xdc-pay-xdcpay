@@ -83,7 +83,7 @@ class GeneralSettings extends React.Component {
           {currentLanguage(state)}
         </div>
         <div style={{ padding:'20px 40px',borderTop:'1px solid #E3E7EB' }}>
-          <div style={{color:'#2149B9',fontSize:'14px',fontFamily:'Inter-Medium', }}>Hide Tokens Without</div><br/>
+          <div style={{color:'#2149B9',fontSize:'14px',fontFamily:'Inter-Medium', }}>Hide Tokens Without Balance</div><br/>
        <label className="switch">
           {/* <input type="checkbox" id="checked" /> */}
           <input type="checkbox"  id="checked" onChange={this.handleCheckBox} />

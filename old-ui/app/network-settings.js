@@ -33,17 +33,21 @@ class NetworkSettings extends React.Component {
                }}/>
         </div>
         {netList.map((networkObj) =>
+          
           <div style={{
-            padding: ' 11px 17px 11px 15px ',
+            padding: ' 11px 17px 11px 13px ',
             borderBottom: '1px solid #E3E7EB',
             fontFamily: 'inter-medium',
             fontSize: '14px',
-          }} key={networkObj.chainId}>{networkObj.name}
+          }} key={networkObj.chainId}>  <svg height="16px" width="26px" position="absolute" left="17px">
+              <circle style={{ cx: '10' ,cy:"10", r:"6" , fill:networkObj.colorCode ? networkObj.colorCode : '#E58A0F' }} key={networkObj.isPermanent}/>
+       </svg>  {networkObj.name}
             <img src={networkObj.isPermanent ? '/images/Assets/Lock.png' : '/images/Assets/Delete.svg'}
                  style={{position: 'absolute', right: '30px', cursor: networkObj.isPermanent ? 'normal' : 'pointer'}}
                  onClick={() => !networkObj.isPermanent && this.onDeleteRPCNetwork(networkObj)}/>
             <img src="/images/Assets/Arrow.svg" onClick={() => state.dispatch(actions.viewNetwork(networkObj))}
-                 style={{position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer'}}/>
+              style={{ position: 'absolute', right: '15px', marginTop: '6px', cursor: 'pointer' }} />
+           
           </div>)
         }
       </div>

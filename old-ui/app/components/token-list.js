@@ -317,7 +317,7 @@ TokenList.prototype.createFreshTokenTracker = function () {
   }
 
   if (!global.ethereumProvider) return
-  !showTokens && updateSendTokenBalance
+  // !showTokens && updateSendTokenBalance
   
   const { userAddress } = this.props
 
