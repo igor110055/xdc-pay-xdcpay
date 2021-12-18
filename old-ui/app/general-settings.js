@@ -59,7 +59,7 @@ class GeneralSettings extends React.Component {
   }
   handleCheckBox = () => {
     const showTokens = this.props.metamask.showTokens
-    this.setState({ showTokens: !showTokens })
+    // this.setState({ showTokens: !showTokens })
     this.props.dispatch(actions.showTokens(!showTokens))
   }
 
@@ -120,15 +120,17 @@ function mapStateToProps(state) {
           {`Updated ` + Date(conversionDate) }
         </span>
         <br />
-        <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324',}} >
-          <div className="settings-page__content-item-col">
+        <div className="settings-page__content-item" style={{ border: '1px solid #C7CDD8', borderRadius: '4px', height: '40px', width: '324', padding:'7px 0 0 4px '}} >
+          USD - United States Dollar
+          
         <SimpleDropdown
             style={{border: '1px solid #E3E7EB' }}
-            placeholder={('selectCurrency')}
+            placeholder={(currentCurrency)}
             options={infuraCurrencyOptions}
             selectedOption={currentCurrency}
             onSelect={newCurrency => setCurrentCurrency(newCurrency)}
             />
+          <div className="settings-page__content-item-col">
             </div>
             </div>
       </div>
@@ -154,10 +156,10 @@ function mapStateToProps(state) {
             { currentLocaleName }
           </span>
         </div>
-        <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324',}} >
+        <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324', padding:'7px 0 0 4px '}} >
           <div className="settings-page__content-item-col">
             <SimpleDropdown
-              style={{ border: '1px solid #E3E7EB',}}
+              // style={{ border: '1px solid #E3E7EB',}}
               placeholder={('selectLocale')}
               options={localeOptions}
               selectedOption={currentLocale}
