@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Button from '../../../../ui/app/components/button'
 import Identicon from '../identicon'
 import TokenBalance from './token-balance'
+import tokenBalance from '../token-balance'
+import { showTokens } from '../../../../ui/app/actions'
 
 export default class ConfirmAddToken extends Component {
   static contextTypes = {
@@ -20,10 +22,14 @@ export default class ConfirmAddToken extends Component {
 
   componentDidMount () {
     const { pendingTokens = {}, goHome } = this.props
+    // const showTokens = this.props
 
     if (Object.keys(pendingTokens).length === 0) {
       goHome()
     }
+    if (tokenBalance === 0) {
+      this.setState({ showTokens: false }, () => showTokens(false))
+   } 
   }
 
   getTokenName (name, symbol) {

@@ -24,7 +24,6 @@ const abiDecoder = require('abi-decoder')
 const { tokenInfoGetter, calcTokenAmount } = require('../../../ui/app/token-util')
 const BigNumber = require('bignumber.js')
 const ethNetProps = require('xdc-net-props')
-import { showGasFields } from '../../../ui/app/actions'
 import { getMetaMaskAccounts } from '../../../ui/app/selectors'
 import ToastComponent from './toast'
 // const handleCheckBox = require ('../../../old-ui/app/advance-settings' )

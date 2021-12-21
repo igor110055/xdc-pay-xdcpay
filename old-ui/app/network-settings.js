@@ -26,7 +26,7 @@ class NetworkSettings extends React.Component {
           <img src="/images/Assets/BackArrow.svg" style={{marginLeft: '12px', cursor: 'pointer'}} onClick={() => {
             state.dispatch(actions.goConfig())
           }}/>
-          <h2 style={{marginLeft: '88px', fontFamily: 'Inter-bold'}}>Network Settings</h2>
+          <h2 style={{marginLeft: '80px', fontFamily: 'Inter-bold'}}>Network Settings</h2>
           <img src="/images/Assets/Add.svg" style={{cursor: 'pointer', position: 'absolute', right: '21px'}}
                onClick={() => {
                  state.dispatch(actions.showAddNetworkPage())

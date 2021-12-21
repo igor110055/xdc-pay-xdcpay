@@ -9,7 +9,6 @@ const copyToClipboard = require('copy-to-clipboard')
 const actions = require('../../../ui/app/actions')
 const connect = require('react-redux').connect
 const { MAINNET_CODE } = require('../../../app/scripts/controllers/network/enums')
-import { showTokens } from '../../../ui/app/actions'
 import { countSignificantDecimals, toChecksumAddress } from '../util'
 
 const tokenCellDropDownPrefix = 'token-cell_dropdown_'
@@ -26,7 +25,6 @@ function TokenCell () {
 
 TokenCell.prototype.render = function () {
   const { address, symbol, string, network, userAddress, isLastTokenCell, menuToTop, ind,
-    // showTokens
   } = this.props
   const { optionsMenuActive } = this.state
 
@@ -35,7 +33,6 @@ TokenCell.prototype.render = function () {
 
   
   return (
-    // showTokens ? h('div',[
     h(`li#token-cell_${ind}.token-cell`, {
       style: {
         cursor: Number(network) === MAINNET_CODE ? 'pointer' : 'default',
@@ -84,7 +81,7 @@ TokenCell.prototype.render = function () {
       }, 'SEND'),
       */
     ])
-    // ]):null
+    
   )
 }
 
@@ -208,7 +205,6 @@ function tokenFactoryFor (tokenAddress) {
 const mapDispatchToProps = dispatch => {
   return {
     showSendTokenPage: (tokenAddress) => dispatch(actions.showSendTokenPage(tokenAddress)),
-    showTokens: state.metamask.showTokens,
   }
 
 }

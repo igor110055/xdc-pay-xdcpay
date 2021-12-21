@@ -86,6 +86,7 @@ var actions = {
   unMarkPasswordForgotten,
   SHOW_INIT_MENU: 'SHOW_INIT_MENU',
   SHOW_NEW_VAULT_SEED: 'SHOW_NEW_VAULT_SEED',
+  SHOW_NEW_VAULT_SEED1: 'SHOW_NEW_VAULT_SEED1',
   SHOW_INFO_PAGE: 'SHOW_INFO_PAGE',
   SHOW_IMPORT_PAGE: 'SHOW_IMPORT_PAGE',
   SHOW_FORGET_DEVICE_PAGE: 'SHOW_FORGET_DEVICE_PAGE',
@@ -122,6 +123,7 @@ var actions = {
   removeAccount,
   updateABI,
   showNewVaultSeed: showNewVaultSeed,
+  showNewVaultSeed1: showNewVaultSeed1,
   showInfoPage: showInfoPage,
   CLOSE_WELCOME_SCREEN: 'CLOSE_WELCOME_SCREEN',
   closeWelcomeScreen,
@@ -129,6 +131,7 @@ var actions = {
   REVEAL_SEED_CONFIRMATION: 'REVEAL_SEED_CONFIRMATION',
   revealSeedConfirmation: revealSeedConfirmation,
   requestRevealSeed: requestRevealSeed,
+  requestRevealSeed1: requestRevealSeed1,
   requestRevealSeedWords,
   // unlock screen
   UNLOCK_IN_PROGRESS: 'UNLOCK_IN_PROGRESS',
@@ -643,6 +646,36 @@ function requestRevealSeed (password) {
           }
 
           dispatch(actions.showNewVaultSeed(result))
+          dispatch(actions.hideLoadingIndication())
+          resolve()
+        })
+      })
+    }).catch((err) => {
+      dispatch(actions.displayWarning(err.message))
+      return Promise.reject(err)
+    })
+  }
+}
+
+function requestRevealSeed1 (password) {
+  return (dispatch) => {
+    dispatch(actions.showLoadingIndication())
+    log.debug(`background.submitPassword`)
+    return new Promise((resolve, reject) => {
+      background.submitPassword(password, (err) => {
+        if (err) {
+          dispatch(actions.displayWarning(err))
+          return reject(err)
+        }
+
+        log.debug(`background.placeSeedWords`)
+        background.placeSeedWords((err, result) => {
+          if (err) {
+            dispatch(actions.displayWarning(err.message))
+            return reject(err)
+          }
+
+          dispatch(actions.showNewVaultSeed1(result))
           dispatch(actions.hideLoadingIndication())
           resolve()
         })
@@ -1706,6 +1739,13 @@ function createNewVaultInProgress () {
 function showNewVaultSeed (seed) {
   return {
     type: actions.SHOW_NEW_VAULT_SEED,
+    value: seed,
+  }
+}
+
+function showNewVaultSeed1 (seed) {
+  return {
+    type: actions.SHOW_NEW_VAULT_SEED1,
     value: seed,
   }
 }
