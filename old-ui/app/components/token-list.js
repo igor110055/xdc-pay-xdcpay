@@ -130,9 +130,9 @@ TokenList.prototype.render = function () {
 
   let tokensFromCurrentNetwork = tokens.filter(token => (parseInt(token.network) === parseInt(network) || !token.network ))
   
-  if (this.props.showTokens === false ) { 
+  if (showTokens === false ) { 
     console.log(tokensFromCurrentNetwork,'(list issue)')
-    tokensFromCurrentNetwork = tokensFromCurrentNetwork.filter(token => token.tokenBalance !== 0)
+    tokensFromCurrentNetwork = tokensFromCurrentNetwork.filter(token =>  (parseInt(token.network) === parseInt(network) || !token.network && token.tokenBalance !== 0 ) )
   }
 
   const tokenViews = tokensFromCurrentNetwork.map((tokenData, ind) => {

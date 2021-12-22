@@ -5,17 +5,17 @@ class PasswordStrengthMeter extends Component {
   createPasswordLabel = (result) => {
     switch (result) {
       case 0:
-        return 'Weak'
+        return 'Poor'
       case 1:
-        return 'Weak'
+        return 'Poor'
       case 2:
-        return 'Fair'
+        return 'Moderate'
       case 3:
-        return 'Good'
-      case 4:
-        return 'Strong'
+        return 'strong'
+      // case 4:
+      //   return 'Strong'
       default:
-        return 'Weak'
+        return 'Poor'
     }
   }
 
@@ -28,7 +28,7 @@ class PasswordStrengthMeter extends Component {
       <div className="password-strength-meter" style={{margin:'-8px 0'}}>
         <progress 
           value={testedResult}
-          max="4"
+          max="3"
           style={{width:'264px',height:'5px'}}
         />
         <br/>
@@ -38,7 +38,7 @@ class PasswordStrengthMeter extends Component {
           {password && (
             <div style={{display:'flex', justifyContent: 'space-between',
           }}>
-              <div style={{ fontSize: '10px',color:'#9FA9BA' }}>Password strength:</div>
+              <div style={{ fontSize: '10px',color:'#9FA9BA' }}>Password strength</div>
               <div style={{ fontSize: '10px',color:'#2A2A2A' }}> {this.createPasswordLabel(testedResult)}</div>
             </div>
           )}
@@ -53,16 +53,16 @@ function checkPassword(password) {
     return 0
   }
   let strength = 0
-  if (password.match(/[a-z]+/)) {
+  if (password.match(/[8,]+/)) {
     strength += 1
   }
-  if (password.match(/[A-Z]+/)) {
+  else if (password.match(/[0-9$@#&!]+/)) {
     strength += 1
   }
-  if (password.match(/[0-9]+/)) {
-    strength += 1
-  }
-  if (password.match(/[$@#&!]+/)) {
+  // if (password.match(/[$@#&!]+/)) {
+  //   strength += 1
+  // }
+  else if (password.match(/[A-Za-z]+/)) {
     strength += 1
   }
   return strength

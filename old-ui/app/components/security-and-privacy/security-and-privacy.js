@@ -6,7 +6,7 @@ const actions = require("../../../../ui/app/actions");
 // const LoadingIndicator = require("../../components/loading");
 // const Web3 = require("web3");
 const exportAsFile = require("../../util").exportAsFile;
-
+import IdleTimer from '../idle-timer-container/idleTimer';
 import React, { useState } from 'react';
 import SimpleDropdown from '../../../../ui/app/components/dropdowns/simple-dropdown';
 
@@ -69,8 +69,9 @@ class SecurityAndPrivacySettings extends React.Component{
                 borderBottom: '1px solid #E3E7EB',
             }}>
                 <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>AutoAuto-Lock Timer</span><br />
-                    <p style={{ fontSize: '14px', marginBottom: '15px', fontFamily: 'Inter-medium' }}>Set the idle time in minutes before the wallet will be locked.</p>
-                    {/* <SimpleDropdown
+                    <p style={{ fontSize: '14px', marginBottom: '15px', fontFamily: 'Inter-medium' }} >Set the idle time in minutes before the wallet will be locked.</p>
+                   
+              {/* <SimpleDropdown
                       style={{ border: '1px solid #E3E7EB',}} /> */}
                     {currentConversionInformation(metamaskState, state)}
                 </div>
@@ -108,6 +109,7 @@ function currentConversionInformation(metamaskState, state) {
       <div >
       <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324px',}} >
           <div className="settings-page__content-item-col"></div>
+        
         <SimpleDropdown
             style={{border: '1px solid #E3E7EB' }}
             placeholder={('selectCurrency')}
@@ -115,11 +117,13 @@ function currentConversionInformation(metamaskState, state) {
             selectedOption={currentCurrency}
             onSelect={newCurrency => setCurrentCurrency(newCurrency)}
                 />
+           {/* <IdleTimer ref={idleTimerRef} timeout={5 * 1000} onIdle={onIdle}  ></IdleTimer> */}
                 </div></div>
            
       
     )    
-  }
+}
+  
    
     module.exports = connect(mapStateToProps)(SecurityAndPrivacySettings);
     
