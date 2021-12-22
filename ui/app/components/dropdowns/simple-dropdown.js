@@ -40,7 +40,7 @@ class SimpleDropdown extends Component {
           this.handleClose()
         },
       }),
-      h('div.simple-dropdown__options', [
+      h('div.simple-dropdown__options',{style:{border:'1px solid grey',background:'lightgrey'}}, [
         ...options.map(option => {
           return h(
             'div.simple-dropdown__option',
@@ -58,6 +58,7 @@ class SimpleDropdown extends Component {
               },
             },
             option.displayValue || option.value,
+            
           )
         }),
       ]),
@@ -76,7 +77,7 @@ class SimpleDropdown extends Component {
       [
         h('div.simple-dropdown__selected', this.getDisplayValue() || placeholder || 'Select', [
           
-          h('i.fa.fa-angle-down.fa-lg.simple-dropdown__caret',{style:{position:'absolute',right:'30px' , marginTop:'10px' }}, ),
+          h('i.fa.fa-angle-down.fa-lg.simple-dropdown__caret',{style:{position:'absolute',right:'30px' , marginTop:'-15px' }}, ),
       ]),
         isOpen && this.renderOptions(),
       ]

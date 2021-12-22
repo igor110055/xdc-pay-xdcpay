@@ -24,12 +24,14 @@ function TokenCell () {
 }
 
 TokenCell.prototype.render = function () {
-  const { address, symbol, string, network, userAddress, isLastTokenCell, menuToTop, ind } = this.props
+  const { address, symbol, string, network, userAddress, isLastTokenCell, menuToTop, ind,
+  } = this.props
   const { optionsMenuActive } = this.state
 
   const tokenBalanceRaw = Number.parseFloat(string)
   const tokenBalance = tokenBalanceRaw.toFixed(countSignificantDecimals(tokenBalanceRaw, 2))
 
+  
   return (
     h(`li#token-cell_${ind}.token-cell`, {
       style: {
@@ -78,8 +80,8 @@ TokenCell.prototype.render = function () {
         onClick: this.send.bind(this, address),
       }, 'SEND'),
       */
-
     ])
+    
   )
 }
 
@@ -204,6 +206,7 @@ const mapDispatchToProps = dispatch => {
   return {
     showSendTokenPage: (tokenAddress) => dispatch(actions.showSendTokenPage(tokenAddress)),
   }
+
 }
 
 module.exports = connect(null, mapDispatchToProps)(TokenCell)

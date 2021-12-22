@@ -106,7 +106,7 @@ function currentConversionInformation(metamaskState, state) {
     const setCurrentCurrency = metamaskState.setCurrentCurrency;
     return (
       <div >
-      <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324',}} >
+      <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324px',}} >
           <div className="settings-page__content-item-col"></div>
         <SimpleDropdown
             style={{border: '1px solid #E3E7EB' }}

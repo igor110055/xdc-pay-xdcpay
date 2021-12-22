@@ -8,6 +8,7 @@ const selectors = require('../../../ui/app/selectors')
 const log = require('loglevel')
 import { XDC_TESTNET_CODE, GOERLI_TESTNET_CODE, XDC_CODE, XDC_DEVNET_CODE  } from '../../../app/scripts/controllers/network/enums'
 import { showTokens } from '../../../ui/app/actions'
+import tokenBalance from './token-balance'
 
 function mapStateToProps(state) {
   return {
@@ -50,16 +51,16 @@ function TokenList () {
 
 TokenList.prototype.render = function () {
   const state = this.state
-  const { tokens, isLoading, error } = state
-  const { userAddress, network,address } = this.props
+  const { tokens, isLoading, error,showTokens } = state
+  const { userAddress, network, address } = this.props
   const isTestnet = parseInt(network) === XDC_TESTNET_CODE
   const isMainnet = parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
-  const isDevnet =  parseInt(network) === XDC_DEVNET_CODE 
+  const isDevnet = parseInt(network) === XDC_DEVNET_CODE
   if (isLoading) {
     return this.message('Loading')
   }
 
-  if (error &&  isMainnet) {
+  if (error && isMainnet) {
     log.error(error)
     return h('.hotFix', {
       style: {
@@ -74,8 +75,8 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://explorer.xinfin.network/token/${address.replace("0x","xdc")}`,
-        })
+            url: `https://explorer.xinfin.network/token/${address.replace("0x", "xdc")}`,
+          })
         },
       }, 'here'),
     ])
@@ -98,8 +99,8 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://explorer.apothem.network/token/${address.replace("0x","xdc")}`,
-        })
+            url: `https://explorer.apothem.network/token/${address.replace("0x", "xdc")}`,
+          })
         },
       }, 'here'),
     ])
@@ -120,28 +121,34 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-          url: `https://devnet.apothem.network/tokens/${address.replace("0x","xdc")}`,
-        })
+            url: `https://devnet.apothem.network/tokens/${address.replace("0x", "xdc")}`,
+          })
         },
       }, 'here'),
     ])
   }
 
-  const tokensFromCurrentNetwork = tokens.filter(token => (parseInt(token.network) === parseInt(network) || !token.network))
+  let tokensFromCurrentNetwork = tokens.filter(token => (parseInt(token.network) === parseInt(network) || !token.network ))
+  
+  if (this.props.showTokens === false ) { 
+    console.log(tokensFromCurrentNetwork,'(list issue)')
+    tokensFromCurrentNetwork = tokensFromCurrentNetwork.filter(token => token.tokenBalance !== 0)
+  }
 
   const tokenViews = tokensFromCurrentNetwork.map((tokenData, ind) => {
     tokenData.userAddress = userAddress
     const isLastTokenCell = ind === (tokensFromCurrentNetwork.length - 1)
     const menuToTop = true
-    return h(TokenCell, {
-      ind,
-      ...tokenData,
-      isLastTokenCell,
-      menuToTop,
-      removeToken: this.props.removeToken,
-      network: this.props.network,
+      return h(TokenCell, {
+        ind,
+        ...tokenData,
+        isLastTokenCell,
+        menuToTop,
+        removeToken: this.props.removeToken,
+        network: this.props.network,
+      })
+   
     })
-  })
 
   return h('.full-flex-height', [
     this.renderTokenStatusBar(),
@@ -317,7 +324,7 @@ TokenList.prototype.createFreshTokenTracker = function () {
   }
 
   if (!global.ethereumProvider) return
-  !showTokens && updateSendTokenBalance
+  // !showTokens && updateSendTokenBalance
   
   const { userAddress } = this.props
 

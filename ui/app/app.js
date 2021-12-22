@@ -24,7 +24,7 @@ import Settings from './components/pages/settings'
 const Authenticated = require('./components/pages/authenticated')
 const Initialized = require('./components/pages/initialized')
 const RestoreVaultPage = require('./components/pages/keychains/restore-vault').default
-const RevealSeedConfirmation = require('./components/pages/keychains/reveal-seed')
+// const RevealSeedConfirmation = require('./components/pages/keychains/reveal-seed')
 const AddTokenPage = require('./components/pages/add-token')
 const ConfirmAddTokenPage = require('./components/pages/confirm-add-token')
 const ConfirmAddSuggestedTokenPage = require('./components/pages/confirm-add-suggested-token')

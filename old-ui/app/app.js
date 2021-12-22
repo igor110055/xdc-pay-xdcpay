@@ -36,6 +36,7 @@ const ForgetDeviceScreen = require('./components/connect-hardware/forget-screen'
 import { alertSettings, securityAndPrivacy } from '../../ui/app/actions'
 import ConnectHardwareForm from './components/connect-hardware/index'
 import createVaultComplete from './keychains/hd/create-vault-complete'
+import revealSeed from './keychains/hd/reveal-seed'
 const InfoScreen = require('./info')
 const AppBar = require('./components/app-bar/app-bar.component')
 const Loading = require('./components/loading')
@@ -289,8 +290,12 @@ App.prototype.renderPrimary = function () {
 
     case 'CreateVaultCompleteScreen':
       log.debug('rendering seed words screen')
-      return h(createVaultComplete, {key: 'CreateVaultCompleteScreen'})
-
+      return h(createVaultComplete, { key: 'CreateVaultCompleteScreen' })
+    
+    case 'reveal-seed':
+      log.debug('rendering the reveal seed words')
+      return h(revealSeed, { key: 'reveal-seed' })
+    
     case 'advance-settings':
         log.debug('rendering advance-settings screen ')
       return h(AdvanceSettings, { key: 'advance-settings' })

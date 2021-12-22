@@ -77,6 +77,7 @@ const permanentNetworks = [
     blockExplorer: XDC_BLOCK_EXPLORER_URL,
     providerType: XDC,
     isPermanent: true,
+    colorCode: '#2049B9',
   },
   {
     name: XDC_TESTNET_DISPLAY_NAME,
@@ -86,6 +87,7 @@ const permanentNetworks = [
     blockExplorer: XDC_TESTNET_BLOCK_EXPLORER_URL,
     providerType: XDC_TESTNET,
     isPermanent: true,
+    colorCode: '#2049B9',
   },
   {
     name: XDC_DEVNET_DISPLAY_NAME,
@@ -95,6 +97,7 @@ const permanentNetworks = [
     blockExplorer: XDC_DEVNET_BLOCK_EXPLORER_URL,
     providerType: XDC_DEVNET,
     isPermanent: true,
+    colorCode: '#2049B9',
   },
   {
     name: 'Localhost 8545',
@@ -104,6 +107,7 @@ const permanentNetworks = [
     blockExplorer: '',
     providerType: LOCALHOST,
     isPermanent: false,
+    colorCode: '#0CB0BE', 
   }]
 
 module.exports = {
