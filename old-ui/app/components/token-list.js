@@ -6,13 +6,19 @@ const TokenCell = require('./token-cell.js')
 const connect = require('react-redux').connect
 const selectors = require('../../../ui/app/selectors')
 const log = require('loglevel')
-import { XDC_TESTNET_CODE, GOERLI_TESTNET_CODE, XDC_CODE, XDC_DEVNET_CODE  } from '../../../app/scripts/controllers/network/enums'
-import { showTokens } from '../../../ui/app/actions'
+import {
+  XDC_TESTNET_CODE,
+  GOERLI_TESTNET_CODE,
+  XDC_CODE,
+  XDC_DEVNET_CODE,
+} from '../../../app/scripts/controllers/network/enums'
+import {showTokens} from '../../../ui/app/actions'
 import tokenBalance from './token-balance'
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     network: state.metamask.network,
+    showTokens: state.metamask.showTokens,
     tokens: state.metamask.tokens,
     userAddress: selectors.getSelectedAddress(state),
   }
@@ -40,6 +46,7 @@ for (const address in contractsPOA) {
 module.exports = connect(mapStateToProps)(TokenList)
 
 inherits(TokenList, Component)
+
 function TokenList () {
   this.state = {
     tokens: [],
@@ -51,8 +58,8 @@ function TokenList () {
 
 TokenList.prototype.render = function () {
   const state = this.state
-  const { tokens, isLoading, error,showTokens } = state
-  const { userAddress, network, address } = this.props
+  const {tokens, isLoading, error, showTokens} = state
+  const {userAddress, network, address} = this.props
   const isTestnet = parseInt(network) === XDC_TESTNET_CODE
   const isMainnet = parseInt(network) === XDC_CODE || parseInt(network) === GOERLI_TESTNET_CODE
   const isDevnet = parseInt(network) === XDC_DEVNET_CODE
@@ -75,13 +82,12 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-            url: `https://explorer.xinfin.network/token/${address.replace("0x", "xdc")}`,
+            url: `https://explorer.xinfin.network/token/${address.replace('0x', 'xdc')}`,
           })
         },
       }, 'here'),
     ])
   }
-
 
 
   if (error && isTestnet) {
@@ -99,7 +105,7 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-            url: `https://explorer.apothem.network/token/${address.replace("0x", "xdc")}`,
+            url: `https://explorer.apothem.network/token/${address.replace('0x', 'xdc')}`,
           })
         },
       }, 'here'),
@@ -121,34 +127,32 @@ TokenList.prototype.render = function () {
         },
         onClick: () => {
           global.platform.openWindow({
-            url: `https://devnet.apothem.network/tokens/${address.replace("0x", "xdc")}`,
+            url: `https://devnet.apothem.network/tokens/${address.replace('0x', 'xdc')}`,
           })
         },
       }, 'here'),
     ])
   }
 
-  let tokensFromCurrentNetwork = tokens.filter(token => (parseInt(token.network) === parseInt(network) || !token.network ))
-  
-  if (this.props.showTokens === false ) { 
-    console.log(tokensFromCurrentNetwork,'(list issue)')
-    tokensFromCurrentNetwork = tokensFromCurrentNetwork.filter(token => token.tokenBalance !== 0)
+  let tokensFromCurrentNetwork = tokens.filter(token => (parseInt(token.network) === parseInt(network) || !token.network))
+  if (!this.props.showTokens) {
+    tokensFromCurrentNetwork = tokensFromCurrentNetwork.filter(token => token.balance !== '0')
   }
 
   const tokenViews = tokensFromCurrentNetwork.map((tokenData, ind) => {
     tokenData.userAddress = userAddress
     const isLastTokenCell = ind === (tokensFromCurrentNetwork.length - 1)
     const menuToTop = true
-      return h(TokenCell, {
-        ind,
-        ...tokenData,
-        isLastTokenCell,
-        menuToTop,
-        removeToken: this.props.removeToken,
-        network: this.props.network,
-      })
-   
+    return h(TokenCell, {
+      ind,
+      ...tokenData,
+      isLastTokenCell,
+      menuToTop,
+      removeToken: this.props.removeToken,
+      network: this.props.network,
     })
+
+  })
 
   return h('.full-flex-height', [
     this.renderTokenStatusBar(),
@@ -186,8 +190,8 @@ TokenList.prototype.render = function () {
 }
 
 TokenList.prototype.renderTokenStatusBar = function () {
-  const { tokens } = this.state
-  const { network } = this.props
+  const {tokens} = this.state
+  const {network} = this.props
   const tokensFromCurrentNetwork = tokens.filter(token => (parseInt(token.network) === parseInt(network) || !token.network))
 
   let msg
@@ -200,8 +204,8 @@ TokenList.prototype.renderTokenStatusBar = function () {
     msg = `No token balance`
     noTokens = true
   }
-  
-  if (msg === "No token balance") {
+
+  if (msg === 'No token balance') {
     return h('div', [
       h('div', {
         style: {
@@ -216,13 +220,13 @@ TokenList.prototype.renderTokenStatusBar = function () {
         },
       }, [
         h('span', {
-          style: {
-            fontSize: '14px',
-            margin: '65px 0 10px 0',
-            // fontFamily: 'Inter',
-            color: '#9FA9BA',
+            style: {
+              fontSize: '14px',
+              margin: '65px 0 10px 0',
+              // fontFamily: 'Inter',
+              color: '#9FA9BA',
+            },
           },
-        },
           msg),
         h('button.btn-primary.wallet-view__add-token-button', {
           key: 'reveal-account-bar',
@@ -248,8 +252,7 @@ TokenList.prototype.renderTokenStatusBar = function () {
         },
       }) : null,
     ])
-  }
-  else {
+  } else {
     return h('div', [
       h('div', {
         style: {
@@ -264,12 +267,12 @@ TokenList.prototype.renderTokenStatusBar = function () {
         },
       }, [
         h('span', {
-          style: {
-            fontSize: '14px',
-            // fontFamily: 'Inter',
-            color: '#9FA9BA',
+            style: {
+              fontSize: '14px',
+              // fontFamily: 'Inter',
+              color: '#9FA9BA',
+            },
           },
-        },
           msg),
         h('button.btn-primary.wallet-view__add-token-button', {
           key: 'reveal-account-bar',
@@ -295,7 +298,7 @@ TokenList.prototype.renderTokenStatusBar = function () {
         },
       }) : null,
     ])
-    
+
   }
 }
 
@@ -325,8 +328,8 @@ TokenList.prototype.createFreshTokenTracker = function () {
 
   if (!global.ethereumProvider) return
   // !showTokens && updateSendTokenBalance
-  
-  const { userAddress } = this.props
+
+  const {userAddress} = this.props
 
   const tokensFromCurrentNetwork = this.props.tokens.filter(token => (parseInt(token.network) === parseInt(this.props.network) || !token.network))
   this.tracker = new TokenTracker({
@@ -340,19 +343,19 @@ TokenList.prototype.createFreshTokenTracker = function () {
   // Set up listener instances for cleaning up
   this.balanceUpdater = this.updateBalances.bind(this)
   this.showError = (error) => {
-    this.setState({ error, isLoading: false })
+    this.setState({error, isLoading: false})
   }
   this.tracker.on('update', this.balanceUpdater)
   this.tracker.on('error', this.showError)
 
   this.tracker.updateBalances()
-  .then(() => {
-    this.updateBalances(this.tracker.serialize())
-  })
-  .catch((reason) => {
-    log.error(`Problem updating balances`, reason)
-    this.setState({ isLoading: false })
-  })
+    .then(() => {
+      this.updateBalances(this.tracker.serialize())
+    })
+    .catch((reason) => {
+      log.error(`Problem updating balances`, reason)
+      this.setState({isLoading: false})
+    })
 }
 
 TokenList.prototype.componentDidUpdate = function (nextProps) {
@@ -374,23 +377,23 @@ TokenList.prototype.componentDidUpdate = function (nextProps) {
 
   const oldTokensLength = tokens ? tokens.length : 0
   const tokensLengthUnchanged = oldTokensLength === newTokens.length
-  
+
   if (tokensLengthUnchanged && shouldUpdateTokens) return
 
-  this.setState({ isLoading: true})
+  this.setState({isLoading: true})
   this.createFreshTokenTracker()
 }
 
 TokenList.prototype.updateBalances = function (tokens) {
-  
+
   if (!this.tracker.running) {
     return
   }
-  this.setState({ tokens, isLoading: false })
+  this.setState({tokens, isLoading: false})
 }
 
 TokenList.prototype.componentWillUnmount = function () {
-  if (!this.tracker) return 
+  if (!this.tracker) return
   this.tracker.stop()
   this.tracker.removeListener('update', this.balanceUpdater)
   this.tracker.removeListener('error', this.showError)
