@@ -159,8 +159,8 @@ function mapStateToProps(state) {
         <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324', padding:'7px 0 0 4px '}} >
           <div className="settings-page__content-item-col">
             <SimpleDropdown
-              // style={{ border: '1px solid #E3E7EB',}}
-              placeholder={('selectLocale')}
+              style={{ border: '1px solid #E3E7EB',}}
+              placeholder={currentLocale}
               options={localeOptions}
               selectedOption={currentLocale}
               onSelect={async newLocale => updateCurrentLocale(newLocale)}
