@@ -53,16 +53,16 @@ function checkPassword(password) {
     return 0
   }
   let strength = 0
-  if (password.match(/[8,]+/)) {
+  if (password.match(/[A-Za-z]+/)) {
     strength += 1
   }
-  else if (password.match(/[0-9$@#&!]+/)) {
+  if (password.match(/[0-9$@#&!]+/)) {
     strength += 1
   }
   // if (password.match(/[$@#&!]+/)) {
   //   strength += 1
   // }
-  else if (password.match(/[A-Za-z]+/)) {
+  if (password.match(/[8,]+/)) {
     strength += 1
   }
   return strength
