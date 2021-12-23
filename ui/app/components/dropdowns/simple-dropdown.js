@@ -12,8 +12,9 @@ class SimpleDropdown extends Component {
     }
   }
 
-  getDisplayValue () {
+  getDisplayValue() {
     const { selectedOption, options } = this.props
+    console.log(selectedOption,'<options>')
     const matchesOption = option => option.value === selectedOption
     const matchingOption = R.find(matchesOption)(options)
     return matchingOption

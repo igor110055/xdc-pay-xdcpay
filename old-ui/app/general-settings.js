@@ -141,7 +141,7 @@ function mapStateToProps(state) {
     // const { t } = this.context
     
     console.log(state,'+-+-+')
-    const { updateCurrentLocale, currentLocale } = state
+    const { setCurrentLocale, currentLocale } = state
     const currentLocaleMeta = locales.find(locale => locale.code === currentLocale)
     const currentLocaleName = currentLocaleMeta ? currentLocaleMeta.name : ''
   
@@ -163,7 +163,7 @@ function mapStateToProps(state) {
               placeholder={currentLocale}
               options={localeOptions}
               selectedOption={currentLocale}
-              onSelect={async newLocale => updateCurrentLocale(newLocale)}
+              onSelect={async newLocale => setCurrentLocale(newLocale)}
             />
           </div>
         </div>

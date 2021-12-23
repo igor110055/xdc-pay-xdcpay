@@ -280,6 +280,16 @@ function reduceApp (state, action) {
           warning: null,
         })
     
+        case actions.SHOW_CONTACTS_PAGE:
+      return extend(appState, {
+        currentView: {
+          name: 'contacts',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+      })
+    
     case actions.SHOW_NETWORKSETTINGS_PAGE:
       return extend(appState, {
         currentView: {
@@ -300,6 +310,17 @@ function reduceApp (state, action) {
         warning: null,
         currentViewNetworkObj: null,
       })
+
+      case actions.SHOW_ADDCONTACTS_PAGE:
+        return extend(appState, {
+          currentView: {
+            name: 'add-contacts',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+          warning: null,
+          // currentViewNetworkObj: null,
+        })
 
     case actions.SHOW_VIEW_NETWORK_PAGE:
       return extend(appState, {

@@ -57,6 +57,8 @@ const NetworkSettings = require('../app/network-settings')
 const AddNetwork = require('../app/components/add-network/index')
 const ViewNetwork = require('../app/view-network')
 const AlertSettings = require('../app/alert-settings')
+const Contacts = require('../app/contacts')
+const AddContacts = require('../app/add-contacts')
 
 module.exports = compose(
   withRouter,
@@ -303,9 +305,17 @@ App.prototype.renderPrimary = function () {
     case 'securityandprivacy-settings':
       log.debug('rendering security-privacy-screen')
       return h(SecurityAndPrivacy, { key: 'securityandprivacy-settings' })
+    
+      case 'contacts':
+        log.debug('rendering contacts-screen')
+      return h(Contacts, { key: 'contacts' })
+    
+      case 'add-contacts':
+        log.debug('rendering add Contacts screen ')
+      return h(AddContacts, { key: 'add-contacts' })
 
-    case 'network-settings':
-     log.debug('rendering network-settings screen ')
+    case 'networksettings':
+    log.debug('renderng network-settings screen ')
       return h(NetworkSettings, { key: 'network-settings' })
 
       case 'add-network':

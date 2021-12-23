@@ -274,9 +274,11 @@ var actions = {
   generalSettings,
   advanceSettings,
   securityAndPrivacy,
+  Contacts,
   networkSettings,
   addNetwork,
   showAddNetworkPage,
+  showAddContactsPage,
   viewNetwork: viewNetwork,
   alertSettings,
 
@@ -285,9 +287,12 @@ var actions = {
   SHOW_GENSETTINGS_PAGE: 'SHOW_GENSETTINGS_PAGE',
   SHOW_ADVSETTINGS_PAGE: 'SHOW_ADVSETTINGS_PAGE',
   SHOW_SECURITYANDPRIVACY_PAGE: "SHOW_SECURITYANDPRIVACY_PAGE ",
+  SHOW_CONTACTS_PAGE: "SHOW_CONTACTS_PAGE",
   SHOW_ALERTSETTINGS_PAGE: 'SHOW_ALERTSETTINGS_PAGE',
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
+  SHOW_ADDCONTACTS_PAGE: 'SHOW_ADDCONTACTS_PAGE',
+
   SHOW_VIEW_NETWORK_PAGE: 'SHOW_VIEW_NETWORK_PAGE',
   ADD_NEW_NETWORK: 'ADD_NEW_NETWORK',
 
@@ -1832,7 +1837,7 @@ const backgroundSetLocked = () => {
   })
 }
 
-const updateMetamaskStateFromBackground = () => {
+const  updateMetamaskStateFromBackground = () => {
   log.debug(`background.getState`)
 
   return new Promise((resolve, reject) => {
@@ -2006,6 +2011,12 @@ function securityAndPrivacy () {
   }
 }
 
+function Contacts () {
+  return {
+    type: actions.SHOW_CONTACTS_PAGE,
+    // value: transitionForward,
+  }
+}
 
    
 
@@ -2021,6 +2032,12 @@ function showAddNetworkPage () {
     type: actions.SHOW_ADDNETWORK_PAGE,
     // value: transitionForward,
   }
+}
+
+function showAddContactsPage(){
+  return {
+    type: actions.SHOW_ADDCONTACTS_PAGE,
+}
 }
 
 function addNetwork (networkObj) {
