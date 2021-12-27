@@ -277,9 +277,11 @@ var actions = {
   Contacts,
   networkSettings,
   addNetwork,
+  addContact,
   showAddNetworkPage,
   showAddContactsPage,
   viewNetwork: viewNetwork,
+  veiwContact: viewContact,
   alertSettings,
 
 
@@ -294,7 +296,9 @@ var actions = {
   SHOW_ADDCONTACTS_PAGE: 'SHOW_ADDCONTACTS_PAGE',
 
   SHOW_VIEW_NETWORK_PAGE: 'SHOW_VIEW_NETWORK_PAGE',
+  SHOW_VIEW_CONTACT: 'SHOW_VIEW_CONTACT',
   ADD_NEW_NETWORK: 'ADD_NEW_NETWORK',
+  ADD_NEW_CONTACT: 'ADD_NEW_CONTACT',
 
   SHOW_ADD_TOKEN_PAGE: 'SHOW_ADD_TOKEN_PAGE',
   SHOW_CONFIRM_ADD_TOKEN_PAGE: 'SHOW_CONFIRM_ADD_TOKEN_PAGE',
@@ -2047,6 +2051,13 @@ function addNetwork (networkObj) {
   }
 }
 
+function addContact (contactObj) {
+  return {
+    type: actions.ADD_NEW_CONTACT,
+    value: contactObj,
+  }
+}
+
 function viewNetwork (networkObj) {
   this.updatePreferences('networkList')
   return {
@@ -2055,6 +2066,13 @@ function viewNetwork (networkObj) {
   }
 }
 
+function viewContact (contactObj) {
+  this.updatePreferences('contactList')
+  return {
+    type: actions.SHOW_VIEW_CONTACT,
+    value: contactObj,
+  }
+}
 function alertSettings () {
   return {
     type: actions.SHOW_ALERTSETTINGS_PAGE,

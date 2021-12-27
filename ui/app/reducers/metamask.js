@@ -3,7 +3,8 @@ const actions = require('../actions')
 const MetamascaraPlatform = require('../../../app/scripts/platforms/window')
 const {getEnvironmentType} = require('../../../app/scripts/lib/util')
 const {ENVIRONMENT_TYPE_POPUP} = require('../../../app/scripts/lib/enums')
-const {OLD_UI_NETWORK_TYPE, permanentNetworks} = require('../../../app/scripts/controllers/network/enums')
+const { OLD_UI_NETWORK_TYPE, permanentNetworks } = require('../../../app/scripts/controllers/network/enums')
+const { contactDetails } = require('../../../app/scripts/controllers/network/contactList')
 
 module.exports = reduceMetamask
 
@@ -57,6 +58,7 @@ function reduceMetamask (state, action) {
     showGasFields: true,
     showTokens: true,
     networkList: permanentNetworks,
+    contactList: contactDetails,
     currentViewNetwork: null,
   }, state.metamask)
   switch (action.type) {
