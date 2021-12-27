@@ -82,6 +82,11 @@ function reduceApp (state, action) {
       currencySymbol: null,
       explorerLink: null,
     },
+
+    addContacts: {
+      contactAddress: null,
+      contactName: null,
+    }
   }, state.appState)
 
   let curPendingTxIndex = appState.currentView.pendingTxIndex || 0

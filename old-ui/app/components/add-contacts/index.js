@@ -1,9 +1,7 @@
 const connect = require("react-redux").connect;
 const actions = require("../../../../ui/app/actions");
-const Web3 = require("web3");
 import React from "react";
 
-const validUrl = require("valid-url");
 const AddContactComponent = require("./add-contacts");
 
 export default class AddContact extends React.Component {
@@ -12,8 +10,8 @@ export default class AddContact extends React.Component {
     // eslint-disable-next-line react/prop-types
     const viewContactObj = this.props.viewContactObj;
     this.state = {
-      contactAddress: viewContactObj ? viewContactObj.contactAddress : "",
-      contactName: viewContactObj ? viewContactObj.name : "",
+      contactAddress:'',
+      contactName: ' ',
     };
   }
 
@@ -26,25 +24,27 @@ export default class AddContact extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  validateRPC = (isToUpdate) => {
+  validateRPC = () => {
     this.props.dispatch(actions.displayWarning(""));
-    const { contactName, contactAddress } = this.state;
+    const {  contactAddress,contactName } = this.state;
 
     const contactObj = {
-        contactAddress: contactAddress,
-        contactName: contactName,
+      contactAddress: contactAddress,
+      contactName: contactName,
     };
 
-    !isToUpdate && this.props.dispatch(actions.addContact(contactObj));
+     this.props.dispatch(actions.addContact(contactObj));
   };
 
-  onAddNetworkClicked = (isToUpdate) => {
-    this.validateRPC(isToUpdate);
+  onAddNetworkClicked = () => {
+    this.validateRPC();
   };
 
   render() {
     // eslint-disable-next-line react/prop-types
     const { warning, viewContactObj } = this.props;
+    console.log(this.props, '===');
+    console.log(this.state, '=-=');
     return (
       <AddContactComponent
         state={this.state}
@@ -66,4 +66,4 @@ function mapStateToProps(state) {
   };
 }
 
-module.exports = connect(mapStateToProps)(AddNetwork);
+module.exports = connect(mapStateToProps)(AddContact);

@@ -1,6 +1,7 @@
 import React from "react";
 
 const AddContactComponent = (props) => {
+  console.log(props,'==')
   const {
     onStateChange,
     onAddContactClicked,
@@ -9,7 +10,6 @@ const AddContactComponent = (props) => {
     state,
   } = props;
   const { contactAddress, contactName } = state
-console.log(contactAddress,contactName,'<CONTACT---DETAILS>')
   return (
     <div
       className="flex-column flex-grow"
@@ -48,7 +48,6 @@ console.log(contactAddress,contactName,'<CONTACT---DETAILS>')
         >
           <input
             className="input large-input"
-            id="new_rpc"
             type="text"
             name="contactAddress"
             value={contactAddress}
@@ -75,7 +74,6 @@ console.log(contactAddress,contactName,'<CONTACT---DETAILS>')
           <input
             className="input large-input"
             placeholder="Contact's Name"
-            id="new_rpc"
             type="text"
             name="contactName"
             value={contactName}
@@ -119,10 +117,10 @@ console.log(contactAddress,contactName,'<CONTACT---DETAILS>')
             }}
             onClick={(event) => {
               event.preventDefault();
-              onAddContactClicked(!!viewContactObj);
+              onAddContactClicked(viewContactObj);
             }}
           >
-            {`${viewContactObj ? "Update" : "Add"}`}
+            { "Add"}
           </div>
         </div>
       </div>

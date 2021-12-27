@@ -106,7 +106,7 @@ function mapStateToProps(state) {
     lostAccounts: state.metamask.lostAccounts,
     frequentRpcList: state.metamask.frequentRpcList || [],
     networkList: state.metamask.networkList || [],
-    contactList: state.metamask.contactList,
+    contactList: state.metamask.contactList || [],
     featureFlags,
     suggestedTokens: state.metamask.suggestedTokens,
 

@@ -34,6 +34,10 @@ class GeneralSettings extends React.Component {
   static contextTypes = {
     t: PropTypes.func,
   }
+
+  static PropTypes = {
+    updateCurrentLocale: PropTypes.func,
+  }
   handleCheckBox = () => {
     // eslint-disable-next-line react/prop-types
     const showTokens = this.props.metamask.showTokens

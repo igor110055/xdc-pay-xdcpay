@@ -5,6 +5,7 @@ const {getEnvironmentType} = require('../../../app/scripts/lib/util')
 const {ENVIRONMENT_TYPE_POPUP} = require('../../../app/scripts/lib/enums')
 const { OLD_UI_NETWORK_TYPE, permanentNetworks } = require('../../../app/scripts/controllers/network/enums')
 const { contactDetails } = require('../../../app/scripts/controllers/network/contactList')
+const { RECOVERY_IN_PROGRESS } = require('../actions')
 
 module.exports = reduceMetamask
 
@@ -58,7 +59,12 @@ function reduceMetamask (state, action) {
     showGasFields: true,
     showTokens: true,
     networkList: permanentNetworks,
-    contactList: contactDetails,
+    contactList: [{
+      contactAddress: '1234567',
+     contactName: 'Aditya' 
+    },{contactAddress:'09876', contactName:'qwerty'},{contactAddress:'654321', contactName:'Himanshu'},
+      
+    ],
     currentViewNetwork: null,
   }, state.metamask)
   switch (action.type) {
@@ -104,6 +110,13 @@ function reduceMetamask (state, action) {
     case actions.LOCK_METAMASK:
       return extend(metamaskState, {
         isUnlocked: false,
+      })
+    
+    case actions.ADD_NEW_CONTACT:
+      const contactList = metamaskState.contactList
+      contactList.push(action.value)
+      return extend(metamaskState, {
+        contactList: contactList,
       })
 
     case actions.SET_RPC_LIST:
