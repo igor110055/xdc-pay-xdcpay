@@ -1,11 +1,18 @@
 const React = require("react");
 const connect = require("react-redux").connect;
 const actions = require("../../ui/app/actions");
+import Identicon from "../../ui/app/components/identicon";
+import PropTypes  from "prop-types"
 
 class Contacts extends React.Component {
+  static propTypes = {
+    identity: PropTypes.object.isRequired,
+  }
   render() {
     const state = this.props;
     const contactList = state.metamask.contactList;
+    const identity = state;
+    const address = identity;
     const netList = [...contactList];
     return (
       <div
@@ -20,7 +27,7 @@ class Contacts extends React.Component {
             display: "flex",
             justifyContent: "space-between",
           }}
-        >
+         >
           <img
             src="/images/Assets/BackArrow.svg"
             style={{ marginLeft: "17px", cursor: "pointer" }}
@@ -46,42 +53,29 @@ class Contacts extends React.Component {
               fontSize: "14px",
             }}
           >
-            {" "}
-            <svg height="16px" width="26px" position="absolute" left="17px">
-              <circle
-                style={{
-                  cx: "10",
-                  cy: "10",
-                  r: "6",
-                  fill: "#E58A0F",
-                }}
-                
+            
+           <span> 
+         <Identicon
+         overflow="none"
+         address={contactObj.contactAddress}
+         diameter={24}
+              style={{ marginLeft: '10px', overflow:'inherit' }}
               />
-            </svg>{" "}
-            {contactObj.contactName}
-            {/* <img src={contactObj.isPermanent ? '/images/Assets/Lock.png' : '/images/Assets/Delete.svg'} */}
-            {/* style={{position: 'absolute', right: '30px', cursor: contactObj.isPermanent ? 'normal' : 'pointer'}} */}
-            {/* onClick={() => !contactObj.isPermanent && this.onDeleteRPCNetwork(contactObj)}/> */}
-            <img
-              src="/images/Assets/Arrow.svg"
-              onClick={() => state.dispatch(actions.veiwContact(contactObj))}
-              style={{
-                position: "absolute",
-                right: "15px",
-                marginTop: "6px",
-                cursor: "pointer",
-              }}
-            />
+              {contactObj.contactName}
+          </span>
           </div>
-        ))}
-      </div>
-    );
-  }
-}
-module.exports = connect(mapStateToProps)(Contacts);
-function mapStateToProps(state) {
-  return {
-    metamask: state.metamask,
-    warning: state.appState.warning,
-  };
-}
+           ))}
+         </div>
+       );
+     }
+   }
+   module.exports = connect(mapStateToProps)(Contacts);
+   function mapStateToProps(state) {
+     return {
+       metamask: state.metamask,
+       warning: state.appState.warning,
+     };
+   }
+           
+           
+            
