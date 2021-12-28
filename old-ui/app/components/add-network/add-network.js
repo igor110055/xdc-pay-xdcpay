@@ -85,4 +85,4 @@ const AddNetworkComponent = (props) => {
     </div>
   )
 }
-module.exports = AddNetworkComponent
+module.exports = AddNetworkComponent;

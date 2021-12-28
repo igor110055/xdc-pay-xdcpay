@@ -634,7 +634,7 @@ ConfigScreen.prototype.render = function () {
           }),
         ]),
         
-        h('.settings',{ onClick: () => state.dispatch(actions.contacts()) }, ['Contacts',
+        h('.settings',{ onClick: () => state.dispatch(actions.Contacts()) }, ['Contacts',
           h('img', {
             src: "/images/Assets/Arrow.svg",            
           }),

@@ -82,6 +82,11 @@ function reduceApp (state, action) {
       currencySymbol: null,
       explorerLink: null,
     },
+
+    addContacts: {
+      contactAddress: null,
+      contactName: null,
+    }
   }, state.appState)
 
   let curPendingTxIndex = appState.currentView.pendingTxIndex || 0
@@ -280,6 +285,16 @@ function reduceApp (state, action) {
           warning: null,
         })
     
+        case actions.SHOW_CONTACTS_PAGE:
+      return extend(appState, {
+        currentView: {
+          name: 'contacts',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+      })
+    
     case actions.SHOW_NETWORKSETTINGS_PAGE:
       return extend(appState, {
         currentView: {
@@ -301,6 +316,17 @@ function reduceApp (state, action) {
         currentViewNetworkObj: null,
       })
 
+      case actions.SHOW_ADDCONTACTS_PAGE:
+        return extend(appState, {
+          currentView: {
+            name: 'add-contacts',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+          warning: null,
+          currentViewContactObj: null,
+        })
+
     case actions.SHOW_VIEW_NETWORK_PAGE:
       return extend(appState, {
         currentView: {
@@ -311,6 +337,17 @@ function reduceApp (state, action) {
         warning: null,
         currentViewNetworkObj: action.value,
       })
+    
+      case actions.SHOW_VIEW_CONTACT:
+        return extend(appState, {
+          currentView: {
+            name: 'add-contacts',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+          warning: null,
+          currentViewContactObj: action.value,
+        })
 
     case actions.SHOW_ALERTSETTINGS_PAGE:
       return extend(appState, {

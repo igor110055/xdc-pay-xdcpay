@@ -274,10 +274,14 @@ var actions = {
   generalSettings,
   advanceSettings,
   securityAndPrivacy,
+  Contacts,
   networkSettings,
   addNetwork,
+  addContact,
   showAddNetworkPage,
+  showAddContactsPage,
   viewNetwork: viewNetwork,
+  veiwContact: viewContact,
   alertSettings,
 
 
@@ -285,11 +289,16 @@ var actions = {
   SHOW_GENSETTINGS_PAGE: 'SHOW_GENSETTINGS_PAGE',
   SHOW_ADVSETTINGS_PAGE: 'SHOW_ADVSETTINGS_PAGE',
   SHOW_SECURITYANDPRIVACY_PAGE: "SHOW_SECURITYANDPRIVACY_PAGE ",
+  SHOW_CONTACTS_PAGE: "SHOW_CONTACTS_PAGE",
   SHOW_ALERTSETTINGS_PAGE: 'SHOW_ALERTSETTINGS_PAGE',
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
+  SHOW_ADDCONTACTS_PAGE: 'SHOW_ADDCONTACTS_PAGE',
+
   SHOW_VIEW_NETWORK_PAGE: 'SHOW_VIEW_NETWORK_PAGE',
+  SHOW_VIEW_CONTACT: 'SHOW_VIEW_CONTACT',
   ADD_NEW_NETWORK: 'ADD_NEW_NETWORK',
+  ADD_NEW_CONTACT: 'ADD_NEW_CONTACT',
 
   SHOW_ADD_TOKEN_PAGE: 'SHOW_ADD_TOKEN_PAGE',
   SHOW_CONFIRM_ADD_TOKEN_PAGE: 'SHOW_CONFIRM_ADD_TOKEN_PAGE',
@@ -1832,7 +1841,7 @@ const backgroundSetLocked = () => {
   })
 }
 
-const updateMetamaskStateFromBackground = () => {
+const  updateMetamaskStateFromBackground = () => {
   log.debug(`background.getState`)
 
   return new Promise((resolve, reject) => {
@@ -2006,6 +2015,12 @@ function securityAndPrivacy () {
   }
 }
 
+function Contacts () {
+  return {
+    type: actions.SHOW_CONTACTS_PAGE,
+    // value: transitionForward,
+  }
+}
 
    
 
@@ -2023,10 +2038,23 @@ function showAddNetworkPage () {
   }
 }
 
+function showAddContactsPage(){
+  return {
+    type: actions.SHOW_ADDCONTACTS_PAGE,
+}
+}
+
 function addNetwork (networkObj) {
   return {
     type: actions.ADD_NEW_NETWORK,
     value: networkObj,
+  }
+}
+
+function addContact (contactObj) {
+  return {
+    type: actions.ADD_NEW_CONTACT,
+    value: contactObj,
   }
 }
 
@@ -2038,6 +2066,13 @@ function viewNetwork (networkObj) {
   }
 }
 
+function viewContact (contactObj) {
+  this.updatePreferences('contactList')
+  return {
+    type: actions.SHOW_VIEW_CONTACT,
+    value: contactObj,
+  }
+}
 function alertSettings () {
   return {
     type: actions.SHOW_ALERTSETTINGS_PAGE,
