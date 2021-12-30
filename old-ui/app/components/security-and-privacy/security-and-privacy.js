@@ -8,7 +8,7 @@ const actions = require("../../../../ui/app/actions");
 const exportAsFile = require("../../util").exportAsFile;
 import IdleTimer from '../idle-timer-container/idleTimer';
 import React, { useState } from 'react';
-import SimpleDropdown from '../../../../ui/app/components/dropdowns/simple-dropdown';
+import CustomDropdown from '../../../../old-ui/app/components/common/custom-dropdown';
 
 const infuraCurrencies = require("../../infura-conversion.json").objects.sort(
     (a, b) => {
@@ -68,12 +68,18 @@ class SecurityAndPrivacySettings extends React.Component{
                 padding: ' 15px 17px 20px 15px ',
                 borderBottom: '1px solid #E3E7EB',
             }}>
-                <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>AutoAuto-Lock Timer</span><br />
+                <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Auto-Lock Timer</span><br />
                     <p style={{ fontSize: '14px', marginBottom: '15px', fontFamily: 'Inter-medium' }} >Set the idle time in minutes before the wallet will be locked.</p>
                    
+                    <CustomDropdown
+          // placeholder={(currentCurrency)}
+          // options={infuraCurrencyOptions}
+          // selectedOption={currentCurrency}
+          // onSelect={newCurrency => setCurrentCurrency(newCurrency)}
+        />
               {/* <SimpleDropdown
                       style={{ border: '1px solid #E3E7EB',}} /> */}
-                    {currentConversionInformation(metamaskState, state)}
+                    {/* {currentConversionInformation(metamaskState, state)} */}
                 </div>
                 <div style={{
                     padding: ' 15px 17px 20px 15px ',
@@ -100,29 +106,32 @@ class SecurityAndPrivacySettings extends React.Component{
         }
 }
 
-function currentConversionInformation(metamaskState, state) {
-    const currentCurrency = metamaskState.currentCurrency;
-    const conversionDate = metamaskState.conversionDate;
-    // const { t } = this.context;
-    const setCurrentCurrency = metamaskState.setCurrentCurrency;
-    return (
-      <div >
-      <div className="settings-page__content-item" style={{border:'1px solid #C7CDD8', borderRadius:'4px',height:'40px', width:'324px',}} >
-          <div className="settings-page__content-item-col"></div>
-        
-        <SimpleDropdown
-            style={{border: '1px solid #E3E7EB' }}
-            placeholder={('selectCurrency')}
-            options={infuraCurrencyOptions}
-            selectedOption={currentCurrency}
-            onSelect={newCurrency => setCurrentCurrency(newCurrency)}
-                />
-           {/* <IdleTimer ref={idleTimerRef} timeout={5 * 1000} onIdle={onIdle}  ></IdleTimer> */}
-                </div></div>
-           
-      
-    )    
-}
+// function currentConversionInformation (metamaskState, state) {
+//     const currentCurrency = metamaskState.currentCurrency
+//     const conversionDate = metamaskState.conversionDate
+//     // const { t } = this.context;
+//     const setCurrentCurrency = metamaskState.setCurrentCurrency
+//     return (
+//       <div>
+//         <span style={{fontFamily: 'Inter-Medium', fontSize: '14px', color: '#2149B9'}}>
+//         Current Conversion
+//           </span>
+//         <br/>
+//         <span style={{fontSize: '14px', color: '#2A2A2A', fontFamily: 'Inter-Medium'}}>
+//             {`Updated ` + Date(conversionDate)}
+//           </span>
+//         <br/>
+//         <CustomDropdown
+//           placeholder={(currentCurrency)}
+//           options={infuraCurrencyOptions}
+//           selectedOption={currentCurrency}
+//           onSelect={newCurrency => setCurrentCurrency(newCurrency)}
+//         />
+//         <div className="settings-page__content-item-col">
+//         </div>
+//       </div>
+//     )
+//   }
   
    
     module.exports = connect(mapStateToProps)(SecurityAndPrivacySettings);
