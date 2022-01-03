@@ -11,9 +11,24 @@ class Contacts extends React.Component {
   render() {
     const state = this.props;
     const contactList = state.metamask.contactList;
-    const identity = state;
-    const address = identity;
     const netList = [...contactList];
+
+
+
+  //  const Contacts=netList.sort(
+  //     (a, b) => {
+  //       return a.netList.contactName
+  //         .toLocaleLowerCase()
+  //         .localeCompare(b.netList.contactName.toLocaleLowerCase())
+  //     },
+  //   )
+
+  //   const ContactObjects = Contacts.map(({netList: {contactName}}) => {
+  //     return {
+  //       displayValue: `${contactName.toUpperCase()}`,
+        
+  //     }
+  //   })
     return (
       <div
         className="flex-column flex-grow"
@@ -61,8 +76,13 @@ class Contacts extends React.Component {
          diameter={24}
               style={{ marginLeft: '10px', overflow:'inherit' }}
               />
-              {contactObj.contactName}
+              {/* {netList.sort((a, b) => {
+                if (a.contactName < b.contactName) { return -1; }
+                if (a.contactName > b.contactName) { return 1; }
+                return 0; 
+              })} */}
           </span>
+          {contactObj.contactName}
           </div>
            ))}
          </div>

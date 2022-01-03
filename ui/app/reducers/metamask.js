@@ -113,8 +113,8 @@ function reduceMetamask (state, action) {
       })
     
     case actions.ADD_NEW_CONTACT:
-      const contactList = metamaskState.contactList
-      contactList.push(action.value)
+        const contactList = metamaskState.contactList
+        contactList.push(action.value)
       return extend(metamaskState, {
         contactList: contactList,
       })

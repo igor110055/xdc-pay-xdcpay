@@ -8,37 +8,37 @@ export default class AddContact extends React.Component {
   constructor(props) {
     super(props);
     // eslint-disable-next-line react/prop-types
-    const viewContactObj = this.props.viewContactObj;
+    // const viewContactObj = this.props.viewContactObj;
     this.state = {
-      contactAddress:'',
+      contactAddress: ' ',
       contactName: ' ',
     };
   }
 
   onBackClick = () => {
     // eslint-disable-next-line react/prop-types
-    this.props.dispatch(actions.Contacts());
+    this.props.dispatch(actions.goConfig());
   };
 
   onStateChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  validateRPC = () => {
+  onAddContactClicked = () => {
     this.props.dispatch(actions.displayWarning(""));
     const {  contactAddress,contactName } = this.state;
 
     const contactObj = {
       contactAddress: contactAddress,
       contactName: contactName,
-    };
+    }
 
-     this.props.dispatch(actions.addContact(contactObj));
+    this.props.dispatch(actions.addContact(contactObj));
   };
 
-  onAddNetworkClicked = () => {
-    this.validateRPC();
-  };
+  // onAddNetworkClicked = () => {
+  //   this.validateRPC();
+  // };
 
   render() {
     // eslint-disable-next-line react/prop-types
@@ -48,13 +48,14 @@ export default class AddContact extends React.Component {
     return (
       <AddContactComponent
         state={this.state}
+        props={this.props}
         viewContactObj={viewContactObj}
         warningMsg={warning}
         onBackClick={this.onBackClick}
         onStateChange={this.onStateChange}
-        onAddNetworkClicked={this.onAddNetworkClicked}
+        onAddContactClicked={this.onAddContactClicked}
       />
-    );
+    )
   }
 }
 

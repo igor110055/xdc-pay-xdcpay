@@ -6,10 +6,14 @@ const AddContactComponent = (props) => {
     onStateChange,
     onAddContactClicked,
     warningMsg,
+    contactAddress,
+    contactName,
+    onBackClick,
     viewContactObj,
     state,
+    
   } = props;
-  const { contactAddress, contactName } = state
+  
   return (
     <div
       className="flex-column flex-grow"
@@ -25,9 +29,7 @@ const AddContactComponent = (props) => {
         <img
           src="/images/Assets/BackArrow.svg"
           style={{ marginLeft: "17px", cursor: "pointer" }}
-          onClick={() => {
-            state.dispatch(actions.goConfig());
-          }}
+          onClick={onBackClick}
         />
         <h2 style={{ fontFamily: "Inter-bold", marginLeft: "98px" }}>
           Add Contact
@@ -57,7 +59,7 @@ const AddContactComponent = (props) => {
           />
           <img
             src="/images/Assets/Scan.svg"
-            style={{ position: "absolute", right: "49px", top: "156px" }}
+            style={{ position: "absolute", right: "49px", top: "161px" }}
           />
         </div>
         <label className="word" style={{ fontFamily: "Inter-Medium" }}>
@@ -98,8 +100,8 @@ const AddContactComponent = (props) => {
               color: "#2a2a2a",
             }}
           >
-            {" "}
-            Cancel
+            {"Cancel"}
+            
           </div>
 
           <div
@@ -117,7 +119,7 @@ const AddContactComponent = (props) => {
             }}
             onClick={(event) => {
               event.preventDefault();
-              onAddContactClicked(viewContactObj);
+              onAddContactClicked();
             }}
           >
             { "Add"}
