@@ -54,7 +54,7 @@ class SendProfile extends Component {
 					borderRadius: '4px',
 					width:'265px',
 					height: '32px',
-					paddingLeft: '9px',
+					paddingLeft: '8px',
 					paddingTop: '4px',
 				}}>
 				<div className="flex-row" style={{ alignItems: 'flex-start' }} >

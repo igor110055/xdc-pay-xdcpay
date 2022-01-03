@@ -10,21 +10,7 @@ import IdleTimer from '../idle-timer-container/idleTimer';
 import React, { useState } from 'react';
 import CustomDropdown from '../../../../old-ui/app/components/common/custom-dropdown';
 
-const infuraCurrencies = require("../../infura-conversion.json").objects.sort(
-    (a, b) => {
-      return a.quote.name
-        .toLocaleLowerCase()
-        .localeCompare(b.quote.name.toLocaleLowerCase());
-    }
-);
-  
-const infuraCurrencyOptions = infuraCurrencies.map(({ quote: { code, name } }) => {
-    return {
-      displayValue: `${code.toUpperCase()} - ${name}`,
-      key: code,
-      value: code,
-    }
-  })
+const timePeriod = ['5 minutes', '10 minutes', '15 minutes']
   
 class SecurityAndPrivacySettings extends React.Component{
    
@@ -37,7 +23,7 @@ class SecurityAndPrivacySettings extends React.Component{
         // this.props.dispatch(actions.securityandprivacy(!securityandprivacy))
         
     }
-    
+
     render(){
         const state = this.props;
         const metamaskState = state.metamask;
@@ -72,9 +58,10 @@ class SecurityAndPrivacySettings extends React.Component{
                     <p style={{ fontSize: '14px', marginBottom: '15px', fontFamily: 'Inter-medium' }} >Set the idle time in minutes before the wallet will be locked.</p>
                    
                     <CustomDropdown
-          // placeholder={(currentCurrency)}
-          // options={infuraCurrencyOptions}
-          // selectedOption={currentCurrency}
+          placeholder={(currentCurrency)}
+                       
+          options={timePeriod}
+          selectedOption={timePeriod}
           // onSelect={newCurrency => setCurrentCurrency(newCurrency)}
         />
               {/* <SimpleDropdown
