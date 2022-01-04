@@ -3,9 +3,9 @@ const actions = require('../actions')
 const MetamascaraPlatform = require('../../../app/scripts/platforms/window')
 const {getEnvironmentType} = require('../../../app/scripts/lib/util')
 const {ENVIRONMENT_TYPE_POPUP} = require('../../../app/scripts/lib/enums')
-const { OLD_UI_NETWORK_TYPE, permanentNetworks } = require('../../../app/scripts/controllers/network/enums')
-const { contactDetails } = require('../../../app/scripts/controllers/network/contactList')
-const { RECOVERY_IN_PROGRESS } = require('../actions')
+const {OLD_UI_NETWORK_TYPE, permanentNetworks} = require('../../../app/scripts/controllers/network/enums')
+const {contactDetails} = require('../../../app/scripts/controllers/network/contactList')
+const {RECOVERY_IN_PROGRESS} = require('../actions')
 
 module.exports = reduceMetamask
 
@@ -59,12 +59,6 @@ function reduceMetamask (state, action) {
     showGasFields: true,
     showTokens: true,
     networkList: permanentNetworks,
-    contactList: [{
-      contactAddress: 'xdcd7b39db5f9c95a9b4dc4a8d5f33b59f7acf9d9af',
-     contactName: 'Aditya' 
-    },{contactAddress:'xdc0f440b0ec35c72ec2e2033ea325bba8a59836677', contactName:'qwerty'},{contactAddress:'xdcea1fab3b9bab6118e698c92b216654d96e67beb4', contactName:'Himanshu'},
-      
-    ],
     currentViewNetwork: null,
   }, state.metamask)
   switch (action.type) {
@@ -111,10 +105,10 @@ function reduceMetamask (state, action) {
       return extend(metamaskState, {
         isUnlocked: false,
       })
-    
+
     case actions.ADD_NEW_CONTACT:
-        const contactList = metamaskState.contactList
-        contactList.push(action.value)
+      const contactList = metamaskState.contactList
+      contactList.push(action.value)
       return extend(metamaskState, {
         contactList: contactList,
       })
