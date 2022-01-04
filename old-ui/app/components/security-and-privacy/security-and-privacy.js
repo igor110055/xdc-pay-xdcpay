@@ -58,7 +58,7 @@ class SecurityAndPrivacySettings extends React.Component{
                     <p style={{ fontSize: '14px', marginBottom: '15px', fontFamily: 'Inter-medium' }} >Set the idle time in minutes before the wallet will be locked.</p>
                    
                     <CustomDropdown
-          placeholder={(currentCurrency)}
+        //   placeholder={(currentCurrency)}
                        
           options={timePeriod}
           selectedOption={timePeriod}
