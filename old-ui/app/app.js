@@ -58,7 +58,7 @@ const AddNetwork = require('../app/components/add-network/index')
 const ViewNetwork = require('../app/view-network')
 const AlertSettings = require('../app/alert-settings')
 const Contacts = require('../app/contacts')
-const AddContacts = require('./components/add-contacts/add-contacts')
+const AddContacts = require('./components/add-contacts')
 
 module.exports = compose(
   withRouter,
@@ -294,23 +294,23 @@ App.prototype.renderPrimary = function () {
     case 'CreateVaultCompleteScreen':
       log.debug('rendering seed words screen')
       return h(createVaultComplete, { key: 'CreateVaultCompleteScreen' })
-    
+
     case 'reveal-seed':
       log.debug('rendering the reveal seed words')
       return h(revealSeed, { key: 'reveal-seed' })
-    
+
     case 'advance-settings':
         log.debug('rendering advance-settings screen ')
       return h(AdvanceSettings, { key: 'advance-settings' })
-    
+
     case 'securityandprivacy-settings':
       log.debug('rendering security-privacy-screen')
       return h(SecurityAndPrivacy, { key: 'securityandprivacy-settings' })
-    
+
       case 'contacts':
         log.debug('rendering contacts-screen')
       return h(Contacts, { key: 'contacts' })
-    
+
       case 'add-contacts':
         log.debug('rendering add Contacts screen ')
       return h(AddContacts, { key: 'add-contacts' })

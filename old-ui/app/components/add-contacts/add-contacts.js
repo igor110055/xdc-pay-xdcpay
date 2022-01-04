@@ -1,51 +1,41 @@
-import React from "react";
+import React from 'react'
 
 const AddContactComponent = (props) => {
-  console.log(props,'==')
-  const {
-    onStateChange,
-    onAddContactClicked,
-    warningMsg,
-    contactAddress,
-    contactName,
-    onBackClick,
-    viewContactObj,
-    state,
-    
-  } = props;
-  
+  // eslint-disable-next-line react/prop-types
+  const {onStateChange, onAddContactClicked, warningMsg, contactAddress, contactName, onBackClick} = props
+
   return (
     <div
       className="flex-column flex-grow"
-      style={{ maxHeight: "585px", overflowY: "auto" }}
+      style={{maxHeight: '585px', overflowY: 'auto'}}
     >
       <div
         className="section-title flex-row"
         style={{
-          borderBottom: "1px solid #E3E7EB",
-          paddingBottom: "17px",
+          borderBottom: '1px solid #E3E7EB',
+          paddingBottom: '17px',
         }}
       >
         <img
           src="/images/Assets/BackArrow.svg"
-          style={{ marginLeft: "17px", cursor: "pointer" }}
+          style={{marginLeft: '17px', cursor: 'pointer'}}
           onClick={onBackClick}
         />
-        <h2 style={{ fontFamily: "Inter-bold", marginLeft: "98px" }}>
+        <h2 style={{fontFamily: 'Inter-bold', marginLeft: '98px'}}>
           Add Contact
         </h2>
       </div>
       {warningMsg && <div className="error">{warningMsg}</div>}
-      <div style={{ margin: "25px 42px" }}>
-        <label className="word" style={{ fontFamily: "Inter-Medium" }}>
+      <div style={{margin: '25px 42px'}}>
+        <label className="word" style={{fontFamily: 'Inter-Medium'}}>
           {`Wallet Address`}
         </label>
-        <br />
+        <br/>
         <div
           style={{
-            marginBottom: "24px",
-            border: "1px solid #C7CDD8",
-            borderRadius: "4px",
+            marginBottom: '24px',
+            border: '1px solid #C7CDD8',
+            borderRadius: '4px',
           }}
         >
           <input
@@ -55,22 +45,22 @@ const AddContactComponent = (props) => {
             value={contactAddress}
             placeholder="Contact's Wallet Address"
             onChange={onStateChange}
-            style={{ width: "265px", border: "none", color: "#2A2A2A" }}
+            style={{width: '265px', border: 'none', color: '#2A2A2A'}}
           />
           <img
             src="/images/Assets/Scan.svg"
-            style={{ position: "absolute", right: "49px", top: "161px" }}
+            style={{position: 'absolute', right: '49px', top: '161px'}}
           />
         </div>
-        <label className="word" style={{ fontFamily: "Inter-Medium" }}>
+        <label className="word" style={{fontFamily: 'Inter-Medium'}}>
           {`Username`}
         </label>
-        <br />
+        <br/>
         <div
           style={{
-            marginBottom: "24px",
-            border: "1px solid #e2e2e2",
-            borderRadius: "4px",
+            marginBottom: '24px',
+            border: '1px solid #e2e2e2',
+            borderRadius: '4px',
           }}
         >
           <input
@@ -80,54 +70,54 @@ const AddContactComponent = (props) => {
             name="contactName"
             value={contactName}
             onChange={onStateChange}
-            style={{ width: "265px", border: "none", color: "#2A2A2A" }}
+            style={{width: '265px', border: 'none', color: '#2A2A2A'}}
           />
         </div>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div style={{display: 'flex', justifyContent: 'space-around'}}>
           <div
             className="button"
             // onClick={onBackClick}
             style={{
-              fontFamily: "Inter-Medium",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "14px",
-              background: "#E3E7EB",
-              width: "120px",
-              height: "40px",
-              border: "none",
-              color: "#2a2a2a",
+              fontFamily: 'Inter-Medium',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: '14px',
+              background: '#E3E7EB',
+              width: '120px',
+              height: '40px',
+              border: 'none',
+              color: '#2a2a2a',
             }}
           >
-            {"Cancel"}
-            
+            {'Cancel'}
+
           </div>
 
           <div
             className="button"
             style={{
-              fontFamily: "Inter-Medium",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              fontSize: "14px",
-              background: "#03BE46",
-              width: "120px",
-              height: "40px",
-              border: "none",
+              fontFamily: 'Inter-Medium',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: '14px',
+              background: '#03BE46',
+              width: '120px',
+              height: '40px',
+              border: 'none',
             }}
             onClick={(event) => {
-              event.preventDefault();
-              onAddContactClicked();
+              event.preventDefault()
+              onAddContactClicked()
             }}
           >
-            { "Add"}
+            {'Add'}
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-module.exports = AddContactComponent;
+module.exports = AddContactComponent
