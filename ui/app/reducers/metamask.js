@@ -59,15 +59,6 @@ function reduceMetamask (state, action) {
     showGasFields: true,
     showTokens: true,
     networkList: permanentNetworks,
-    contactList: [{
-      contactAddress: 'xdcd7b39db5f9c95a9b4dc4a8d5f33b59f7acf9d9af',
-      contactName: 'Aditya',
-    }, {
-      contactAddress: 'xdc0f440b0ec35c72ec2e2033ea325bba8a59836677',
-      contactName: 'qwerty',
-    }, {contactAddress: 'xdcea1fab3b9bab6118e698c92b216654d96e67beb4', contactName: 'Himanshu'},
-
-    ],
     currentViewNetwork: null,
   }, state.metamask)
   switch (action.type) {
