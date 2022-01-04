@@ -24,16 +24,12 @@ export default class AddContact extends React.Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  onAddContactClicked = () => {
+  onAddContactClicked = async () => {
     this.props.dispatch(actions.displayWarning(''))
     const {contactAddress, contactName} = this.state
 
-    const contactObj = {
-      contactAddress: contactAddress,
-      contactName: contactName,
-    }
-
-    this.props.dispatch(actions.addContact(contactObj))
+    await this.props.dispatch(actions.addToAddressBook(contactAddress, contactName))
+    this.onBackClick()
   }
 
   render () {

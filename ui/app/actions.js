@@ -277,7 +277,6 @@ var actions = {
   Contacts,
   networkSettings,
   addNetwork,
-  addContact,
   showAddNetworkPage,
   showAddContactsPage,
   viewNetwork: viewNetwork,
@@ -298,7 +297,6 @@ var actions = {
   SHOW_VIEW_NETWORK_PAGE: 'SHOW_VIEW_NETWORK_PAGE',
   SHOW_VIEW_CONTACT: 'SHOW_VIEW_CONTACT',
   ADD_NEW_NETWORK: 'ADD_NEW_NETWORK',
-  ADD_NEW_CONTACT: 'ADD_NEW_CONTACT',
 
   SHOW_ADD_TOKEN_PAGE: 'SHOW_ADD_TOKEN_PAGE',
   SHOW_CONFIRM_ADD_TOKEN_PAGE: 'SHOW_CONFIRM_ADD_TOKEN_PAGE',
@@ -2022,7 +2020,7 @@ function Contacts () {
   }
 }
 
-   
+
 
 function networkSettings () {
   return {
@@ -2048,13 +2046,6 @@ function addNetwork (networkObj) {
   return {
     type: actions.ADD_NEW_NETWORK,
     value: networkObj,
-  }
-}
-
-function addContact (contactObj) {
-  return {
-    type: actions.ADD_NEW_CONTACT,
-    value: contactObj,
   }
 }
 

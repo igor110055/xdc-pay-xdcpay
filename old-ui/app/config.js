@@ -503,7 +503,7 @@
 //               border: "2px solid #0CBE46",
 //               fontWeight: "600",
 //             },
-          
+
 //             onClick(event) {
 //               event.preventDefault();
 //               state.dispatch(actions.showDeleteRPC());
@@ -516,64 +516,59 @@
 // }
 
 
+/*Latest Settings UI **/
 
-                
-              
-              
-              
-              
-              
-              /*Latest Settings UI **/
-              
-              
-const inherits = require("util").inherits;
-const Component = require("react").Component;
-const h = require("react-hyperscript");
-const connect = require("react-redux").connect;
-const actions = require("../../ui/app/actions");
-const LoadingIndicator = require("./components/loading");
-const Web3 = require("web3");
-const infuraCurrencies = require("./infura-conversion.json").objects.sort(
+
+const inherits = require('util').inherits
+const Component = require('react').Component
+const h = require('react-hyperscript')
+const connect = require('react-redux').connect
+const actions = require('../../ui/app/actions')
+const LoadingIndicator = require('./components/loading')
+const Web3 = require('web3')
+const infuraCurrencies = require('./infura-conversion.json').objects.sort(
   (a, b) => {
     return a.quote.name
       .toLocaleLowerCase()
-      .localeCompare(b.quote.name.toLocaleLowerCase());
-  }
-);
-const validUrl = require("valid-url");
-const exportAsFile = require("./util").exportAsFile;
-const Modal = require("../../ui/app/components/modals/index").Modal;
-const ethNetProps = require("xdc-net-props");
-const { networks } = require("../../app/scripts/controllers/network/util");
+      .localeCompare(b.quote.name.toLocaleLowerCase())
+  },
+)
+const validUrl = require('valid-url')
+const exportAsFile = require('./util').exportAsFile
+const Modal = require('../../ui/app/components/modals/index').Modal
+const ethNetProps = require('xdc-net-props')
+const {networks} = require('../../app/scripts/controllers/network/util')
 
-module.exports = connect(mapStateToProps)(ConfigScreen);
+module.exports = connect(mapStateToProps)(ConfigScreen)
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return {
     metamask: state.metamask,
     warning: state.appState.warning,
-  };
+  }
 }
-inherits(ConfigScreen, Component);
-function ConfigScreen() {
+
+inherits(ConfigScreen, Component)
+
+function ConfigScreen () {
   this.state = {
     loading: false,
-  };
-  Component.call(this);
+  }
+  Component.call(this)
 }
 
 ConfigScreen.prototype.render = function () {
-  const state = this.props;
-  const metamaskState = state.metamask;
-  const warning = state.warning;
+  const state = this.props
+  const metamaskState = state.metamask
+  const warning = state.warning
 
-  
+
   return h(
-    ".flex-column.flex-grow",
+    '.flex-column.flex-grow',
     {
       style: {
-        maxHeight: "585px",
-        overflowY: "auto",
+        maxHeight: '585px',
+        overflowY: 'auto',
       },
     },
     [
@@ -584,82 +579,81 @@ ConfigScreen.prototype.render = function () {
       h(Modal, {}, []),
 
       // subtitle and nav
-      h(".section-title.flex-row", { style: { borderBottom: '1px solid #E3E7EB', paddingBottom: '17px' }, }, [
-        h("img", {
+      h('.section-title.flex-row', {style: {borderBottom: '1px solid #E3E7EB', paddingBottom: '17px'}}, [
+        h('img', {
           onClick: () => {
-            state.dispatch(actions.goHome());
+            state.dispatch(actions.goHome())
           },
-          src: "/images/Assets/BackArrow.svg",
+          src: '/images/Assets/BackArrow.svg',
           style: {
-            position: "static",
-            marginLeft: "15px",
-            cursor: "pointer",
+            position: 'static',
+            marginLeft: '15px',
+            cursor: 'pointer',
           },
         }),
         h(
-          "h2",
+          'h2',
           {
             style: {
-              marginLeft: "94px",
-              fontWeight: "600",
+              marginLeft: '94px',
+              fontWeight: '600',
               minHeight: '20px',
               padding: '0px 18px ',
             },
           },
-          "Settings"
+          'Settings',
         ),
       ]),
       [
 
-       
-        h('.settings',{onClick: () => state.dispatch(actions.generalSettings()) }, ['General Settings',
+
+        h('.settings', {onClick: () => state.dispatch(actions.generalSettings())}, ['General Settings',
           h('img', {
-            src: "/images/Assets/Arrow.svg",
-            
+            src: '/images/Assets/Arrow.svg',
+
           }),
-          
-          
+
+
         ]),
-        
-        h('.settings',{ onClick: () => state.dispatch(actions.advanceSettings()) }, ['Advance Settings',
+
+        h('.settings', {onClick: () => state.dispatch(actions.advanceSettings())}, ['Advance Settings',
           h('img', {
-            src: "/images/Assets/Arrow.svg",            
-           
-          }),
-        ]),
-        
-        h('.settings',{ onClick: () => state.dispatch(actions.securityAndPrivacy()) }, ['Security and Privacy Settings',
-          h('img', {
-            src: "/images/Assets/Arrow.svg",            
+            src: '/images/Assets/Arrow.svg',
+
           }),
         ]),
-        
-        h('.settings',{ onClick: () => state.dispatch(actions.Contacts()) }, ['Contacts',
+
+        h('.settings', {onClick: () => state.dispatch(actions.securityAndPrivacy())}, ['Security and Privacy Settings',
           h('img', {
-            src: "/images/Assets/Arrow.svg",            
+            src: '/images/Assets/Arrow.svg',
           }),
         ]),
-        
-        h('.settings',{ onClick: () => state.dispatch(actions.alertSettings()) }, ['Alert Settings',
+
+        h('.settings', {onClick: () => state.dispatch(actions.Contacts())}, ['Contacts',
           h('img', {
-            src: "/images/Assets/Arrow.svg",            
+            src: '/images/Assets/Arrow.svg',
           }),
         ]),
-        
-        h('.settings',{ onClick: () => state.dispatch(actions.networkSettings()) }, ['Network Settings',
+
+        h('.settings', {onClick: () => state.dispatch(actions.alertSettings())}, ['Alert Settings',
           h('img', {
-            src: "/images/Assets/Arrow.svg",            
+            src: '/images/Assets/Arrow.svg',
           }),
         ]),
-        
-        h('.settings',{ onClick: () => state.dispatch(actions.showInfoPage()) },  ['About',
+
+        h('.settings', {onClick: () => state.dispatch(actions.networkSettings())}, ['Network Settings',
           h('img', {
-            src: "/images/Assets/Arrow.svg",            
+            src: '/images/Assets/Arrow.svg',
           }),
         ]),
-        
+
+        h('.settings', {onClick: () => state.dispatch(actions.showInfoPage())}, ['About',
+          h('img', {
+            src: '/images/Assets/Arrow.svg',
+          }),
+        ]),
+
       ],
-    ]);
-   
+    ])
+
 }
-    
