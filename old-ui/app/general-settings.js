@@ -47,9 +47,12 @@ class GeneralSettings extends React.Component {
 
   render () {
     const state = this.props
-    console.log(state, '=-=-=-=')
     const metamaskState = state.metamask
     const showTokens = metamaskState.showTokens
+
+    const onLanguageSelect = (key) => {
+      this.props.dispatch(actions.updateCurrentLocale(key))
+    }
 
     return (
       <div className="flex-column flex-grow">
@@ -64,7 +67,7 @@ class GeneralSettings extends React.Component {
           {currentConversionInformation(metamaskState, state)}
         </div>
         <div style={{borderTop: '1px solid #E3E7EB', padding: '20px 40px'}}>
-          {currentLanguage(state)}
+          {currentLanguage(metamaskState, onLanguageSelect)}
         </div>
         <div style={{padding: '20px 40px', borderTop: '1px solid #E3E7EB'}}>
           <div style={{color: '#2149B9', fontSize: '14px', fontFamily: 'Inter-Medium'}}>Hide Tokens Without Balance
@@ -73,7 +76,7 @@ class GeneralSettings extends React.Component {
           <label className="switch">
             {/* <input type="checkbox" id="checked" /> */}
             <input type="checkbox" id="checked" onChange={this.handleCheckBox} checked={!showTokens}/>
-            <span className="slider round"></span>
+            <span className="slider round"/>
           </label>
           <span style={{marginLeft: '8px'}}>{!showTokens ? 'On' : 'Off'}</span>
         </div>
@@ -119,11 +122,8 @@ function currentConversionInformation (metamaskState, state) {
   )
 }
 
-function currentLanguage (state) {
-  // const { t } = this.context
-
-  console.log(state, '+-+-+')
-  const {updateCurrentLocale, currentLocale} = state
+function currentLanguage (metamaskState, onLanguageSelect) {
+  const {currentLocale} = metamaskState
   const currentLocaleMeta = locales.find(locale => locale.code === currentLocale)
   const currentLocaleName = currentLocaleMeta ? currentLocaleMeta.name : ''
 
@@ -134,9 +134,9 @@ function currentLanguage (state) {
           <div style={{fontFamily: 'Inter-Medium', color: '#2149B9', fontSize: '14px', height: '34px'}}>
             Current Language
           </div>
-          <span className="settings-page__content-description">
+         {/* <span className="settings-page__content-description">
             {currentLocaleName}
-          </span>
+          </span>*/}
         </div>
         <div className="settings-page__content-item" style={{
           height: '40px',
@@ -146,8 +146,8 @@ function currentLanguage (state) {
             <CustomDropDown
               placeholder={currentLocaleName}
               options={localeOptions}
-              selectedOption={currentLocaleName}
-              onSelect={async newLocale => updateCurrentLocale(newLocale)}
+              selectedOption={currentLocale}
+              onSelect={onLanguageSelect}
             />
           </div>
         </div>
