@@ -45,10 +45,13 @@ class GeneralSettings extends React.Component {
     this.props.dispatch(actions.showTokens(!showTokens))
   }
 
-  render () {
+  render() {
+    
     const state = this.props
+    const {t} = this.context
     const metamaskState = state.metamask
     const showTokens = metamaskState.showTokens
+    
 
     const onLanguageSelect = (key) => {
       this.props.dispatch(actions.updateCurrentLocale(key))
@@ -61,16 +64,16 @@ class GeneralSettings extends React.Component {
           <img src="/images/Assets/BackArrow.svg" style={{marginLeft: '34px', cursor: 'pointer'}} onClick={() => {
             state.dispatch(actions.goConfig())
           }}/>
-          <h2 style={{marginLeft: '88px', fontFamily: 'Inter-Bold'}}>General Settings</h2>
+          <h2 style={{ marginLeft: '88px', fontFamily: 'Inter-Bold' }}>{`${t('generalSettings')}`}</h2>
         </div>
         <div style={{borderTop: '1px solid #E3E7EB', padding: '20px 40px'}}>
-          {currentConversionInformation(metamaskState, state)}
+          {currentConversionInformation(metamaskState, state,t)}
         </div>
         <div style={{borderTop: '1px solid #E3E7EB', padding: '20px 40px'}}>
-          {currentLanguage(metamaskState, onLanguageSelect)}
+          {currentLanguage(metamaskState, onLanguageSelect,t)}
         </div>
         <div style={{padding: '20px 40px', borderTop: '1px solid #E3E7EB'}}>
-          <div style={{color: '#2149B9', fontSize: '14px', fontFamily: 'Inter-Medium'}}>Hide Tokens Without Balance
+          <div style={{color: '#2149B9', fontSize: '14px', fontFamily: 'Inter-Medium'}}>{`${t('hideTokensWithoutBalance')}`}  
           </div>
           <br/>
           <label className="switch">
@@ -95,15 +98,16 @@ function mapStateToProps (state) {
 }
 
 
-function currentConversionInformation (metamaskState, state) {
+function currentConversionInformation (metamaskState, state,t) {
+  // const { t } = this.context;
   const currentCurrency = metamaskState.currentCurrency
   const conversionDate = metamaskState.conversionDate
-  // const { t } = this.context;
+
   const setCurrentCurrency = metamaskState.setCurrentCurrency
   return (
     <div>
       <span style={{fontFamily: 'Inter-Medium', fontSize: '14px', color: '#2149B9'}}>
-      Current Conversion
+     {`${t('currentConversion')}`} 
         </span>
       <br/>
       <span style={{fontSize: '14px', color: '#2A2A2A', fontFamily: 'Inter-Medium'}}>
@@ -122,17 +126,17 @@ function currentConversionInformation (metamaskState, state) {
   )
 }
 
-function currentLanguage (metamaskState, onLanguageSelect) {
+function currentLanguage (metamaskState, onLanguageSelect,t) {
   const {currentLocale} = metamaskState
   const currentLocaleMeta = locales.find(locale => locale.code === currentLocale)
   const currentLocaleName = currentLocaleMeta ? currentLocaleMeta.name : ''
-
+  // const t = this.context
   return (
     <div>
       <div className="settings-page__content-row">
         <div className="settings-page__content-item">
           <div style={{fontFamily: 'Inter-Medium', color: '#2149B9', fontSize: '14px', height: '34px'}}>
-            Current Language
+           {`${t('currentLanguage')}`} 
           </div>
          {/* <span className="settings-page__content-description">
             {currentLocaleName}

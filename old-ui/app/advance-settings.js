@@ -7,6 +7,7 @@ const LoadingIndicator = require("./components/loading");
 const Web3 = require("web3");
 import { Checkbox } from '@material-ui/core';
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 const infuraCurrencies = require("./infura-conversion.json").objects.sort(
   (a, b) => {
     return a.quote.name
@@ -31,7 +32,6 @@ class AdvanceSettings extends React.Component{
     // onChange = newValue => {
     //   this.setState({ checked: newValue });
     // }
-    
     handleCheckBox = () => {
         const showGasFields = this.props.metamask.showGasFields
         // const [toggle, setToggle] = useState(false);
@@ -41,11 +41,14 @@ class AdvanceSettings extends React.Component{
         
     }
     
+    static contextTypes = {
+        t: PropTypes.func,
+    };
     render(){
         const state = this.props;
         const metamaskState = state.metamask;
         const showGasFields = metamaskState.showGasFields;
-
+        const { t } = this.context;
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",
         overflowY: "auto",}}>
@@ -58,8 +61,8 @@ class AdvanceSettings extends React.Component{
                 padding: ' 15px 17px 20px 15px ',
                 borderBottom: '1px solid #E3E7EB',
             }}>
-                <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>State Logs</span><br />
-                <p style={{fontSize:'14px', marginBottom:'15px',fontFamily:'Inter-medium'}}>State logs contain your public account addresses and sent transactions.</p>
+                <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>{`${t('stateLogs')}`}</span><br />
+                <p style={{fontSize:'14px', marginBottom:'15px',fontFamily:'Inter-medium'}}>{`${t('stateLogsDescription')}`} </p>
                 <button style={{ width: "324px", height: "40px", color: "#03BE46", background: "#FFFFFF", border: "2px solid #03BE46", fontWeight: "600", }}
                     onClick={(event) => {
                         window.logStateString((err, result) => {
@@ -72,14 +75,14 @@ class AdvanceSettings extends React.Component{
                                         } else {
                                             exportAsFile("XDCPay State Logs.json", result);
                                         }
-                                    }) }}>Download State Logs</button>
+                                    }) }}>{`${t('downloadStateLogs')}`}</button>
                 
                 </div>
                 <div style={{
                 padding: ' 15px 17px 20px 15px ',
                 borderBottom: '1px solid #E3E7EB',
             }}>
-                <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Reset Accounts</span><br />
+                    <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>{`${t('resetAccount')}` }</span><br />
                 <p style={{fontSize:'14px',marginBottom:'15px',fontFamily:'Inter-medium'}}>Resetting your account will clear your transaction history. This will not change the balances in your accounts or require you to re-enter your Secret Recovery Phrase.</p>
                     <button style={{ width: "324px", height: "40px", color: "#FF0035", background: "#FFFFFF", border: "2px solid #FF0035", fontWeight: "600", }}
                         onClick={(event) => {

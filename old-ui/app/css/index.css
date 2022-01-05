@@ -232,7 +232,7 @@ h2.page-subtitle {
   width: 46px;
   background-size: cover;
   border-radius: 100%;
-  border: 3px solid gray;
+  /* border: 3px solid gray; */
 }
 
 textarea {

@@ -9,6 +9,7 @@ const exportAsFile = require("../../util").exportAsFile;
 import IdleTimer from '../idle-timer-container/idleTimer';
 import React, { useState } from 'react';
 import CustomDropdown from '../../../../old-ui/app/components/common/custom-dropdown';
+import PropTypes from 'prop-types'
 
 const timePeriod = ['5 minutes', '10 minutes', '15 minutes']
   
@@ -23,10 +24,13 @@ class SecurityAndPrivacySettings extends React.Component{
         // this.props.dispatch(actions.securityandprivacy(!securityandprivacy))
         
     }
-
+    static contextTypes = {
+        t: PropTypes.func,
+    };
     render(){
         const state = this.props;
         const metamaskState = state.metamask;
+        const { t } = this.context;
         // const showIncomingTransaction = metamaskState.showIncomingTransaction;
 
         return(
@@ -41,7 +45,7 @@ class SecurityAndPrivacySettings extends React.Component{
                 padding: ' 15px 17px 20px 15px ',
                 borderBottom: '1px solid #E3E7EB',
             }}>
-                <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Reveal Seed Words</span><br />
+                <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>{`${t('revealSeedWords')}` }</span><br />
                 <p style={{fontSize:'14px', marginBottom:'15px',fontFamily:'Inter-medium'}}>Get your secret seed words by entering your password.</p>
                 <button style={{ width: "324px", height: "40px", color: "#03BE46", background: "#FFFFFF", border: "2px solid #03BE46", fontWeight: "600", }}
                     onClick={(event) => {
@@ -58,7 +62,7 @@ class SecurityAndPrivacySettings extends React.Component{
                     <p style={{ fontSize: '14px', marginBottom: '15px', fontFamily: 'Inter-medium' }} >Set the idle time in minutes before the wallet will be locked.</p>
                    
                     <CustomDropdown
-          placeholder={(currentCurrency)}
+        //   placeholder={(currentCurrency)}
                        
           options={timePeriod}
           selectedOption={timePeriod}

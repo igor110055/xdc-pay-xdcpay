@@ -1,6 +1,7 @@
 const connect = require('react-redux').connect
 const actions = require('../../../../ui/app/actions')
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const AddContactComponent = require('./add-contacts')
 
@@ -29,14 +30,18 @@ export default class AddContact extends React.Component {
     const {contactAddress, contactName} = this.state
 
     await this.props.dispatch(actions.addToAddressBook(contactAddress, contactName))
-    this.onBackClick()
+    this.props.dispatch(actions.Contacts())
   }
-
+  static contextTypes = {
+    t: PropTypes.func,
+  }
   render () {
     // eslint-disable-next-line react/prop-types
-    const {warning, viewContactObj} = this.props
+    const { t } = this.context
+    const { warning, viewContactObj} = this.props
     return (
       <AddContactComponent
+        t ={t}
         state={this.state}
         props={this.props}
         viewContactObj={viewContactObj}
@@ -44,6 +49,7 @@ export default class AddContact extends React.Component {
         onBackClick={this.onBackClick}
         onStateChange={this.onStateChange}
         onAddContactClicked={this.onAddContactClicked}
+
       />
     )
   }
