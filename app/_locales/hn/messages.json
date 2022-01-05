@@ -11,6 +11,12 @@
   "accountName": {
     "message": "खाते का नाम"
   },
+  "generalSettings":{
+    "message": "सामान्य सेटिंग्स"
+  },
+  "hideTokensWithoutBalance":{
+    "message": "शेष राशि के बिना टोकन छुपाएं"
+  },
   "address": {
     "message": "खाते का पता"
   },
@@ -155,6 +161,9 @@
   },
   "currentConversion": {
     "message": "वर्तमान रूपांतरण"
+  },
+  "currentLanguage": {
+    "message": "वर्तमान भाषा"
   },
   "currentNetwork": {
     "message": "वर्तमान नेटवर्क"

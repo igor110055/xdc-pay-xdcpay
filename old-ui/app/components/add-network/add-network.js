@@ -2,8 +2,9 @@ import React from 'react'
 
 const AddNetworkComponent = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {onBackClick, onStateChange, onAddNetworkClicked, warningMsg, viewNetworkObj, state} = props
-  const {networkName, rpcUrl, chainId, currencySymbol, explorerLink} = state
+  const {onBackClick, onStateChange, onAddNetworkClicked, warningMsg, viewNetworkObj, state,t} = props
+  const { networkName, rpcUrl, chainId, currencySymbol, explorerLink } = state
+
   const isPermanentNetwork = viewNetworkObj && viewNetworkObj.isPermanent
 
   return (
@@ -63,7 +64,7 @@ const AddNetworkComponent = (props) => {
                    height: '40px',
                    border: 'none',
                    color: '#2a2a2a',
-                 }}> Cancel
+              }}> {`${t(cancel)}` }
             </div>
 
             <div className="button"

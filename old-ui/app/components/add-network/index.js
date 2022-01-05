@@ -2,6 +2,7 @@ const connect = require('react-redux').connect
 const actions = require('../../../../ui/app/actions')
 const Web3 = require('web3')
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const validUrl = require('valid-url')
 const AddNetworkComponent = require('./add-network')
@@ -62,12 +63,16 @@ export default class AddNetwork extends React.Component {
   onAddNetworkClicked = (isToUpdate) => {
     this.validateRPC(isToUpdate)
   }
-
-  render () {
+  static contextTypes = {
+    t: PropTypes.func,
+  }
+  render() {
+    const t = this.context
     // eslint-disable-next-line react/prop-types
     const {warning, viewNetworkObj} = this.props
     return (
       <AddNetworkComponent
+        t={t}
         state={this.state}
         viewNetworkObj={viewNetworkObj}
         warningMsg={warning}

@@ -2,7 +2,7 @@ import React from 'react'
 
 const AddContactComponent = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {onStateChange, onAddContactClicked, warningMsg, contactAddress, contactName, onBackClick} = props
+  const {onStateChange, onAddContactClicked, warningMsg, contactAddress, contactName, onBackClick,t} = props
 
   return (
     <div
@@ -90,7 +90,7 @@ const AddContactComponent = (props) => {
               color: '#2a2a2a',
             }}
           >
-            {'Cancel'}
+            {`${ t('cancel')}`}
 
           </div>
 

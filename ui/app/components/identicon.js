@@ -28,10 +28,11 @@ IdenticonComponent.prototype.render = function () {
   var props = this.props
   const { className = '', address, image } = props
   var diameter = props.diameter || this.defaultDiameter
+  var border = diameter / 2
   const style = {
     height: diameter,
     width: diameter,
-    borderRadius: diameter / 2,
+    borderRadius: border,
   }
   if (image) {
     return h('img', {

@@ -5,14 +5,18 @@ import Identicon from '../../ui/app/components/identicon'
 import PropTypes from 'prop-types'
 
 class Contacts extends React.Component {
-  static propTypes = {
-    identity: PropTypes.object.isRequired,
-  }
+  // static propTypes = {
+  //   identity: PropTypes.object.isRequired,
+  // }
 
   render () {
     const state = this.props
     const contactList = state.metamask.addressBook
-
+    contactList.sort(function(a, b){
+      if(a.name < b.name) { return -1; }
+      if(a.name > b.name) { return 1; }
+      return 0;
+  })
 
     return (
       <div
@@ -44,24 +48,36 @@ class Contacts extends React.Component {
             }}
           />
         </div>
+        <div style={{overflowX:"scroll"}}>
+
         {contactList.map((contactObj) => (
           <div
-            style={{
-              padding: ' 11px 17px 11px 13px ',
-              borderBottom: '1px solid #E3E7EB',
-              fontFamily: 'inter-medium',
-              fontSize: '14px',
-            }}
+          style={{
+      
+            borderBottom: '1px solid #E3E7EB',
+            fontFamily: 'inter-medium',
+            fontSize: '14px',
+            height:'65px',
+          }}
           >
+            
+            <div style={{ backgroundColor: '#F4F6FA', height: '24px', width: '100%', padding:"0 21px" }}>A</div>
+            <div style={{padding:'5px 0 0 20px'}}>
             <Identicon
               overflow="none"
               address={contactObj.address}
-              diameter={24}
-              style={{marginLeft: '10px', overflow: 'inherit'}}
-            />
-            {contactObj.name}
+              diameter={27}
+              style={{ marginLeft: '10px', overflow: 'inherit' }}
+              />
+            <div style={{margin:'-24px 0 0 35px'}}>  
+                {contactObj.name}
+                </div>
+          </div>
+              
+            
           </div>
         ))}
+        </div>
       </div>
     )
   }
