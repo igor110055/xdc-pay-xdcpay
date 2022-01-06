@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import CustomDropdown from '../../../../old-ui/app/components/common/custom-dropdown';
 import PropTypes from 'prop-types'
 
-const timePeriod = ['5 minutes', '10 minutes', '15 minutes']
+const timePeriod = ['1 minutes', '2 minutes', '5 minutes']
   
 class SecurityAndPrivacySettings extends React.Component{
    
@@ -30,7 +30,7 @@ class SecurityAndPrivacySettings extends React.Component{
     render(){
         const state = this.props;
         const metamaskState = state.metamask;
-        const { t } = this.context;
+        const {t} = this .context;
         // const showIncomingTransaction = metamaskState.showIncomingTransaction;
 
         return(

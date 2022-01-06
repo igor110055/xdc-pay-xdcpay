@@ -275,6 +275,7 @@ var actions = {
   advanceSettings,
   securityAndPrivacy,
   Contacts,
+  ContactDetails,
   networkSettings,
   addNetwork,
   showAddNetworkPage,
@@ -2020,6 +2021,11 @@ function Contacts () {
   }
 }
 
+function ContactDetails (){
+  return{
+    type:actions.SHOW_CONTACT_DETAILS,
+  }
+}
 
 
 function networkSettings () {

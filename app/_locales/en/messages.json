@@ -26,9 +26,6 @@
   "address": {
     "message": "Address"
   },
-  "generalSettings":{
-    "message": "General Settings"
-  },
   "addCustomToken": {
     "message": "Add custom token"
   },
@@ -1324,82 +1321,78 @@
   "Transactions":{
     "message": "General Settings"
   },
-  "Expand View":{
+  
+  "connectedSites":{
     "message": "General Settings"
   },
-  "Connected Sites":{
+  "viewOnBlockExplorer":{
     "message": "General Settings"
   },
-  "View on Block Explorer":{
-    "message": "General Settings"
-  },
-  "Tokens":{
+  "tokens":{
     "message": "General Settings"
   },
   "Settings":{
     "message": "General Settings"
   },
-  "General Settings":{
+  "generalSettings":{
     "message": "General Settings"
   },
-  "Hide Tokens Without":{
+  "hideTokensWithout":{
     "message": "General Settings"
   },
-  "Advance Settings":{
-    "message": "General Settings"
-  },"Security and Privacy Settings":{
+  "advanceSettings":{
     "message": "General Settings"
   },
-  "Reveal Secret seed words":{
+  "securityandPrivacySettings":{
+    "message": "General Settings"
+  },
+  "revealSecretSeedWords":{
     "message": "General Settings"
   },
 
-  "auto-Lock Timer":{
+  "autoLockTimer":{
     "message": "General Settings"
   },
-  "Show Incoming Transactions":{
+  "showIncomingTransactions":{
     "message": "General Settings"
   },
   "reveal":{
     "message": "General Settings"
   },
-  "Contacts":{
+  "contacts":{
     "message": "General Settings"
   },
-  "Add Contact":{
+  "addContact":{
     "message": "General Settings"
   },
-  "Wallet Address":{
+  "walletAddress":{
     "message": "General Settings"
   },
-  "Contact Details":{
+  "contactDetails":{
     "message": "General Settings"
   },
-  "Username":{
+  "userName":{
     "message": "General Settings"
   },
-  "Alert Settings":{
+  "alertSettings":{
     "message": "General Settings"
   },
-  "Browsing a website with an unconnected account selected":{
+  "networkSettings":{
     "message": "General Settings"
   },
-  "Network Settings":{
+  "addNetwork":{
     "message": "General Settings"
   },
-  "Add Network":{
+  "networkName":{
     "message": "General Settings"
   },
-  "Network Name":{
+  "chainID":{
     "message": "General Settings"
   },
-  "Chain ID":{
+  "currencySymbol":{
     "message": "General Settings"
   },
-  "Currency Symbol (Optional)":{
-    "message": "General Settings"
-  },
-  "Block Explorer (Optional)":{
+  "blockExplorer":{
     "message": "General Settings"
   },
   "Add":{
@@ -1411,31 +1404,19 @@
   "About":{
     "message": "General Settings"
   },
-  "Link:":{
+  "Link":{
     "message": "General Settings"
   },
-  "Support Center ":{
+  "visitOurWebsite":{
     "message": "General Settings"
   },
-  "Visit Our Website ":{
+  "contactUs":{
     "message": "General Settings"
   },
-  "Contact Us":{
-    "message": "General Settings"
-  },
-  "Gas Limit (Units)":{
-    "message": "General Settings"
-  },
-  "Max Transaction Fee":{
+  "maxTransactionFee":{
     "message": "General Settings"
   },
   "Edit":{
-    "message": "General Settings"
-  },
-  "The XDCPay is an extension for accessing XDC’s XDPoS enabled distributed applications, or “Dapps” in your browser!":{
-    "message": "General Settings"
-  },
-  "This alert is shown in the popup when you are browsing a connected web3 site, but the currently selected account is not connected.":{
     "message": "General Settings"
   }
   
