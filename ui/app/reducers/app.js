@@ -1012,7 +1012,17 @@ function reduceApp (state, action) {
           context: appState.currentView.context,
         },
       })
-
+   
+    
+      case actions.CONNECTED_SITES:
+        return extend(appState, {
+          currentView: {
+            name: 'connected-sites',
+            context: appState.currentView.context,
+          },
+        })
+    
+      
     case actions.SET_NETWORK_NONCE:
       return extend(appState, {
         networkNonce: action.value,

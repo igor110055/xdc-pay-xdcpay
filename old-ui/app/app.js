@@ -59,6 +59,7 @@ const AlertSettings = require('../app/alert-settings')
 const Contacts = require('../app/contacts')
 const AddContacts = require('./components/add-contacts')
 const ContactDetails = require('./components/add-contacts/contactDetails')
+const ConnectedSites = require('../app/connectedSites')
 module.exports = compose(
   withRouter,
   connect(mapStateToProps)
@@ -425,6 +426,12 @@ App.prototype.renderPrimary = function () {
     case 'confirm-change-password':
       log.debug('rendering confirm password changing screen')
       return h(ConfirmChangePassword, { key: 'confirm-change-password' })
+      
+    case 'connected-sites':
+      log.debug('rendering confirm password changing screen')
+      return h(ConnectedSites, { key: 'connected-sites' })
+    
+    
     default:
       log.debug('rendering default, account detail screen')
       return h(AccountDetailScreen, { key: 'account-detail' })

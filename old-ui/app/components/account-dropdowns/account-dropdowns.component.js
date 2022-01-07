@@ -233,7 +233,7 @@ class AccountDropdowns extends Component {
           <DropdownMenuItem
             closeMenu={() => {
             }}
-            onClick={() => this.connectedSites()}
+            onClick={() => actions.connectedSites()}
           >
             <img
               className="account-options-icon"
@@ -325,11 +325,9 @@ class AccountDropdowns extends Component {
     actions.showQrView(selected, identity ? identity.name : '')
   }
 
-  connectedSites = () => {
-    const {selected, identities, actions} = this.props
-    const identity = identities[selected]
-    actions.showQrView(selected, identity ? identity.name : '')
-  }
+  // connectedsites = () => {
+    
+  // }
 
   copyAddress = () => {
     const {selected, network} = this.props
@@ -479,6 +477,7 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(actions.showAccountDetail(address)),
       addNewAccount: () => dispatch(actions.addNewAccount()),
       showImportPage: () => dispatch(actions.showImportPage()),
+      connectedSites: () =>dispatch(actions.connectedSites()),
       showConnectHWWalletPage: () =>
         dispatch(actions.showConnectHWWalletPage()),
       showQrView: (selected, identity) =>

@@ -375,6 +375,7 @@ var actions = {
   // locale
   SET_CURRENT_LOCALE: 'SET_CURRENT_LOCALE',
   SET_LOCALE_MESSAGES: 'SET_LOCALE_MESSAGES',
+  
   setCurrentLocale,
   updateCurrentLocale,
   setLocaleMessages,
@@ -411,6 +412,8 @@ var actions = {
   confirmChangePassword,
 
   createCancelTransaction,
+  connectedSites,
+  CONNECTED_SITES: 'CONNECTED_SITES',
 }
 
 module.exports = actions
@@ -493,6 +496,13 @@ function showSeedWords () {
     type: actions.SHOW_SEEDWORDS,
   }
 
+}
+
+function connectedSites() {
+  return {
+    type: actions.CONNECTED_SITES,
+  }
+  
 }
 
 function transitionBackward () {
