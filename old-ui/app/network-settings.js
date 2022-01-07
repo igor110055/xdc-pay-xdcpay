@@ -90,7 +90,7 @@ class NetworkSettings extends React.Component {
         </div>
 
         <div style={{
-          padding: ' 12px 17px 13px 13px ',
+          padding: ' 11px 17px 11px 13px ',
           borderBottom: '1px solid #E3E7EB',
           fontFamily: 'inter-medium',
           fontSize: '14px',
@@ -107,7 +107,7 @@ class NetworkSettings extends React.Component {
 
         </div>
 
-
+{/* 
         <div style={{
           padding: ' 12px 17px 13px 13px ',
           borderBottom: '1px solid #E3E7EB',
@@ -124,7 +124,7 @@ class NetworkSettings extends React.Component {
           <img src={'/images/Assets/Delete.svg'}
             style={{ position: 'absolute', right: '30px', top: '130', cursor: 'pointer' }} />
 
-        </div>
+        </div> */}
 
       </div>
 
