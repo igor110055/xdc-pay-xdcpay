@@ -275,7 +275,7 @@ var actions = {
   advanceSettings,
   securityAndPrivacy,
   Contacts,
-  ContactDetails,
+  contactDetails,
   networkSettings,
   addNetwork,
   showAddNetworkPage,
@@ -290,6 +290,7 @@ var actions = {
   SHOW_ADVSETTINGS_PAGE: 'SHOW_ADVSETTINGS_PAGE',
   SHOW_SECURITYANDPRIVACY_PAGE: "SHOW_SECURITYANDPRIVACY_PAGE ",
   SHOW_CONTACTS_PAGE: "SHOW_CONTACTS_PAGE",
+  SHOW_CONTACT_DETAILS: "SHOW_CONTACT_DETAILS",
   SHOW_ALERTSETTINGS_PAGE: 'SHOW_ALERTSETTINGS_PAGE',
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
@@ -2021,9 +2022,10 @@ function Contacts () {
   }
 }
 
-function ContactDetails (){
+function contactDetails (contactObj){
   return{
-    type:actions.SHOW_CONTACT_DETAILS,
+    type: actions.SHOW_CONTACT_DETAILS,
+    value: contactObj,
   }
 }
 

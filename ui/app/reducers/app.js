@@ -295,6 +295,17 @@ function reduceApp (state, action) {
         warning: null,
       })
     
+      case actions.SHOW_CONTACT_DETAILS:
+        return extend(appState, {
+          currentView: {
+            name: 'contactDetails',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+          warning: null,
+          currentViewContactObj:action.value,
+        })
+    
     case actions.SHOW_NETWORKSETTINGS_PAGE:
       return extend(appState, {
         currentView: {

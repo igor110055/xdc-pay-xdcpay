@@ -33,7 +33,6 @@ const RemoveTokenScreen = require('./remove-token')
 const AddSuggestedTokenScreen = require('./add-suggested-token')
 const Import = require('./accounts/import')
 const ForgetDeviceScreen = require('./components/connect-hardware/forget-screen')
-import { alertSettings, securityAndPrivacy } from '../../ui/app/actions'
 import ConnectHardwareForm from './components/connect-hardware/index'
 import createVaultComplete from './keychains/hd/create-vault-complete'
 import revealSeed from './keychains/hd/reveal-seed'
@@ -59,7 +58,7 @@ const ViewNetwork = require('../app/view-network')
 const AlertSettings = require('../app/alert-settings')
 const Contacts = require('../app/contacts')
 const AddContacts = require('./components/add-contacts')
-
+const ContactDetails = require('./components/add-contacts/contactDetails')
 module.exports = compose(
   withRouter,
   connect(mapStateToProps)
@@ -310,11 +309,15 @@ App.prototype.renderPrimary = function () {
       case 'contacts':
         log.debug('rendering contacts-screen')
       return h(Contacts, { key: 'contacts' })
-
+   
+      case 'contactDetails':
+        log.debug('rendering contactDetails-screen')
+      return h(ContactDetails, { key: 'contactDetails' })
+    
       case 'add-contacts':
         log.debug('rendering add Contacts screen ')
       return h(AddContacts, { key: 'add-contacts' })
-
+      
     case 'network-settings':
     log.debug('renderng network-settings screen ')
       return h(NetworkSettings, { key: 'network-settings' })

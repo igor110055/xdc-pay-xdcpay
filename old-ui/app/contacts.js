@@ -68,6 +68,7 @@ class Contacts extends React.Component {
                 fontSize: "14px",
                 height: "69px",
               }}
+              
             >
               <div
                 style={{
@@ -79,14 +80,16 @@ class Contacts extends React.Component {
               >A
                 
               </div>
-              <div style={{ padding: "9px 0 0 20px" }}>
+              <div style={{ padding: "9px 0 0 20px", }}
+               
+              >
                 <Identicon
                   overflow="none"
                   address={contactObj.address}
                   diameter={27}
                   style={{ marginLeft: "10px", overflow: "inherit" }}
                 />
-                <div style={{ margin: "-24px 0 0 35px" }}>
+                <div style={{ margin: "-24px 0 0 35px", cursor: 'pointer' }}  onClick={state.dispatch(actions.contactDetails())} >
                   {contactObj.name}
                 </div>
               </div>
