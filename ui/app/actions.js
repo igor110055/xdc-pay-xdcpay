@@ -275,7 +275,7 @@ var actions = {
   advanceSettings,
   securityAndPrivacy,
   Contacts,
-  ContactDetails,
+  contactDetails,
   networkSettings,
   addNetwork,
   showAddNetworkPage,
@@ -290,6 +290,7 @@ var actions = {
   SHOW_ADVSETTINGS_PAGE: 'SHOW_ADVSETTINGS_PAGE',
   SHOW_SECURITYANDPRIVACY_PAGE: "SHOW_SECURITYANDPRIVACY_PAGE ",
   SHOW_CONTACTS_PAGE: "SHOW_CONTACTS_PAGE",
+  SHOW_CONTACT_DETAILS: "SHOW_CONTACT_DETAILS",
   SHOW_ALERTSETTINGS_PAGE: 'SHOW_ALERTSETTINGS_PAGE',
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
@@ -374,6 +375,7 @@ var actions = {
   // locale
   SET_CURRENT_LOCALE: 'SET_CURRENT_LOCALE',
   SET_LOCALE_MESSAGES: 'SET_LOCALE_MESSAGES',
+  
   setCurrentLocale,
   updateCurrentLocale,
   setLocaleMessages,
@@ -410,6 +412,8 @@ var actions = {
   confirmChangePassword,
 
   createCancelTransaction,
+  connectedSites,
+  CONNECTED_SITES: 'CONNECTED_SITES',
 }
 
 module.exports = actions
@@ -492,6 +496,13 @@ function showSeedWords () {
     type: actions.SHOW_SEEDWORDS,
   }
 
+}
+
+function connectedSites() {
+  return {
+    type: actions.CONNECTED_SITES,
+  }
+  
 }
 
 function transitionBackward () {
@@ -2021,9 +2032,10 @@ function Contacts () {
   }
 }
 
-function ContactDetails (){
+function contactDetails (contactObj){
   return{
-    type:actions.SHOW_CONTACT_DETAILS,
+    type: actions.SHOW_CONTACT_DETAILS,
+    value: contactObj,
   }
 }
 

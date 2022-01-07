@@ -295,6 +295,17 @@ function reduceApp (state, action) {
         warning: null,
       })
     
+      case actions.SHOW_CONTACT_DETAILS:
+        return extend(appState, {
+          currentView: {
+            name: 'contactDetails',
+            context: appState.currentView.context,
+          },
+          transForward: true,
+          warning: null,
+          currentViewContactObj:action.value,
+        })
+    
     case actions.SHOW_NETWORKSETTINGS_PAGE:
       return extend(appState, {
         currentView: {
@@ -1001,7 +1012,17 @@ function reduceApp (state, action) {
           context: appState.currentView.context,
         },
       })
-
+   
+    
+      case actions.CONNECTED_SITES:
+        return extend(appState, {
+          currentView: {
+            name: 'connected-sites',
+            context: appState.currentView.context,
+          },
+        })
+    
+      
     case actions.SET_NETWORK_NONCE:
       return extend(appState, {
         networkNonce: action.value,
