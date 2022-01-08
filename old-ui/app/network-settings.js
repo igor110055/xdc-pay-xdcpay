@@ -95,36 +95,40 @@ class NetworkSettings extends React.Component {
           fontFamily: 'inter-medium',
           fontSize: '14px',
         }}  >
-          <img src={'/images/Assets/Delete.svg'} style={{ position: 'absolute', left: '18px', top: '112', cursor: 'pointer' }} />
+          <img src={'/images/Assets/Delete.svg'} style={{ position: 'absolute', left: '18px', top: '158', cursor: 'pointer' }} />
 
-          <div style={{
-            marginLeft: '40px'
-          }} ><h1>XDCVoting.com</h1>
-          </div>
-
-          <img src={'/images/Assets/Delete.svg'}
-            style={{ position: 'absolute', right: '30px', top: '112', cursor: 'pointer' }} />
-
+          <div style={{marginLeft: '40px' }} ><h1>XDCVoting.com</h1></div>
+          
+          <img src={'/images/Assets/Delete.svg'} style={{ position: 'absolute', right: '30px', top: '158', cursor: 'pointer' }} />
         </div>
 
-{/* 
+
         <div style={{
-          padding: ' 12px 17px 13px 13px ',
+          padding: ' 11px 17px 11px 13px ',
           borderBottom: '1px solid #E3E7EB',
           fontFamily: 'inter-medium',
           fontSize: '14px',
         }}  >
-          <img src={'/images/Assets/Delete.svg'} style={{ position: 'absolute', left: '18px', top: '130', cursor: 'pointer' }} />
+          <img src={'/images/Assets/Delete.svg'} style={{ position: 'absolute', left: '18px', top: '204', cursor: 'pointer' }} />
 
-          <div style={{
-            marginLeft: '40px'
-          }} ><h1>XDCVoting.com</h1>
-          </div>
+          <div style={{marginLeft: '40px' }} ><h1>opensea.io</h1></div>
           
-          <img src={'/images/Assets/Delete.svg'}
-            style={{ position: 'absolute', right: '30px', top: '130', cursor: 'pointer' }} />
+          <img src={'/images/Assets/Delete.svg'} style={{ position: 'absolute', right: '30px', top: '204', cursor: 'pointer' }} />
+        </div>
 
-        </div> */}
+        <div style={{
+          padding: ' 11px 17px 11px 13px ',
+          borderBottom: '1px solid #E3E7EB',
+          fontFamily: 'inter-medium',
+          fontSize: '14px',
+        }}  >
+          <img src={'/images/Assets/Delete.svg'} style={{ position: 'absolute', left: '18px', top: '112', cursor: 'pointer' }} />
+
+          <div style={{marginLeft: '40px' }} ><h1>app.uniswap.com</h1></div>
+          
+          <img src={'/images/Assets/Delete.svg'} style={{ position: 'absolute', right: '30px', top: '112', cursor: 'pointer' }} />
+        </div>
+
 
       </div>
 
