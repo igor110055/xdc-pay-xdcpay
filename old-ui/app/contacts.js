@@ -29,6 +29,7 @@ class Contacts extends React.Component {
       return initials.toUpperCase();
     };
 
+
     return (
       <div
         className="flex-column flex-grow"
@@ -89,7 +90,7 @@ class Contacts extends React.Component {
                   diameter={27}
                   style={{ marginLeft: "10px", overflow: "inherit" }}
                 />
-                <div style={{ margin: "-24px 0 0 35px", cursor: 'pointer',width:'fit-content' }} >
+                <div style={{ margin: "-24px 0 0 35px", cursor: 'pointer',width:'fit-content' }} onClick={() => state.dispatch(actions.contactDetails(contactObj))} >
                   {contactObj.name}
                 </div>
               </div>
