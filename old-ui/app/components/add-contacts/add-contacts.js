@@ -30,9 +30,6 @@ const AddContactComponent = (props) => {
         <h2 style={{fontFamily: 'Inter-bold', marginLeft: '98px'}}>
           {`${contactObj ? 'Edit' : 'Add'} Contact`}
         </h2>
-        <h2 style={{color:'#FF0035', fontSize:'15px' , fontFamily:"Inter-Medium", marginRight:'15px', cursor:'pointer'}}  onClick={() => state.dispatch(actions.delContact(viewContactObj))}>
-        {`${viewContactObj ? 'Delete' : ' '}`}
-        </h2>
       </div>
       {warningMsg && <div className="error">{warningMsg}</div>}
       <div style={{margin: '25px 42px'}}>
