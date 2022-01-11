@@ -438,10 +438,6 @@ App.prototype.renderPrimary = function () {
     case 'connected-sites':
       log.debug('rendering confirm password changing screen')
       return h(ConnectedSites, {key: 'connected-sites'})
-    
-    case 'transaction-details':
-      log.debug('rendering the transaction details screen')
-      return h(TransactionDetails, {key:'transaction-details'})
 
 
     default:
