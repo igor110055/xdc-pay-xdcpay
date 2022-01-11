@@ -2063,9 +2063,10 @@ function showAddNetworkPage () {
   }
 }
 
-function showAddContactsPage () {
+function showAddContactsPage (contactObj) {
   return {
     type: actions.SHOW_ADDCONTACTS_PAGE,
+    value: contactObj,
   }
 }
 
