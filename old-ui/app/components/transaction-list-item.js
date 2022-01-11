@@ -144,11 +144,12 @@ TransactionListItem.prototype.render = function () {
           width: '100%',
         },
       }, [
-        h('div.flex-row', {
-          onclick: () => {
-            this.props.dispatch(actions.transactionDetails())
+        h('div.flex-row', [
+          {
+            onclick: () => {
+              this.props.dispatch(actions.transactionDetails())
+            },
           },
-        }, [
           h('.identicon-wrapper.flex-column.flex-center.select-none', [
             h(TransactionIcon, { txParams, transaction, isTx, isMsg }),
         ]),
