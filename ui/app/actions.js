@@ -282,7 +282,7 @@ var actions = {
   showAddNetworkPage,
   showAddContactsPage,
   viewNetwork: viewNetwork,
-  veiwContact: viewContact,
+  viewContact: viewContact,
   alertSettings,
 
 
@@ -415,10 +415,8 @@ var actions = {
   createCancelTransaction,
   connectedSites,
   CONNECTED_SITES: 'CONNECTED_SITES',
-
   transactionDetails: transactionDetails,
-  TRANSACTION_DETAILS: 'TRANSACTION_DETAILS',
-
+  TRANSACTION_DETAILS : 'TRANSACTION_DETAILS'
 }
 
 module.exports = actions
@@ -2065,9 +2063,10 @@ function showAddNetworkPage () {
   }
 }
 
-function showAddContactsPage () {
+function showAddContactsPage (contactObj) {
   return {
     type: actions.SHOW_ADDCONTACTS_PAGE,
+    value: contactObj,
   }
 }
 
@@ -2468,6 +2467,12 @@ function hideModal (payload) {
   return {
     type: actions.MODAL_CLOSE,
     payload,
+  }
+}
+
+function transactionDetails() {
+  return {
+    type: actions.TRANSACTION_DETAILS,
   }
 }
 

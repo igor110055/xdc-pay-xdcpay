@@ -4,7 +4,8 @@ import { goConfig, goHome, viewNetwork } from '../../../../ui/app/actions'
 
 const AddContactComponent = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {onStateChange, onAddContactClicked, warningMsg,viewContactObj,  onBackClick,t,state} = props
+  const { onStateChange, onAddContactClicked, warningMsg, onBackClick, t, state } = props
+  const contactObj = state.viewContactObj
   const {contactAddress,contactName} = state
   return (
     <div
@@ -24,7 +25,7 @@ const AddContactComponent = (props) => {
           onClick={onBackClick}
         />
         <h2 style={{fontFamily: 'Inter-bold', marginLeft: '98px'}}>
-          {`${viewContactObj ? 'Edit' : 'Add'} Contact`}
+          {`${contactObj ? 'Edit' : 'Add'} Contact`}
         </h2>
       </div>
       {warningMsg && <div className="error">{warningMsg}</div>}
@@ -114,10 +115,10 @@ const AddContactComponent = (props) => {
             }}
             onClick={(event) => {
               event.preventDefault()
-              onAddContactClicked(!!viewContactObj)
+              onAddContactClicked(!!contactObj)
             }}
           >
-          {`${viewContactObj ? 'Update' : 'Add'}`}
+          {`${!!contactObj ? 'Update' : 'Add'}`}
           </div>
         </div>
       </div>

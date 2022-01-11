@@ -8,11 +8,12 @@ const AddContactComponent = require('./add-contacts')
 export default class AddContact extends React.Component {
   constructor (props) {
     super(props)
+    const contactObj=this.props.viewContactObj
     // eslint-disable-next-line react/prop-types
     // const viewContactObj = this.props.viewContactObj;
     this.state = {
-      contactAddress: ' ',
-      contactName: ' ',
+      contactAddress: contactObj ? contactObj.address : ' ',
+      contactName: contactObj ? contactObj.name : ' ',
     }
   }
 
