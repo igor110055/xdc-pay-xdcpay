@@ -130,7 +130,8 @@ class ContactDetails extends React.Component {
 
               <div>
                 <TransactionList
-                  transactions={transactions.sort((a, b) => b.time - a.time)}
+                  transactions={transactions.filter(contactObj => address === contactObj.address )}
+                  // transactions.sort((a, b) => b.time - a.time) &&
                   network={network}
                   unapprovedMsgs={unapprovedMsgs}
                   conversionRate={conversionRate}
