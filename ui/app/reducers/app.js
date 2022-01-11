@@ -1023,22 +1023,6 @@ function reduceApp (state, action) {
       })
 
 
-
-    
-    
-    case actions.TRANSACTION_DETAILS: {
-      return extend(appState, {
-        currentView: {
-          name: 'transaction-details',
-          context: appState.currentView.context,
-        }
-      })
-    }
-
-
-
-
-
     case actions.SET_NETWORK_NONCE:
       return extend(appState, {
         networkNonce: action.value,
