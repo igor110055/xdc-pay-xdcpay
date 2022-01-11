@@ -2067,10 +2067,9 @@ function showAddNetworkPage () {
   }
 }
 
-function showAddContactsPage (contactObj) {
+function showAddContactsPage () {
   return {
     type: actions.SHOW_ADDCONTACTS_PAGE,
-    value: contactObj,
   }
 }
 
@@ -2096,8 +2095,6 @@ function viewContact (contactObj) {
     value: contactObj,
   }
 }
-
-
 
 function alertSettings () {
   return {

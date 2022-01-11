@@ -20,9 +20,7 @@ class ContactDetails extends React.Component {
       shapeShiftTxList,
       conversionRate,
     } = this.props
-    const transactionAddress = contactObj.address.replace("xdc","0x")
-    const currentContactTxn = transactions.filter((txnObj) => txnObj.txParams.to.trim() === transactionAddress.trim())
-    console.log(amountTo,'<<>>')
+    const currentContactTxn = transactions.filter((txnObj) => txnObj.txReceipt.to === contactObj.address)
     return (
       <div
         className="flex-column flex-grow"
@@ -51,12 +49,12 @@ class ContactDetails extends React.Component {
               fontFamily: 'Inter-Medium',
               cursor: 'pointer',
             }}
-            onClick={() => state.dispatch(actions.viewContact(contactObj))}
+            onClick={() => state.dispatch(actions.showAddContactsPage())}
           >
             Edit
           </div>
         </div>
-        <div style={{padding:'0 0 29px 0'}}>
+        <div className="list">
           <div style={{borderBottom: '1px solid #E3E7EB'}}>
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <Identicon
@@ -80,7 +78,6 @@ class ContactDetails extends React.Component {
                   fontWeight: '600',
                   marginTop: '5px',
                   color: '#2a2a2a',
-                  
                 }}
               >
                 {contactObj.name}
@@ -97,16 +94,15 @@ class ContactDetails extends React.Component {
               >
                 Wallet contactAddress
               </div>
-              <div style={{display: 'flex', justifyContent: 'center',alignItems:'baseline' ,wordBreak:'break-all',padding:'3px 47px'}}>
-                <div style={{fontSize:'14px',fontFamily:'Inter-Medium' }}>{contactObj.address}</div>
+              <div style={{display: 'flex', justifyContent: 'center'}}>
+                <div>{contactObj.address}</div>
                 <CopyButton value={contactObj.address} isWhite={true}/>
               </div>
             </div>
           </div>
           <div>
             <TransactionList
-              
-              transactions={currentContactTxn}
+              transactions={currentContactTxn.sort((a, b) => b.time - a.time)}
               network={network}
               unapprovedMsgs={unapprovedMsgs}
               conversionRate={conversionRate}

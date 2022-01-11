@@ -38,7 +38,7 @@ class Contacts extends React.Component {
         </div>
         <div className="list">
           {contactList.map((contactObj, index) => (
-            <div key={index} 
+            <div key={index} onClick={() => state.dispatch(actions.contactDetails(contactObj))}
                  style={{
                    borderBottom: '1px solid #E3E7EB',
                    fontFamily: 'inter-medium',
@@ -59,7 +59,7 @@ class Contacts extends React.Component {
                   diameter={27}
                   style={{marginLeft: '10px', cursor: 'pointer', overflow: 'inherit'}}
                 />
-                <div style={{width: 'fit-content',cursor:'pointer',}} onClick={() => state.dispatch(actions.contactDetails(contactObj))}>
+                <div style={{width: 'fit-content'}}>
                   {contactObj.name}
                 </div>
               </div>
