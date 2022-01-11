@@ -1021,7 +1021,9 @@ function reduceApp (state, action) {
           context: appState.currentView.context,
         },
       })
-<<<<<<< HEAD
+
+
+
     
     
     case actions.TRANSACTION_DETAILS: {
@@ -1032,8 +1034,9 @@ function reduceApp (state, action) {
         }
       })
     }
-=======
->>>>>>> 9eb4aa9 (Sorting Issue, Contact Details screen issues)
+
+
+
 
 
     case actions.SET_NETWORK_NONCE:

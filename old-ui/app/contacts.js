@@ -59,11 +59,7 @@ class Contacts extends React.Component {
                   diameter={27}
                   style={{marginLeft: '10px', cursor: 'pointer', overflow: 'inherit'}}
                 />
-<<<<<<< HEAD
                 <div style={{width: 'fit-content',cursor:'pointer',}}>
-=======
-                <div style={{width: 'fit-content'}}>
->>>>>>> 9eb4aa9 (Sorting Issue, Contact Details screen issues)
                   {contactObj.name}
                 </div>
               </div>
