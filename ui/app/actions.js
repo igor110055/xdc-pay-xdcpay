@@ -417,8 +417,10 @@ var actions = {
   createCancelTransaction,
   connectedSites,
   CONNECTED_SITES: 'CONNECTED_SITES',
+
   transactionDetails: transactionDetails,
-  TRANSACTION_DETAILS : 'TRANSACTION_DETAILS'
+  TRANSACTION_DETAILS: 'TRANSACTION_DETAILS',
+
 }
 
 module.exports = actions
