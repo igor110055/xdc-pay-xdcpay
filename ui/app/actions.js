@@ -415,10 +415,8 @@ var actions = {
   createCancelTransaction,
   connectedSites,
   CONNECTED_SITES: 'CONNECTED_SITES',
-
   transactionDetails: transactionDetails,
-  TRANSACTION_DETAILS: 'TRANSACTION_DETAILS',
-
+  TRANSACTION_DETAILS : 'TRANSACTION_DETAILS'
 }
 
 module.exports = actions
@@ -2065,9 +2063,10 @@ function showAddNetworkPage () {
   }
 }
 
-function showAddContactsPage () {
+function showAddContactsPage (contactObj) {
   return {
     type: actions.SHOW_ADDCONTACTS_PAGE,
+    value: contactObj,
   }
 }
 

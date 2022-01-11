@@ -49,7 +49,7 @@ class ContactDetails extends React.Component {
               fontFamily: 'Inter-Medium',
               cursor: 'pointer',
             }}
-            onClick={() => state.dispatch(actions.showAddContactsPage())}
+            onClick={() => state.dispatch(actions.viewContact(contactObj))}
           >
             Edit
           </div>
@@ -78,6 +78,7 @@ class ContactDetails extends React.Component {
                   fontWeight: '600',
                   marginTop: '5px',
                   color: '#2a2a2a',
+                  
                 }}
               >
                 {contactObj.name}
@@ -94,10 +95,16 @@ class ContactDetails extends React.Component {
               >
                 Wallet contactAddress
               </div>
-                <div>{contactObj.address}</div>
+              <div style={{display: 'flex', justifyContent: 'center',alignItems:'baseline' ,wordBreak:'break-all',padding:'3px 47px'}}>
+                <div style={{fontSize:'14px',fontFamily:'Inter-Medium' }}>{contactObj.address}</div>
                 <CopyButton value={contactObj.address} isWhite={true}/>
+              </div>
+            </div>
+          </div>
+          <div>
             <TransactionList
-              transactions={currentContactTxn.sort((a, b) => b.time - a.time)}
+              
+              transactions={currentContactTxn}
               network={network}
               unapprovedMsgs={unapprovedMsgs}
               conversionRate={conversionRate}
