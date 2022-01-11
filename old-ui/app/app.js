@@ -63,7 +63,7 @@ const Contacts = require('../app/contacts')
 const AddContacts = require('./components/add-contacts')
 const ContactDetails = require('./components/add-contacts/contactDetails')
 const ConnectedSites = require('../app/connectedSites')
-const TransactionDetails = require('./components/transaction-details/transaction-details')
+const TransactionDetails =require('./components/transaction-details/transaction-details')
 
 module.exports = compose(
   withRouter,
@@ -437,7 +437,11 @@ App.prototype.renderPrimary = function () {
 
     case 'connected-sites':
       log.debug('rendering confirm password changing screen')
-      return h(ConnectedSites, {key: 'connected-sites'})
+      return h(ConnectedSites, { key: 'connected-sites' })
+    
+      case 'transaction-details':
+      log.debug('rendering the transaction details screen')
+      return h(TransactionDetails, {key:'transaction-details'})
     
     case 'transaction-details':
       log.debug('rendering the transaction details screen')

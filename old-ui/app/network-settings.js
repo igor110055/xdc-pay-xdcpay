@@ -5,6 +5,7 @@ const React = require('react')
 
 
 
+
 class NetworkSettings extends React.Component {
 
   onDeleteRPCNetwork = (networkObj) => {
