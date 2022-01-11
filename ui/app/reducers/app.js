@@ -1021,6 +1021,16 @@ function reduceApp (state, action) {
           context: appState.currentView.context,
         },
       })
+    
+    
+    case actions.TRANSACTION_DETAILS: {
+      return extend(appState, {
+        currentView: {
+          name: 'transaction-details',
+          context: appState.currentView.context,
+        }
+      })
+    }
 
 
 
