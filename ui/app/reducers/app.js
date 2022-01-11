@@ -1021,10 +1021,7 @@ function reduceApp (state, action) {
           context: appState.currentView.context,
         },
       })
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a444dab (contact details update fix)
+
     
     
     case actions.TRANSACTION_DETAILS: {
@@ -1035,11 +1032,7 @@ function reduceApp (state, action) {
         }
       })
     }
-<<<<<<< HEAD
-=======
->>>>>>> 9eb4aa9 (Sorting Issue, Contact Details screen issues)
-=======
->>>>>>> a444dab (contact details update fix)
+
 
 
     case actions.SET_NETWORK_NONCE:
