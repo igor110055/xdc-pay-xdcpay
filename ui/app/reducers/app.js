@@ -1022,6 +1022,8 @@ function reduceApp (state, action) {
         },
       })
 
+
+
     
     
     case actions.TRANSACTION_DETAILS: {
@@ -1032,6 +1034,8 @@ function reduceApp (state, action) {
         }
       })
     }
+
+
 
 
 
