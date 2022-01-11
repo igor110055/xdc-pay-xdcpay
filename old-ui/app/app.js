@@ -33,7 +33,9 @@ const RemoveTokenScreen = require('./remove-token')
 const AddSuggestedTokenScreen = require('./add-suggested-token')
 const Import = require('./accounts/import')
 const ForgetDeviceScreen = require('./components/connect-hardware/forget-screen')
+import { transactionDetails } from '../../ui/app/actions'
 import ConnectHardwareForm from './components/connect-hardware/index'
+import TransactionList from './components/transaction-list'
 import createVaultComplete from './keychains/hd/create-vault-complete'
 import revealSeed from './keychains/hd/reveal-seed'
 
@@ -61,6 +63,8 @@ const Contacts = require('../app/contacts')
 const AddContacts = require('./components/add-contacts')
 const ContactDetails = require('./components/add-contacts/contactDetails')
 const ConnectedSites = require('../app/connectedSites')
+const TransactionDetails = require('./components/transaction-details/transaction-details')
+
 module.exports = compose(
   withRouter,
   connect(mapStateToProps),
@@ -434,6 +438,10 @@ App.prototype.renderPrimary = function () {
     case 'connected-sites':
       log.debug('rendering confirm password changing screen')
       return h(ConnectedSites, {key: 'connected-sites'})
+    
+    case 'transaction-details':
+      log.debug('rendering the transaction details screen')
+      return h(TransactionDetails, {key:'transaction-details'})
 
 
     default:
