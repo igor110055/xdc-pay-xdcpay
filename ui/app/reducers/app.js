@@ -30,7 +30,7 @@ function reduceApp (state, action) {
   // confirm seed words
   var seedWords = state.metamask.seedWords
   var seedConfView = {
-    name: 'createVaultComplete'  ,
+    name: 'createVaultComplete',
     seedWords,
   }
 
@@ -86,7 +86,7 @@ function reduceApp (state, action) {
     addContacts: {
       contactAddress: null,
       contactName: null,
-    }
+    },
   }, state.appState)
 
   let curPendingTxIndex = appState.currentView.pendingTxIndex || 0
@@ -255,7 +255,7 @@ function reduceApp (state, action) {
       })
 
 
-      case actions.GO_CONFIG:
+    case actions.GO_CONFIG:
       return extend(appState, {
         currentView: {
           name: 'config',
@@ -265,7 +265,7 @@ function reduceApp (state, action) {
         warning: null,
       })
 
-      case actions.SHOW_ADVSETTINGS_PAGE:
+    case actions.SHOW_ADVSETTINGS_PAGE:
       return extend(appState, {
         currentView: {
           name: 'advance-settings',
@@ -275,17 +275,17 @@ function reduceApp (state, action) {
         warning: null,
       })
 
-      case actions.SHOW_SECURITYANDPRIVACY_PAGE:
-        return extend(appState, {
-          currentView: {
-            name: 'securityandprivacy-settings',
-            context: appState.currentView.context,
-          },
-          transForward: true,
-          warning: null,
-        })
-    
-        case actions.SHOW_CONTACTS_PAGE:
+    case actions.SHOW_SECURITYANDPRIVACY_PAGE:
+      return extend(appState, {
+        currentView: {
+          name: 'securityandprivacy-settings',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+      })
+
+    case actions.SHOW_CONTACTS_PAGE:
       return extend(appState, {
         currentView: {
           name: 'contacts',
@@ -294,18 +294,18 @@ function reduceApp (state, action) {
         transForward: true,
         warning: null,
       })
-    
-      case actions.SHOW_CONTACT_DETAILS:
-        return extend(appState, {
-          currentView: {
-            name: 'contactDetails',
-            context: appState.currentView.context,
-          },
-          transForward: true,
-          warning: null,
-          currentViewContactObj:action.value,
-        })
-    
+
+    case actions.SHOW_CONTACT_DETAILS:
+      return extend(appState, {
+        currentView: {
+          name: 'contactDetails',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+        currentViewContactObj: action.value,
+      })
+
     case actions.SHOW_NETWORKSETTINGS_PAGE:
       return extend(appState, {
         currentView: {
@@ -327,16 +327,16 @@ function reduceApp (state, action) {
         currentViewNetworkObj: null,
       })
 
-      case actions.SHOW_ADDCONTACTS_PAGE:
-        return extend(appState, {
-          currentView: {
-            name: 'add-contacts',
-            context: appState.currentView.context,
-          },
-          transForward: true,
-          warning: null,
-          currentViewContactObj: null,
-        })
+    case actions.SHOW_ADDCONTACTS_PAGE:
+      return extend(appState, {
+        currentView: {
+          name: 'add-contacts',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+        currentViewContactObj: null,
+      })
 
     case actions.SHOW_VIEW_NETWORK_PAGE:
       return extend(appState, {
@@ -348,17 +348,17 @@ function reduceApp (state, action) {
         warning: null,
         currentViewNetworkObj: action.value,
       })
-    
-      case actions.SHOW_VIEW_CONTACT:
-        return extend(appState, {
-          currentView: {
-            name: 'add-contacts',
-            context: appState.currentView.context,
-          },
-          transForward: true,
-          warning: null,
-          currentViewContactObj: action.value,
-        })
+
+    case actions.SHOW_VIEW_CONTACT:
+      return extend(appState, {
+        currentView: {
+          name: 'add-contacts',
+          context: appState.currentView.context,
+        },
+        transForward: true,
+        warning: null,
+        currentViewContactObj: action.value,
+      })
 
     case actions.SHOW_ALERTSETTINGS_PAGE:
       return extend(appState, {
@@ -471,17 +471,17 @@ function reduceApp (state, action) {
     //     transForward: true,
     //     isLoading: false,
     //   })
-    
+
     case actions.SHOW_NEW_VAULT_SEED1:
       log.debug('----qwerty----')
-        return extend(appState, {
-          currentView: {
-            name: seedWords?'reveal-seed':'reveal-seed',
-            seedWords:action.value,
-          },
-          transForward: true,
-          isLoading: false,
-        })
+      return extend(appState, {
+        currentView: {
+          name: seedWords ? 'reveal-seed' : 'reveal-seed',
+          seedWords: action.value,
+        },
+        transForward: true,
+        isLoading: false,
+      })
 
     case actions.NEW_ACCOUNT_SCREEN:
       return extend(appState, {
@@ -1012,17 +1012,17 @@ function reduceApp (state, action) {
           context: appState.currentView.context,
         },
       })
-   
-    
-      case actions.CONNECTED_SITES:
-        return extend(appState, {
-          currentView: {
-            name: 'connected-sites',
-            context: appState.currentView.context,
-          },
-        })
-    
-      
+
+
+    case actions.CONNECTED_SITES:
+      return extend(appState, {
+        currentView: {
+          name: 'connected-sites',
+          context: appState.currentView.context,
+        },
+      })
+
+
     case actions.SET_NETWORK_NONCE:
       return extend(appState, {
         networkNonce: action.value,

@@ -288,9 +288,9 @@ var actions = {
   SHOW_VIEWNETWORK: 'SHOW_VIEWNETWORK',
   SHOW_GENSETTINGS_PAGE: 'SHOW_GENSETTINGS_PAGE',
   SHOW_ADVSETTINGS_PAGE: 'SHOW_ADVSETTINGS_PAGE',
-  SHOW_SECURITYANDPRIVACY_PAGE: "SHOW_SECURITYANDPRIVACY_PAGE ",
-  SHOW_CONTACTS_PAGE: "SHOW_CONTACTS_PAGE",
-  SHOW_CONTACT_DETAILS: "SHOW_CONTACT_DETAILS",
+  SHOW_SECURITYANDPRIVACY_PAGE: 'SHOW_SECURITYANDPRIVACY_PAGE ',
+  SHOW_CONTACTS_PAGE: 'SHOW_CONTACTS_PAGE',
+  SHOW_CONTACT_DETAILS: 'SHOW_CONTACT_DETAILS',
   SHOW_ALERTSETTINGS_PAGE: 'SHOW_ALERTSETTINGS_PAGE',
   SHOW_NETWORKSETTINGS_PAGE: 'SHOW_NETWORKSETTINGS_PAGE',
   SHOW_ADDNETWORK_PAGE: 'SHOW_ADDNETWORK_PAGE',
@@ -375,7 +375,7 @@ var actions = {
   // locale
   SET_CURRENT_LOCALE: 'SET_CURRENT_LOCALE',
   SET_LOCALE_MESSAGES: 'SET_LOCALE_MESSAGES',
-  
+
   setCurrentLocale,
   updateCurrentLocale,
   setLocaleMessages,
@@ -498,11 +498,11 @@ function showSeedWords () {
 
 }
 
-function connectedSites() {
+function connectedSites () {
   return {
     type: actions.CONNECTED_SITES,
   }
-  
+
 }
 
 function transitionBackward () {
@@ -1851,7 +1851,7 @@ const backgroundSetLocked = () => {
   })
 }
 
-const  updateMetamaskStateFromBackground = () => {
+const updateMetamaskStateFromBackground = () => {
   log.debug(`background.getState`)
 
   return new Promise((resolve, reject) => {
@@ -2032,8 +2032,8 @@ function Contacts () {
   }
 }
 
-function contactDetails (contactObj){
-  return{
+function contactDetails (contactObj) {
+  return {
     type: actions.SHOW_CONTACT_DETAILS,
     value: contactObj,
   }
@@ -2054,10 +2054,10 @@ function showAddNetworkPage () {
   }
 }
 
-function showAddContactsPage(){
+function showAddContactsPage () {
   return {
     type: actions.SHOW_ADDCONTACTS_PAGE,
-}
+  }
 }
 
 function addNetwork (networkObj) {
@@ -2082,6 +2082,7 @@ function viewContact (contactObj) {
     value: contactObj,
   }
 }
+
 function alertSettings () {
   return {
     type: actions.SHOW_ALERTSETTINGS_PAGE,
