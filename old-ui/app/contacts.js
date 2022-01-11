@@ -59,7 +59,7 @@ class Contacts extends React.Component {
                   diameter={27}
                   style={{marginLeft: '10px', cursor: 'pointer', overflow: 'inherit'}}
                 />
-                <div style={{width: 'fit-content',cursor:'pointer',}}>
+                <div style={{width: 'fit-content'}}>
                   {contactObj.name}
                 </div>
               </div>
