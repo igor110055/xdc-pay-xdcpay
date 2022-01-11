@@ -414,6 +414,10 @@ var actions = {
   createCancelTransaction,
   connectedSites,
   CONNECTED_SITES: 'CONNECTED_SITES',
+
+  transactionDetails: transactionDetails,
+  TRANSACTION_DETAILS: 'TRANSACTION_DETAILS',
+
 }
 
 module.exports = actions
@@ -508,6 +512,12 @@ function connectedSites() {
 function transitionBackward () {
   return {
     type: this.TRANSITION_BACKWARD,
+  }
+}
+
+function transactionDetails() {
+  return {
+    type: actions.TRANSACTION_DETAILS,
   }
 }
 

@@ -1583,3 +1583,9 @@ margin-top: 18px;
 font-size: 14px;
 font-family: inter-medium;
 }
+
+.vl {
+  border-left: 2px solid #2049B9;
+  height: 30px;
+  margin-left: 11px;
+}

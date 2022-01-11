@@ -60,6 +60,8 @@ const Contacts = require('../app/contacts')
 const AddContacts = require('./components/add-contacts')
 const ContactDetails = require('./components/add-contacts/contactDetails')
 const ConnectedSites = require('../app/connectedSites')
+const TransactionDetails =require('./components/transaction-details/transaction-details')
+
 module.exports = compose(
   withRouter,
   connect(mapStateToProps)
@@ -431,6 +433,9 @@ App.prototype.renderPrimary = function () {
       log.debug('rendering confirm password changing screen')
       return h(ConnectedSites, { key: 'connected-sites' })
     
+      case 'transaction-details':
+      log.debug('rendering the transaction details screen')
+      return h(TransactionDetails, {key:'transaction-details'})
     
     default:
       log.debug('rendering default, account detail screen')
