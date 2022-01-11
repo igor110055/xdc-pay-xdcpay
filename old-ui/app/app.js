@@ -63,7 +63,7 @@ const Contacts = require('../app/contacts')
 const AddContacts = require('./components/add-contacts')
 const ContactDetails = require('./components/add-contacts/contactDetails')
 const ConnectedSites = require('../app/connectedSites')
-const TransactionDetails = require('./components/transaction-details/transaction-details')
+const TransactionDetails =require('./components/transaction-details/transaction-details')
 
 module.exports = compose(
   withRouter,

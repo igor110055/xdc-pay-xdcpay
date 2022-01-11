@@ -30,7 +30,6 @@ class TransactionDetails extends React.Component {
 
 
 
-
     return (
       <div className="flex-column flex-grow" style={{
         maxHeight: '585px',

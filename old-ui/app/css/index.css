@@ -771,9 +771,9 @@ input.large-input {
   margin: 0 auto;
 }
 
-.identity-panel .identity-data {
+/* .identity-panel .identity-data {
   /* margin: 8px 8px 8px 18px; */
-}
+/* } */ */
 
 .identity-panel i {
   margin-left: 6px;
@@ -834,9 +834,9 @@ input.large-input {
   flex-grow: 10;
 }
 
-.name-label {
+/* .name-label {
   /* margin-left: 18px; */
-}
+ */
 
 .unapproved-tx-icon {
   height: 16px;
