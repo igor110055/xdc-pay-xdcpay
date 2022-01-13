@@ -1,9 +1,12 @@
+import { config } from 'bluebird'
 import React from 'react'
+import { goConfig, goHome, viewNetwork } from '../../../../ui/app/actions'
 
 const AddContactComponent = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {onStateChange, onAddContactClicked, warningMsg, contactAddress, contactName, onBackClick,t} = props
-
+  const { onStateChange, onAddContactClicked, warningMsg, onBackClick, t, state } = props
+  const contactObj = state.viewContactObj
+  const {contactAddress,contactName} = state
   return (
     <div
       className="flex-column flex-grow"
@@ -22,7 +25,7 @@ const AddContactComponent = (props) => {
           onClick={onBackClick}
         />
         <h2 style={{fontFamily: 'Inter-bold', marginLeft: '98px'}}>
-          Add Contact
+          {`${contactObj ? 'Edit' : 'Add'} Contact`}
         </h2>
       </div>
       {warningMsg && <div className="error">{warningMsg}</div>}
@@ -89,6 +92,9 @@ const AddContactComponent = (props) => {
               border: 'none',
               color: '#2a2a2a',
             }}
+            onClick={() => {
+            onBackClick()
+            }}
           >
             {`${ t('cancel')}`}
 
@@ -109,10 +115,10 @@ const AddContactComponent = (props) => {
             }}
             onClick={(event) => {
               event.preventDefault()
-              onAddContactClicked()
+              onAddContactClicked(!!contactObj)
             }}
           >
-            {'Add'}
+          {`${!!contactObj ? 'Update' : 'Add'}`}
           </div>
         </div>
       </div>
