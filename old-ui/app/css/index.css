@@ -1562,6 +1562,14 @@ input:checked + .slider:before {
 
 }
 
+/* Trasaction-details-screen  */
+.details {
+  margin-left: 17px;
+    color: #2149B9;
+    font-size: 14px;
+}
+
+
 .trasaction-details-from-to {
   font-family: inter-medium;
   font-size: 12px;
@@ -1583,6 +1591,10 @@ margin-top: 18px;
 font-size: 14px;
 font-family: inter-medium;
 }
+@media screen (min-width 400)and (max-width 1920){
+  
+}
+
 
 .vl {
   border-left: 2px solid #2049B9;

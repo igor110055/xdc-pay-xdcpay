@@ -410,5 +410,8 @@ AccountDetailScreen.prototype.transactionList = function () {
     viewPendingTx: (txId) => {
       this.props.dispatch(actions.viewPendingTx(txId))
     },
+    viewTxDetails: (txId) => {
+      this.props.dispatch(actions.transactionDetails(txId))
+    },
   })
 }

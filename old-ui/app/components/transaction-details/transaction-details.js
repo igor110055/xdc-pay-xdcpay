@@ -2,29 +2,18 @@
 const connect = require('react-redux').connect
 const actions = require('../../../../ui/app/actions')
 const React = require('react')
-const CopyButton = require('./components/copy/copy-button')
-
-const { toChecksumAddress } = require('./util')
-
+const CopyButton = require('../../components/copy/copy-button')
+const { toChecksumAddress } = require('../../util')
 
 
-class NetworkSettings extends React.Component {
+class TransactionDetails extends React.Component {
 
-  onDeleteRPCNetwork = (networkObj) => {
-    const state = this.props
-    state.dispatch(actions.delRpcTarget(networkObj))
-    if (state.metamask.network === networkObj.chainId) {
-      state.dispatch(actions.setProviderType('xdc'))
-    }
-  }
 
   render() {
 
     function shorten(b, amountL = 7, /*amountR = 4,*/ stars = 3) {
-
       return `${b.slice(0, amountL)}${'.'.repeat(stars)}${b.slice(
         b.length - 4,
-
         b.length,
       )}`
     }
@@ -55,8 +44,8 @@ class NetworkSettings extends React.Component {
             </div>
           </div>
         </div>
-
-        <h2 style={{ marginLeft: '17px', color: '#2149B9', opacity: '1', fontSize:'14' }}>Details</h2>
+       
+        <div className='details'>Details</div>
 
         {/* flexbox */}
 
@@ -101,6 +90,8 @@ class NetworkSettings extends React.Component {
             <h1 style={{color: '#848484'}}>XDC</h1>
           </div></div>
 
+  {/* Transaction-log */}
+
           <h2 style={{ marginLeft: '17px', marginTop: '25px', color:'#2149B9', opacity: '1', fontSize:'14', width:'91%', paddingBottom:'11px', borderBottom:'1px solid #E3E7EB' }}>Transaction Log</h2>
       
       <div style={{fontSize: '12px', padding: '6px 6px 50px 6px' }}>
@@ -114,7 +105,7 @@ class NetworkSettings extends React.Component {
         </div>
         <div style={{ display:'flex'}}>
         <div style={{display: 'flex', flexDirection: 'column'}} >
-        <img style={{ marginRight:'10px'}} src="/images/Assets/TransactionCreated.svg"/>
+        <img style={{ marginRight:'10px'}} src="/images/Assets/TransactionSubmitted.svg"/>
         <div className='vl' ></div>
         </div>
         <div> trasaction submitted with estimated gas fee of 1.00 GWEI at 16.29 on 10/11/2021. </div>
@@ -122,13 +113,11 @@ class NetworkSettings extends React.Component {
 
         <div style={{ display:'flex'}}>
         <div style={{display: 'flex', flexDirection: 'column'}} >
-        <img style={{ marginRight:'10px'}} src="/images/Assets/TransactionCreated.svg"/>
+        <img style={{ marginRight:'10px'}} src="/images/Assets/TransactionComplete.svg"/>
         </div>
         <div> trasaction confirmed at 16:30 on 10/11/2021. </div>
         </div>
       </div>
-
-
 
       </div>
     )
@@ -144,5 +133,5 @@ function mapStateToProps(state) {
   }
 }
 
-module.exports = connect(mapStateToProps)(NetworkSettings)
+module.exports = connect(mapStateToProps)(TransactionDetails)
 
