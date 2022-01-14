@@ -20,7 +20,9 @@ class ContactDetails extends React.Component {
       shapeShiftTxList,
       conversionRate,
     } = this.props
-    const currentContactTxn = transactions.filter((txnObj) => txnObj.txReceipt.to === contactObj.address)
+    const transactionAddress = contactObj.address.replace("xdc","0x")
+    const currentContactTxn = transactions.filter((txnObj) => txnObj.txParams.to.trim() === transactionAddress.trim())
+    console.log(amountTo,'<<>>')
     return (
       <div
         className="flex-column flex-grow"
@@ -54,7 +56,7 @@ class ContactDetails extends React.Component {
             Edit
           </div>
         </div>
-        <div className="list">
+        <div style={{padding:'0 0 29px 0'}}>
           <div style={{borderBottom: '1px solid #E3E7EB'}}>
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <Identicon

@@ -316,7 +316,9 @@ var actions = {
   removeSuggestedTokens,
   UPDATE_TOKENS: 'UPDATE_TOKENS',
   setRpcTarget: setRpcTarget,
+  setContactTarget: setContactTarget,
   delRpcTarget: delRpcTarget,
+  delContact : delContact,
   setProviderType: setProviderType,
   SET_NETWORKNAME: 'SET_NETWORKNAME',
   setNetworkName: setNetworkName,
@@ -2093,6 +2095,8 @@ function viewContact (contactObj) {
   }
 }
 
+
+
 function alertSettings () {
   return {
     type: actions.SHOW_ALERTSETTINGS_PAGE,
@@ -2394,6 +2398,21 @@ function setRpcTarget (rpcNetworkObj) {
   }
 }
 
+function setContactTarget (contactObj) {
+  return (dispatch) => {
+    log.debug(`background.setContact: ${contactObj}`)
+    background.setContact(contactObj, (err, result) => {
+      if (err) {
+        log.error(err)
+        return dispatch(
+          actions.displayWarning('Had a problem changing networks!'),
+        )
+      }
+      // dispatch(actions.setSelectedToken())
+    })
+  }
+}
+
 function setNetworkName (networkName) {
   return (dispatch) => {
     log.debug(`background.setNetworkName: ${networkName}`)
@@ -2419,6 +2438,20 @@ function delRpcTarget (oldRPCObj) {
       }
       dispatch(actions.displayWarning(''))
       dispatch(actions.setSelectedToken())
+    })
+  }
+}
+
+function delContact (oldContactObj) {
+  return (dispatch) => {
+    log.debug(`background.delContactTarget: ${oldContactObj}`)
+    background.delContact(oldContactObj, (err, result) => {
+      if (err) {
+        log.error(err)
+        return dispatch(self.displayWarning('Had a problem removing Contact!'))
+      }
+      dispatch(actions.displayWarning(' ! WARNING '))
+      
     })
   }
 }

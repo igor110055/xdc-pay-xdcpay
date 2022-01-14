@@ -17,6 +17,8 @@ export default class AddContact extends React.Component {
     }
   }
 
+
+    
   onBackClick = () => {
     // eslint-disable-next-line react/prop-types
     this.props.dispatch(actions.Contacts())
@@ -29,7 +31,11 @@ export default class AddContact extends React.Component {
   onAddContactClicked = async () => {
     this.props.dispatch(actions.displayWarning(''))
     const {contactAddress, contactName} = this.state
-
+    const addedContactObj = {
+      address: contactAddress,
+      name: contactName,
+      
+  }
     await this.props.dispatch(actions.addToAddressBook(contactAddress, contactName))
     this.props.dispatch(actions.Contacts())
   }
