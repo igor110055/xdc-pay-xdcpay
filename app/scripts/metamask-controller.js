@@ -1727,7 +1727,7 @@ module.exports = class XdcController extends EventEmitter {
    * * @param {string} name - A RPC URL to delete.
    */
   async delContact(address,name) {
-     await this.addressBookController._addToAddressBook(address,name, true)
+     await this.addressBookController.updateAddressBook(address,name, true)
     // await this.preferencesController.updateAddressBook(customContactObject, true)
   }
 
