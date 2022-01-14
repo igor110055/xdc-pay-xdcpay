@@ -48,13 +48,13 @@ class AddressBookController {
     })
   }
 
-  // updateAddressBook(customContactObject, remove = false) {
-  //   return this.addToAddressBook(customContactObject, remove)
-  //     .then((contactList) => {
-  //       this.store.updateState({ addressBook: contactList })
-  //       return Promise.resolve()
-  //     })
-  // }
+  updateAddressBook(address,name, remove = false) {
+    return this._addToAddressBook(address,name, remove)
+      .then((address,name) => {
+        this.store.updateState({ addressBook: address,name })
+        return Promise.resolve()
+      })
+  }
 
   /**
    * Performs the logic to add the address and name into the address book. The pushed object is an object of two
