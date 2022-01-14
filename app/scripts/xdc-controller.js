@@ -410,7 +410,10 @@ module.exports = class XdcController extends EventEmitter {
       // network management
       setProviderType: nodeify(networkController.setProviderType, networkController),
       setCustomRpc: nodeify(this.setCustomRpc, this),
+      setContact: nodeify(this.setContact,this),
       delCustomRpc: nodeify(this.delCustomRpc, this),
+      delContact : nodeify(this.delContact,this),
+     
 
       // PreferencesController
       setSelectedAddress: nodeify(preferencesController.setSelectedAddress, preferencesController),
@@ -1698,6 +1701,17 @@ module.exports = class XdcController extends EventEmitter {
     await this.preferencesController.updateFrequentRpcList(customRPCObject)
     return customRPCObject
   }
+  /**
+   * A method for selecting a custom URL for an ethereum RPC provider.
+   * @param {string} customContactObject - A custom RPC Object for a valid Ethereum RPC API.
+   * @returns {Promise<String>} - The RPC Target URL confirmed.
+   */
+   async setContact(customContactObject) {
+    this.networkController.setContactName(customContactObject.name)
+    await this.preferencesController.updateFrequentContactList(customContactObject)
+    return customContactObject
+  }
+
 
   /**
    * A method for deleting a selected custom URL.
@@ -1707,6 +1721,14 @@ module.exports = class XdcController extends EventEmitter {
     await this.preferencesController.updateFrequentRpcList(rpcTarget, true)
   }
 
+   /**
+   * A method for deleting a selected custom URL.
+   * @param {string} customContactObject - A RPC URL to delete.
+   */
+    async delContact(customContactObject) {
+      await this.preferencesController.updateFrequentContactList(customContactObject, true)
+  }
+  
   /**
    * Sets whether or not to use the blockie identicon format.
    * @param {boolean} val - True for bockie, false for jazzicon.

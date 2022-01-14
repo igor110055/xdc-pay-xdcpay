@@ -1,12 +1,15 @@
 import { config } from 'bluebird'
 import React from 'react'
-import { goConfig, goHome, viewNetwork } from '../../../../ui/app/actions'
+import { setGasPrice } from '../../../../ui/app/actions'
+const actions = require('../../../../ui/app/actions')
+
 
 const AddContactComponent = (props) => {
   // eslint-disable-next-line react/prop-types
-  const { onStateChange, onAddContactClicked, warningMsg, onBackClick, t, state } = props
-  const contactObj = state.viewContactObj
-  const {contactAddress,contactName} = state
+  const { onStateChange, onAddContactClicked, warningMsg, onBackClick, t,viewContactObj, state } = props
+
+  const { contactAddress, contactName } = state
+  
   return (
     <div
       className="flex-column flex-grow"
@@ -15,6 +18,7 @@ const AddContactComponent = (props) => {
       <div
         className="section-title flex-row"
         style={{
+          justifyContent: 'space-between',
           borderBottom: '1px solid #E3E7EB',
           paddingBottom: '17px',
         }}
@@ -24,8 +28,11 @@ const AddContactComponent = (props) => {
           style={{marginLeft: '17px', cursor: 'pointer'}}
           onClick={onBackClick}
         />
-        <h2 style={{fontFamily: 'Inter-bold', marginLeft: '98px'}}>
-          {`${contactObj ? 'Edit' : 'Add'} Contact`}
+        <h2 style={{fontFamily: 'Inter-bold', fontSize:'15px', marginLeft:'28px'}}>
+          {`${viewContactObj ? 'Edit' : 'Add'} Contact`}
+        </h2>
+        <h2 style={{color:'#FF0035', fontSize:'15px' , fontFamily:"Inter-Medium", marginRight:'15px', cursor:'pointer'}}  onClick={() => state.dispatch(actions.delContact(viewContactObj))}>
+        {`${viewContactObj ? 'Delete' : ' '}`}
         </h2>
       </div>
       {warningMsg && <div className="error">{warningMsg}</div>}
@@ -48,7 +55,7 @@ const AddContactComponent = (props) => {
             value={contactAddress}
             placeholder="Contact's Wallet Address"
             onChange={onStateChange}
-            style={{width: '265px', border: 'none', color: '#2A2A2A'}}
+            style={{width: '252px', border: 'none', color: '#2A2A2A'}}
           />
           <img
             src="/images/Assets/Scan.svg"
@@ -115,10 +122,10 @@ const AddContactComponent = (props) => {
             }}
             onClick={(event) => {
               event.preventDefault()
-              onAddContactClicked(!!contactObj)
+              onAddContactClicked(!!viewContactObj)
             }}
           >
-          {`${!!contactObj ? 'Update' : 'Add'}`}
+          {`${!!viewContactObj ? 'Update' : 'Add'}`}
           </div>
         </div>
       </div>
