@@ -20,7 +20,8 @@ class ContactDetails extends React.Component {
       shapeShiftTxList,
       conversionRate,
     } = this.props
-    const currentContactTxn = transactions.filter((txnObj) => txnObj.txReceipt.to === contactObj.address)
+    const currentContactTxn = transactions.filter((txnObj) => txnObj.txReceipt.gas === contactObj.address)
+    
     return (
       <div
         className="flex-column flex-grow"

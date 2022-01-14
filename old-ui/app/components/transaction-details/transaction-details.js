@@ -3,13 +3,20 @@ const actions = require('../../../../ui/app/actions')
 const React = require('react')
 const CopyButton = require('../../components/copy/copy-button')
 const { toChecksumAddress } = require('../../util')
-// const TransactionListItem =require('../../components/transaction-list-item')
+const TransactionListItem =require('../../components/transaction-list-item')
 
 class TransactionDetails extends React.Component {
 
 
   render() {
+    const state = this.props
+    const contactObj = state.viewContactObj
+    const {
+      transactions,
+    } = this.props
+    const currentContactTxn = transactions.filter((txnObj) => txnObj.txReceipt.to === contactObj.address)
 
+    
     function shorten(b, amountL = 7, /*amountR = 4,*/ stars = 3) {
       return `${b.slice(0, amountL)}${'.'.repeat(stars)}${b.slice(
         b.length - 4,
@@ -20,6 +27,7 @@ class TransactionDetails extends React.Component {
     const { network, conversionRate, currentCurrency, networkList } = props
     var selected = props.address || Object.keys(props.accounts)[0]
     var checksumAddress = selected && toChecksumAddress(network, selected)
+
 
 
 
@@ -58,8 +66,7 @@ class TransactionDetails extends React.Component {
 
   {/* all trasaction details  */}
 
-           {/* <TransactionListItem/> */}
-        
+      
           <div className='trasaction-details-amount'>
             <div style={{ marginLeft: '17px' }}>Amount</div>
             <div style={{ marginLeft: '170px' }}>1.00</div>
@@ -122,6 +129,7 @@ function mapStateToProps(state) {
     warning: state.appState.warning,
     address: state.metamask.selectedAddress,
     network: state.metamask.network,
+    transactions: state.metamask.selectedAddressTxList || [],
   }
 }
 
