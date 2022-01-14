@@ -28,6 +28,7 @@ class PreferencesController {
       frequentRpcList: [],
       currentAccountTab: 'history',
       accountTokens: {},
+      addressBook:[],
       assetImages: {},
       tokens: [],
       suggestedTokens: {},
@@ -387,6 +388,14 @@ class PreferencesController {
     return this.addToFrequentRpcList(customRPCObject, remove)
       .then((rpcList) => {
         this.store.updateState({ frequentRpcList: rpcList })
+        return Promise.resolve()
+      })
+  }
+
+  updateAddressBook(customContactObject, remove = false) {
+    return this.addToAddressBook(customContactObject, remove)
+      .then((contactList) => {
+        this.store.updateState({ addressBook: contactList })
         return Promise.resolve()
       })
   }
