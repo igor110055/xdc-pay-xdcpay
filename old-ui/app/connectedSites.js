@@ -16,7 +16,7 @@ class ConnectedSites extends React.Component {
       }}>
         <div className="section-title flex-row" style={{borderBottom: '1px solid #E3E7EB', paddingBottom: '17px'}}>
           <img src="/images/Assets/BackArrow.svg" style={{marginLeft: '12px', cursor: 'pointer'}} onClick={() => {
-            state.dispatch(actions.goConfig())
+            state.dispatch(actions.goHome())
           }}/>
           <h2 style={{marginLeft: '80px', fontFamily: 'Inter-bold'}}>Connected Sites</h2>
            
