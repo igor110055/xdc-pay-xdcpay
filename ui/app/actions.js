@@ -2435,10 +2435,10 @@ function delRpcTarget (oldRPCObj) {
   }
 }
 
-function delContact (oldContactObj) {
+function delContact (recipient, nickname) {
   return (dispatch) => {
-    log.debug(`background.delContactTarget: ${oldContactObj}`)
-    background.delContact(oldContactObj, (err, result) => {
+    log.debug(`background.delContactTarget: ${recipient, nickname}`)
+    background.delContact(recipient, nickname, (err, result) => {
       if (err) {
         log.error(err)
         return dispatch(self.displayWarning('Had a problem removing Contact!'))
