@@ -177,6 +177,7 @@ var actions = {
   showSendContractPage,
   ADD_TO_ADDRESS_BOOK: 'ADD_TO_ADDRESS_BOOK',
   addToAddressBook: addToAddressBook,
+  delContact : delContact,
   REQUEST_ACCOUNT_EXPORT: 'REQUEST_ACCOUNT_EXPORT',
   requestExportAccount: requestExportAccount,
   EXPORT_ACCOUNT: 'EXPORT_ACCOUNT',
@@ -317,7 +318,6 @@ var actions = {
   setRpcTarget: setRpcTarget,
   setContactTarget: setContactTarget,
   delRpcTarget: delRpcTarget,
-  delContact : delContact,
   setProviderType: setProviderType,
   SET_NETWORKNAME: 'SET_NETWORKNAME',
   setNetworkName: setNetworkName,
@@ -2435,19 +2435,6 @@ function delRpcTarget (oldRPCObj) {
   }
 }
 
-function delContact (recipient, nickname) {
-  return (dispatch) => {
-    log.debug(`background.delContactTarget: ${recipient, nickname}`)
-    background.delContact(recipient, nickname, (err, result) => {
-      if (err) {
-        log.error(err)
-        return dispatch(self.displayWarning('Had a problem removing Contact!'))
-      }
-      dispatch(actions.displayWarning(' ! WARNING '))
-      
-    })
-  }
-}
 
 // Calls the addressBookController to add a new address.
 function addToAddressBook (recipient, nickname = '') {
@@ -2458,6 +2445,21 @@ function addToAddressBook (recipient, nickname = '') {
         log.error(err)
         return dispatch(self.displayWarning('Address book failed to update'))
       }
+    })
+  }
+}
+
+function delContact (viewContactObj) {
+  return (dispatch) => {
+    log.debug(`background.updateAddressBook: ${viewContactObj}`)
+    console.log(viewContactObj,'{-+-}')
+    background.delSelectedContact(viewContactObj, (err, result) => {
+      if (err) {
+        log.error(err)
+        return dispatch(self.displayWarning('Had a problem removing Contact!'))
+      }
+      dispatch(actions.displayWarning(' ! WARNING '))
+      
     })
   }
 }

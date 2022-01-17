@@ -39,10 +39,10 @@ export default class AddContact extends React.Component {
     await this.props.dispatch(actions.addToAddressBook(contactAddress, contactName))
     this.props.dispatch(actions.Contacts())
   }
-  onDeleteClicked = async () => {
+  onDeleteClicked = async (viewContactObj) => {
     this.props.dispatch(actions.displayWarning(''))
-    const {contactAddress, contactName} = this.state
-    await this.props.dispatch(actions.delContact(contactAddress, contactName))
+    console.log(viewContactObj,'</+-+/>')
+    await this.props.dispatch(actions.delContact(viewContactObj))
     this.props.dispatch(actions.Contacts())
 
 
