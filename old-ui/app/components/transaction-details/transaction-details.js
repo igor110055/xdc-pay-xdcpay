@@ -5,9 +5,7 @@ const React = require('react')
 const CopyButton = require('../../components/copy/copy-button')
 const { toChecksumAddress } = require('../../util')
 
-
 class TransactionDetails extends React.Component {
-
 
   render() {
 
@@ -22,14 +20,19 @@ class TransactionDetails extends React.Component {
     var selected = props.address || Object.keys(props.accounts)[0]
     var checksumAddress = selected && toChecksumAddress(network, selected)
 
+    // Date -  
+    // var date = formatDate(transaction.time)
 
     const {
       transactions,
     } = this.props
     // const currentContactTxn = transactions.filter((txnObj) => txnObj.txReceipt.to === address)
     const To = transactions[2].txParams.to
+    const Gas = transactions[2].txParams.gas
+    const Value = transactions[2].txParams.value
+
     // const To = transactions.filter((txnObj) => txnObj.txParams.to === transaction,selected)
-    console.log(To, '//')
+    console.log(Gas, '//')
 
 
     return (
@@ -67,7 +70,7 @@ class TransactionDetails extends React.Component {
         {/* all trasaction details  */}
         <div className='trasaction-details-amount'>
           <div style={{ marginLeft: '17px' }}>Amount</div>
-          <div style={{ marginLeft: '170px' }}>100.00</div>
+          <div style={{ marginLeft: '170px' }}>{Value}</div>
           <h1 style={{ color: '#848484' }}>XDC</h1>
         </div>
 
@@ -78,7 +81,7 @@ class TransactionDetails extends React.Component {
 
         <div className='trasaction-details-amount'>
           <div style={{ marginLeft: '16px' }}>Gas Price (GWEI)</div>
-          <div>1.00</div>
+          <div>{Gas}</div>
         </div>
 
         <div className='trasaction-details-amount'>
@@ -117,9 +120,15 @@ class TransactionDetails extends React.Component {
         </div>
 
       </div>
+
     )
   }
 }
+
+
+// function formatDate (date) {
+//   return vreme.format(new Date(date), 'Mar 16 2014, 14:30')
+// }
 
 function mapStateToProps(state) {
   return {
