@@ -38,11 +38,7 @@ class Contacts extends React.Component {
         </div>
         <div className="list">
           {contactList.map((contactObj, index) => (
-<<<<<<< HEAD
             <div key={index} 
-=======
-            <div key={index} onClick={() => state.dispatch(actions.contactDetails(contactObj))}
->>>>>>> c3140d588b8779d50f518034379a8f4c337e147a
                  style={{
                    borderBottom: '1px solid #E3E7EB',
                    fontFamily: 'inter-medium',

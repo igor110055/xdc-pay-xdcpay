@@ -57,11 +57,7 @@ class ContactDetails extends React.Component {
             Edit
           </div>
         </div>
-<<<<<<< HEAD
         <div style={{padding:'0 0 29px 0'}}>
-=======
-        <div className="list">
->>>>>>> c3140d588b8779d50f518034379a8f4c337e147a
           <div style={{borderBottom: '1px solid #E3E7EB'}}>
             <div style={{display: 'flex', justifyContent: 'center'}}>
               <Identicon

@@ -122,17 +122,10 @@ const AddContactComponent = (props) => {
             }}
             onClick={(event) => {
               event.preventDefault()
-<<<<<<< HEAD
               onAddContactClicked(!!viewContactObj)
             }}
           >
           {`${!!viewContactObj ? 'Update' : 'Add'}`}
-=======
-              onAddContactClicked(!!contactObj)
-            }}
-          >
-          {`${!!contactObj ? 'Update' : 'Add'}`}
->>>>>>> c3140d588b8779d50f518034379a8f4c337e147a
           </div>
         </div>
       </div>

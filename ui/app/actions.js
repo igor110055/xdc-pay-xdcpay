@@ -2096,11 +2096,8 @@ function viewContact (contactObj) {
   }
 }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> c3140d588b8779d50f518034379a8f4c337e147a
 function alertSettings () {
   return {
     type: actions.SHOW_ALERTSETTINGS_PAGE,
