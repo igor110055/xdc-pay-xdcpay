@@ -11,8 +11,21 @@ import React, { useState } from 'react';
 import CustomDropdown from '../../../../old-ui/app/components/common/custom-dropdown';
 import PropTypes from 'prop-types'
 
-const timePeriod = ['1 minutes', '2 minutes', '5 minutes']
+import timePeriodOption from './timePeriod.json';
+
+// Dropdown.......
+// const timePeriod = ['1 minutes', '2 minutes', '5 minutes']
+const TimePeriod = timePeriodOption.map(timePeriod => {
+    return {
+      displayValue: timePeriod.name,
+      key: timePeriod.code,
+      value: timePeriod.code
+    }
+  }) 
   
+
+
+
 class SecurityAndPrivacySettings extends React.Component{
    
     
@@ -31,7 +44,7 @@ class SecurityAndPrivacySettings extends React.Component{
         const state = this.props;
         const metamaskState = state.metamask;
         const {t} = this .context;
-        // const showIncomingTransaction = metamaskState.showIncomingTransaction;
+      
 
         return(
         <div className="flex-column flex-grow" style={{maxHeight: "585px",
@@ -61,16 +74,14 @@ class SecurityAndPrivacySettings extends React.Component{
                 <span style={{ fontWeight: "bold", fontSize: "14px", color: "#2149B9" }}>Auto-Lock Timer</span><br />
                     <p style={{ fontSize: '14px', marginBottom: '15px', fontFamily: 'Inter-medium' }} >Set the idle time in minutes before the wallet will be locked.</p>
                    
+
                     <CustomDropdown
-        //   placeholder={(currentCurrency)}
-                       
-          options={timePeriod}
-          selectedOption={timePeriod}
-          // onSelect={newCurrency => setCurrentCurrency(newCurrency)}
-        />
-              {/* <SimpleDropdown
-                      style={{ border: '1px solid #E3E7EB',}} /> */}
-                    {/* {currentConversionInformation(metamaskState, state)} */}
+            placeholder={(TimePeriod)}
+            options={TimePeriod}
+            selectedOption={TimePeriod}
+            // onSelect={}
+          />
+            
                 </div>
                 <div style={{
                     padding: ' 15px 17px 20px 15px ',
