@@ -27,9 +27,9 @@ class TransactionDetails extends React.Component {
       transactions,
     } = this.props
     // const currentContactTxn = transactions.filter((txnObj) => txnObj.txReceipt.to === address)
-    const To = transactions[5].txParams.to
-    const Gas = transactions[0].txParams.gas
-    const Value = transactions[0].txParams.value
+    const To = transactions[1].txParams.to
+    const Gas = transactions[1].txParams.gas
+    const Value = transactions[1].txParams.value
     // const To = transactions.filter((txnObj) => txnObj.txParams.to === transaction,selected)
     console.log(To, '//')
 
