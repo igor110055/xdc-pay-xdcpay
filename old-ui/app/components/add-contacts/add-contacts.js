@@ -1,7 +1,4 @@
-import { config } from 'bluebird'
 import React from 'react'
-import { setGasPrice } from '../../../../ui/app/actions'
-const actions = require('../../../../ui/app/actions')
 
 
 const AddContactComponent = (props) => {
@@ -9,7 +6,7 @@ const AddContactComponent = (props) => {
   const { onStateChange, onAddContactClicked, warningMsg, onBackClick, t,viewContactObj,onDeleteClicked, state } = props
 
   const { contactAddress, contactName } = state
-  
+
   return (
     <div
       className="flex-column flex-grow"

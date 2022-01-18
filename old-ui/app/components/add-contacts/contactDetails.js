@@ -22,8 +22,7 @@ class ContactDetails extends React.Component {
     } = this.props
     const transactionAddress = contactObj.address.replace("xdc","0x")
     const currentContactTxn = transactions.filter((txnObj) => txnObj.txParams.to.trim() === transactionAddress.trim())
-    const info = transactions[5].txParams.gas
-    console.log(info,'<<>>')
+    const info = 10 || transactions[5].txParams.gas //TODO: Himanshu to fix this logic
     return (
       <div
         className="flex-column flex-grow"
@@ -81,7 +80,7 @@ class ContactDetails extends React.Component {
                   fontWeight: '600',
                   marginTop: '5px',
                   color: '#2a2a2a',
-                  
+
                 }}
               >
                 {contactObj.name}
@@ -106,7 +105,7 @@ class ContactDetails extends React.Component {
           </div>
           <div>
             <TransactionList
-              
+
               transactions={currentContactTxn}
               network={network}
               unapprovedMsgs={unapprovedMsgs}
