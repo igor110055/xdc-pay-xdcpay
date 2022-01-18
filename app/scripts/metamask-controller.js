@@ -411,7 +411,6 @@ module.exports = class XdcController extends EventEmitter {
       setProviderType: nodeify(networkController.setProviderType, networkController),
       setCustomRpc: nodeify(this.setCustomRpc, this),
       delCustomRpc: nodeify(this.delCustomRpc, this),
-      delSelectedContact : nodeify(this.delSelectedContact,this),
 
       // PreferencesController
       setSelectedAddress: nodeify(preferencesController.setSelectedAddress, preferencesController),
@@ -1718,17 +1717,6 @@ module.exports = class XdcController extends EventEmitter {
    */
   async delCustomRpc(customRPCObject) {
     await this.preferencesController.updateFrequentRpcList(customRPCObject, true)
-  }
-
-
-  /**
-   * A method for deleting a selected Contact.
-   * @param {string} addedContactObj - Address to delete.
-   * @param {string} name - Name to delete.
-   */
-  async delSelectedContact(addedContactObj) {
-    console.log(addedContactObj,'******')
-     await this.addressBookController.updateAddressBook(addedContactObj, true)
   }
 
   /**
