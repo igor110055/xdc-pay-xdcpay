@@ -392,8 +392,6 @@ class PreferencesController {
       })
   }
 
-  
-
   /**
    * Setter for the `currentAccountTab` property
    *

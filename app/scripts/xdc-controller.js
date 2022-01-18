@@ -410,6 +410,7 @@ module.exports = class XdcController extends EventEmitter {
       // network management
       setProviderType: nodeify(networkController.setProviderType, networkController),
       setCustomRpc: nodeify(this.setCustomRpc, this),
+      setContact: nodeify(this.setContact,this),
       delCustomRpc: nodeify(this.delCustomRpc, this),
       delSelectedContact : nodeify(this.delSelectedContact,this),
      
@@ -1721,6 +1722,14 @@ module.exports = class XdcController extends EventEmitter {
     await this.preferencesController.updateFrequentRpcList(rpcTarget, true)
   }
 
+   /**
+   * A method for deleting a selected custom URL.
+   * @param {string} customContactObject - A RPC URL to delete.
+   */
+    async delContact(customContactObject) {
+      await this.preferencesController.updateFrequentContactList(customContactObject, true)
+  }
+  
   /**
    * A method for deleting a selected Contact.
    * @param {string} addedContactObj - Address to delete.
