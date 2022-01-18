@@ -18,7 +18,7 @@ export default class AddContact extends React.Component {
   }
 
 
-    
+
   onBackClick = () => {
     // eslint-disable-next-line react/prop-types
     this.props.dispatch(actions.Contacts())
@@ -31,21 +31,13 @@ export default class AddContact extends React.Component {
   onAddContactClicked = async () => {
     this.props.dispatch(actions.displayWarning(''))
     const {contactAddress, contactName} = this.state
-    const addedContactObj = {
-      address: contactAddress,
-      name: contactName,
-      
-  }
-    await this.props.dispatch(actions.addToAddressBook(contactAddress, contactName))
+    await this.props.dispatch(actions.addToAddressBook(contactName, contactAddress))
     this.props.dispatch(actions.Contacts())
   }
   onDeleteClicked = async (viewContactObj) => {
     this.props.dispatch(actions.displayWarning(''))
-    console.log(viewContactObj,'</+-+/>')
-    await this.props.dispatch(actions.delContact(viewContactObj))
+    await this.props.dispatch(actions.addToAddressBook(viewContactObj.name, viewContactObj.address, true))
     this.props.dispatch(actions.Contacts())
-
-
   }
   static contextTypes = {
     t: PropTypes.func,
