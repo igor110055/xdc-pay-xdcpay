@@ -1721,14 +1721,6 @@ module.exports = class XdcController extends EventEmitter {
   async delCustomRpc (rpcTarget) {
     await this.preferencesController.updateFrequentRpcList(rpcTarget, true)
   }
-
-   /**
-   * A method for deleting a selected custom URL.
-   * @param {string} customContactObject - A RPC URL to delete.
-   */
-    async delContact(customContactObject) {
-      await this.preferencesController.updateFrequentContactList(customContactObject, true)
-  }
   
   /**
    * A method for deleting a selected Contact.

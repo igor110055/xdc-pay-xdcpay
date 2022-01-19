@@ -123,7 +123,7 @@ class MainMenu extends Component {
           onClick={() => { this.props.showConfigPage() }}
         >
           <img className='wallet-options-icon' src='/images/Assets/Settings.svg'></img>
-          Settings</DropdownMenuItem>
+         Website Name</DropdownMenuItem>
 
         <DropdownMenuItem
           closeMenu={() => this.props.changeState(isMainMenuOpen)}
