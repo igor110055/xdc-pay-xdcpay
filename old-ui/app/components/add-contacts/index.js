@@ -12,8 +12,8 @@ export default class AddContact extends React.Component {
     // eslint-disable-next-line react/prop-types
     // const viewContactObj = this.props.viewContactObj;
     this.state = {
-      contactAddress: contactObj ? contactObj.address : ' ',
-      contactName: contactObj ? contactObj.name : ' ',
+      contactAddress: contactObj ? contactObj.address : '',
+      contactName: contactObj ? contactObj.name : '',
     }
   }
 
