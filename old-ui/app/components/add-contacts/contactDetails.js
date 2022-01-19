@@ -22,7 +22,6 @@ class ContactDetails extends React.Component {
     } = this.props
     const transactionAddress = contactObj.address.replace("xdc","0x")
     const currentContactTxn = transactions.filter((txnObj) => txnObj.txParams.to.trim() === transactionAddress.trim())
-    const info = 10 || transactions[5].txParams.gas //TODO: Himanshu to fix this logic
     return (
       <div
         className="flex-column flex-grow"

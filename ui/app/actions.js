@@ -318,7 +318,6 @@ var actions = {
   setRpcTarget: setRpcTarget,
   setContactTarget: setContactTarget,
   delRpcTarget: delRpcTarget,
-  delContact : delContact,
   setProviderType: setProviderType,
   SET_NETWORKNAME: 'SET_NETWORKNAME',
   setNetworkName: setNetworkName,
