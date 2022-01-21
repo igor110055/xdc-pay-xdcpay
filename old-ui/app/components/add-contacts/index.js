@@ -16,6 +16,7 @@ export default class AddContact extends React.Component {
       contactName: contactObj ? contactObj.name : '',
     }
   }
+ 
 
 
 
@@ -30,7 +31,8 @@ export default class AddContact extends React.Component {
 
   onAddContactClicked = async () => {
     this.props.dispatch(actions.displayWarning(''))
-    const {contactAddress, contactName} = this.state
+    const { contactAddress, contactName } = this.state
+    // if(contactName === addressBook.name )
     await this.props.dispatch(actions.addToAddressBook(contactName, contactAddress))
     this.props.dispatch(actions.Contacts())
   }
@@ -46,7 +48,7 @@ export default class AddContact extends React.Component {
   render () {
     // eslint-disable-next-line react/prop-types
     const { t } = this.context
-    const { warning, viewContactObj} = this.props
+    const { warning, viewContactObj,addressBook} = this.props
     return (
       <AddContactComponent
         t ={t}
@@ -54,6 +56,7 @@ export default class AddContact extends React.Component {
         props={this.props}
         viewContactObj={viewContactObj}
         warningMsg={warning}
+        addressBook={addressBook}
         onBackClick={this.onBackClick}
         onStateChange={this.onStateChange}
         onDeleteClicked={this.onDeleteClicked}
@@ -68,6 +71,7 @@ function mapStateToProps (state) {
   return {
     metamask: state.metamask,
     warning: state.appState.warning,
+    addressBook:state.metamask.addressBook,
     viewContactObj: state.appState.currentViewContactObj,
   }
 }

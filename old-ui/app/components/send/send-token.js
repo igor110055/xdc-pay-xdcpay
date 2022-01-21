@@ -252,7 +252,7 @@ class SendTransactionScreen extends PersistentForm {
 
     this.props.hideWarning()
 
-    this.props.addToAddressBook(recipient, nickname)
+    // this.props.addToAddressBook(recipient, nickname)
 
     const txParams = {
       from: this.props.address,

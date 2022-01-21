@@ -135,6 +135,20 @@ input[type="submit"] {
   /*box-shadow: 0px 5px 10px 0px rgba(92, 52, 162, 0.3);*/
 }
 
+.disabled-button {
+  font: normal normal medium 14px/17px Inter-Regular;
+  outline: none;
+  border: none;
+  color: white;
+  transform-origin: center center;
+  transition: transform 50ms ease-in;
+  border-radius: 4px;
+  font-size: 14px;
+  /* default green */
+  background: #e21d16e8;
+  /*box-shadow: 0px 5px 10px 0px rgba(92, 52, 162, 0.3);*/
+}
+
 .btn-green,
 input[type="submit"].btn-green {
   background: #60db97;
@@ -507,14 +521,14 @@ p.buy-option {
 }
 
 .remove {
-  background-image: url("../images/remove.svg");
-  background-size: 12px 12px;
+  background-image: url("../images/Assets/Delete.svg");
+  background-size: 19px 19px;
   background-repeat: no-repeat;
   background-position: center;
   width: 12px;
   height: 12px;
   position: absolute;
-  right: 0;
+  right: 5px;
 }
 
 @media (min--moz-device-pixel-ratio: 1.3),

@@ -117,10 +117,6 @@ function getExchanges ({network, amount, address}) {
       ]
     case XDC_CODE:
       return [
-        // {
-        //   name: 'AlphaEx',
-        //   link: 'https://www.alphaex.net/',
-        // },
         {
           name: 'Indodax',
           link: 'https://indodax.com/market/XDCIDR',
@@ -128,6 +124,14 @@ function getExchanges ({network, amount, address}) {
         {
           name: 'Mercatox',
           link: 'https://mercatox.com/exchange/XDC/BTC',
+        },
+        {
+          name: 'Kucoin',
+          link: ' https://trade.kucoin.com/trade/XDC-USDT',
+        },
+        {
+          name: 'Gate.io',
+          link: 'https://www.gate.io/trade/xdc_usdt',
         },
       ]
     default:
