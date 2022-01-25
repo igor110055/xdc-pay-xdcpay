@@ -49,7 +49,13 @@ export default class AddNetwork extends React.Component {
       return this.props.dispatch(actions.displayWarning(!rpcUrl.startsWith('http') ? 'URIs require the appropriate HTTP/HTTPS prefix.' : 'Invalid RPC URI'))
     }
     const web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl))
+    web3.eth.getChainId((err, res) => {
+      console.log('Class: AddNetwork, Functerrion:  ===err ', err)
+      console.log('Class: AddNetwork, Function:  === ', res)
+    })
     web3.eth.getBlockNumber((err, res) => {
+      console.log('Class: AddNetwork, Functerrion:  ===err ', err)
+      console.log('Class: AddNetwork, Function:  === ', res)
       if (err) {
         this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
       } else {
@@ -66,7 +72,8 @@ export default class AddNetwork extends React.Component {
   static contextTypes = {
     t: PropTypes.func,
   }
-  render() {
+
+  render () {
     const t = this.context
     // eslint-disable-next-line react/prop-types
     const {warning, viewNetworkObj} = this.props
