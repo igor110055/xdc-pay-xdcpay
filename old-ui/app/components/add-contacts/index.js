@@ -18,7 +18,6 @@ export default class AddContact extends React.Component {
     }
   }
 
-
   onBackClick = () => {
     // eslint-disable-next-line react/prop-types
     this.props.dispatch(actions.Contacts())

@@ -64,7 +64,7 @@ const AddNetworkComponent = (props) => {
                    height: '40px',
                    border: 'none',
                    color: '#2a2a2a',
-              }}> {`${t(cancel)}` }
+              }}> {`Cancel` }
             </div>
 
             <div className="button"
