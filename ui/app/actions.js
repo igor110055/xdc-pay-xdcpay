@@ -34,6 +34,7 @@ var actions = {
   goHome: goHome,
   goConfig: goConfig,
   GO_CONFIG: 'GO_CONFIG',
+  
   // modal state
   MODAL_OPEN: 'UI_MODAL_OPEN',
   MODAL_CLOSE: 'UI_MODAL_CLOSE',
@@ -511,6 +512,12 @@ function connectedSites () {
 function transitionBackward () {
   return {
     type: this.TRANSITION_BACKWARD,
+  }
+}
+
+function transactionDetails() {
+  return {
+    type: actions.TRANSACTION_DETAILS,
   }
 }
 

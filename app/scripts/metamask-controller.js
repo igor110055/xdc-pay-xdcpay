@@ -1712,6 +1712,17 @@ module.exports = class XdcController extends EventEmitter {
   // }
 
   /**
+   * A method for selecting a custom URL for an ethereum RPC provider.
+   * @param {string} customContactObject - A custom RPC Object for a valid Ethereum RPC API.
+   * @returns {Promise<String>} - The RPC Target URL confirmed.
+   */
+   async setContact(customContactObject) {
+    this.networkController.setContactTarget(customContactObject.name)
+    await this.preferencesController.updateAddressBook(customContactObject)
+    return customContactObject
+  }
+
+  /**
    * A method for deleting a selected custom URL.
    * @param {string} customRPCObject - A RPC URL to delete.
    */

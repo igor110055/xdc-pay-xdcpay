@@ -410,6 +410,7 @@ module.exports = class XdcController extends EventEmitter {
       // network management
       setProviderType: nodeify(networkController.setProviderType, networkController),
       setCustomRpc: nodeify(this.setCustomRpc, this),
+      setContact: nodeify(this.setContact,this),
       delCustomRpc: nodeify(this.delCustomRpc, this),
 
       // PreferencesController
@@ -1718,7 +1719,7 @@ module.exports = class XdcController extends EventEmitter {
   async delCustomRpc (rpcTarget) {
     await this.preferencesController.updateFrequentRpcList(rpcTarget, true)
   }
-
+  
   /**
    * Sets whether or not to use the blockie identicon format.
    * @param {boolean} val - True for bockie, false for jazzicon.
