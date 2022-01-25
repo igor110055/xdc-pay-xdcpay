@@ -1,3 +1,5 @@
+import {isValidAddress} from '../../util'
+
 const connect = require('react-redux').connect
 const actions = require('../../../../ui/app/actions')
 import React from 'react'
@@ -9,16 +11,14 @@ const AddContactComponent = require('./add-contacts')
 export default class AddContact extends React.Component {
   constructor (props) {
     super(props)
-    const contactObj=this.props.viewContactObj
     // eslint-disable-next-line react/prop-types
-    // const viewContactObj = this.props.viewContactObj;
+    const contactObj = this.props.viewContactObj
     this.state = {
       contactAddress: contactObj ? contactObj.address : '',
       contactName: contactObj ? contactObj.name : '',
     }
   }
  
-
 
 
   onBackClick = () => {
@@ -43,23 +43,21 @@ export default class AddContact extends React.Component {
     this.props.dispatch(actions.isValidName(!isValidName))
   }
 
-  onStateChangeAddress = (event) => {
-    const isValidAddress = this.props.metamask.isValidAddress
-    const { contactAddress, contactName } = this.state
-    const passwordBox2= document.getElementById('contactAddress')
-    const password2 = passwordBox2.value
-    if (password2 !== '' || password2.startsWith(' ')) {
-      this.setState({ [contactAddress]: event.target.value })
-    } 
-    this.props.dispatch(actions.isValidAddress(!isValidAddress))
+  onAddContactClicked = async () => {
+    const {network} = this.props
+    this.props.dispatch(actions.displayWarning(''))
+    const {contactAddress, contactName} = this.state
+    const address = contactAddress.replace('xdc', '0x')
+    if (!contactAddress || !contactAddress.trim().length || !isValidAddress(address, network)) {
+      return this.props.dispatch(actions.displayWarning('Contact address is invalid.'))
+    }
+    if (!contactName || !contactName.trim().length) {
+      return this.props.dispatch(actions.displayWarning('Contact name is invalid.'))
+    }
+    await this.props.dispatch(actions.addToAddressBook(contactName, contactAddress))
+    this.props.dispatch(actions.Contacts())
   }
 
-  onAddContactClicked = () => {
-    const { contactAddress, contactName } = this.state
-    this.props.dispatch(actions.addToAddressBook(contactName, contactAddress))
-    this.props.dispatch(actions.Contacts())  
-   
-  }
   onDeleteClicked = async (viewContactObj) => {
     this.props.dispatch(actions.displayWarning(''))
     await this.props.dispatch(actions.addToAddressBook(viewContactObj.name, viewContactObj.address, true))
@@ -70,13 +68,14 @@ export default class AddContact extends React.Component {
   }
 
   render () {
+    const {t} = this.context
     // eslint-disable-next-line react/prop-types
     const { t } = this.context
     const { warning, viewContactObj, addressBook,isValidAddress,isValidName } = this.props
     console.log(isValidName,isValidAddress,'----')
     return (
       <AddContactComponent
-        t ={t}
+        t={t}
         state={this.state}
         props={this.props}
         viewContactObj={viewContactObj}
@@ -98,6 +97,7 @@ export default class AddContact extends React.Component {
 function mapStateToProps (state) {
   return {
     metamask: state.metamask,
+    network: state.metamask.network,
     warning: state.appState.warning,
     addressBook: state.metamask.addressBook,
     isValidAddress: state.metamask.isValidAddress,
