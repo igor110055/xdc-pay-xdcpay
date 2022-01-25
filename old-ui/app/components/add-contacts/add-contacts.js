@@ -3,8 +3,8 @@ import React from 'react'
 
 const AddContactComponent = (props) => {
   // eslint-disable-next-line react/prop-types
-  const { onStateChange, onAddContactClicked, warningMsg, onBackClick, t,viewContactObj,onDeleteClicked, state,addressBook } = props
-console.log(addressBook,'###')
+  const { onStateChangeAddress,onStateChangeName, onAddContactClicked, warningMsg, onBackClick, t,viewContactObj,onDeleteClicked, state,addressBook,isValidName,isValidAddress,} = props
+console.log(isValidAddress,isValidName,'###')
   const { contactAddress, contactName } = state
 
   return (
@@ -49,9 +49,10 @@ console.log(addressBook,'###')
             className="input large-input"
             type="text"
             name="contactAddress"
+            id="contactAddress"
             value={contactAddress}
             placeholder="Contact's Wallet Address"
-            onChange={onStateChange}
+            onChange={onStateChangeAddress}
             style={{width: '252px', border: 'none', color: '#2A2A2A'}}
           />
           {/* <img
@@ -75,8 +76,9 @@ console.log(addressBook,'###')
             placeholder="Contact's Name"
             type="text"
             name="contactName"
+            id="contactName"
             value={contactName}
-            onChange={onStateChange}
+            onChange={onStateChangeName}
             style={{width: '265px', border: 'none', color: '#2A2A2A'}}
           />
         </div>
@@ -104,7 +106,8 @@ console.log(addressBook,'###')
 
           </div>
 
-          <div
+          {isValidAddress || isValidName ?
+            <div
             className="button"
             style={{
               fontFamily: 'Inter-Medium',
@@ -122,8 +125,22 @@ console.log(addressBook,'###')
               onAddContactClicked(!!viewContactObj)
             }}
           >
-          {`${!!viewContactObj ? 'Update' : 'Add'}`}
+            {`${!!viewContactObj ? 'Update' : 'Add'}`}
           </div>
+           : <div 
+            style={{
+              fontFamily: 'Inter-Medium',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: '14px',
+              background: '#E3E7EB',
+              width: '120px',
+              height: '40px',
+              border: 'none',
+              color: '#2a2a2a',
+            }}>
+          </div>} 
         </div>
       </div>
     </div>

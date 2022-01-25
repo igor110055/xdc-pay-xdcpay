@@ -142,6 +142,10 @@ var actions = {
   LOCK_METAMASK: 'LOCK_METAMASK',
   UPDATE_GASFIELDS: 'UPDATE_GASFIELDS',
   UPDATE_TOKENSLIST: 'UPDATE_TOKENSLIST',
+  UPDATE_VALIDATION_NAME: 'UPDATE_VALIDATION_NAME',
+  UPDATE_VALIDATION_ADDRESS: 'UPDATE_VALIDATION_ADDRESS',
+  isValidName: isValidName,
+  isValidAddress: isValidAddress,
   showTokens: showTokens,
   showGasFields: showGasFields,
   tryUnlockMetamask: tryUnlockMetamask,
@@ -1845,6 +1849,19 @@ function showGasFields (newState) {
 function showTokens (newState) {
   return {
     type: actions.UPDATE_TOKENSLIST,
+    value: newState,
+  }
+}
+
+function isValidName (newState) {
+  return {
+    type: actions.UPDATE_VALIDATION_NAME,
+    value: newState,
+  }
+}
+function isValidAddress (newState) {
+  return {
+    type: actions.UPDATE_VALIDATION_ADDRESS,
     value: newState,
   }
 }
