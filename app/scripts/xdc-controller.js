@@ -412,8 +412,6 @@ module.exports = class XdcController extends EventEmitter {
       setCustomRpc: nodeify(this.setCustomRpc, this),
       setContact: nodeify(this.setContact,this),
       delCustomRpc: nodeify(this.delCustomRpc, this),
-      delSelectedContact : nodeify(this.delSelectedContact,this),
-     
 
       // PreferencesController
       setSelectedAddress: nodeify(preferencesController.setSelectedAddress, preferencesController),
@@ -1722,15 +1720,6 @@ module.exports = class XdcController extends EventEmitter {
     await this.preferencesController.updateFrequentRpcList(rpcTarget, true)
   }
   
-  /**
-   * A method for deleting a selected Contact.
-   * @param {string} addedContactObj - Address to delete.
-   * * @param {string} name - Name to delete.
-   */
-   async delSelectedContact(addedContactObj) {
-    await this.addressBookController.updateAddressBook(addedContactObj, true)
-   // await this.preferencesController.updateAddressBook(customContactObject, true)
- }
   /**
    * Sets whether or not to use the blockie identicon format.
    * @param {boolean} val - True for bockie, false for jazzicon.

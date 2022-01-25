@@ -1730,17 +1730,6 @@ module.exports = class XdcController extends EventEmitter {
     await this.preferencesController.updateFrequentRpcList(customRPCObject, true)
   }
 
-
-  /**
-   * A method for deleting a selected Contact.
-   * @param {string} addedContactObj - Address to delete.
-   * @param {string} name - Name to delete.
-   */
-  async delSelectedContact(addedContactObj) {
-    console.log(addedContactObj,'******')
-     await this.addressBookController.updateAddressBook(addedContactObj, true)
-  }
-
   /**
    * Sets whether or not to use the blockie identicon format.
    * @param {boolean} val - True for bockie, false for jazzicon.
