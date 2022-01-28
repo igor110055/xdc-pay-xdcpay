@@ -25,7 +25,7 @@ class PasswordStrengthMeter extends Component {
       case 2:
         return 'Moderate'
       case 3:
-        return 'strong'
+        return 'Strong'
       // case 4:
       //   return 'Strong'
       default:
