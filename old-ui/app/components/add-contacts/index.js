@@ -4,8 +4,7 @@ const connect = require('react-redux').connect
 const actions = require('../../../../ui/app/actions')
 import React from 'react'
 import PropTypes from 'prop-types'
-import { isValidAddress } from 'ethereumjs-util'
-
+const {toChecksumAddress}= require('../../util')
 const AddContactComponent = require('./add-contacts')
 
 export default class AddContact extends React.Component {
@@ -18,37 +17,29 @@ export default class AddContact extends React.Component {
       contactName: contactObj ? contactObj.name : '',
     }
   }
- 
 
   onBackClick = () => {
     // eslint-disable-next-line react/prop-types
     this.props.dispatch(actions.Contacts())
   }
 
-  // onStateChange = (event) => {
-  //   this.setState({[event.target.name]: event.target.value})
-  // }
-
-  onStateChangeName = (event) => {
-    const isValidName = this.props.metamask.isValidName
-    const { contactAddress, contactName } = this.state
-    console.log(isValidName,'##')
-    const passwordBox = document.getElementById('contactName')
-    const password1 = passwordBox.value
-    console.log(password1,'passwordBox')
-    if (password1 !== ''  || password1.startsWith(' ')) {
-      this.setState({ [contactName]: event.target.value })
-    }
-    this.props.dispatch(actions.isValidName(!isValidName))
+  onStateChange = (event) => {
+    this.setState({[event.target.name]: event.target.value})
   }
 
   onAddContactClicked = async () => {
-    const {network} = this.props
+    const {network,selectedAddress,addressBook} = this.props
     this.props.dispatch(actions.displayWarning(''))
-    const {contactAddress, contactName} = this.state
+    const { contactAddress, contactName } = this.state
     const address = contactAddress.replace('xdc', '0x')
     if (!contactAddress || !contactAddress.trim().length || !isValidAddress(address, network)) {
       return this.props.dispatch(actions.displayWarning('Contact address is invalid.'))
+    }
+    if (contactName.trim().length > 30 ) {
+      return this.props.dispatch(actions.displayWarning('Contact name must be less than 30.'))
+    }
+    if(address === selectedAddress) {
+      return this.props.dispatch(actions.displayWarning('You cannot add your own wallet address.'))
     }
     if (!contactName || !contactName.trim().length) {
       return this.props.dispatch(actions.displayWarning('Contact name is invalid.'))
@@ -69,9 +60,7 @@ export default class AddContact extends React.Component {
   render () {
     const {t} = this.context
     // eslint-disable-next-line react/prop-types
-    const { t } = this.context
-    const { warning, viewContactObj, addressBook,isValidAddress,isValidName } = this.props
-    console.log(isValidName,isValidAddress,'----')
+    const {warning, viewContactObj} = this.props
     return (
       <AddContactComponent
         t={t}
@@ -79,15 +68,11 @@ export default class AddContact extends React.Component {
         props={this.props}
         viewContactObj={viewContactObj}
         warningMsg={warning}
-        addressBook={addressBook}
         onBackClick={this.onBackClick}
         onStateChange={this.onStateChange}
         onDeleteClicked={this.onDeleteClicked}
         onAddContactClicked={this.onAddContactClicked}
-        onStateChangeName={this.onStateChangeName}
-        onStateChangeAddress={this.onStateChangeAddress}
-        isValidAddress={isValidAddress}
-        isValidName={isValidName}
+
       />
     )
   }
@@ -98,10 +83,11 @@ function mapStateToProps (state) {
     metamask: state.metamask,
     network: state.metamask.network,
     warning: state.appState.warning,
-    addressBook: state.metamask.addressBook,
-    isValidAddress: state.metamask.isValidAddress,
-    isValidName: state.metamask.isValidName,
     viewContactObj: state.appState.currentViewContactObj,
+    addressBook: state.metamask.addressBook,
+    selectedAddress: state.metamask.selectedAddress,
+    accounts: state.metamask.accountss,
+    identities: state.metamask.identities,
   }
 }
 

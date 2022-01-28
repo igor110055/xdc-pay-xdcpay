@@ -254,7 +254,7 @@ class AddTokenScreen extends Component {
             type: 'number',
             min: 0,
             max: 36,
-            onChange: e => this.handleCustomDecimalsChange(e.target.value),
+            // onChange: e => this.handleCustomDecimalsChange(e.target.value),
             style: {
               width: '100%',
               marginTop: '-4px',

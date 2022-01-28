@@ -1548,15 +1548,14 @@ input:checked + .slider:before {
    border-radius: 4px;
 }
 
-.list::-webkit-scrollbar {
+::-webkit-scrollbar {
 
   width: 20px;
 
 }
 
 
-
-.list::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
 
   background-color: transparent;
 
@@ -1564,7 +1563,7 @@ input:checked + .slider:before {
 
 
 
-.list::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
 
   background-color: #d6dee1;
 

@@ -3,8 +3,8 @@ import React from 'react'
 
 const AddContactComponent = (props) => {
   // eslint-disable-next-line react/prop-types
-  const { onStateChangeAddress,onStateChangeName, onAddContactClicked, warningMsg, onBackClick, t,viewContactObj,onDeleteClicked, state,addressBook,isValidName,isValidAddress,} = props
-console.log(isValidAddress,isValidName,'###')
+  const { onStateChange, onAddContactClicked, warningMsg, onBackClick, t,viewContactObj,onDeleteClicked, state } = props
+
   const { contactAddress, contactName } = state
 
   return (
@@ -25,14 +25,13 @@ console.log(isValidAddress,isValidName,'###')
           style={{marginLeft: '17px', cursor: 'pointer'}}
           onClick={onBackClick}
         />
-        <h2 style={{fontFamily: 'Inter-bold', fontSize:'15px',}}>
+        <h2 style={{fontFamily: 'Inter-bold', fontSize:'15px', marginLeft:'28px'}}>
           {`${viewContactObj ? 'Edit' : 'Add'} Contact`}
         </h2>
         <h2 style={{color:'#FF0035', fontSize:'15px' , fontFamily:"Inter-Medium", marginRight:'15px', cursor:'pointer'}}  onClick={() => onDeleteClicked(viewContactObj)}>
         {`${viewContactObj ? 'Delete' : ' '}`}
         </h2>
       </div>
-      {warningMsg && <div className="error">{warningMsg}</div>}
       <div style={{margin: '25px 42px'}}>
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>
           {`Wallet Address`}
@@ -49,17 +48,17 @@ console.log(isValidAddress,isValidName,'###')
             className="input large-input"
             type="text"
             name="contactAddress"
-            id="contactAddress"
             value={contactAddress}
             placeholder="Contact's Wallet Address"
-            onChange={onStateChangeAddress}
+            onChange={onStateChange}
             style={{width: '252px', border: 'none', color: '#2A2A2A'}}
           />
-          {/* <img
+          <img
             src="/images/Assets/Scan.svg"
             style={{position: 'absolute', right: '49px', top: '161px'}}
-          /> */}
+          />
         </div>
+        {warningMsg && <div className="error">{warningMsg}</div>}
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>
           {`Username`}
         </label>
@@ -76,9 +75,8 @@ console.log(isValidAddress,isValidName,'###')
             placeholder="Contact's Name"
             type="text"
             name="contactName"
-            id="contactName"
             value={contactName}
-            onChange={onStateChangeName}
+            onChange={onStateChange}
             style={{width: '265px', border: 'none', color: '#2A2A2A'}}
           />
         </div>
@@ -106,8 +104,7 @@ console.log(isValidAddress,isValidName,'###')
 
           </div>
 
-          {isValidAddress || isValidName ?
-            <div
+          <div
             className="button"
             style={{
               fontFamily: 'Inter-Medium',
@@ -125,22 +122,8 @@ console.log(isValidAddress,isValidName,'###')
               onAddContactClicked(!!viewContactObj)
             }}
           >
-            {`${!!viewContactObj ? 'Update' : 'Add'}`}
+          {`${!!viewContactObj ? 'Update' : 'Add'}`}
           </div>
-           : <div 
-            style={{
-              fontFamily: 'Inter-Medium',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              fontSize: '14px',
-              background: '#E3E7EB',
-              width: '120px',
-              height: '40px',
-              border: 'none',
-              color: '#2a2a2a',
-            }}>
-          </div>} 
         </div>
       </div>
     </div>
