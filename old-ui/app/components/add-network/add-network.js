@@ -2,8 +2,8 @@ import React from 'react'
 
 const AddNetworkComponent = (props) => {
   // eslint-disable-next-line react/prop-types
-  const {onBackClick, onStateChange, onAddNetworkClicked, warningMsg, viewNetworkObj, state,t} = props
-  const { networkName, rpcUrl, chainId, currencySymbol, explorerLink } = state
+  const {onBackClick, onStateChange, onAddNetworkClicked, warningMsg, viewNetworkObj, state, t} = props
+  const {networkName, rpcUrl, chainId, currencySymbol, explorerLink} = state
 
   const isPermanentNetwork = viewNetworkObj && viewNetworkObj.isPermanent
 
@@ -23,7 +23,12 @@ const AddNetworkComponent = (props) => {
         </div>
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>New RPC URL</label>
         <br/>
-        <div style={{marginBottom: '24px', border: '1px solid #C7CDD8', borderRadius: '4px', width: '265px'}}>
+        <div style={{
+          marginBottom: warningMsg ? '12px' : '24px',
+          border: '1px solid #C7CDD8',
+          borderRadius: '4px',
+          width: '265px',
+        }}>
           <input disabled={isPermanentNetwork} className="input large-input" id="new_rpc" type="text" name="rpcUrl"
                  value={rpcUrl}
                  onChange={onStateChange} style={{border: 'none', color: '#2A2A2A'}}/>
@@ -64,7 +69,7 @@ const AddNetworkComponent = (props) => {
                    height: '40px',
                    border: 'none',
                    color: '#2a2a2a',
-              }}> {`Cancel` }
+                 }}> {`Cancel`}
             </div>
 
             <div className="button"
