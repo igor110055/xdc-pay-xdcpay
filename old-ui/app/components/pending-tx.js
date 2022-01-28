@@ -39,7 +39,7 @@ async function getconversionRate() {
    
     try {
         
-      const response = await fetch("https://9bzlasmblf.execute-api.us-east-2.amazonaws.com/prod/getCoinMarketCap/USD",{method:"get"})
+      const response = await fetch("https://1lzur2qul1.execute-api.us-east-2.amazonaws.com/prod/getCoinMarketCap/USD",{method:"get"})
       const parsedResponse = await response.json()
       console.log(parsedResponse,"parsedResponse")
       if (parsedResponse && parsedResponse.responseData && parsedResponse.responseData.length) {

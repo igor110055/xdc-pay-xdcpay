@@ -32,7 +32,6 @@ const AddContactComponent = (props) => {
         {`${viewContactObj ? 'Delete' : ' '}`}
         </h2>
       </div>
-      {warningMsg && <div className="error">{warningMsg}</div>}
       <div style={{margin: '25px 42px'}}>
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>
           {`Wallet Address`}
@@ -59,6 +58,7 @@ const AddContactComponent = (props) => {
             style={{position: 'absolute', right: '49px', top: '161px'}}
           />
         </div>
+        {warningMsg && <div className="error">{warningMsg}</div>}
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>
           {`Username`}
         </label>

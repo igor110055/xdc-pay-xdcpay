@@ -4,7 +4,7 @@ const connect = require('react-redux').connect
 const actions = require('../../../../ui/app/actions')
 import React from 'react'
 import PropTypes from 'prop-types'
-
+const {toChecksumAddress}= require('../../util')
 const AddContactComponent = require('./add-contacts')
 
 export default class AddContact extends React.Component {
@@ -28,12 +28,18 @@ export default class AddContact extends React.Component {
   }
 
   onAddContactClicked = async () => {
-    const {network} = this.props
+    const {network,selectedAddress,addressBook} = this.props
     this.props.dispatch(actions.displayWarning(''))
-    const {contactAddress, contactName} = this.state
+    const { contactAddress, contactName } = this.state
     const address = contactAddress.replace('xdc', '0x')
     if (!contactAddress || !contactAddress.trim().length || !isValidAddress(address, network)) {
       return this.props.dispatch(actions.displayWarning('Contact address is invalid.'))
+    }
+    if (contactName.trim().length > 30 ) {
+      return this.props.dispatch(actions.displayWarning('Contact name must be less than 30.'))
+    }
+    if(address === selectedAddress) {
+      return this.props.dispatch(actions.displayWarning('You cannot add your own wallet address.'))
     }
     if (!contactName || !contactName.trim().length) {
       return this.props.dispatch(actions.displayWarning('Contact name is invalid.'))
@@ -78,6 +84,10 @@ function mapStateToProps (state) {
     network: state.metamask.network,
     warning: state.appState.warning,
     viewContactObj: state.appState.currentViewContactObj,
+    addressBook: state.metamask.addressBook,
+    selectedAddress: state.metamask.selectedAddress,
+    accounts: state.metamask.accountss,
+    identities: state.metamask.identities,
   }
 }
 
