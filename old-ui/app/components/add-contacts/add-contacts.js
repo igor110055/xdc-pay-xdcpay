@@ -53,10 +53,10 @@ const AddContactComponent = (props) => {
             onChange={onStateChange}
             style={{width: '252px', border: 'none', color: '#2A2A2A'}}
           />
-          <img
+          {/* <img
             src="/images/Assets/Scan.svg"
             style={{position: 'absolute', right: '49px', top: '161px'}}
-          />
+          /> */}
         </div>
         {warningMsg && <div className="error">{warningMsg}</div>}
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>
