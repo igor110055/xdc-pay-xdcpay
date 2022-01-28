@@ -31,8 +31,9 @@ export default class AddNetwork extends React.Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  validateRPC = (isToUpdate) => {
+  validateRPC = async (isToUpdate) => {
     this.props.dispatch(actions.displayWarning(''))
+    const {frequentRpcList} = this.props
     const {rpcNetworkId, networkName, rpcUrl, chainId, currencySymbol, explorerLink} = this.state
     const networkId = rpcNetworkId || 'rpc_network_' + new Date().getTime()
     const rpcNetworkObj = {
@@ -45,25 +46,44 @@ export default class AddNetwork extends React.Component {
       isPermanent: false,
       providerType: 'rpc',
     }
-    if (!validUrl.isWebUri(rpcUrl)) {
+    if (!networkName) {
+      return this.props.dispatch(actions.displayWarning('Invalid network name.'))
+    } else if (!validUrl.isWebUri(rpcUrl)) {
       return this.props.dispatch(actions.displayWarning(!rpcUrl.startsWith('http') ? 'URIs require the appropriate HTTP/HTTPS prefix.' : 'Invalid RPC URI'))
     }
-    const web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl))
-    web3.eth.getChainId((err, res) => {
-      console.log('Class: AddNetwork, Functerrion:  ===err ', err)
-      console.log('Class: AddNetwork, Function:  === ', res)
-    })
-    web3.eth.getBlockNumber((err, res) => {
-      console.log('Class: AddNetwork, Functerrion:  ===err ', err)
-      console.log('Class: AddNetwork, Function:  === ', res)
-      if (err) {
-        this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
-      } else {
-        this.props.dispatch(actions.setRpcTarget(rpcNetworkObj))
-        !isToUpdate && this.props.dispatch(actions.addNetwork(rpcNetworkObj))
-        this.onBackClick()
+    try {
+      const web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl))
+      const blockNumber = web3.eth.getBlockNumber()
+      if (!blockNumber) {
+        return this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
       }
-    })
+      const networkChainId = await web3.eth.getChainId()
+      if (chainId && Number(chainId) !== networkChainId) {
+        return this.props.dispatch(actions.displayWarning('Invalid Chain Id'))
+      }
+      rpcNetworkObj.chainId = networkChainId
+      if (frequentRpcList && frequentRpcList.length) {
+        const isRPCAlreadyExists = frequentRpcList.find(netObj => netObj.chainId === networkChainId)
+        if (isRPCAlreadyExists) {
+          return this.props.dispatch(actions.displayWarning('RPC Network already exists'))
+        }
+      }
+      this.props.dispatch(actions.setRpcTarget(rpcNetworkObj))
+      !isToUpdate && this.props.dispatch(actions.addNetwork(rpcNetworkObj))
+      this.onBackClick()
+    } catch (e) {
+      return this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
+    }
+  }
+
+  validateChainId = async (rpcUrl, chainId, rpcNetworkObj) => {
+    const networkChainId = await web3.eth.getChainId()
+    if (chainId && Number(chainId) !== networkChainId) {
+      this.props.dispatch(actions.displayWarning('Invalid Chain Id'))
+      return false
+    }
+    rpcNetworkObj.chainId = networkChainId
+    return true
   }
 
   onAddNetworkClicked = (isToUpdate) => {
@@ -93,6 +113,7 @@ export default class AddNetwork extends React.Component {
 function mapStateToProps (state) {
   return {
     metamask: state.metamask,
+    frequentRpcList: state.metamask.frequentRpcList,
     warning: state.appState.warning,
     viewNetworkObj: state.appState.currentViewNetworkObj,
   }
