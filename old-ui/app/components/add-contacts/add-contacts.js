@@ -51,14 +51,13 @@ const AddContactComponent = (props) => {
             value={contactAddress}
             placeholder="Contact's Wallet Address"
             onChange={onStateChange}
-            style={{width: '252px', border: 'none', color: '#2A2A2A'}}
+            style={{width: '266px', border: 'none', color: '#2A2A2A'}}
           />
           {/* <img
             src="/images/Assets/Scan.svg"
             style={{position: 'absolute', right: '49px', top: '161px'}}
           /> */}
         </div>
-        {warningMsg && <div className="error">{warningMsg}</div>}
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>
           {`Username`}
         </label>
@@ -69,7 +68,7 @@ const AddContactComponent = (props) => {
             border: '1px solid #e2e2e2',
             borderRadius: '4px',
           }}
-        >
+          >
           <input
             className="input large-input"
             placeholder="Contact's Name"
@@ -78,8 +77,9 @@ const AddContactComponent = (props) => {
             value={contactName}
             onChange={onStateChange}
             style={{width: '265px', border: 'none', color: '#2A2A2A'}}
-          />
+            />
         </div>
+        {warningMsg && <div className="error">{warningMsg}</div>}
         <div style={{display: 'flex', justifyContent: 'space-around'}}>
           <div
             className="button"

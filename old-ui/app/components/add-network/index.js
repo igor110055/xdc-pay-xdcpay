@@ -55,6 +55,7 @@ export default class AddNetwork extends React.Component {
       const web3 = new Web3(new Web3.providers.HttpProvider(rpcUrl))
       const blockNumber = web3.eth.getBlockNumber()
       if (!blockNumber) {
+        console.log(blockNumber,'blockNumber')
         return this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
       }
       const networkChainId = await web3.eth.getChainId()
@@ -64,14 +65,16 @@ export default class AddNetwork extends React.Component {
       rpcNetworkObj.chainId = networkChainId
       if (frequentRpcList && frequentRpcList.length) {
         const isRPCAlreadyExists = frequentRpcList.find(netObj => netObj.chainId === networkChainId)
-        if (isRPCAlreadyExists) {
+        if (isRPCAlreadyExists && !isToUpdate) {
           return this.props.dispatch(actions.displayWarning('RPC Network already exists'))
         }
       }
       this.props.dispatch(actions.setRpcTarget(rpcNetworkObj))
       !isToUpdate && this.props.dispatch(actions.addNetwork(rpcNetworkObj))
       this.onBackClick()
-    } catch (e) {
+    }
+    catch (e) {
+      console.log(e,'catch')
       return this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
     }
   }
