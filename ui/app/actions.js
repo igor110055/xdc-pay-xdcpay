@@ -2452,6 +2452,8 @@ function delRpcTarget (oldRPCObj) {
         log.error(err)
         return dispatch(self.displayWarning('Had a problem removing network!'))
       }
+        dispatch(actions.setProviderType('xdc'))
+
       dispatch(actions.displayWarning(''))
       dispatch(actions.setSelectedToken())
     })

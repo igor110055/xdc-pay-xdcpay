@@ -133,6 +133,10 @@ function getExchanges ({network, amount, address}) {
           name: 'Gate.io',
           link: 'https://www.gate.io/trade/xdc_usdt',
         },
+        {
+          name: 'Simplex',
+          link: 'https://simplex.xdc.org/',
+        },
       ]
     default:
       return []
