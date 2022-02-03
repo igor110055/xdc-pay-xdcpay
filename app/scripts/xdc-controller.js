@@ -412,6 +412,7 @@ module.exports = class XdcController extends EventEmitter {
       setCustomRpc: nodeify(this.setCustomRpc, this),
       setContact: nodeify(this.setContact,this),
       delCustomRpc: nodeify(this.delCustomRpc, this),
+      setGasFields: nodeify(this.setGasFields, this),
 
       // PreferencesController
       setSelectedAddress: nodeify(preferencesController.setSelectedAddress, preferencesController),
@@ -1720,6 +1721,13 @@ module.exports = class XdcController extends EventEmitter {
     await this.preferencesController.updateFrequentRpcList(rpcTarget, true)
   }
   
+  /** 
+ * 
+ @param {bool} set Remove selected url
+ */
+ async setGasFields(set = true) { 
+  await  this.store.updateState({ showGasFields: set })
+}
   /**
    * Sets whether or not to use the blockie identicon format.
    * @param {boolean} val - True for bockie, false for jazzicon.

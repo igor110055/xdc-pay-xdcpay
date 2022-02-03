@@ -411,6 +411,7 @@ module.exports = class XdcController extends EventEmitter {
       setProviderType: nodeify(networkController.setProviderType, networkController),
       setCustomRpc: nodeify(this.setCustomRpc, this),
       delCustomRpc: nodeify(this.delCustomRpc, this),
+      setGasFields: nodeify(this.setGasFields, this),
 
       // PreferencesController
       setSelectedAddress: nodeify(preferencesController.setSelectedAddress, preferencesController),
@@ -1700,6 +1701,13 @@ module.exports = class XdcController extends EventEmitter {
     return customRPCObject
   }
 
+/** 
+ * 
+ @param {bool} set Remove selected url
+ */
+ setGasFields(set = true) { 
+ this.preferencesController.updatesetGAsFields(set)
+}
   // /**
   //  * A method for selecting a custom URL for an ethereum RPC provider.
   //  * @param {string} customContactObject - A custom RPC Object for a valid Ethereum RPC API.

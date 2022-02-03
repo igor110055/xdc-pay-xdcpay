@@ -1840,10 +1840,22 @@ function updateMetamaskState (newState) {
 }
 
 function showGasFields (newState) {
-  return {
-    type: actions.UPDATE_GASFIELDS,
-    value: newState,
+  return (dispatch) => {
+    log.debug(`background.setRpcTarget: ${newState}`)
+    background.setGasFields(newState, (err, result) => {
+      if (err) {
+        log.error(err)
+        return dispatch(
+          actions.displayWarning('Had a problem changing networks!'),
+        )
+      }
+      // dispatch(actions.setSelectedToken())
+    })
   }
+  // return {
+  //   type: actions.UPDATE_GASFIELDS,
+  //   value: newState,
+  // }
 }
 
 function showTokens (newState) {
