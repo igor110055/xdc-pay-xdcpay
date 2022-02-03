@@ -19,7 +19,7 @@ const AddNetworkComponent = (props) => {
         <div style={{marginBottom: '24px', border: '1px solid #C7CDD8', borderRadius: '4px', width: '265px'}}>
           <input disabled={isPermanentNetwork} className="input large-input" type="text" name="networkName"
                  value={networkName}
-                 onChange={onStateChange} style={{border: 'none', color: '#2A2A2A', width:'260px'}}/>
+                 onChange={onStateChange} style={{border: 'none', color: '#2A2A2A', width: '260px'}}/>
         </div>
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>New RPC URL</label>
         <br/>
@@ -31,27 +31,27 @@ const AddNetworkComponent = (props) => {
         }}>
           <input disabled={isPermanentNetwork} className="input large-input" id="new_rpc" type="text" name="rpcUrl"
                  value={rpcUrl}
-                 onChange={onStateChange} style={{border: 'none', color: '#2A2A2A', width:'260px'}}/>
+                 onChange={onStateChange} style={{border: 'none', color: '#2A2A2A', width: '260px'}}/>
         </div>
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>Chain ID</label>
         <br/>
         <div style={{marginBottom: '24px', border: '1px solid #C7CDD8', borderRadius: '4px', width: '265px'}}>
-          <input disabled={isPermanentNetwork} className="input large-input" type="text" 
-                 style={{border: 'none', color: '#2A2A2A', width:'260px'}}
+          <input disabled={isPermanentNetwork} className="input large-input" type="number"
+                 style={{border: 'none', color: '#2A2A2A', width: '260px'}}
                  name="chainId" onChange={onStateChange} value={chainId}/>
         </div>
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>Currency Symbol (Optional)</label>
         <br/>
         <div style={{marginBottom: '24px', border: '1px solid #C7CDD8', borderRadius: '4px', width: '265px'}}>
           <input disabled={isPermanentNetwork} className="input large-input" type="text"
-                 style={{border: 'none', color: '#2A2A2A', width:'260px'}}
+                 style={{border: 'none', color: '#2A2A2A', width: '260px'}}
                  name="currencySymbol" onChange={onStateChange} value={currencySymbol}/>
         </div>
         <label className="word" style={{fontFamily: 'Inter-Medium'}}>Block Explorer (Optional)</label>
         <br/>
         <div style={{marginBottom: '14px', border: '1px solid #C7CDD8', borderRadius: '4px', width: '265px'}}>
           <input disabled={isPermanentNetwork} className="input large-input" type="text"
-                 style={{border: 'none', color: '#2A2A2A', width:'260px'}}
+                 style={{border: 'none', color: '#2A2A2A', width: '260px'}}
                  name="explorerLink" onChange={onStateChange} value={explorerLink}/>
         </div>
         {warningMsg && <div className="error">{warningMsg}</div>}
