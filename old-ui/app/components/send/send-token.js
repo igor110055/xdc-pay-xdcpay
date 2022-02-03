@@ -59,7 +59,7 @@ class SendTransactionScreen extends PersistentForm {
         <SendHeader title={`Send ${this.state.token.symbol} Tokens`} />
         <SendProfile isToken={true} token={token} />
         
-       <div style={{padding:'0 46px 0 46px'}}> <ErrorComponent error={error} /></div>
+      
         <section className="flex-row flex-center">
           <EnsInput
             name="address"
@@ -90,6 +90,7 @@ class SendTransactionScreen extends PersistentForm {
               width: '265px',
             }}
           />
+           <div style={{width:'265px'}}> <ErrorComponent error={error} /></div>
           <button style={{
               width: '265px',
               height: '40px',

@@ -376,6 +376,8 @@ module.exports = class XdcController extends EventEmitter {
       setCurrentCurrency: this.setCurrentCurrency.bind(this),
       setCurrentCoin: this.setCurrentCoin.bind(this),
       setUseBlockie: this.setUseBlockie.bind(this),
+      setGasFields: this.setGasFields.bind(this),
+      showTokens: this.showTokens.bind(this),
       setCurrentLocale: this.setCurrentLocale.bind(this),
       markAccountsFound: this.markAccountsFound.bind(this),
       markPasswordForgotten: this.markPasswordForgotten.bind(this),
@@ -1720,6 +1722,16 @@ module.exports = class XdcController extends EventEmitter {
     await this.preferencesController.updateFrequentRpcList(rpcTarget, true)
   }
   
+//  @param {bool} set Remove selected url
+//  async setGasFields(set = true) { 
+//    return this._setGasFields(set)
+//     .then((showGasFields) => {
+//       this.store.updateState({
+//         showGasFields,
+//       })
+//       return Promise.resolve()
+//     })
+//   }
   /**
    * Sets whether or not to use the blockie identicon format.
    * @param {boolean} val - True for bockie, false for jazzicon.
@@ -1728,6 +1740,35 @@ module.exports = class XdcController extends EventEmitter {
   setUseBlockie (val, cb) {
     try {
       this.preferencesController.setUseBlockie(val)
+      cb(null)
+    } catch (err) {
+      cb(err)
+    }
+  }
+
+  /**
+   * Sets whether or not to use the blockie identicon format.
+   * @param {boolean} set - True for bockie, false for jazzicon.
+   * @param {Function} cb - A callback function called when complete.
+   */
+   setGasFields(set, cb) {
+    try {
+      this.preferencesController.setGasFields(set)
+      cb(null)
+    } catch (err) {
+      cb(err)
+    }
+  }
+
+  
+  /**
+   * Sets whether or not to use the blockie identicon format.
+   * @param {boolean} set - True for bockie, false for jazzicon.
+   * @param {Function} cb - A callback function called when complete.
+   */
+   showTokens(set, cb) {
+    try {
+      this.preferencesController.showTokens(set)
       cb(null)
     } catch (err) {
       cb(err)
