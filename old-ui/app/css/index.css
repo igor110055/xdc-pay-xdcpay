@@ -256,7 +256,7 @@ textarea {
 
 textarea.twelve-word-phrase {
   font-family: "Inter-Regular";
-  padding: 4px;
+  padding: 4px 0px 4px 2px;
   margin-top: 17px;
   width: 95px;
   height: 29px;

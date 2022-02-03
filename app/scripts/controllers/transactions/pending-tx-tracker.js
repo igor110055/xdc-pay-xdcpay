@@ -151,7 +151,7 @@ class PendingTransactionTracker extends EventEmitter {
     // get latest transaction status
     try {
       // const txParams = await this.query.getTransactionReceipt(txHash)
-      const txParams = await this.web3Query.eth.getTransactionReceipt(txHash, (error, data) => {
+      const txParams = await this.web3Query.eth.getTransaction(txHash, (error, data) => {
         if (data && data.blockNumber) {
           this.emit('tx:confirmed', txId)
         } else if (error) {
