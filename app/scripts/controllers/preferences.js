@@ -42,6 +42,8 @@ class PreferencesController {
       preferences: {
         useETHAsPrimaryCurrency: true,
       },
+      showGasFields: true,
+      showTokens: true,
     }, opts.initState)
 
     this.diagnostics = opts.diagnostics
@@ -77,6 +79,28 @@ class PreferencesController {
   setUseBlockie(val) {
     this.store.updateState({ useBlockie: val })
   }
+
+  /**
+   * Setter for the `setgasFields` property
+   *
+   * @param {boolean} set Whether or not the user prefers blockie indicators
+   *
+   */
+   setGasFields(set) {
+    this.store.updateState({ showGasFields: set })
+  }
+
+  /**
+   * Setter for the `setgasFields` property
+   *
+   * @param {boolean} set Whether or not the user prefers blockie indicators
+   *
+   */
+   showTokens(set) {
+    this.store.updateState({ showTokens: set })
+  }
+
+  
 
   getSuggestedTokens() {
     return this.store.getState().suggestedTokens

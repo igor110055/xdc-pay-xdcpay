@@ -1841,7 +1841,7 @@ function updateMetamaskState (newState) {
 
 function showGasFields (newState) {
   return (dispatch) => {
-    log.debug(`background.setRpcTarget: ${newState}`)
+    log.debug(`background.showGasFields`)
     background.setGasFields(newState, (err, result) => {
       if (err) {
         log.error(err)
@@ -1849,19 +1849,30 @@ function showGasFields (newState) {
           actions.displayWarning('Had a problem changing networks!'),
         )
       }
-      // dispatch(actions.setSelectedToken())
+      dispatch({
+        type: actions.UPDATE_GASFIELDS,
+          value: newState,
+
+      })
     })
   }
-  // return {
-  //   type: actions.UPDATE_GASFIELDS,
-  //   value: newState,
-  // }
 }
 
-function showTokens (newState) {
-  return {
-    type: actions.UPDATE_TOKENSLIST,
-    value: newState,
+function showTokens(newState) {
+  return (dispatch) => {
+    log.debug(`background.showTokens`)
+    background.showTokens(newState, (err, result) => {
+      if (err) {
+        log.error(err)
+        return dispatch(
+          actions.displayWarning('Had a problem changing networks!'),
+        )
+      }
+      dispatch({
+        type: actions.UPDATE_TOKENSLIST,
+        value: newState,
+      })
+    })
   }
 }
 
