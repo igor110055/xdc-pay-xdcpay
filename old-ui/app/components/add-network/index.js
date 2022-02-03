@@ -59,10 +59,10 @@ export default class AddNetwork extends React.Component {
         return this.props.dispatch(actions.displayWarning('Invalid RPC endpoint'))
       }
       const networkChainId = await web3.eth.getChainId()
-      if (chainId && Number(chainId) !== networkChainId) {
-        return this.props.dispatch(actions.displayWarning('Invalid Chain Id'))
-      }
-      rpcNetworkObj.chainId = networkChainId
+      // if (chainId && Number(chainId) !== networkChainId) {
+      //   return this.props.dispatch(actions.displayWarning('Invalid Chain Id'))
+      // }
+      // rpcNetworkObj.chainId = networkChainId
       if (frequentRpcList && frequentRpcList.length) {
         const isRPCAlreadyExists = frequentRpcList.find(netObj => netObj.chainId === networkChainId)
         if (isRPCAlreadyExists && !isToUpdate) {

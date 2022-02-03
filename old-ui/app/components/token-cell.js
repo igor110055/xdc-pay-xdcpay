@@ -154,8 +154,7 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
         {
           closeMenu: () => {},
           onClick: () => {
-            const checkSumAddress = address && toChecksumAddress(network, userAddress)
-            copyToClipboard(checkSumAddress)
+            copyToClipboard(address.replace("0x", "xdc"))
           },
         },[
           h('img',
