@@ -228,7 +228,8 @@ PendingTx.prototype.render = function () {
               provider: provider,
               isUnlocked: isUnlocked,
             }) : null,
-            h('button.btn-violet', {
+            
+            showGasFields ? h('button.btn-violet', {
               onClick: (event) => {
                 this.resetGasFields()
                 event.preventDefault()
@@ -240,8 +241,8 @@ PendingTx.prototype.render = function () {
                 background: '#ffffff',
                 fontWeight: 'bold',
               },
-            }, 'Reset'),
-          ]),
+            }, 'Reset') : null,
+          ]), 
 
           isError ? h('div', {
             style: {

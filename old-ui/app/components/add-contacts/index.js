@@ -38,9 +38,9 @@ export default class AddContact extends React.Component {
     if (contactName.trim().length > 30 ) {
       return this.props.dispatch(actions.displayWarning('Contact name must be less than 30 characters.'))
     }
-    if(address === selectedAddress) {
-      return this.props.dispatch(actions.displayWarning('You cannot add your own wallet address.'))
-    }
+    // if(address === selectedAddress) {
+    //   return this.props.dispatch(actions.displayWarning('You cannot add your own wallet address.'))
+    // }
     if (!contactName || !contactName.trim().length) {
       return this.props.dispatch(actions.displayWarning('Contact name is invalid.'))
     }
