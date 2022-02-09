@@ -6,7 +6,7 @@ const actions = require('../../ui/app/actions')
 const Tooltip = require('./components/tooltip.js')
 const ethUtil = require('ethereumjs-util')
 const Copyable = require('./components/copy/copyable')
-const { addressSummary, toChecksumAddress, isValidAddress } = require('./util')
+const {addressSummary, toChecksumAddress, isValidAddress} = require('./util')
 
 
 module.exports = connect(mapStateToProps)(AddSuggestedTokenScreen)
@@ -19,18 +19,19 @@ function mapStateToProps (state) {
 }
 
 inherits(AddSuggestedTokenScreen, Component)
+
 function AddSuggestedTokenScreen () {
-    this.state = {
+  this.state = {
     warning: null,
   }
   Component.call(this)
 }
 
 AddSuggestedTokenScreen.prototype.render = function () {
-  const { warning } = this.state
-  const { network, suggestedTokens, dispatch } = this.props
+  const {warning} = this.state
+  const {network, suggestedTokens, dispatch} = this.props
   const key = Object.keys(suggestedTokens)[0]
-  const { address, symbol, decimals } = suggestedTokens[key]
+  const {address, symbol, decimals} = suggestedTokens[key]
 
   return (
     h('.flex-column.flex-grow', [
@@ -62,7 +63,7 @@ AddSuggestedTokenScreen.prototype.render = function () {
               title: 'The contract of the actual token contract. Click for more info.',
             }, [
               h('a', {
-                style: { fontWeight: 'bold', paddingRight: '10px'},
+                style: {fontWeight: 'bold', paddingRight: '10px'},
                 href: 'https://support.metamask.io/kb/article/24-what-is-a-token-contract-address',
                 target: '_blank',
               }, [
@@ -73,10 +74,10 @@ AddSuggestedTokenScreen.prototype.render = function () {
           ]),
 
           h('div', {
-            style: { display: 'flex' },
+            style: {display: 'flex'},
           }, [
             h(Copyable, {
-            value: toChecksumAddress(network, address),
+              value: toChecksumAddress(network, address),
             }, [
               h('span#token-address', {
                 style: {
@@ -92,11 +93,11 @@ AddSuggestedTokenScreen.prototype.render = function () {
 
           h('div', [
             h('span', {
-              style: { fontWeight: 'bold', paddingRight: '10px'},
+              style: {fontWeight: 'bold', paddingRight: '10px'},
             }, 'Token Symbol'),
           ]),
 
-          h('div', { style: {display: 'flex'} }, [
+          h('div', {style: {display: 'flex'}}, [
             h('p#token_symbol', {
               style: {
                 width: 'inherit',
@@ -109,11 +110,11 @@ AddSuggestedTokenScreen.prototype.render = function () {
 
           h('div', [
             h('span', {
-              style: { fontWeight: 'bold', paddingRight: '10px'},
+              style: {fontWeight: 'bold', paddingRight: '10px'},
             }, 'Decimals of Precision'),
           ]),
 
-          h('div', { style: {display: 'flex'} }, [
+          h('div', {style: {display: 'flex'}}, [
             h('p#token_decimals', {
               type: 'number',
               style: {
@@ -141,7 +142,7 @@ AddSuggestedTokenScreen.prototype.render = function () {
               margin: '8px',
             },
             onClick: (event) => {
-              const valid = this.validateInputs({ address, symbol, decimals })
+              const valid = this.validateInputs({address, symbol, decimals})
               if (!valid) return
 
               dispatch(actions.addToken(address.trim(), symbol.trim(), decimals))
@@ -161,10 +162,10 @@ AddSuggestedTokenScreen.prototype.componentWillMount = function () {
 }
 
 AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
-  const { network, identities } = this.props
+  const {network, identities} = this.props
   let msg = ''
   const identitiesList = Object.keys(identities)
-  const { address, symbol, decimals } = opts
+  const {address, symbol, decimals} = opts
   const standardAddress = ethUtil.addHexPrefix(address).toLowerCase()
 
   const validAddress = isValidAddress(address, network)
@@ -172,7 +173,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
     msg += 'Address is invalid.'
   }
 
-  const validDecimals = s >= 0 && decimals > 36
+  const validDecimals = decimals >= 0 && decimals < 36
   if (validDecimals) {
     msg += 'Decimals must be at least 0 and not over 36. '
   }
@@ -180,7 +181,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
   const symbolLen = symbol.trim().length
   const validSymbol = symbolLen > 0 && symbolLen < 10
   if (!validSymbol) {
-    msg += ' '+'Symbol must be between 0 and 10 characters.'
+    msg += ' ' + 'Symbol must be between 0 and 10 characters.'
   }
 
   const ownAddress = identitiesList.includes(standardAddress)
@@ -195,7 +196,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
       warning: msg,
     })
   } else {
-    this.setState({ warning: null })
+    this.setState({warning: null})
   }
 
   return isValid
