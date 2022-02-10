@@ -519,9 +519,10 @@ function transitionBackward () {
   }
 }
 
-function transactionDetails() {
+function transactionDetails(txnId) {
   return {
     type: actions.TRANSACTION_DETAILS,
+    value: txnId
   }
 }
 
@@ -2233,7 +2234,7 @@ function addTokens (tokens) {
 
 function removeSuggestedTokens () {
   return (dispatch) => {
-    dispatch(actions.showLoadingIndication())
+    // dispatch(actions.showLoadingIndication())
     return new Promise((resolve, reject) => {
       background.removeSuggestedTokens((err, suggestedTokens) => {
         dispatch(actions.hideLoadingIndication())

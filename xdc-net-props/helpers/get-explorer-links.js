@@ -24,7 +24,7 @@ const getExplorerAccountLinkFor = (account, network) => {
 		return `${devLink(prefix)}/address/${account}`
 	}
 	else if (prefix === 'xinfin') {
-		return `${xdcLink(prefix)}/addr/${account}`
+		return `https://observer.xdc.org/address-details/${account}`
 	}
 	else
 	return `${xdcLink(prefix)}/address/${account}`
