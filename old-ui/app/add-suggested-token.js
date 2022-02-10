@@ -38,7 +38,14 @@ AddSuggestedTokenScreen.prototype.render = function () {
 
       // subtitle and nav
       h('.section-title.flex-row.flex-center', [
-        h('h2.page-subtitle', 'Add Suggested Token'),
+        h('h2.page-subtitle',{ style: {
+          display: 'flex',
+          justifyContent: 'Center',
+          color: '#2A2A2A',
+          marginTop: '4px',
+          fontWeight: 'bold',
+        },
+      }, 'Add Suggested Token' ),
       ]),
 
       h('.error', {
@@ -53,39 +60,32 @@ AddSuggestedTokenScreen.prototype.render = function () {
       h('.flex-column.flex-justify-center.flex-grow.select-none', [
         h('.flex-space-around', {
           style: {
-            padding: '20px',
+            padding: '20px 48px 0 50px',
           },
         }, [
 
-          h('div', [
-            h(Tooltip, {
-              position: 'top',
-              title: 'The contract of the actual token contract. Click for more info.',
-            }, [
-              h('a', {
-                style: {fontWeight: 'bold', paddingRight: '10px'},
-                href: 'https://support.metamask.io/kb/article/24-what-is-a-token-contract-address',
-                target: '_blank',
-              }, [
-                h('span', 'Token Contract Address  '),
-                h('i.fa.fa-question-circle'),
+          h('div', 
+                [
+                h('span',{
+                  style: { fontWeight: 'bold',fontSize: '12px',},
+                }, 'Token Contract Address  '),
+                
               ]),
-            ]),
-          ]),
+            
+          // ),
 
           h('div', {
-            style: {display: 'flex'},
+            style: {display: 'flex',margin:'8px 0 17px 0'},
           }, [
             h(Copyable, {
               value: toChecksumAddress(network, address),
             }, [
               h('span#token-address', {
                 style: {
-                  width: 'inherit',
-                  flex: '1 0 auto',
-                  height: '30px',
-                  margin: '8px',
-                  display: 'flex',
+                  width: '100%',
+                  border: '2px solid #c7cdd8',
+                  borderRadius: '4px',
+                  padding:'4px',
                 },
               }, addressSummary(network, address, 24, 4, false)),
             ]),
@@ -93,66 +93,71 @@ AddSuggestedTokenScreen.prototype.render = function () {
 
           h('div', [
             h('span', {
-              style: {fontWeight: 'bold', paddingRight: '10px'},
+              style: { fontWeight: 'bold',fontSize: '12px',},
             }, 'Token Symbol'),
           ]),
 
-          h('div', {style: {display: 'flex'}}, [
+          h('div', {style: {display: 'flex',margin:'4px 0 17px 0'}}, [
             h('p#token_symbol', {
               style: {
-                width: 'inherit',
-                flex: '1 0 auto',
-                height: '30px',
-                margin: '8px',
+                width: '100%',
+                border: '2px solid #c7cdd8',
+                borderRadius: '4px',
+                padding: '4px',
               },
             }, symbol),
           ]),
 
           h('div', [
             h('span', {
-              style: {fontWeight: 'bold', paddingRight: '10px'},
+              style: { fontWeight: 'bold',fontSize: '12px',},
             }, 'Decimals of Precision'),
           ]),
 
-          h('div', {style: {display: 'flex'}}, [
+          h('div', {style: {display: 'flex',margin:'4px 0 17px 0'}}, [
             h('p#token_decimals', {
               type: 'number',
               style: {
-                width: 'inherit',
-                flex: '1 0 auto',
-                height: '30px',
-                margin: '8px',
+              width: '100%',
+              border: '2px solid #c7cdd8',
+                borderRadius: '4px',
+              padding:'4px'
               },
             }, decimals),
           ]),
-
-          h('button', {
-            style: {
-              alignSelf: 'center',
-              margin: '8px',
-            },
-            onClick: (event) => {
-              dispatch(actions.removeSuggestedTokens())
-            },
-          }, 'Cancel'),
-
-          h('button', {
-            style: {
-              alignSelf: 'center',
-              margin: '8px',
-            },
-            onClick: (event) => {
-              const valid = this.validateInputs({address, symbol, decimals})
-              if (!valid) return
-
-              dispatch(actions.addToken(address.trim(), symbol.trim(), decimals))
+          h('div', { style: { display: 'flex', justifyContent: 'space-between',marginTop:'42px' } }, [
+            
+            h('button', {
+              style: {
+                alignSelf: 'center',
+                backgroundColor: 'red',
+                width: '120px',
+              height: '40px',
+              },
+              onClick: (event) => {
+                dispatch(actions.removeSuggestedTokens())
+              },
+            }, 'Cancel'),
+            
+            h('button', {
+              style: {
+                alignSelf: 'center',
+                width: '120px',
+              height: '40px',
+              },
+              onClick: (event) => {
+                const valid = this.validateInputs({ address, symbol, decimals })
+                if (!valid) return
+                
+                dispatch(actions.addToken(address.trim(), symbol.trim(), decimals))
                 .then(() => {
                   dispatch(actions.removeSuggestedTokens())
                 })
-            },
-          }, 'Add'),
+              },
+            }, 'Add'),
+          ]),
+          ]),
         ]),
-      ]),
     ])
   )
 }
@@ -165,7 +170,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
   const {network, identities} = this.props
   let msg = ''
   const identitiesList = Object.keys(identities)
-  const {address, symbol, decimals} = opts
+  const { address, symbol, decimals } = opts
   const standardAddress = ethUtil.addHexPrefix(address).toLowerCase()
 
   const validAddress = isValidAddress(address, network)
