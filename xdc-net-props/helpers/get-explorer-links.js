@@ -38,7 +38,7 @@ const getExplorerTxLinkFor = (hash, network) => {
 		return `${devLink(prefix)}/tx/${account}`
 	}
 	else if (prefix === 'xinfin') {
-		return `${xdcLink(prefix)}/tx/${account}`
+		return `https://observer.xdc.org/address-details/${account}`
 	}
 	else
 	return `${xdcLink(prefix)}/tx/${hash}`
