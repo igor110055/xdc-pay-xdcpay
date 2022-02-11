@@ -184,9 +184,11 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
   }
 
   const symbolLen = symbol.trim().length
-  const validSymbol = symbolLen > 0 && symbolLen < 10
+  const validSymbol = symbolLen > 0
+    // && symbolLen < 10
   if (!validSymbol) {
-    msg += ' ' + 'Symbol must be between 0 and 10 characters.'
+    // msg += ' ' + 'Symbol must be between 0 and 10 characters.'
+    msg += ' ' + 'Symbol can not be empty. '
   }
 
   const ownAddress = identitiesList.includes(standardAddress)
