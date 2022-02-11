@@ -46,14 +46,14 @@ const getExplorerTxLinkFor = (hash, network) => {
 
 
 
-const getExplorerTokenLinkFor = (tokenAddress, account, network) => {
+const getExplorerTokenLinkFor = (tokenAddress, account, network,symbol) => {
 	const prefix = getExplorerPrefix(network)
 	// const chain = getExplorerChain(network)
 	if (prefix === 'devnetscan') {
 		return `${devLink(prefix)}/tokens/${tokenAddress}`
 	}
 	else if (prefix === 'xinfin') {
-		return `${xdcLink(prefix)}/token/${tokenAddress}`
+		return `https://observer.xdc.org/token-data/${tokenAddress}/${symbol}`
 	}
 	else
 	return `${xdcLink(prefix)}/tokens/${tokenAddress}`

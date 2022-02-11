@@ -251,6 +251,7 @@ class AddTokenScreen extends Component {
           h('input.large-input#token_decimals', {
             placeholder: '0',
             value: customDecimals,
+            readOnly: true,
             type: 'number',
             min: 0,
             max: 36,
