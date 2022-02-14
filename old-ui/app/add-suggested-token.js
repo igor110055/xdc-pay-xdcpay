@@ -3,6 +3,7 @@ const Component = require('react').Component
 const h = require('react-hyperscript')
 const connect = require('react-redux').connect
 const actions = require('../../ui/app/actions')
+const { checkExistingAddresses } = require('./components/add-token/util')
 const Tooltip = require('./components/tooltip.js')
 const ethUtil = require('ethereumjs-util')
 const Copyable = require('./components/copy/copyable')
@@ -167,7 +168,7 @@ AddSuggestedTokenScreen.prototype.componentWillMount = function () {
 }
 
 AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
-  const {network, identities} = this.props
+  const { network, identities,tokens } = this.props
   let msg = ''
   const identitiesList = Object.keys(identities)
   const { address, symbol, decimals } = opts
@@ -177,7 +178,12 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
   if (!validAddress) {
     msg += 'Address is invalid.'
   }
-
+  
+  const check = checkExistingAddresses(address, tokens)
+  console.log("Check working", check)
+  if (check) {
+    msg += 'Token has already been added.'
+  }
   const validDecimals = decimals >= 0 && decimals < 36
   if (validDecimals) {
     msg += 'Decimals must be at least 0 and not over 36. '
@@ -185,7 +191,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
 
   const symbolLen = symbol.trim().length
   const validSymbol = symbolLen > 0
-    // && symbolLen < 10
+  // && symbolLen < 10
   if (!validSymbol) {
     // msg += ' ' + 'Symbol must be between 0 and 10 characters.'
     msg += ' ' + 'Symbol can not be empty. '
@@ -203,8 +209,32 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
       warning: msg,
     })
   } else {
-    this.setState({warning: null})
+    this.setState({ warning: null })
   }
 
   return isValid
+
+  let warning
+  switch (true) {
+    case !validAddress:
+      warning = 'Invalid address'
+      this.setState({
+        warning,
+        customAddressError: warning /* this.context.t('invalidAddress')*/,
+        customSymbol: '',
+        customDecimals: 0,
+        customSymbolError: null,
+        customDecimalsError: null,
+      })
+      break
+    case checkExistingAddresses(address, this.props.tokens):
+      warning = 'Token has already been added.'
+      this.setState({
+        warning,
+        customAddressError: warning /* this.context.t('tokenAlreadyAdded')*/,
+      })
+  
+      break
+  }
 }
+
