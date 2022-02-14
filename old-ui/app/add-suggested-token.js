@@ -16,6 +16,7 @@ function mapStateToProps (state) {
   return {
     identities: state.metamask.identities,
     suggestedTokens: state.metamask.suggestedTokens,
+    tokens: state.metamask.tokens,
   }
 }
 
@@ -180,7 +181,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
   }
   
   const check = checkExistingAddresses(address, tokens)
-  console.log("Check working", check)
+  console.log("Check working", check,tokens,address)
   if (check) {
     msg += 'Token has already been added.'
   }
