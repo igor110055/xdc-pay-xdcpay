@@ -3,7 +3,7 @@ const Component = require('react').Component
 const h = require('react-hyperscript')
 const connect = require('react-redux').connect
 const actions = require('../../ui/app/actions')
-const { checkExistingAddresses } = require('./components/add-token/util')
+const {checkExistingAddresses} = require('./components/add-token/util')
 const Tooltip = require('./components/tooltip.js')
 const ethUtil = require('ethereumjs-util')
 const Copyable = require('./components/copy/copyable')
@@ -40,14 +40,15 @@ AddSuggestedTokenScreen.prototype.render = function () {
 
       // subtitle and nav
       h('.section-title.flex-row.flex-center', [
-        h('h2.page-subtitle',{ style: {
-          display: 'flex',
-          justifyContent: 'Center',
-          color: '#2A2A2A',
-          marginTop: '4px',
-          fontWeight: 'bold',
-        },
-      }, 'Add Suggested Token' ),
+        h('h2.page-subtitle', {
+          style: {
+            display: 'flex',
+            justifyContent: 'Center',
+            color: '#2A2A2A',
+            marginTop: '4px',
+            fontWeight: 'bold',
+          },
+        }, 'Add Suggested Token'),
       ]),
 
       h('.error', {
@@ -68,17 +69,17 @@ AddSuggestedTokenScreen.prototype.render = function () {
         }, [
 
           h('div',
-                [
-                h('span',{
-                  style: { fontWeight: 'bold',fontSize: '12px',},
-                }, 'Token Contract Address  '),
+            [
+              h('span', {
+                style: {fontWeight: 'bold', fontSize: '12px'},
+              }, 'Token Contract Address  '),
 
-              ]),
+            ]),
 
           // ),
 
           h('div', {
-            style: {display: 'flex',margin:'8px 0 17px 0'},
+            style: {display: 'flex', margin: '8px 0 17px 0'},
           }, [
             h(Copyable, {
               value: toChecksumAddress(network, address),
@@ -88,7 +89,7 @@ AddSuggestedTokenScreen.prototype.render = function () {
                   width: '100%',
                   border: '2px solid #c7cdd8',
                   borderRadius: '4px',
-                  padding:'4px',
+                  padding: '4px',
                 },
               }, addressSummary(network, address, 24, 4, false)),
             ]),
@@ -96,11 +97,11 @@ AddSuggestedTokenScreen.prototype.render = function () {
 
           h('div', [
             h('span', {
-              style: { fontWeight: 'bold',fontSize: '12px',},
+              style: {fontWeight: 'bold', fontSize: '12px'},
             }, 'Token Symbol'),
           ]),
 
-          h('div', {style: {display: 'flex',margin:'4px 0 17px 0'}}, [
+          h('div', {style: {display: 'flex', margin: '4px 0 17px 0'}}, [
             h('p#token_symbol', {
               style: {
                 width: '100%',
@@ -113,29 +114,29 @@ AddSuggestedTokenScreen.prototype.render = function () {
 
           h('div', [
             h('span', {
-              style: { fontWeight: 'bold',fontSize: '12px',},
+              style: {fontWeight: 'bold', fontSize: '12px'},
             }, 'Decimals of Precision'),
           ]),
 
-          h('div', {style: {display: 'flex',margin:'4px 0 17px 0'}}, [
+          h('div', {style: {display: 'flex', margin: '4px 0 17px 0'}}, [
             h('p#token_decimals', {
               type: 'number',
               style: {
-              width: '100%',
-              border: '2px solid #c7cdd8',
+                width: '100%',
+                border: '2px solid #c7cdd8',
                 borderRadius: '4px',
-              padding:'4px'
+                padding: '4px',
               },
             }, decimals),
           ]),
-          h('div', { style: { display: 'flex', justifyContent: 'space-between',marginTop:'42px' } }, [
+          h('div', {style: {display: 'flex', justifyContent: 'space-between', marginTop: '42px'}}, [
 
             h('button', {
               style: {
                 alignSelf: 'center',
                 backgroundColor: 'red',
                 width: '120px',
-              height: '40px',
+                height: '40px',
               },
               onClick: (event) => {
                 dispatch(actions.removeSuggestedTokens())
@@ -146,21 +147,21 @@ AddSuggestedTokenScreen.prototype.render = function () {
               style: {
                 alignSelf: 'center',
                 width: '120px',
-              height: '40px',
+                height: '40px',
               },
               onClick: (event) => {
-                const valid = this.validateInputs({ address, symbol, decimals })
+                const valid = this.validateInputs({address, symbol, decimals})
                 if (!valid) return
 
                 dispatch(actions.addToken(address.trim(), symbol.trim(), decimals))
-                .then(() => {
-                  dispatch(actions.removeSuggestedTokens())
-                })
+                  .then(() => {
+                    dispatch(actions.removeSuggestedTokens())
+                  })
               },
             }, 'Add'),
           ]),
-          ]),
         ]),
+      ]),
     ])
   )
 }
@@ -170,10 +171,10 @@ AddSuggestedTokenScreen.prototype.componentWillMount = function () {
 }
 
 AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
-  const { network, identities,tokens } = this.props
+  const {network, identities, tokens} = this.props
   let msg = ''
   const identitiesList = Object.keys(identities)
-  const { address, symbol, decimals } = opts
+  const {address, symbol, decimals} = opts
   const standardAddress = ethUtil.addHexPrefix(address).toLowerCase()
 
   const validAddress = isValidAddress(address, network)
@@ -181,8 +182,6 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
     msg += 'Address is invalid.'
   }
   const isTokenAlreadyExists = checkExistingAddresses(address, tokens)
-  console.log('Class: AddSuggestedTokenScreen, Function: check === ', isTokenAlreadyExists);
-
   if (isTokenAlreadyExists) {
     msg += 'Token has already been added.'
   }
@@ -211,7 +210,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
       warning: msg,
     })
   } else {
-    this.setState({ warning: null })
+    this.setState({warning: null})
   }
 
   return isValid
