@@ -101,7 +101,7 @@ class PreferencesController {
     this.store.updateState({ showTokens: set })
   }
 
-  
+
 
   getSuggestedTokens() {
     return this.store.getState().suggestedTokens
@@ -634,7 +634,7 @@ class PreferencesController {
       throw new Error(`Invalid decimals ${decimals} must be at least 0, and not over 36`)
      }
     //  const check = checkExistingAddresses(rawAddress,tokens)
-  console.log("Check working", check,tokens,rawAddress,address)
+  // console.log("Check working", check,tokens,rawAddress,address)
   // if (check) {
   //   throw new Error(`Token has already been added. `)
   // }
