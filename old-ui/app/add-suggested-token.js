@@ -53,7 +53,8 @@ AddSuggestedTokenScreen.prototype.render = function () {
       h('.error', {
         style: {
           display: warning ? 'block' : 'none',
-          padding: '0 20px',
+          padding: '10px 20px',
+          margin: '15px',
           textAlign: 'center',
         },
       }, warning),
@@ -66,14 +67,14 @@ AddSuggestedTokenScreen.prototype.render = function () {
           },
         }, [
 
-          h('div', 
+          h('div',
                 [
                 h('span',{
                   style: { fontWeight: 'bold',fontSize: '12px',},
                 }, 'Token Contract Address  '),
-                
+
               ]),
-            
+
           // ),
 
           h('div', {
@@ -128,7 +129,7 @@ AddSuggestedTokenScreen.prototype.render = function () {
             }, decimals),
           ]),
           h('div', { style: { display: 'flex', justifyContent: 'space-between',marginTop:'42px' } }, [
-            
+
             h('button', {
               style: {
                 alignSelf: 'center',
@@ -140,7 +141,7 @@ AddSuggestedTokenScreen.prototype.render = function () {
                 dispatch(actions.removeSuggestedTokens())
               },
             }, 'Cancel'),
-            
+
             h('button', {
               style: {
                 alignSelf: 'center',
@@ -150,7 +151,7 @@ AddSuggestedTokenScreen.prototype.render = function () {
               onClick: (event) => {
                 const valid = this.validateInputs({ address, symbol, decimals })
                 if (!valid) return
-                
+
                 dispatch(actions.addToken(address.trim(), symbol.trim(), decimals))
                 .then(() => {
                   dispatch(actions.removeSuggestedTokens())
@@ -179,14 +180,14 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
   if (!validAddress) {
     msg += 'Address is invalid.'
   }
-  
-  const check = checkExistingAddresses(address, tokens)
-  console.log("Check working", check,tokens,address)
-  if (check) {
+  const isTokenAlreadyExists = checkExistingAddresses(address, tokens)
+  console.log('Class: AddSuggestedTokenScreen, Function: check === ', isTokenAlreadyExists);
+
+  if (isTokenAlreadyExists) {
     msg += 'Token has already been added.'
   }
   const validDecimals = decimals >= 0 && decimals < 36
-  if (validDecimals) {
+  if (!validDecimals) {
     msg += 'Decimals must be at least 0 and not over 36. '
   }
 
@@ -203,7 +204,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
     msg = 'Personal address detected. Input the token contract address.'
   }
 
-  const isValid = validAddress && validDecimals && !ownAddress
+  const isValid = validAddress && validDecimals && !ownAddress && !isTokenAlreadyExists
 
   if (!isValid) {
     this.setState({
@@ -234,7 +235,7 @@ AddSuggestedTokenScreen.prototype.validateInputs = function (opts) {
         warning,
         customAddressError: warning /* this.context.t('tokenAlreadyAdded')*/,
       })
-  
+
       break
   }
 }
