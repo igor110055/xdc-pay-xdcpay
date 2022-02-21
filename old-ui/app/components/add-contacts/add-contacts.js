@@ -25,7 +25,7 @@ const AddContactComponent = (props) => {
           style={{marginLeft: '17px', cursor: 'pointer'}}
           onClick={onBackClick}
         />
-        <h2 style={{fontFamily: 'Inter-bold', fontSize:'15px', marginLeft:'28px'}}>
+        <h2 style={{fontFamily: 'Inter-bold', fontSize:'15px', marginLeft:'28px',color:"#2A2A2A"}}>
           {`${viewContactObj ? 'Edit' : 'Add'} Contact`}
         </h2>
         <h2 style={{color:'#FF0035', fontSize:'15px' , fontFamily:"Inter-Medium", marginRight:'15px', cursor:'pointer'}}  onClick={() => onDeleteClicked(viewContactObj)}>
