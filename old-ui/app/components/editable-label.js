@@ -7,12 +7,16 @@ module.exports = EditableLabel
 
 inherits(EditableLabel, Component)
 function EditableLabel () {
+  this.state = {
+    block:false,
+  }
   Component.call(this)
 }
 
 EditableLabel.prototype.render = function () {
   const props = this.props
   const state = this.state
+  const {block}=this.state
 
   if (state && state.isEditingLabel) {
     return h('div.editable-label',{style:{margin:'9px 0 20px 78px '},
@@ -53,12 +57,29 @@ EditableLabel.prototype.saveIfEnter = function (event) {
     this.saveText()
   }
 }
+EditableLabel.prototype.changing= function (event) {
+  // eslint-disable-next-line react/no-find-dom-node
+  var container = findDOMNode(this)
+  var text = container.querySelector('.editable-label input').value
+  if (text === '') {
+    this.setState({
+      block:true
+    })
+  }else{
+    this.setState({
+      block:false
+    })
+  }
+}
 
 EditableLabel.prototype.saveText = function () {
   // eslint-disable-next-line react/no-find-dom-node
   var container = findDOMNode(this)
   var text = container.querySelector('.editable-label input').value
+  if(text===""){
+  }else{
   var truncatedText = text.substring(0, 20)
   this.props.saveText(truncatedText)
   this.setState({ isEditingLabel: false, textLabel: truncatedText })
+  }
 }

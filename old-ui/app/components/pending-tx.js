@@ -211,6 +211,7 @@ PendingTx.prototype.render = function () {
               marginTop: '26px',
               marginBottom: '24px',
               fontWeight: 'bold',
+              marginLeft:'60px',
             },
           }, [
             !isNotification ? h('img.cursor-pointer', {
@@ -685,6 +686,7 @@ PendingTx.prototype.miniAccountPanelForRecipient = function (isToken, tokensTran
 
       h('span.font-small', {
         style: {
+          display:'none',
           fontFamily: 'Inter-SemiBold',
           color: '#ffffff',
         },
