@@ -147,7 +147,7 @@ TokenCell.prototype.renderTokenOptions = function (menuToTop, ind) {
           h('img',
           {className: 'token-options-icon', src: "/images/Assets/ViewOnExplorer.svg"},
           ),
-        `View token on block explorer`,]
+        `View token on observer`,]
       ),
       h(
         DropdownMenuItem,

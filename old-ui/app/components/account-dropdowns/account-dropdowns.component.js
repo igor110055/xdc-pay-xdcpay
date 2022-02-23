@@ -250,7 +250,7 @@ class AccountDropdowns extends Component {
               className="account-options-icon"
               src="/images/Assets/ViewOnExplorer.svg"
             />
-            View on block explorer
+            View on observer
           </DropdownMenuItem>
           <DropdownMenuItem
             closeMenu={() => {
@@ -313,7 +313,7 @@ class AccountDropdowns extends Component {
     networkList.find((networkObj) =>{ if(networkObj.chainId == network){
       networkData=networkObj
     }})
-    const address = networkData && networkData.providerType === 'rpc' ? 'address' : networkData==network?'address-details':'address'
+    const address = networkData && networkData.providerType === 'rpc' ? 'address' : networkData.providerType==='xdc'?'address-details':'address'
     const accountAddress = networkData && networkData.providerType === 'rpc' ? selected : selected.replace('0x', 'xdc')
     const url = networkData ? `${networkData.blockExplorer}/${address}/${accountAddress}` : ethNetProps.explorerLinks.getExplorerAccountLinkFor(
       selected.replace('0x', 'xdc'),

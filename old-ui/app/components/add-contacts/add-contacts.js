@@ -122,7 +122,7 @@ const AddContactComponent = (props) => {
               onAddContactClicked(!!viewContactObj)
             }}
           >
-          {`${!!viewContactObj ? 'Update' : 'Add'}`}
+          {`${!!viewContactObj ? 'Update' : 'Save'}`}
           </div>
         </div>
       </div>
