@@ -250,7 +250,7 @@ class AccountDropdowns extends Component {
               className="account-options-icon"
               src="/images/Assets/ViewOnExplorer.svg"
             />
-            View on observer
+            {network==50?'View on observer':"View on block explorer"}
           </DropdownMenuItem>
           <DropdownMenuItem
             closeMenu={() => {
