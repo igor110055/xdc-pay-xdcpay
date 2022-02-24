@@ -211,7 +211,7 @@ PendingTx.prototype.render = function () {
               marginTop: '26px',
               marginBottom: '24px',
               fontWeight: 'bold',
-              marginLeft:'60px',
+              marginLeft:'2px',
             },
           }, [
             !isNotification ? h('img.cursor-pointer', {
@@ -533,7 +533,6 @@ PendingTx.prototype.render = function () {
           style: {
             display: 'flex',
             justifyContent: 'flex-end',
-            marginTop: '20px',
           },
         }, [
           h('button.cancel.btn-red', {
