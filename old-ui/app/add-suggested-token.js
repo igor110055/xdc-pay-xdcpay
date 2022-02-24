@@ -55,7 +55,7 @@ AddSuggestedTokenScreen.prototype.render = function () {
         style: {
           display: warning ? 'block' : 'none',
           padding: '10px 20px',
-          margin: '15px 50px 15px 50px',
+          margin: '15px 51px 0 51px ',
           textAlign: 'center',
         },
       }, warning),
