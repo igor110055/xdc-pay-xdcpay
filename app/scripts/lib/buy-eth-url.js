@@ -118,22 +118,22 @@ function getExchanges ({network, amount, address}) {
       ]
     case XDC_CODE:
       return [
+        {
+          name: 'Simplex',
+          link: 'https://simplex.bringtotheblock.net/',
+        },
         // {
-        //   name: 'Simplex',
-        //   link: 'https://simplex.bringtotheblock.net/',
+        //   name: 'Indodax',
+        //   link: 'https://indodax.com/market/XDCIDR',
         // },
-        {
-          name: 'Indodax',
-          link: 'https://indodax.com/market/XDCIDR',
-        },
-        {
-          name: 'Kucoin',
-          link: ' https://trade.kucoin.com/trade/XDC-USDT',
-        },
-        {
-          name: 'Gate.io',
-          link: 'https://www.gate.io/trade/xdc_usdt',
-        },
+        // {
+        //   name: 'Kucoin',
+        //   link: ' https://trade.kucoin.com/trade/XDC-USDT',
+        // },
+        // {
+        //   name: 'Gate.io',
+        //   link: 'https://www.gate.io/trade/xdc_usdt',
+        // },
 
       ]
     default:
