@@ -384,7 +384,7 @@ PendingTx.prototype.render = function () {
           h('.table-box', {
             style: {
               overflowY: 'scroll',
-              height: '329px',
+              height:  isError ? '200px' :'329px',
               width: 'fit-content',
             },
           }, [
