@@ -209,7 +209,7 @@ PendingTx.prototype.render = function () {
           h('.flex-row.flex-center', {
             style: {
               marginTop: '26px',
-              marginBottom: '24px',
+              marginBottom: '14px',
               fontWeight: 'bold',
               marginLeft:'2px',
             },
@@ -301,7 +301,7 @@ PendingTx.prototype.render = function () {
           h('.flex-row.flex-center', {
             style: {
               maxWidth: '100%',
-              padding: showRejectAll ? '0 0 20px 0' : '0 0 20px 0',
+              padding: showRejectAll ? '0 0 8px 0' : '0 0 8px 0',
               background: '#FFFFFF',
               position: 'relative',
             },
@@ -480,7 +480,7 @@ PendingTx.prototype.render = function () {
                 fontFamily: 'Inter-Regular',
               },
             }, [
-              h('.cell.label', { style: { marginTop: '20px' }, }, 'Max Total'),
+              h('.cell.label', 'Max Total'),
               h('.cell.value', {
                 style: {
                   display: 'flex',
