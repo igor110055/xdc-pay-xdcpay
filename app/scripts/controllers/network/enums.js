@@ -165,4 +165,7 @@ module.exports = {
   DROPDOWN_XDC_DEVNET_DISPLAY_NAME,
   chainTypes,
   permanentNetworks,
+  XDC_RPC_ENDPOINT,
+  XDC_TESTNET_RPC_ENDPOINT,
+  XDC_DEVNET_RPC_ENDPOINT,
 }
